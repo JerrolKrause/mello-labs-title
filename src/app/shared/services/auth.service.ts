@@ -149,7 +149,7 @@ export class AuthService {
     
     // Don't throw a redirect url if this is the dashboard since that is default on login
     const returnUrl = this.router.url !== '/' && this.router.url !== '/login' ? this.router.url.split('?')[0] : null;
-    this.router.navigate(['/login'], { queryParams: { returnUrl: returnUrl, session: 'expired' } });
+    this.router.navigate(['/login'], { queryParams: { returnUrl: returnUrl, session: 'loggedout' } });
   } // end LogOut
 
 }

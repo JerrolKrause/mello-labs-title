@@ -1,39 +1,66 @@
+<ng-container *ngIf="{loan: ui.formLoan$ | async, hasUpdate: ui.loanHasUpdate$ | async } as compData">
 
-<div class="row" *ngIf="loan$ | async as loan">
-  <div class="col-12 col-md-8">
-    <div class="form-group row mb-0">
-      <label for="example-text-input" class="col-6 col-form-label small">Loan#</label>
-      <div class="col-6">
-        <input class="form-control form-control-sm" type="text" value="{{loan.lnkey}}" id="example-text-input">
+  <form [formGroup]="formInfo">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <div class="form-group row mb-0">
+          <label for="example-text-input" class="col-6 col-form-label small">Loan#</label>
+          <div class="col-6">
+            <input class="form-control form-control-sm" type="text" formControlName="lnkey">
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label for="example-text-input" class="col-6 col-form-label small">Borrower</label>
+          <div class="col-6">
+            <input class="form-control form-control-sm" type="text" formControlName="name" id="example-text-input">
+          </div>
+        </div>
+        <div class="form-group row mb-0">
+          <label for="example-text-input" class="col-6 col-form-label small">Loan Amount</label>
+          <div class="col-6">
+            <!--
+      <field-component [frmGroup]="formInfo" frmControl="loanAmount" label="Username" classes="form-control-sm" [inline]="true" type="currency"></field-component>
+      -->
+            <input class="form-control form-control-sm" type="text" formControlName="loanAmount" id="example-text-input">
+          </div>
+        </div>
+
+        <div class="form-group row mb-0" style="position:relative;">
+          <label for="example-text-input" class="col-6 col-form-label small">Title Effective Date</label>
+          <div class="col-6">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-sm" formControlName="dateEffective">
+              <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d2.close();d.toggle()" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+          <input type="hidden" ngbDatepicker #d="ngbDatepicker" name="dp" [ngModel]="dateEffective" (ngModelChange)="dateChanged('dateEffective', $event)" [ngModelOptions]="{standalone: true}" />
+        </div>
+
+        <div class="form-group row mb-0" style="position:relative;">
+          <label for="example-text-input" class="col-6 col-form-label small">Title Expiration Date</label>
+          <div class="col-6">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-sm" formControlName="dateExpiration">
+              <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d.close();d2.toggle()" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+          <input type="hidden" ngbDatepicker #d2="ngbDatepicker" name="dp" [ngModel]="dateExpiration" (ngModelChange)="dateChanged('dateExpiration', $event)" [ngModelOptions]="{standalone: true}" />
+        </div>
+
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-sm mb-2 w-100"
+                (click)="loanSave()"
+                [ngClass]="{'btn-primary ': compData.hasUpdate, 'btn-secondary ': !compData.hasUpdate  }">
+          Save to Empower
+        </button>
+        <button class="btn btn-sm btn-secondary mb-2 w-100">Open in Empower</button>
       </div>
     </div>
-    <div class="form-group row mb-0">
-      <label for="example-text-input" class="col-6 col-form-label small">Borrower</label>
-      <div class="col-6">
-        <input class="form-control form-control-sm" type="text" value="{{loan.name}}" id="example-text-input">
-      </div>
-    </div>
-    <div class="form-group row mb-0">
-      <label for="example-text-input" class="col-6 col-form-label small">Loan Amount</label>
-      <div class="col-6">
-        <input class="form-control form-control-sm" type="text" value="{{loan.loanAmount | currency}}" id="example-text-input">
-      </div>
-    </div>
-    <div class="form-group row mb-0">
-      <label for="example-text-input" class="col-6 col-form-label small">Title Effective Date</label>
-      <div class="col-6">
-        <input class="form-control form-control-sm" type="text" value="2/3/2018" id="example-text-input">
-      </div>
-    </div>
-    <div class="form-group row mb-0">
-      <label for="example-text-input" class="col-6 col-form-label small">Title Expiration Date</label>
-      <div class="col-6">
-        <input class="form-control form-control-sm" type="text" value="6/13/2018" id="example-text-input">
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-4">
-    <button class="btn btn-sm btn-primary mb-2 w-100">Open in Empower</button>
-    <button class="btn btn-sm btn-primary w-100">Save to Empower</button>
-  </div>
-</div>
+  </form>
+
+</ng-container>

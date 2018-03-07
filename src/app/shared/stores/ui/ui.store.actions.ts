@@ -6,10 +6,12 @@ export enum UIStoreActions {
   MODAL_UNLOAD = 'MODAL_UNLOAD',
   TAB_CHANGE = 'TAB_CHANGE',
   FORM_CHANGE = 'FORM_CHANGE',
-  LOAN_CHANGE = 'LOAN_CHANGE',
+  LOAN_SAVED = 'LOAN_SAVED',
 }
 
 export enum FormTypes {
+  loan = 'loan',
+  info = 'info',
   borrower = 'borrower',
   vesting = 'vesting',
   property = 'property',

@@ -29,10 +29,10 @@ export class LoanComponent implements OnInit {
     this.subs.push(
       // Get LNkey from route params
       this.route.params.subscribe(params => this.lnkey = params.lnkey),
-      // Load active loan into store
+      // Load active loan form into store
       this.api.loans$.subscribe(loans => {
         if (loans && loans.dict) {
-          this.ui.loanChange(loans.dict[this.lnkey]);
+          this.ui.formChange(FormTypes.loan, loans.dict[this.lnkey]);
         }
       }),
       // Load vesting form info into store

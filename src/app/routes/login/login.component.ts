@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   public waiting: boolean;
   public errorApi: IErrorApi;
   public showErrorDetails = false;
-  public sessionExpired: boolean = this.authService.sessionExpired;
+  public sessionExpired: boolean;
+  public loggedout: boolean;
   public showPassword = false;
   public returnUrl: string;
 
@@ -49,6 +50,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.route.queryParams.subscribe(params => {
         if (params.session === 'expired') {
           this.sessionExpired = true;
+        }
+        if (params.session === 'loggedout') {
+          this.loggedout = true;
         }
       })
     );

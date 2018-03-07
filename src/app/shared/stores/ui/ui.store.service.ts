@@ -11,8 +11,9 @@ export class UIStoreService {
   public tabViewer$ = this.store.select(store => store.ui.tabViewer);
   public tabForm$ = this.store.select(store => store.ui.tabForm);
 
-  public loan$ = this.store.select(store => store.ui.loan);
-  public formVesting$ = this.store.select(store => store.ui.vesting);
+  public loanHasUpdate$ = this.store.select(store => store.ui.loanHasUpdate);
+  public formVesting$ = this.store.select(store => store.ui.forms.vesting);
+  public formLoan$ = this.store.select(store => store.ui.forms.loan);
 
   constructor(
     private store: Store<IStore.root>
@@ -32,21 +33,20 @@ export class UIStoreService {
   }
 
   /**
-   * Change the active visible tab
-   * @param tabType
-   * @param tabNum
+   * Indicate that a loan has been saved and mark the loanHasUpdate flag to false
    */
-  public loanChange(loan: any) {
-    this.store.dispatch({ type: UIStoreActions.LOAN_CHANGE, payload: loan });
+  public loanSaved() {
+    this.store.dispatch({ type: UIStoreActions.LOAN_SAVED, payload: true });
   }
 
   /**
    * Update the value of a form in the store
-   * @param formType
-   * @param value
+   * @param formType - Which form to update
+   * @param value - New form value
+   * @param loanHasUpdate - Should this form change set the loanHasUpdate flag
    */
-  public formChange(formType: FormTypes, value: any) {
-    this.store.dispatch({ type: UIStoreActions.FORM_CHANGE, payload: { formType: formType, value: value } });
+  public formChange(formType: FormTypes, value: any, loanHasUpdate = false) {
+    this.store.dispatch({ type: UIStoreActions.FORM_CHANGE, payload: { formType: formType, value: value, loanHasUpdate: loanHasUpdate } });
   }
 
   /**  Reload the last UI state from localstorage */

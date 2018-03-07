@@ -1,15 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/observable/forkJoin';
+
 import { UIStoreService, FormTypes } from '@ui';
 import { ApiService } from '@api'
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-vesting',
   templateUrl: './vesting.component.html',
   styleUrls: ['./vesting.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VestingComponent implements OnInit, OnDestroy {
@@ -17,6 +20,7 @@ export class VestingComponent implements OnInit, OnDestroy {
   public formVesting: FormGroup;
   @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
 
+  public dateLastRecorded;
   private subs: Subscription[] = [];
 
   constructor(
@@ -46,7 +50,7 @@ export class VestingComponent implements OnInit, OnDestroy {
     this.subs.push(
       // Watch form changes, update value in UI store
       this.formVesting.valueChanges.subscribe(formNew => {
-        this.ui.formChange(FormTypes.vesting, { ...formNew });
+        this.ui.formChange(FormTypes.vesting, { ...formNew },true);
       })
     );
 
@@ -63,6 +67,16 @@ export class VestingComponent implements OnInit, OnDestroy {
     let valNew = {};
     valNew[field] = propNew;
     this.formVesting.patchValue(valNew);
+  }
+
+  /**
+ * Transform date supplied by datepicker to reactive form model
+ * @param field
+ * @param date
+ */
+  public dateChanged(field: 'dateLastRecorded', date) {
+    let dateNew = date.month + '/' + date.day + '/' + date.year;
+    this.updateForm(field, dateNew);
   }
 
   ngOnDestroy() {

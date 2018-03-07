@@ -25,6 +25,7 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
   public lnkey: string;
   public loan;
 
+  public formInfoStatus$ = this.api.getState$(ApiProps.loans);
   public formVestingStatus$ = this.api.getState$(ApiProps.vesting);
   public formVesting: FormBuilder;
 
@@ -56,14 +57,12 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.subs.push(
-        // On tab change, update UI store
-        this.tab.tabChange.subscribe(tabNum => {
-          this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
-        })
-      );
-    })
+    this.subs.push(
+      // On tab change, update UI store
+      this.tab.tabChange.subscribe(tabNum => {
+        this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
+      })
+    );
   }
 
   /**

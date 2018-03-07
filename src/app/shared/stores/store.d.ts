@@ -31,10 +31,14 @@ export declare namespace IStore {
       options: {};
       data: any;
     };
-    loan: any;
+    loanHasUpdate: boolean;
     tabViewer: number;
     tabForm: number;
-    vesting: any;
+    forms: {
+      loan?: any;
+      borrower?: any;
+      vesting?: any;
+    }
   }
 
 

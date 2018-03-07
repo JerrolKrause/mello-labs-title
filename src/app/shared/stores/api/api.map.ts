@@ -21,6 +21,8 @@ export const ApiMap: IStore.ApiMapping = {
     map: (users: any[]) => {
       let dict = {};
       users.forEach(user => {
+        user.dateEffective = '2/8/2018';
+        user.dateExpiration = '4/21/2018';
         dict[user.lnkey] = user;
       });
       return {
