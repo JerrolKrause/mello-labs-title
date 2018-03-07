@@ -7,7 +7,8 @@
               [columns]="columns"
               [state]="state"
               [options]="options"
-              [filterGlobal]="filterGlobal">
+              [filterGlobal]="filterGlobal"
+              (onStateChange)="onStateChange($event)">
 
       <datagrid-column prop="lnkey">
         <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>

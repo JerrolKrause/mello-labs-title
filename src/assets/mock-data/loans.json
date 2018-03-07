@@ -292,11 +292,12 @@
       "bs": "target end-to-end models"
     },
     "lnkey": 100382361,
-    "borrower": false,
+    "borrower": true,
     "vesting": true,
-    "property": false,
+    "property": true,
     "liens": true,
     "notes": true,
+    "certification": true,
     "loanAmount": 346997
   }
 ]
