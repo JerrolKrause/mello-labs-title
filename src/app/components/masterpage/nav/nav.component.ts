@@ -27,7 +27,7 @@ export class NavComponent {
   }
 
   public logOut() {
-    this.auth.logOut();
+    this.auth.logOut('loggedout');
   }
 
 }

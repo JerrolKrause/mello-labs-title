@@ -142,14 +142,17 @@ export class AuthService {
   /**
    * Log the user out. Clear stored data and redirect to login page
    */
-  public logOut(): void {
+  public logOut(logoutType?: 'loggedout' | 'expired'): void {
     clearTimeout(this.sessionTimer);
     this.settings.token = null;
     this.api.resetStore(); // Clear out all API data on log out for security
-    
     // Don't throw a redirect url if this is the dashboard since that is default on login
     const returnUrl = this.router.url !== '/' && this.router.url !== '/login' ? this.router.url.split('?')[0] : null;
-    this.router.navigate(['/login'], { queryParams: { returnUrl: returnUrl, session: 'loggedout' } });
+    let queryParams = { returnUrl: returnUrl };
+    if (logoutType){
+      queryParams['session'] = logoutType;
+    }
+    this.router.navigate(['/login'], { queryParams: queryParams });
   } // end LogOut
 
 }

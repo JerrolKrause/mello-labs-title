@@ -33,8 +33,6 @@ export class LoanComponent implements OnInit {
       this.api.loans$.subscribe(loans => {
         if (loans && loans.dict) {
           this.ui.formChange(FormTypes.loan, loans.dict[this.lnkey]);
-
-          console.log(this.lnkey, loans.dict, loans.dict[this.lnkey]);
         }
       }),
       // Load vesting form info into store
