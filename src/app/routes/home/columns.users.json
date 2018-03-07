@@ -1,0 +1,83 @@
+[
+  {
+    "prop": "lnkey",
+    "label": "Loan Number",
+    "columnType": "string",
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "name",
+    "label": "Borrower",
+    "columnType": "string",
+    "width": 150,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "loanAmount",
+    "label": "Amount",
+    "columnType": "currency",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "borrower",
+    "label": "Borrower Info",
+    "columnType": "string",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+
+  {
+    "prop": "vesting",
+    "label": "Vesting/Ownership",
+    "columnType": "string",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "property",
+    "label": "Property",
+    "columnType": "string",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "liens",
+    "label": "Liens",
+    "columnType": "string",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "notes",
+    "label": "Notes/Comments",
+    "columnType": "string",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "certification",
+    "label": "Certification",
+    "columnType": "string",
+    "width": 120,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  }
+]

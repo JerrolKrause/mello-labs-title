@@ -1,0 +1,79 @@
+<div *ngIf="ui.tabForm$ | async as tab" id="app-forms">
+
+  <div class="mb-3">
+    <div class="card">
+      <div class="card-block">
+      <app-loan-info></app-loan-info>
+      </div>
+    </div>
+  </div>
+
+  <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
+
+    <ngb-tab id="tab-1">
+      <ng-template ngbTabTitle>
+        Borrower <i class="fa fa-check green"></i>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <app-borrower (formRef)="formRef('borrower',$event)"></app-borrower>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="tab-2">
+      <ng-template ngbTabTitle>
+        Vesting/Ownership
+        <ng-container *ngIf="formVesting">
+          <i class="fa fa-check green" *ngIf="formVesting?.valid"></i>
+          <i class="fa fa-warning yellow" *ngIf="formVesting?.invalid"></i>
+        </ng-container>
+        <ng-container *ngIf="!formVesting">
+          <i class="fa fa-check green" *ngIf="loan?.vesting"></i>
+          <i class="fa fa-warning yellow" *ngIf="!loan?.vesting"></i>
+        </ng-container>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <api-state [state]="status" [toaster]="true" [showSuccess]="false" *ngIf="formVestingStatus$ | async as status">
+          <app-vesting (formRef)="formRef('vesting',$event)" *ngIf="status.loaded"></app-vesting>
+        </api-state>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="tab-3">
+      <ng-template ngbTabTitle>
+        Property <i class="fa fa-warning yellow"></i>
+      </ng-template>
+      <ng-template ngbTabContent>
+      Property Form
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="tab-4">
+      <ng-template ngbTabTitle>
+        Liens <i class="fa fa-check green"></i>
+      </ng-template>
+      <ng-template ngbTabContent>
+      Liens Form
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="tab-5">
+      <ng-template ngbTabTitle>
+        Notes/Comments <i class="fa fa-check green"></i>
+      </ng-template>
+      <ng-template ngbTabContent>
+      Notes and Comments Form
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="tab-6">
+      <ng-template ngbTabTitle>
+        Certification <i class="fa fa-warning yellow"></i>
+      </ng-template>
+      <ng-template ngbTabContent>
+      Certification
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
+
+</div>

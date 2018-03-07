@@ -1,0 +1,39 @@
+
+<div class="row" *ngIf="loan$ | async as loan">
+  <div class="col-12 col-md-8">
+    <div class="form-group row mb-0">
+      <label for="example-text-input" class="col-6 col-form-label small">Loan#</label>
+      <div class="col-6">
+        <input class="form-control form-control-sm" type="text" value="{{loan.lnkey}}" id="example-text-input">
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <label for="example-text-input" class="col-6 col-form-label small">Borrower</label>
+      <div class="col-6">
+        <input class="form-control form-control-sm" type="text" value="{{loan.name}}" id="example-text-input">
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <label for="example-text-input" class="col-6 col-form-label small">Loan Amount</label>
+      <div class="col-6">
+        <input class="form-control form-control-sm" type="text" value="{{loan.loanAmount | currency}}" id="example-text-input">
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <label for="example-text-input" class="col-6 col-form-label small">Title Effective Date</label>
+      <div class="col-6">
+        <input class="form-control form-control-sm" type="text" value="2/3/2018" id="example-text-input">
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <label for="example-text-input" class="col-6 col-form-label small">Title Expiration Date</label>
+      <div class="col-6">
+        <input class="form-control form-control-sm" type="text" value="6/13/2018" id="example-text-input">
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <button class="btn btn-sm btn-primary mb-2 w-100">Open in Empower</button>
+    <button class="btn btn-sm btn-primary w-100">Save to Empower</button>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+    <h2 class="mb-0">OCR Extraction Values</h2>
+  </div>
+  <div class="col-12 col-md-6">
+    <h2 class="mb-0">Empower Data</h2>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-2">
+  <div class="col-12">
+    <a class="float-right small" (click)="ui.tabChange('viewer',1)"><i class="fa fa-eye"></i> Title Report-4.pdf
+</a>
+    <h3 class="mb-2">
+      <i class="fa fa-check-square green"></i>
+      Borrower Name(s):
+    </h3>
+  </div>
+  <div class="col-12 col-md-6">
+    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="borrower = 'John Smith&#013;Jane Smith'">
+      <span class="float-right valign-inline" style="right:5px;">98%</span>
+      John Smith<br />
+      Jane Smith
+    </button>
+    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="borrower = 'John Smith'">
+      <span class="float-right valign-inline" style="right:5px;">3%</span>
+      John Smith
+    </button>
+    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="borrower = 'Jane Smith'">
+      <span class="float-right valign-inline" style="right:5px;">3%</span>
+      Jane Smith
+    </button>
+  </div>
+  <div class="col-12 col-md-6">
+    <textarea class="form-control" [(ngModel)]="borrower">John Smith&#013;Jane Smith</textarea>
+  </div>
+</div>
+
+<hr/>
+<div class="row">
+  <div class="col-12">
+    <a class="float-right small" (click)="ui.tabChange('viewer',2)"><i class="fa fa-eye"></i> Title Report-9.pdf</a>
+    <h3 class="mb-2">
+      <i class="fa fa-check-square green"></i>
+      Marital Status
+    </h3>
+  </div>
+  <div class="col-12 col-md-6">
+    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="maritalStatus = 'Married' ">
+      <span class="float-right valign-inline" style="right:5px;">99%</span>
+      Married
+    </button>
+  </div>
+  <div class="col-12 col-md-6">
+    <fieldset class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios1" value="Married" checked>
+          Married
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios2" value="Un-Married">
+          Un-Married
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios3" value="Registered/Domestic Partner">
+          Registered/Domestic Partner
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios3" value="Custom">
+
+          <input type="text" class="form-control form-control-sm form-control-inline" (click)="maritalStatus = 'Custom' " />
+        </label>
+      </div>
+
+    </fieldset>
+  </div>
+</div>

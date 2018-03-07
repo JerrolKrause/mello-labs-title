@@ -1,0 +1,16 @@
+// Include global application specific styling here
+//body{font-weight:normal;}
+
+.nav-tabs{
+  .nav-link.active{position: relative; z-index: 2;}
+  .nav-link{border-color: #eceeef #eceeef #ddd;}
+}
+
+.valign{position: relative;top: 50%;transform: translateY(-50%);}
+.valign-inline{position: absolute;top: 50%;transform: translateY(-50%);}
+
+.green{color: green;}
+.yellow{color: red;}
+
+.bg-complete{background-color: rgba(0,128,0,0.05);}
+.bg-warning{background-color: rgba(255, 91, 91, 0.05);}

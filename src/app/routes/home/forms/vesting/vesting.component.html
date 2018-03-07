@@ -1,0 +1,219 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+    <h2 class="mb-0">OCR Extraction Values</h2>
+  </div>
+  <div class="col-12 col-md-6">
+    <h2 class="mb-0">Empower Data</h2>
+  </div>
+</div>
+<hr />
+
+<form  [formGroup]="formVesting">
+  <div class="row">
+    <div class="col-12">
+      <a class="float-right small" (click)="ui.tabChange('viewer',1)"><i class="fa fa-eye"></i> Document</a>
+      <h3 class="mb-2">
+        <i class="fa fa-check-square green" *ngIf="formVesting.get('nameFull').valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!formVesting.get('nameFull').valid"></i>
+        Full Name on Vesting
+      </h3>
+    </div>
+    <div class="col-12 col-md-6">
+      <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="updateForm('nameFull','John Smith&#013;Jane Smith')">
+        <span class="float-right valign-inline" style="right:5px;">98%</span>
+        John Smith<br />
+        Jane Smith
+      </button>
+      <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="updateForm('nameFull','John Smith')">
+        <span class="float-right valign-inline" style="right:5px;">3%</span>
+        John Smith
+      </button>
+      <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="updateForm('nameFull','Jane Smith')">
+        <span class="float-right valign-inline" style="right:5px;">3%</span>
+        Jane Smith
+      </button>
+    </div>
+    <div class="col-12 col-md-6">
+      <textarea class="form-control" formControlName="nameFull">John Smith&#013;Jane Smith</textarea>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-12">
+      <a class="float-right small" (click)="ui.tabChange('viewer',2)"><i class="fa fa-eye"></i> Document</a>
+      <h3 class="mb-2">
+        <i class="fa fa-check-square green" *ngIf="formVesting.get('maritalStatus').valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!formVesting.get('maritalStatus').valid"></i>
+        Marital Status
+      </h3>
+    </div>
+    <div class="col-12 col-md-6">
+      <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="updateForm('maritalStatus','Married')">
+        <span class="float-right valign-inline" style="right:5px;">99%</span>
+        Married
+      </button>
+    </div>
+    <div class="col-12 col-md-6">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="maritalStatus" value="Married" checked>
+            Married
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="maritalStatus" value="Un-Married">
+            Un-Married
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="maritalStatus" value="Registered/Domestic Partner">
+            Registered/Domestic Partner
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="maritalStatus" value="Custom">
+            <input type="text" class="form-control form-control-sm form-control-inline" (click)="maritalStatus2 = 'Custom' " />
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mb-2">
+        <i class="fa fa-check-square green" *ngIf="formVesting.get('dateLastRecorded').valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!formVesting.get('dateLastRecorded').valid"></i>
+        Date Last Recorded Deed:
+      </h3>
+    </div>
+    <div class="col-12 col-md-6">
+      <small><em>No OCR data found</em></small>
+    </div>
+    <div class="col-12 col-md-6">
+      <input class="form-control" formControlName="dateLastRecorded" />
+    </div>
+  </div>
+  <hr />
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3 class="mb-2">
+        <i class="fa fa-check-square green" *ngIf="formVesting.get('trust').valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!formVesting.get('trust').valid"></i>
+        Closing in a Trust:
+      </h3>
+    </div>
+    <div class="col-12 col-md-6">
+      <small><em>No OCR data found</em></small>
+    </div>
+    <div class="col-12 col-md-6">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="trust" value="Yes" checked>
+            Yes - Need approval from Trust Docs Department
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input"  formControlName="trust" value="No">
+            No
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mb-2">
+        <i class="fa fa-check-square green" *ngIf="formVesting.get('spousalSig').valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!formVesting.get('spousalSig').valid"></i>
+        Spousal Signature Required
+      </h3>
+    </div>
+    <div class="col-12 col-md-6">
+      <small><em>No OCR data found</em></small>
+    </div>
+    <div class="col-12 col-md-6">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="spousalSig" value="Yes" checked>
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="spousalSig" value="No">
+            No
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-12">
+      <a class="float-right small" (click)="ui.tabChange('viewer',1)"><i class="fa fa-eye"></i> Funding Checklist - Retail</a>
+      <h3 class="mb-2">
+        <i class="fa fa-check-square green" *ngIf="formVesting.get('ownerShipType').valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!formVesting.get('ownerShipType').valid"></i>
+        Type of Ownership
+      </h3>
+    </div>
+    <div class="col-12 col-md-6">
+      <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="updateForm('ownerShipType','Land Contract')">
+        <span class="float-right valign-inline" style="right:5px;">82%</span>
+        Land Contract
+      </button>
+      <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="updateForm('ownerShipType','Life Estate')">
+        <span class="float-right valign-inline" style="right:5px;">18%</span>
+        Life Estate
+      </button>
+    </div>
+    <div class="col-12 col-md-6">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="ownerShipType" value="Fee Simple">
+            Fee Simple
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="ownerShipType" value="Land Contract">
+            Land Contract
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="ownerShipType" value="Life Estate">
+            Life Estate
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="ownerShipType" value="Leasehold">
+            Leasehold
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" formControlName="ownerShipType" value="Custom">
+            <input type="text" class="form-control form-control-sm form-control-inline" (click)="ownerShipType = 'Custom' " />
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</form>
