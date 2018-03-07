@@ -77,7 +77,7 @@
         <div class="form-check">
           <label class="form-check-label">
             <input type="radio" class="form-check-input" formControlName="maritalStatus" value="Custom">
-            <input type="text" class="form-control form-control-sm form-control-inline" (click)="maritalStatus2 = 'Custom' " />
+            <input type="text" class="form-control form-control-sm form-control-inline" />
           </label>
         </div>
       </fieldset>
@@ -210,7 +210,7 @@
         <div class="form-check">
           <label class="form-check-label">
             <input type="radio" class="form-check-input" formControlName="ownerShipType" value="Custom">
-            <input type="text" class="form-control form-control-sm form-control-inline" (click)="ownerShipType = 'Custom' " />
+            <input type="text" class="form-control form-control-sm form-control-inline" (click)="updateForm('ownerShipType','Custom')" />
           </label>
         </div>
       </fieldset>
