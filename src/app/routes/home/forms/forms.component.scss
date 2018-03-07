@@ -2,6 +2,9 @@
   .nav-link{font-size:0.7rem;}
   .tab-pane{padding:1rem;background:#fff;}
   .btn{position:relative;}
+  ngb-tabset{
+    .tab-pane{height: calc(100vh - 345px); overflow-y: auto; overflow-x: hidden;}
 
+  }
 
 }
