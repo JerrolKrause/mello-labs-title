@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common'
 
@@ -12,6 +12,7 @@ import { ApiService } from '@api'
   selector: 'app-loan-info',
   templateUrl: './loan-info.component.html',
   styleUrls: ['./loan-info.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoanInfoComponent implements OnInit {

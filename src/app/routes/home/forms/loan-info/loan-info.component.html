@@ -1,6 +1,6 @@
 <ng-container *ngIf="{loan: ui.formLoan$ | async, hasUpdate: ui.loanHasUpdate$ | async } as compData">
 
-  <form [formGroup]="formInfo">
+  <form [formGroup]="formInfo" id="loanInfo">
     <div class="row">
       <div class="col-12 col-md-8">
         <div class="form-group row mb-0">
@@ -18,9 +18,6 @@
         <div class="form-group row mb-0">
           <label for="example-text-input" class="col-6 col-form-label small">Loan Amount</label>
           <div class="col-6">
-            <!--
-      <field-component [frmGroup]="formInfo" frmControl="loanAmount" label="Username" classes="form-control-sm" [inline]="true" type="currency"></field-component>
-      -->
             <input class="form-control form-control-sm" type="text" formControlName="loanAmount" id="example-text-input">
           </div>
         </div>

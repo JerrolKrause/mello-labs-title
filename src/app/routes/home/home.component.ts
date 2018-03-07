@@ -46,6 +46,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.api.loans.get().subscribe();
+    // Reset tabs
+    this.ui.tabChange('viewer', 1);
+    this.ui.tabChange('form', 1);
   }
 
   public onStateChange(state) {

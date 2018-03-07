@@ -2,8 +2,8 @@
 
   <div class="mb-3">
     <div class="card">
-      <div class="card-block">
-          <app-loan-info (formRef)="formRef('info',$event)" *ngIf="ui.formLoan$ | async"></app-loan-info>
+      <div class="card-block" *ngIf="ui.formLoan$ | async as form">
+          <app-loan-info (formRef)="formRef('info',$event)" *ngIf="form"></app-loan-info>
       </div>
     </div>
   </div>

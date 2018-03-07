@@ -20,35 +20,32 @@ export const ApiMap: IStore.ApiMapping = {
     mapSrc: 'src',
     map: (users: any[]) => {
      
-      let namesFirst = users.map(user => user.name.split(' ')[0]);
-      let namesLast = users.map(user => _.last(user.name.split(' ')));
+      //let namesFirst = users.map(user => user.name.split(' ')[0]);
+      //let namesLast = users.map(user => _.last(user.name.split(' ')));
       
       let usersNew = [...users, ...users, ...users];
       let dict = {};
-      usersNew = usersNew.map((user, i) => {
+      usersNew = users.map((user, i) => {
         let userNew = { ...user };
-        userNew.id = i;
-        userNew.name = _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0];
-        userNew.lnkey = _.random(100000000, 100500000);
-        userNew.loanAmount = _.random(100000, 600000);
-        userNew.borrower = _.random(10) > 3 ? true : false;
-        userNew.vesting = _.random(10) > 5 ? true : false;
-        userNew.property = _.random(10) > 6 ? true : false;
-        userNew.liens = _.random(10) > 4 ? true : false;
-        userNew.notes = _.random(10) > 5 ? true : false;
-        userNew.certification = _.random(100) > 85 ? true : false;
-        if (userNew.certification){
-          userNew.borrower = userNew.vesting = userNew.property = userNew.liens = userNew.notes = true;
-        }
-        userNew.dateEffective = '2/8/2018';
-        userNew.dateExpiration = '4/21/2018';
+        //userNew.id = i;
+        //userNew.name = _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0];
+        //userNew.lnkey = _.random(100000000, 100500000);
+        //userNew.loanAmount = _.random(100000, 600000);
+        //userNew.borrower = _.random(10) > 3 ? true : false;
+        //userNew.vesting = _.random(10) > 5 ? true : false;
+        //userNew.property = _.random(10) > 6 ? true : false;
+        //userNew.liens = _.random(10) > 4 ? true : false;
+        //userNew.notes = _.random(10) > 5 ? true : false;
+        //userNew.certification = _.random(100) > 85 ? true : false;
+        //if (userNew.certification){
+        //  userNew.borrower = userNew.vesting = userNew.property = userNew.liens = userNew.notes = true;
+        //}
+        //userNew.dateEffective = '2/8/2018';
+        //userNew.dateExpiration = '4/21/2018';
         dict[userNew.lnkey] = userNew;
         return userNew;
       });
-      console.log({
-        src: usersNew,
-        dict: dict
-      })
+      //console.log(JSON.stringify(usersNew));
       return {
         src: usersNew,
         dict: dict
