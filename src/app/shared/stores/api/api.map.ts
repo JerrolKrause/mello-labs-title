@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 export const ApiMap: IStore.ApiMapping = {
 
   loans: {
-    endpoint: '/assets/mock-data/loans.json',
+    endpoint: 'assets/mock-data/loans.json',
     storeProperty: ApiProps.loans,
     uniqueId: 'id',
     mapSrc: 'src',
@@ -32,7 +32,7 @@ export const ApiMap: IStore.ApiMapping = {
 
   // Example
   vesting: {
-    endpoint: '/assets/mock-data/vesting.json',
+    endpoint: 'assets/mock-data/vesting.json',
     storeProperty: ApiProps.vesting,
   },
 

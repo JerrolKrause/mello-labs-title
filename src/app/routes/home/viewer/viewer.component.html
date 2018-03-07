@@ -1,4 +1,4 @@
-<ng-container *ngIf="ui.tabViewer$ | async as tab">
+<ng-container *ngIf="uitabViewer$ | async as tab">
 
   <ul class="nav nav-tabs nav-tabs-sm nav-tabs-visible" style="border:0;" id="app-viewer">
 
@@ -23,11 +23,11 @@
     <div class="tab-pane" id="home" role="tabpanel" [ngClass]="{'active': tab == 1}">
       <div class="card">
         <div class="card-block p-2">
-          <object data="/assets/media/Title Report-4.pdf"
+          <object data="assets/media/Title Report-4.pdf"
                   type="application/pdf"
                   class="w-100"
                   style="border:0;height: calc(100vh - 149px);">
-            <embed src="/assets/media/Title Report-4.pdf" type="application/pdf" />
+            <embed src="assets/media/Title Report-4.pdf" type="application/pdf" />
           </object>
           <!--
           <iframe src="/assets/media/_Funding Checklist - Retail.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
@@ -39,11 +39,11 @@
     <div class="tab-pane" id="props" role="tabpanel" [ngClass]="{'active': tab == 2 }">
       <div class="card">
         <div class="card-block p-2">
-          <object data="/assets/media/Title Report-9.pdf"
+          <object data="assets/media/Title Report-9.pdf"
                   type="application/pdf"
                   class="w-100"
                   style="border:0;height: calc(100vh - 149px);">
-            <embed src="/assets/media/Title Report-9.pdf" type="application/pdf" />
+            <embed src="assets/media/Title Report-9.pdf" type="application/pdf" />
           </object>
           <!--
           <iframe src="/assets/media/_Original Closing Disclosure.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>

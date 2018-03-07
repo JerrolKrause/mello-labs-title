@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, OnDestroy ,AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { NgbTab, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -46,7 +46,7 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.ui.tabForm$.subscribe(tabNum => this.tabStart = 'tab-' + tabNum),
       this.route.params.subscribe(params => this.lnkey = params.lnkey),
       this.api.loans$.subscribe(loans => {
-        if (loans && loans.dict){
+        if (loans && loans.dict) {
           this.loan = loans.dict[this.lnkey];
           this.ref.detectChanges();
         }
@@ -56,12 +56,14 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.subs.push(
-      // On tab change, update UI store
-      this.tab.tabChange.subscribe(tabNum => {
-        this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
-      })
-    );
+    setTimeout(() => {
+      this.subs.push(
+        // On tab change, update UI store
+        this.tab.tabChange.subscribe(tabNum => {
+          this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
+        })
+      );
+    })
   }
 
   /**
