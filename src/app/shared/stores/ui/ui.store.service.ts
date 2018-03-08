@@ -12,6 +12,7 @@ export class UIStoreService {
   public tabForm$ = this.store.select(store => store.ui.tabForm);
 
   public loanHasUpdate$ = this.store.select(store => store.ui.loanHasUpdate);
+  public formBorrower$ = this.store.select(store => store.ui.forms.borrower);
   public formVesting$ = this.store.select(store => store.ui.forms.vesting);
   public formLoan$ = this.store.select(store => store.ui.forms.loan);
 

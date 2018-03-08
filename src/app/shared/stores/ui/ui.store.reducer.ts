@@ -12,7 +12,11 @@ const initialState: IStore.ui = {
   loanHasUpdate: false,
   forms: {
     loan: null,
-    borrower: null,
+    borrower: {
+      borrower: `John Smith
+Jane Smith`,
+      maritalStatus:'Married'
+    },
     vesting: null
   },
 

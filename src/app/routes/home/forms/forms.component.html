@@ -12,7 +12,15 @@
 
     <ngb-tab id="tab-1">
       <ng-template ngbTabTitle>
-        Borrower <i class="fa fa-check green"></i>
+        Borrower
+        <ng-container *ngIf="formBorrower">
+          <i class="fa fa-check green" *ngIf="formBorrower?.valid"></i>
+          <i class="fa fa-warning yellow" *ngIf="formBorrower?.invalid"></i>
+        </ng-container>
+        <ng-container *ngIf="!formBorrower">
+          <i class="fa fa-check green" *ngIf="loan?.borrower"></i>
+          <i class="fa fa-warning yellow" *ngIf="!loan?.borrower"></i>
+        </ng-container>
       </ng-template>
       <ng-template ngbTabContent>
         <app-borrower (formRef)="formRef('borrower',$event)"></app-borrower>

@@ -30,21 +30,23 @@ export class BorrowerComponent implements OnInit {
 
   ngOnInit() {
     this.formBorrower = this.fb.group({
-      borrower: ['John Smith\nJane Smith', [Validators.required]],
-      maritalStatus: ['Married', [Validators.required]]
+      borrower: [null, [Validators.required]],
+      maritalStatus: [null, [Validators.required]]
     });
 
     // Load the value currently in the store and then unsub
     // Initial load data is being added to store from route component
-    this.ui.formLoan$.subscribe(form => {
-      //this.formBorrower.reset();
-      //this.formBorrower.patchValue(form);
+    this.ui.formBorrower$.subscribe(form => {
+      if (form){
+        this.formBorrower.reset();
+        this.formBorrower.patchValue(form);
+      }
     }).unsubscribe();
 
     this.subs.push(
       // Watch form changes, update value in UI store
       this.formBorrower.valueChanges.subscribe(formNew => {
-        this.ui.formChange(FormTypes.vesting, { ...formNew }, true);
+        this.ui.formChange(FormTypes.borrower, { ...formNew }, true);
       })
     );
 

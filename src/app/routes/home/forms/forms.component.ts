@@ -28,6 +28,7 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
   public formInfoStatus$ = this.api.getState$(ApiProps.loans);
   public formVestingStatus$ = this.api.getState$(ApiProps.vesting);
   public formVesting: FormBuilder;
+  public formBorrower: FormBuilder;
 
   private subs: Subscription[] = [];
 
@@ -76,6 +77,9 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
     switch (formType) {
       case FormTypes.vesting:
         this.formVesting = form;
+        break;
+      case FormTypes.borrower:
+        this.formBorrower = form;
         break;
     }
     this.ref.detectChanges();
