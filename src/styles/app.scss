@@ -1,6 +1,10 @@
 // Include global application specific styling here
 //body{font-weight:normal;}
 
+// Pink labs background
+header .bg-mello { background-image: -webkit-gradient(linear,left top,left bottom,from(#e4b0c6),to(#f7276e));background-image: linear-gradient(180deg,#e4b0c6 0,#f7276e);}
+
+
 .nav-tabs{
   .nav-link.active{position: relative; z-index: 2;}
   .nav-link{border-color: #eceeef #eceeef #ddd;}
@@ -10,7 +14,8 @@
 .valign-inline{position: absolute;top: 50%;transform: translateY(-50%);}
 
 .green{color: green;}
-.yellow{color: red;}
+.yellow{color: #ffd63c;}
+.red{color:red;}
 
 .ocr-perc{right: 5px;font-style: italic;font-size: .7rem;}
 
@@ -19,4 +24,8 @@
 
 ngb-datepicker{
   .btn,btn:hover{box-shadow:none!important;}
+}
+
+.nav-tabs{border:0;
+ .nav-link.active{position: relative; z-index: 2;top: 1px;}
 }

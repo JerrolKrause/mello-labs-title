@@ -1,85 +1,88 @@
-<div class="row">
-  <div class="col-12 col-md-6">
-    <h2 class="mb-0">OCR Extraction Values</h2>
-  </div>
-  <div class="col-12 col-md-6">
-    <h2 class="mb-0">Empower Data</h2>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-2">
-  <div class="col-12">
-    <a class="float-right small" (click)="ui.tabChange('viewer',1)"><i class="fa fa-eye"></i> Title Report-4.pdf
-</a>
-    <h3 class="mb-2">
-      <i class="fa fa-check-square green"></i>
-      Borrower Name(s):
-    </h3>
-  </div>
-  <div class="col-12 col-md-6">
-    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="borrower = 'John Smith&#013;Jane Smith'">
-      <span class="float-right valign-inline ocr-perc" >98%</span>
-      John Smith<br />
-      Jane Smith
-    </button>
-    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="borrower = 'John Smith'">
-      <span class="float-right valign-inline ocr-perc">3%</span>
-      John Smith
-    </button>
-    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="borrower = 'Jane Smith'">
-      <span class="float-right valign-inline ocr-perc">3%</span>
-      Jane Smith
-    </button>
-  </div>
-  <div class="col-12 col-md-6">
-    <textarea class="form-control" [(ngModel)]="borrower">John Smith&#013;Jane Smith</textarea>
-  </div>
-</div>
-
-<hr/>
-<div class="row">
-  <div class="col-12">
-    <a class="float-right small" (click)="ui.tabChange('viewer',2)"><i class="fa fa-eye"></i> Title Report-9.pdf</a>
-    <h3 class="mb-2">
-      <i class="fa fa-check-square green"></i>
-      Marital Status
-    </h3>
-  </div>
-  <div class="col-12 col-md-6">
-    <button class="btn btn-secondary btn-sm w-100 text-left mb-1" (click)="maritalStatus = 'Married' ">
-      <span class="float-right valign-inline ocr-perc">99%</span>
-      Married
-    </button>
-  </div>
-  <div class="col-12 col-md-6">
-    <fieldset class="form-group">
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios1" value="Married" checked>
-          Married
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios2" value="Un-Married">
-          Un-Married
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios3" value="Registered/Domestic Partner">
-          Registered/Domestic Partner
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" [(ngModel)]="maritalStatus" name="optionsRadios" id="optionsRadios3" value="Custom">
-
-          <input type="text" class="form-control form-control-sm form-control-inline" (click)="maritalStatus = 'Custom' " />
-        </label>
-      </div>
-
-    </fieldset>
-  </div>
-</div>
+<form [formGroup]="formBorrower">
+  <table class="table table-sm table-striped" style="font-size:0.85rem;">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Field</th>
+        <th>OCR Result</th>
+        <th></th>
+        <th>Empower Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <i class="fa fa-check-square green" *ngIf="formBorrower.get('borrower').valid"></i>
+          <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('borrower').valid"></i>
+        </td>
+        <td>
+          Full Name on Vesting<br />
+          <small><em>3214</em></small>
+        </td>
+        <td>
+          <a (click)="ui.tabChange('viewer',1)">John Smith<br />Jane Smith</a>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-xs" (click)="updateForm('borrower','John Smith&#013;Jane Smith')">
+            <i class="fa fa-arrow-right"></i>
+          </button>
+        </td>
+        <td>
+          <textarea class="form-control form-control-sm" formControlName="borrower"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="fa fa-check-square green" *ngIf="formBorrower.get('maritalStatus').valid"></i>
+          <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('maritalStatus').valid"></i>
+        </td>
+        <td>
+          Marital Status<br />
+          <small><em>9512</em></small>
+        </td>
+        <td>
+          <a (click)="ui.tabChange('viewer',2)">Married</a>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-xs" (click)="updateForm('maritalStatus','Married')">
+            <i class="fa fa-arrow-right"></i>
+          </button>
+        </td>
+        <td>
+          <fieldset class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="" formControlName="maritalStatus">
+                No Value
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="Married" formControlName="maritalStatus">
+                Married
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="Un-Married" formControlName="maritalStatus">
+                Un-Married
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="Registered/Domestic Partner" formControlName="maritalStatus">
+                Registered/Domestic Partner
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="Custom" formControlName="maritalStatus">
+                <input type="text" class="form-control form-control-sm form-control-inline" />
+              </label>
+            </div>
+          </fieldset>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

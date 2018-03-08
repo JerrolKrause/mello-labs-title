@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.logOutModal = null; // Get rid of logout modal if it persists
 
     this.formMain = this.fb.group({ // <-- the parent FormGroup
-      userName: [isLogin || 'juser', [Validators.required]],
+      userName: [isLogin || 'jkrause', [Validators.required]],
       password: ['password', [Validators.required]],
       remember: [hasLogin]
     });

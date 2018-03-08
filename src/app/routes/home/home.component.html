@@ -1,31 +1,85 @@
 <div id="home" class="container-fluid" *ngIf="rows$ | async as rows">
 
-  <div style="position: relative;height: calc(100vh - 102px);overflow-y: auto;overflow-x: hidden;">
+  <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" activeId="tab-1">
 
-    <datagrid #datagrid
-              [rows]="rows.src"
-              [columns]="columns"
-              [state]="state"
-              [options]="options"
-              [filterGlobal]="filterGlobal"
-              (onStateChange)="onStateChange($event)">
+    <ngb-tab id="tab-1">
+      <ng-template ngbTabTitle>
+        In Progress
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div class="card">
+          <div class="card-block p-2">
+            <div style="position: relative;height: calc(100vh - 160px);overflow-y: hidden;overflow-x: hidden;">
+              <datagrid #datagrid
+                        [rows]="rows.src | filter: false : 'certification'"
+                        [columns]="columns"
+                        [state]="state"
+                        [options]="options"
+                        [filterGlobal]="filterGlobal"
+                        (onStateChange)="onStateChange($event)">
 
-      <datagrid-column prop="lnkey">
-        <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>
-          <a [routerLink]="['/loan/'+value ]">{{value}}</a>
-        </ng-template>
-      </datagrid-column>
+                <datagrid-column prop="lnkey">
+                  <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>
+                    <a [routerLink]="['/loan/'+value ]">{{value}}</a>
+                  </ng-template>
+                </datagrid-column>
 
-      <datagrid-column prop="loanAmount"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>{{value | currency}}</ng-template></datagrid-column>
+                <datagrid-column prop="loanAmount"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>{{value | currency}}</ng-template></datagrid-column>
+                <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
 
-      <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-check green" *ngIf="value"></i></ng-template></datagrid-column>
-      <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-check green" *ngIf="value"></i></ng-template></datagrid-column>
-      <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-check green" *ngIf="value"></i></ng-template></datagrid-column>
-      <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-check green" *ngIf="value"></i></ng-template></datagrid-column>
-      <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-check green" *ngIf="value"></i></ng-template></datagrid-column>
-      <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-check green" *ngIf="value"></i></ng-template></datagrid-column>
+              </datagrid>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
 
-    </datagrid>
-  </div>
+    <ngb-tab id="tab-2">
+      <ng-template ngbTabTitle>
+        Completed
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div class="card">
+          <div class="card-block p-2">
+            <div style="position: relative;height: calc(100vh - 160px);overflow-y: hidden;overflow-x: hidden;">
+              <datagrid #datagrid
+                        [rows]="rows.src | filter: true : 'certification'"
+                        [columns]="columns"
+                        [state]="state"
+                        [options]="options"
+                        [filterGlobal]="filterGlobal"
+                        (onStateChange)="onStateChange($event)">
+
+                <datagrid-column prop="lnkey">
+                  <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>
+                    <a [routerLink]="['/loan/'+value ]">{{value}}</a>
+                  </ng-template>
+                </datagrid-column>
+
+                <datagrid-column prop="loanAmount"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>{{value | currency}}</ng-template></datagrid-column>
+                <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+
+              </datagrid>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+
+  </ngb-tabset>
+
+
+
 </div>
 

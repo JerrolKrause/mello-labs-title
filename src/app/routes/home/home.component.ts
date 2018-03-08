@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public rows$ = this.api.loans$;
   public columns: Datagrid.Column[] = require('./columns.users.json');
-  public state: Datagrid.State = { "filters": [], "sorts": [{ dir: "asc", prop: "certification" }], "groups": [] };
+  public state: Datagrid.State = { "filters": [], "sorts": [], "groups": [] };//{ dir: "asc", prop: "certification" }
   // Inputs
   public options: Datagrid.Options = {
     selectionType: false,

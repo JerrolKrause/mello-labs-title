@@ -53,9 +53,9 @@
         <button class="btn btn-sm mb-2 w-100"
                 (click)="loanSave()"
                 [ngClass]="{'btn-primary ': compData.hasUpdate, 'btn-secondary ': !compData.hasUpdate  }">
-          Save to Empower
+          <i class="fa fa-floppy-o" aria-hidden="true"></i> Save to Empower
         </button>
-        <button class="btn btn-sm btn-secondary mb-2 w-100">Open in Empower</button>
+        <button class="btn btn-sm btn-secondary mb-2 w-100"><i class="fa fa-folder-open" aria-hidden="true"></i> Open in Empower</button>
       </div>
     </div>
   </form>
