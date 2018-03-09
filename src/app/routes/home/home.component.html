@@ -1,5 +1,15 @@
 <div id="home" class="container-fluid" *ngIf="rows$ | async as rows">
 
+  <!-- Filter datatable -->
+  <!-- Filter datatable -->
+  <form class="form-inline d-inline-block float-right">
+    <label class="icon filter" style="position:relative;">
+      <input class="form-control form-control-sm filterSearch" type="text" name="filterGlobal" placeholder="Filter loan num or borrower" [ngModel]="filterGlobal.term" (ngModelChange)="onfilterGlobal($event)" data-qa="hp-filter-global" />
+      <a (click)="filterGlobal.term = null; onfilterGlobal()" *ngIf="filterGlobal.term" style="position:absolute;right: 10px;"><i class="fa fa-remove"></i></a>
+    </label>
+  </form>
+
+
   <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" activeId="tab-1">
 
     <ngb-tab id="tab-1">
@@ -24,13 +34,21 @@
                   </ng-template>
                 </datagrid-column>
 
+                <datagrid-column prop="lockedBy">
+                  <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>
+                    <ng-container *ngIf="value">
+                      <i class="fa fa-lock" aria-hidden="true"></i> {{value}}
+                    </ng-container>
+                  </ng-template>
+                </datagrid-column>
+
                 <datagrid-column prop="loanAmount"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>{{value | currency}}</ng-template></datagrid-column>
-                <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
 
               </datagrid>
             </div>
@@ -61,13 +79,22 @@
                   </ng-template>
                 </datagrid-column>
 
+                <datagrid-column prop="lockedBy">
+                  <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>
+                    <ng-container *ngIf="value">
+                      <i class="fa fa-lock" aria-hidden="true"></i> {{value}}
+                    </ng-container>
+                  </ng-template>
+                </datagrid-column>
+
+
                 <datagrid-column prop="loanAmount"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>{{value | currency}}</ng-template></datagrid-column>
-                <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
-                <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="borrower"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="vesting"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="property"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="liens"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="notes"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
+                <datagrid-column prop="certification"><ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template><i aria-hidden="true" class="fa fa-full" [ngClass]="{'fa-check green': value,'fa-warning yellow': !value}"></i></ng-template></datagrid-column>
 
               </datagrid>
             </div>

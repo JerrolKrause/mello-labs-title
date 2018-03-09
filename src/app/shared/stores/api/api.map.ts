@@ -20,13 +20,17 @@ export const ApiMap: IStore.ApiMapping = {
     mapSrc: 'src',
     map: (users: any[]) => {
      
-      //let namesFirst = users.map(user => user.name.split(' ')[0]);
-      //let namesLast = users.map(user => _.last(user.name.split(' ')));
-      
+      let namesFirst = users.map(user => user.name.split(' ')[0]);
+      let namesLast = users.map(user => _.last(user.name.split(' ')));
+      let states = ['AZ','CA','CO','IL','MI','NY','TX','HI','OR','WA'];
+
       let usersNew = [...users, ...users, ...users];
       let dict = {};
       usersNew = users.map((user, i) => {
         let userNew = { ...user };
+
+        //userNew.lockedBy = _.random(10) > 7 ? _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0] : null;
+        //userNew.state = _.shuffle(states)[0];
         //userNew.id = i;
         //userNew.name = _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0];
         //userNew.lnkey = _.random(100000000, 100500000);
@@ -46,6 +50,7 @@ export const ApiMap: IStore.ApiMapping = {
         return userNew;
       });
       //console.log(JSON.stringify(usersNew));
+
       return {
         src: usersNew,
         dict: dict

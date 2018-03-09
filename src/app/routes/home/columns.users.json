@@ -20,7 +20,25 @@
     "prop": "loanAmount",
     "label": "Amount",
     "columnType": "currency",
-    "width": 120,
+    "width": 90,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "lockedBy",
+    "label": "Locked By",
+    "columnType": "string",
+    "width": 130,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "state",
+    "label": "State",
+    "columnType": "string",
+    "width": 50,
     "canSort": true,
     "canGroup": true,
     "canFilter": true

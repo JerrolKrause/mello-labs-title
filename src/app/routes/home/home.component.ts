@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public filterGlobal = {
     term: null,
-    props: ['fullName', 'pod']
+    props: ['lnkey', 'name']
   };
 
   /** Hold subs for unsub */
@@ -49,6 +49,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Reset tabs
     this.ui.tabChange('viewer', 1);
     this.ui.tabChange('form', 1);
+  }
+
+  /**
+	 * Update the global filter term
+	 * @param searchTerm
+	 */
+  public onfilterGlobal(searchTerm: string = null) {
+    this.filterGlobal = { ...this.filterGlobal, term: searchTerm };
   }
 
   public onStateChange(state) {
