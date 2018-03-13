@@ -1,8 +1,8 @@
 {
   "nameFull": "John Smith\nJane Smith",
   "maritalStatus": "Married",
-  "dateLastRecorded": null,
-  "trust": null,
-  "spousalSig": null,
+  "dateLastRecorded": "2/18/2017",
+  "trust": "Yes",
+  "spousalSig": "Yes",
   "ownerShipType": "Land Contract"
 }
