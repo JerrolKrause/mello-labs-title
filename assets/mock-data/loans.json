@@ -30,7 +30,9 @@
     "loanAmount": 535859,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "WA"
   },
   {
     "id": 1,
@@ -63,7 +65,9 @@
     "loanAmount": 144773,
     "certification": true,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "HI"
   },
   {
     "id": 2,
@@ -96,7 +100,9 @@
     "loanAmount": 439866,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "TX"
   },
   {
     "id": 3,
@@ -129,7 +135,9 @@
     "loanAmount": 238120,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "IL"
   },
   {
     "id": 4,
@@ -162,7 +170,9 @@
     "loanAmount": 159657,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "AZ"
   },
   {
     "id": 5,
@@ -195,7 +205,9 @@
     "loanAmount": 531662,
     "certification": true,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Patricia Schulist",
+    "state": "TX"
   },
   {
     "id": 6,
@@ -228,7 +240,9 @@
     "loanAmount": 172271,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "HI"
   },
   {
     "id": 7,
@@ -261,7 +275,9 @@
     "loanAmount": 106675,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "WA"
   },
   {
     "id": 8,
@@ -294,7 +310,9 @@
     "loanAmount": 350466,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "AZ"
   },
   {
     "id": 9,
@@ -327,7 +345,9 @@
     "certification": false,
     "loanAmount": 359166,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "OR"
   },
   {
     "id": 10,
@@ -360,7 +380,9 @@
     "loanAmount": 431551,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "WA"
   },
   {
     "id": 11,
@@ -393,7 +415,9 @@
     "loanAmount": 196370,
     "certification": true,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Mrs. Weissnat",
+    "state": "IL"
   },
   {
     "id": 12,
@@ -426,7 +450,9 @@
     "loanAmount": 383335,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Nicholas Reichert",
+    "state": "OR"
   },
   {
     "id": 13,
@@ -459,7 +485,9 @@
     "loanAmount": 553972,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "HI"
   },
   {
     "id": 14,
@@ -492,7 +520,9 @@
     "loanAmount": 306141,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Glenna Dietrich",
+    "state": "MI"
   },
   {
     "id": 15,
@@ -525,7 +555,9 @@
     "loanAmount": 149770,
     "certification": true,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Kurtis Schulist",
+    "state": "AZ"
   },
   {
     "id": 16,
@@ -558,7 +590,9 @@
     "loanAmount": 424395,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "AZ"
   },
   {
     "id": 17,
@@ -591,7 +625,9 @@
     "loanAmount": 431225,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "MI"
   },
   {
     "id": 18,
@@ -624,7 +660,9 @@
     "loanAmount": 347226,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "NY"
   },
   {
     "id": 19,
@@ -657,7 +695,9 @@
     "certification": false,
     "loanAmount": 120448,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "TX"
   },
   {
     "id": 20,
@@ -690,7 +730,9 @@
     "loanAmount": 565804,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Leanne Weissnat",
+    "state": "IL"
   },
   {
     "id": 21,
@@ -723,7 +765,9 @@
     "loanAmount": 132777,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "MI"
   },
   {
     "id": 22,
@@ -756,7 +800,9 @@
     "loanAmount": 288512,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "CA"
   },
   {
     "id": 23,
@@ -789,7 +835,9 @@
     "loanAmount": 519777,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "WA"
   },
   {
     "id": 24,
@@ -822,7 +870,9 @@
     "loanAmount": 344542,
     "certification": true,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "WA"
   },
   {
     "id": 25,
@@ -855,7 +905,9 @@
     "loanAmount": 381319,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "TX"
   },
   {
     "id": 26,
@@ -888,7 +940,9 @@
     "loanAmount": 205084,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "AZ"
   },
   {
     "id": 27,
@@ -921,7 +975,9 @@
     "loanAmount": 180487,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "OR"
   },
   {
     "id": 28,
@@ -954,7 +1010,9 @@
     "loanAmount": 573483,
     "certification": false,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": "Leanne DuBuque",
+    "state": "IL"
   },
   {
     "id": 29,
@@ -987,6 +1045,8 @@
     "certification": false,
     "loanAmount": 545419,
     "dateEffective": "2/8/2018",
-    "dateExpiration": "4/21/2018"
+    "dateExpiration": "4/21/2018",
+    "lockedBy": null,
+    "state": "CO"
   }
 ]
