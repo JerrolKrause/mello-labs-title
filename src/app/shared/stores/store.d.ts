@@ -6,6 +6,7 @@ export declare namespace IStore {
   /** API Store */
   interface api {
     loans?: Mapped<any[]>;
+    notes?: Mapped<any[]>;
     // Example of Store typing with mapped response
     users?: Mapped<{
       user: string;
@@ -22,6 +23,7 @@ export declare namespace IStore {
     users?: ApiMap;
     loans?: ApiMap;
     vesting?: ApiMap;
+    notes?: ApiMap;
   }
 
   /** UI Store */

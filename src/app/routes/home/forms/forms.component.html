@@ -12,15 +12,7 @@
 
     <ngb-tab id="tab-1">
       <ng-template ngbTabTitle>
-        Borrower
-        <ng-container *ngIf="formBorrower">
-          <i class="fa fa-check green" *ngIf="formBorrower?.valid"></i>
-          <i class="fa fa-warning yellow" *ngIf="formBorrower?.invalid"></i>
-        </ng-container>
-        <ng-container *ngIf="!formBorrower">
-          <i class="fa fa-check green" *ngIf="loan?.borrower"></i>
-          <i class="fa fa-warning yellow" *ngIf="!loan?.borrower"></i>
-        </ng-container>
+        <i class="fa fa-warning yellow"></i> Exceptions 
       </ng-template>
       <ng-template ngbTabContent>
         <app-borrower (formRef)="formRef('borrower',$event)"></app-borrower>
@@ -29,59 +21,53 @@
 
     <ngb-tab id="tab-2">
       <ng-template ngbTabTitle>
-        Ownership
-        <ng-container *ngIf="formVesting">
-          <i class="fa fa-check green" *ngIf="formVesting?.valid"></i>
-          <i class="fa fa-warning yellow" *ngIf="formVesting?.invalid"></i>
-        </ng-container>
-        <ng-container *ngIf="!formVesting">
-          <i class="fa fa-check green" *ngIf="loan?.vesting"></i>
-          <i class="fa fa-warning yellow" *ngIf="!loan?.vesting"></i>
-        </ng-container>
+        <i class="fa fa-check green"></i> Completed
       </ng-template>
       <ng-template ngbTabContent>
-          <api-state [state]="status" [toaster]="true" [showSuccess]="false" *ngIf="formVestingStatus$ | async as status">
-            <app-vesting (formRef)="formRef('vesting',$event)" *ngIf="status.loaded"></app-vesting>
-          </api-state>
+        <api-state [state]="status" [toaster]="true" [showSuccess]="false" *ngIf="formVestingStatus$ | async as status">
+          <app-vesting (formRef)="formRef('vesting',$event)" *ngIf="status.loaded"></app-vesting>
+        </api-state>
       </ng-template>
     </ngb-tab>
 
-    <ngb-tab id="tab-3">
-      <ng-template ngbTabTitle>
-        Property <i class="fa fa-warning yellow"></i>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <app-property></app-property>
-      </ng-template>
-    </ngb-tab>
 
-    <ngb-tab id="tab-4">
-      <ng-template ngbTabTitle>
-        Liens <i class="fa fa-check green"></i>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <app-liens></app-liens>
-      </ng-template>
-    </ngb-tab>
+    <!--
+  <ngb-tab id="tab-3">
+    <ng-template ngbTabTitle>
+      Property <i class="fa fa-warning yellow"></i>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <app-property></app-property>
+    </ng-template>
+  </ngb-tab>
 
-    <ngb-tab id="tab-5">
-      <ng-template ngbTabTitle>
-        Notes/Comments <i class="fa fa-check green"></i>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <app-notes></app-notes>
-      </ng-template>
-    </ngb-tab>
+  <ngb-tab id="tab-4">
+    <ng-template ngbTabTitle>
+      Liens <i class="fa fa-check green"></i>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <app-liens></app-liens>
+    </ng-template>
+  </ngb-tab>
 
-    <ngb-tab id="tab-6">
-      <ng-template ngbTabTitle>
-        Certification <i class="fa fa-warning yellow"></i>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <app-certification></app-certification>
-      </ng-template>
-    </ngb-tab>
+  <ngb-tab id="tab-5">
+    <ng-template ngbTabTitle>
+      Notes/Comments <i class="fa fa-check green"></i>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <app-notes></app-notes>
+    </ng-template>
+  </ngb-tab>
 
+  <ngb-tab id="tab-6">
+    <ng-template ngbTabTitle>
+      Certification <i class="fa fa-warning yellow"></i>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <app-certification></app-certification>
+    </ng-template>
+  </ngb-tab>
+  -->
   </ngb-tabset>
 
 </div>

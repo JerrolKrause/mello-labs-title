@@ -12,7 +12,17 @@
         <div class="form-group row mb-0">
           <label for="example-text-input" class="col-6 col-form-label small">Borrower</label>
           <div class="col-6">
-            <input class="form-control form-control-sm" type="text" formControlName="name" id="example-text-input">
+
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-sm" formControlName="name">
+              <a class="btn btn-outline-secondary btn-sm input-group-addon" title="Email this borrower" href="mailto:eat@joes.com">
+                <i class="fa fa-envelope"></i>
+              </a>
+              <a class="btn btn-outline-secondary btn-sm input-group-addon" title="Call this borrower" href="tel:15551234321">
+              <i class="fa fa-phone"></i>
+              </a>
+            </div>
+
           </div>
         </div>
         <div class="form-group row mb-0">
@@ -35,7 +45,7 @@
           <input type="hidden" ngbDatepicker #d="ngbDatepicker" name="dp" [ngModel]="dateEffective" (ngModelChange)="dateChanged('dateEffective', $event)" [ngModelOptions]="{standalone: true}" />
         </div>
 
-        <div class="form-group row mb-0" style="position:relative;">
+        <div class="form-group row mb-1" style="position:relative;">
           <label for="example-text-input" class="col-6 col-form-label small">Title Expiration Date</label>
           <div class="col-6">
             <div class="input-group input-group-sm">
@@ -49,13 +59,36 @@
         </div>
 
       </div>
+
       <div class="col-12 col-md-4">
-        <button class="btn btn-sm mb-2 w-100"
-                (click)="loanSave()"
-                [ngClass]="{'btn-primary ': compData.hasUpdate, 'btn-secondary ': !compData.hasUpdate  }">
+
+        <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-2 w-100' : 'btn-secondary btn btn-sm mb-2 w-100'"
+                          modal="EmpowerSaveComponent" size="lg"
+                          (onSuccess)="loanSave($event)">
           <i class="fa fa-floppy-o" aria-hidden="true"></i> Save to Empower
-        </button>
+        </app-launch-modal>
+
         <button class="btn btn-sm btn-secondary mb-2 w-100"><i class="fa fa-folder-open" aria-hidden="true"></i> Open in Empower</button>
+
+        <app-launch-modal classes="btn-secondary btn btn-sm mb-2 w-100"
+                          modal="EmpowerNotesComponent" size="xl" [data]="lnkey"
+                          (onSuccess)="loanSave($event)">
+          <i class="fa fa-file-text" aria-hidden="true"></i> Empower Notes
+        </app-launch-modal>
+
+        <hr />
+
+        <div class="small" *ngIf="formInfo.value.lockedBy">
+          <span class="btn-group float-right">
+            <a class="btn btn-secondary btn-xs" href="mailto:eat@joes.com"><i class="fa fa-envelope"></i></a>
+            <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
+          </span>
+          <i class="fa fa-lock"></i> {{formInfo.value.lockedBy}}
+        </div>
+        <div class="small" *ngIf="!formInfo.value.lockedBy">
+          <i class="fa fa-unlock"></i> Not locked
+        </div>
+
       </div>
     </div>
   </form>

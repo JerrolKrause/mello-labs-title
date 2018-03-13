@@ -27,6 +27,7 @@ export class ApiService extends ApiHttpService {
   public getData$ = (apiProp: ApiProps) => this.store.select(store => store.api[apiProp]);
 
   public loans$ = this.store.select(store => store.api.loans);
+  public notes$ = this.store.select(store => store.api.notes);
 
   constructor(
     private http: HttpClient,
@@ -61,6 +62,10 @@ export class ApiService extends ApiHttpService {
 
   public vesting = {
     get: (update?: boolean) => this.getStore(ApiMap.vesting.endpoint, ApiMap.vesting, update)
+  }
+
+  public notes = {
+    get: (lnkey: string, update?: boolean) => this.getStore(ApiMap.notes.endpoint + '?' + lnkey, ApiMap.notes, update)
   }
 
   /**

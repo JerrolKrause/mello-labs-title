@@ -73,6 +73,8 @@ import { NotesComponent } from './routes/home/forms/notes/notes.component';
 import { CertificationComponent } from './routes/home/forms/certification/certification.component';
 import { LoanInfoComponent } from './routes/home/forms/loan-info/loan-info.component';
 import { LoanComponent } from './routes/loan/loan.component';
+import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
+import { EmpowerNotesComponent } from './components/modals/empower-notes/empower-notes.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -136,6 +138,10 @@ export const APP_PROVIDERS = [
     LoanComponent,
 
     LoanInfoComponent,
+
+    EmpowerSaveComponent,
+
+    EmpowerNotesComponent,
   ],
   imports: [
     // Angular
@@ -164,7 +170,7 @@ export const APP_PROVIDERS = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationModalComponent, LogoutModalComponent
+    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent
   ]
 })
 export class AppModule { }

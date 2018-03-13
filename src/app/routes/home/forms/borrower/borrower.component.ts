@@ -55,6 +55,10 @@ export class BorrowerComponent implements OnInit {
 
   }
 
+  public conditionAdd() {
+
+  }
+
   /**
    * Change a value in the form
    * @param field

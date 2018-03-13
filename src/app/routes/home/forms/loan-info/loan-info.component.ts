@@ -19,7 +19,7 @@ export class LoanInfoComponent implements OnInit {
 
   public formInfo: FormGroup;
   @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
-
+  public lnkey: string;
   public dateEffective;
   public dateExpiration;
 
@@ -37,16 +37,18 @@ export class LoanInfoComponent implements OnInit {
       lnkey: [{value:null, disabled: true}, [Validators.required]],
       name: [null, [Validators.required]],
       loanAmount: [null, [Validators.required]],
+      lockedBy: [null, [Validators.required]],
       dateEffective: [null, [Validators.required]],
       dateExpiration: [null, [Validators.required]]
     });
-
+    
     // Load the value currently in the store and then unsub
     // Initial load data is being added to store from route component
     this.ui.formLoan$.subscribe(form => {
       if (form){
         this.formInfo.reset();
         this.formInfo.patchValue({ ...form, loanAmount: this.cp.transform(form.loanAmount) });
+        this.lnkey = form.lnkey;
       }
     }).unsubscribe();
 

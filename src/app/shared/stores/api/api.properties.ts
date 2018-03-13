@@ -4,6 +4,7 @@ export enum ApiProps {
   // Loan Info
   borrower = 'borrower',
   vesting = 'vesting',
+  notes = 'notes',
   // Example
   users = 'users'
 }

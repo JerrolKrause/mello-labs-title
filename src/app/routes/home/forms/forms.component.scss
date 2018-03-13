@@ -3,6 +3,9 @@
   .tab-pane{padding:1rem;background:#fff;}
   .btn{position:relative;}
   ngb-tabset{
+    .nav.nav-tabs{
+      li{}//display:flex;justify-content: space-between;
+    }
     .tab-pane{height: calc(100vh - 345px); overflow-y: auto; overflow-x: hidden;}
   }
   @media (min-width: 1650px){

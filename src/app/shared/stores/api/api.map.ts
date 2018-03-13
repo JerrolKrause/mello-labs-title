@@ -65,6 +65,13 @@ export const ApiMap: IStore.ApiMapping = {
   },
 
   // Example
+  notes: {
+    endpoint: 'assets/mock-data/notes.json',
+    storeProperty: ApiProps.notes,
+    uniqueId: 'noteDate',
+  },
+
+  // Example
   users: {
     endpoint: '//jsonplaceholder.typicode.com/users',
     storeProperty: ApiProps.users,

@@ -15,8 +15,14 @@
           <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('borrower').valid"></i>
         </td>
         <td>
-          Borrower Name/s<br />
-          <small><em>DB: 3214</em></small>
+          <a (click)="ui.tabChange('viewer',1)">Borrower Name/s</a><br />
+          <small>
+            <em>DB: 3214</em> -
+            <app-launch-modal modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for Borrower Name/s?'" [isButton]="false"
+                              (onSuccess)="conditionAdd($event)">
+              PTD
+            </app-launch-modal>
+          </small>
         </td>
         <td>
           <button class="btn btn-secondary btn-sm w-100 text-left" (click)="updateForm('borrower','John Smith&#013;Jane Smith')">
@@ -34,8 +40,16 @@
           <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('maritalStatus').valid"></i>
         </td>
         <td>
-          Marital Status<br />
-          <small><em>DB: 9512</em></small>
+          <a (click)="ui.tabChange('viewer',2)">
+            Marital Status
+          </a><br />
+          <small>
+            <em>DB: 9512</em> -
+            <app-launch-modal modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for Marital Status?'" [isButton]="false"
+                              (onSuccess)="conditionAdd($event)">
+              PTD
+            </app-launch-modal>
+          </small>
         </td>
         <td>
           <div class="btn-group-vertical w-100">
@@ -49,7 +63,7 @@
             </button>
           </div>
         </td>
-        
+
         <td>
           <fieldset class="form-group">
             <div class="form-check">
@@ -84,6 +98,7 @@
             </div>
           </fieldset>
         </td>
+
       </tr>
     </tbody>
   </table>

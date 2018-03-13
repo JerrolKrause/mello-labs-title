@@ -7,7 +7,7 @@ import { IStore, AppSettings } from '@shared';
 import { ApiService } from '@api';
 import { UIStoreActions } from './ui.store.actions';
 
-import { ConfirmationModalComponent, LogoutModalComponent } from '@modals';
+import { ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent } from '@modals';
 
 /** Sample Usage: 
 this.ui.modals.open('ConfirmationModalComponent', false, 'lg', 'Are you sure you want to delete this user?', 'Delete User').result.then(
@@ -16,7 +16,7 @@ this.ui.modals.open('ConfirmationModalComponent', false, 'lg', 'Are you sure you
 */
 
 // List modals here by component name
-type modals = 'LogoutModalComponent' | 'ConfirmationModalComponent';
+type modals = 'LogoutModalComponent' | 'ConfirmationModalComponent' | 'EmpowerSaveComponent' | 'EmpowerNotesComponent';
 
 @Injectable()
 export class UIModalService {
@@ -28,7 +28,9 @@ export class UIModalService {
   /** List of component references of available modals */
   public modalList = {
     ConfirmationModalComponent: ConfirmationModalComponent,
-    LogoutModalComponent: LogoutModalComponent
+    LogoutModalComponent: LogoutModalComponent,
+    EmpowerSaveComponent: EmpowerSaveComponent,
+    EmpowerNotesComponent: EmpowerNotesComponent
   };
 
   constructor(
