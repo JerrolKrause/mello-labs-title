@@ -9,6 +9,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EmpowerSaveComponent implements OnInit {
 
+  public waiting = false;
+
   constructor(
     public activeModal: NgbActiveModal
   ) { }

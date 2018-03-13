@@ -55,7 +55,7 @@ export class BorrowerComponent implements OnInit {
 
   }
 
-  public conditionAdd() {
+  public conditionAdd(event) {
 
   }
 

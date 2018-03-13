@@ -2,17 +2,21 @@
 
   <ul class="nav nav-tabs nav-tabs-sm nav-tabs-visible" style="border:0;" id="app-viewer">
 
-    <!-- Tree -->
     <li class="nav-item">
       <a class="nav-link" (click)="ui.tabChange('viewer',1)" [ngClass]="{ 'active': tab == 1 }">
         <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Title Report-4.pdf
       </a>
     </li>
 
-    <!-- Single Doc -->
     <li class="nav-item">
       <a class="nav-link" (click)="ui.tabChange('viewer',2)" [ngClass]="{ 'active': tab == 2 }">
         <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Title Report-9.pdf
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" (click)="ui.tabChange('viewer',3)" [ngClass]="{ 'active': tab == 3 }">
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> USPS Address Confirmation
       </a>
     </li>
 
@@ -30,8 +34,8 @@
             <embed src="assets/media/Title Report-4.pdf" type="application/pdf" />
           </object>
           <!--
-          <iframe src="/assets/media/_Funding Checklist - Retail.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
-          -->
+        <iframe src="/assets/media/_Funding Checklist - Retail.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
+        -->
         </div>
       </div>
     </div>
@@ -46,8 +50,24 @@
             <embed src="assets/media/Title Report-9.pdf" type="application/pdf" />
           </object>
           <!--
-          <iframe src="/assets/media/_Original Closing Disclosure.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
-          -->
+        <iframe src="/assets/media/_Original Closing Disclosure.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
+        -->
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="props" role="tabpanel" [ngClass]="{'active': tab == 3 }">
+      <div class="card">
+        <div class="card-block p-2">
+          <object data="assets/media/zip-code-lookup.pdf"
+                  type="application/pdf"
+                  class="w-100"
+                  style="border:0;height: calc(100vh - 149px);">
+            <embed src="assets/media/zip-code-lookup.pdf" type="application/pdf" />
+          </object>
+          <!--
+        <iframe src="/assets/media/_Original Closing Disclosure.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
+        -->
         </div>
       </div>
     </div>

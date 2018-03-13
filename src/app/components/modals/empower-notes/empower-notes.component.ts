@@ -17,7 +17,7 @@ export class EmpowerNotesComponent implements OnInit {
   public onSuccess: EventEmitter<any> = new EventEmitter();
 
   public notes$ = this.api.notes$;
-
+  public waiting = false;
   /** Reference to datagrid */
   @ViewChild('dataGrid') dataGrid;
 
