@@ -20,6 +20,7 @@ export class BorrowerComponent implements OnInit {
   @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
 
   public dateLastRecorded;
+  public editing = {};
   private subs: Subscription[] = [];
 
   constructor(
@@ -31,15 +32,17 @@ export class BorrowerComponent implements OnInit {
   ngOnInit() {
     this.formBorrower = this.fb.group({
       borrower: [null, [Validators.required]],
+      borrower2: ['Correct', [Validators.required]],
       maritalStatus: [null, [Validators.required]]
     });
 
     // Load the value currently in the store and then unsub
     // Initial load data is being added to store from route component
     this.ui.formBorrower$.subscribe(form => {
-      if (form){
-        this.formBorrower.reset();
-        this.formBorrower.patchValue(form);
+      if (form) {
+        //console.log(form)
+        //this.formBorrower.reset();
+        //this.formBorrower.patchValue(form);
       }
     }).unsubscribe();
 
@@ -65,6 +68,7 @@ export class BorrowerComponent implements OnInit {
    * @param propNew
    */
   public updateForm(field: string, propNew: string) {
+    this.editing[field] = false;
     let valNew = {};
     valNew[field] = propNew;
     this.formBorrower.patchValue(valNew);

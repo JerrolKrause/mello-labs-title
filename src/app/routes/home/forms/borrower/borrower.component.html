@@ -1,16 +1,21 @@
 <form [formGroup]="formBorrower">
+
+
+
   <table class="table table-sm table-striped" style="font-size:0.85rem;">
     <thead>
       <tr>
         <th></th>
-        <th>Field</th>
-        <th>OCR Result</th>
-        <th>Empower Data</th>
+        <th style="width:32%;">Field</th>
+        <th style="width:32%;">OCR Result</th>
+        <th style="width:32%;">Empower Data</th>
       </tr>
     </thead>
     <tbody>
+
+
       <tr>
-        <td>
+        <td class="text-center">
           <i class="fa fa-check-square green" *ngIf="formBorrower.get('borrower').valid"></i>
           <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('borrower').valid"></i>
         </td>
@@ -25,81 +30,279 @@
           </small>
         </td>
         <td>
-          <button class="btn btn-secondary btn-sm w-100 text-left" (click)="updateForm('borrower','John Smith&#013;Jane Smith')">
-            <i class="fa fa-arrow-right float-right"></i>
-            John Smith<br />Jane Smith
+          <button class="btn btn-sm w-100 text-left btn-secondary"
+                  [disabled]="editing.borrower || formBorrower.value.borrower == 'John Smith &amp; Jane Smith'"
+                  (click)="updateForm('borrower','John Smith &amp; Jane Smith')">
+            <i class="fa fa-arrow-right float-right" *ngIf="formBorrower.value.borrower != 'John Smith &amp; Jane Smith'"></i>
+            <i class="fa fa-check float-right" *ngIf="formBorrower.value.borrower == 'John Smith &amp; Jane Smith'"></i>
+            John Smith &amp; Jane Smith
           </button>
         </td>
-        <td>
-          <textarea class="form-control form-control-sm" formControlName="borrower"></textarea>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <i class="fa fa-check-square green" *ngIf="formBorrower.get('maritalStatus').valid"></i>
-          <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('maritalStatus').valid"></i>
-        </td>
-        <td>
-          <a (click)="ui.tabChange('viewer',2)">
-            Marital Status
-          </a><br />
-          <small>
-            <em>DB: 9512</em> -
-            <app-launch-modal modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for Marital Status?'" [isButton]="false"
-                              (onSuccess)="conditionAdd($event)">
-              PTD
-            </app-launch-modal>
-          </small>
-        </td>
-        <td>
-          <div class="btn-group-vertical w-100">
-            <button class="btn btn-secondary btn-sm w-100 text-left" (click)="updateForm('maritalStatus','Married')">
-              <i class="fa fa-arrow-right float-right"></i>
-              Married <small><em>(85%)</em></small>
-            </button>
-            <button class="btn btn-secondary btn-sm w-100 text-left" (click)="updateForm('maritalStatus','Un-Married')">
-              <i class="fa fa-arrow-right float-right"></i>
-              Un-Married <small><em>(15%)</em></small>
-            </button>
-          </div>
-        </td>
+        <td (dblclick)="editing.borrower = !editing.borrower;" class="editable">
 
-        <td>
-          <fieldset class="form-group">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" value="" formControlName="maritalStatus">
-                No Value
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" value="Married" formControlName="maritalStatus">
-                Married
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" value="Un-Married" formControlName="maritalStatus">
-                Un-Married
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" value="Registered/Domestic Partner" formControlName="maritalStatus">
-                Registered/Domestic Partner
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" value="Custom" formControlName="maritalStatus">
-                <input type="text" class="form-control form-control-sm form-control-inline" />
-              </label>
-            </div>
-          </fieldset>
-        </td>
 
+          <ng-container *ngIf="!editing.borrower">
+
+            <a class="float-right" style="position:absolute;right:8px;top:3px;z-index:2;" (click)="editing.borrower = !editing.borrower;" title="Edit this field manually">
+              <ng-container *ngIf="!editing.borrower">
+                <i class="fa fa-gear"></i>
+              </ng-container>
+              <ng-container *ngIf="editing.borrower">
+                <i class="fa fa-remove"></i>
+              </ng-container>
+            </a>
+
+
+            <ng-container *ngIf="formBorrower.value.borrower">
+              {{formBorrower.value.borrower}}
+            </ng-container>
+            <ng-container *ngIf="!formBorrower.value.borrower">
+              <em>None</em>
+            </ng-container>
+          </ng-container>
+
+
+         
+
+          <ng-container *ngIf="editing.borrower">
+            <textarea class="form-control form-control-sm" style="position:relative;z-index:1;" autofocus (blur)="editing.borrower = !editing.borrower;" formControlName="borrower"></textarea>
+          </ng-container>
+
+
+        </td>
+        <!--
+  <td class="text-center">
+    <a class="float-right" (click)="editing.borrower = !editing.borrower;" title="Edit this field manually">
+      <ng-container *ngIf="!editing.borrower">
+        <i class="fa fa-gear"></i>
+      </ng-container>
+      <ng-container *ngIf="editing.borrower">
+        <i class="fa fa-remove"></i>
+      </ng-container>
+    </a>
+  </td>
+  -->
       </tr>
+
+
+
+
+      <!--
+  <tr>
+    <td>
+      <i class="fa fa-check-square green" *ngIf="formBorrower.get('maritalStatus').valid"></i>
+      <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('maritalStatus').valid"></i>
+    </td>
+    <td>
+      <a (click)="ui.tabChange('viewer',2)">
+        Marital Status
+      </a><br />
+      <small>
+        <em>DB: 9512</em> -
+        <app-launch-modal modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for Marital Status?'" [isButton]="false"
+                          (onSuccess)="conditionAdd($event)">
+          PTD
+        </app-launch-modal>
+      </small>
+    </td>
+    <td>
+      <div class="btn-group-vertical w-100">
+        <button class="btn btn-secondary btn-sm w-100 text-left" (click)="updateForm('maritalStatus','Married')">
+          <i class="fa fa-arrow-right float-right"></i>
+          Married <small><em>(85%)</em></small>
+        </button>
+        <button class="btn btn-secondary btn-sm w-100 text-left" (click)="updateForm('maritalStatus','Un-Married')">
+          <i class="fa fa-arrow-right float-right"></i>
+          Un-Married <small><em>(15%)</em></small>
+        </button>
+      </div>
+    </td>
+
+    <td>
+      <fieldset class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="" formControlName="maritalStatus">
+            No Value
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="Married" formControlName="maritalStatus">
+            Married
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="Un-Married" formControlName="maritalStatus">
+            Un-Married
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="Registered/Domestic Partner" formControlName="maritalStatus">
+            Registered/Domestic Partner
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="Custom" formControlName="maritalStatus">
+            <input type="text" class="form-control form-control-sm form-control-inline" />
+          </label>
+        </div>
+      </fieldset>
+    </td>
+  </tr>
+  -->
     </tbody>
   </table>
+
+
+  <!--
+    <table class="table table-sm table-striped" style="font-size:0.85rem;">
+      <thead>
+
+        <tr>
+          <th></th>
+          <th style="width:32%;">Field</th>
+          <th style="width:32%;">Empower Data</th>
+          <th style="width:32%;">OCR Result</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr>
+          <td>
+            <i class="fa fa-check-square green" *ngIf="formBorrower.get('borrower2').valid || borrower2"></i>
+            <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('borrower2').valid && !borrower2"></i>
+          </td>
+          <td>
+            <a (click)="ui.tabChange('viewer',1)">Borrower Name/s</a><br />
+            <small>
+              <em>DB: 3214</em> -
+              <app-launch-modal modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for Borrower Name/s?'" [isButton]="false"
+                                (onSuccess)="conditionAdd($event)">
+                PTD
+              </app-launch-modal>
+            </small>
+          </td>
+          <td>
+            John Smith<br />Jane Smith
+          </td>
+          <td>
+            <fieldset class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="Correct" formControlName="borrower2">
+                  Empower Data Correct
+                </label>
+              </div>
+              <hr class="mb-1" />
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="John Smith<br />Jane Smith" formControlName="borrower2">
+                  John Smith<br />Jane Smith
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="John Smith" formControlName="borrower2">
+                  John Smith
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="" formControlName="borrower2">
+                  OCR Missing/Incorrect
+                </label>
+              </div>
+              <ng-container *ngIf="formBorrower.value.borrower2 == '' ">
+                <hr style="margin:.75rem 0;margin-top:1rem;" />
+                <div class="form-check">
+                  <textarea class="form-control form-control-sm" [(ngModel)]="borrower2" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+              </ng-container>
+            </fieldset>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <i class="fa fa-check-square green" *ngIf="formBorrower.get('maritalStatus').valid || maritalStatus"></i>
+            <i class="fa fa-warning yellow" *ngIf="!formBorrower.get('maritalStatus').valid && !maritalStatus"></i>
+          </td>
+
+          <td>
+            <a (click)="ui.tabChange('viewer', 2)">Marital Status</a><br />
+            <small>
+              <em>DB: 2231</em> -
+              <app-launch-modal modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for Marital Status?'" [isButton]="false"
+                                (onSuccess)="conditionAdd($event)">
+                PTD
+              </app-launch-modal>
+            </small>
+          </td>
+          <td>
+            None
+          </td>
+          <td>
+            <fieldset class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="Married" formControlName="maritalStatus">
+                  Married
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="" formControlName="maritalStatus">
+                  OCR Missing/Incorrect
+                </label>
+              </div>
+              <ng-container *ngIf="formBorrower.value.maritalStatus == '' ">
+                <hr style="margin:.75rem 0;margin-top:1rem;" />
+                <fieldset class="form-group">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" value="Married" [(ngModel)]="maritalStatus" [ngModelOptions]="{standalone: true}">
+                      Married
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" value="Un-Married" [(ngModel)]="maritalStatus" [ngModelOptions]="{standalone: true}">
+                      Un-Married
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" value="Registered/Domestic Partner" [(ngModel)]="maritalStatus" [ngModelOptions]="{standalone: true}">
+                      Registered/Domestic Partner
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" value="Custom" [(ngModel)]="maritalStatus" [ngModelOptions]="{standalone: true}">
+                      <input type="text" class="form-control form-control-sm form-control-inline" />
+                    </label>
+                  </div>
+                </fieldset>
+              </ng-container>
+            </fieldset>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+    -->
+
+
+
+
+
+
+
+
 </form>
