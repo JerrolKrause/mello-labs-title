@@ -1,0 +1,52 @@
+<ng-container *ngIf="{ loan : loanCurrent$ | async, ocr : loanCurrentOcr$ | async, status : loanCurrentStatus$ | async } as compData">
+
+  <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
+
+    <form [formGroup]="formExceptions" id="formExceptions">
+
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <strong>Field</strong>
+        </div>
+        <div class="col-12 col-md-4">
+          <strong>OCR Findings</strong>
+        </div>
+        <div class="col-12 col-md-4">
+          <strong>Loan Data</strong>
+        </div>
+      </div>
+      <hr />
+
+
+      <app-form-row label="Borrower Name/s"
+                    field="borrower"
+                    fieldType="textarea"
+                    ocrValue="John Smith &amp; Jane Smith"
+                    docTab="1"
+                    [form]="formExceptions">
+      </app-form-row>
+
+
+      <app-form-row label="Marital Status"
+                    field="maritalStatus"
+                    fieldType="radio"
+                    [fieldModel]="['Married','Un-Married','Registered/Domestic Partner']"
+                    [ocrValue]="['Married','Un-Married']"
+                    docTab="2"
+                    [form]="formExceptions">
+      </app-form-row>
+
+      <app-form-row label="Loan Purpose"
+                    field="LoanPurposeName"
+                    fieldType="radio"
+                    [fieldModel]="['Purchase','Refinance']"
+                    [ocrValue]="'Refinance'"
+                    docTab="3"
+                    [form]="formExceptions">
+      </app-form-row>
+
+
+    </form>
+  </api-state>
+</ng-container>

@@ -65,7 +65,7 @@ import { UIModalService, UIStoreService, UIStoreReducer } from '@ui';
 import { ApiService } from '@api';
 import { ViewerComponent } from './routes/home/viewer/viewer.component';
 import { FormsComponent } from './routes/home/forms/forms.component';
-import { BorrowerComponent } from './routes/home/forms/borrower/borrower.component';
+import { ExceptionsComponent } from './routes/home/forms/exceptions/exceptions.component';
 import { VestingComponent } from './routes/home/forms/vesting/vesting.component';
 import { PropertyComponent } from './routes/home/forms/property/property.component';
 import { LiensComponent } from './routes/home/forms/liens/liens.component';
@@ -75,6 +75,7 @@ import { LoanInfoComponent } from './routes/home/forms/loan-info/loan-info.compo
 import { LoanComponent } from './routes/loan/loan.component';
 import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
 import { EmpowerNotesComponent } from './components/modals/empower-notes/empower-notes.component';
+import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -123,7 +124,7 @@ export const APP_PROVIDERS = [
 
     FormsComponent,
 
-    BorrowerComponent,
+    ExceptionsComponent,
 
     VestingComponent,
 
@@ -142,6 +143,8 @@ export const APP_PROVIDERS = [
     EmpowerSaveComponent,
 
     EmpowerNotesComponent,
+
+    FormRowComponent,
   ],
   imports: [
     // Angular

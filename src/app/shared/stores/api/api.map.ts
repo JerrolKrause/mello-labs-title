@@ -58,13 +58,22 @@ export const ApiMap: IStore.ApiMapping = {
     }
   },
 
-  // Example
+  loanCurrent: {
+    endpoint: 'assets/mock-data/100166058-loan.json',
+    storeProperty: ApiProps.loanCurrent,
+  },
+
+  
+  loanCurrentOcr: {
+    endpoint: 'assets/mock-data/100166058-ocr.json',
+    storeProperty: ApiProps.loanCurrentOcr,
+  },
+
   vesting: {
     endpoint: 'assets/mock-data/vesting.json',
     storeProperty: ApiProps.vesting,
   },
 
-  // Example
   notes: {
     endpoint: 'assets/mock-data/notes.json',
     storeProperty: ApiProps.notes,

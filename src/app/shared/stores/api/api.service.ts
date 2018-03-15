@@ -29,6 +29,12 @@ export class ApiService extends ApiHttpService {
   public loans$ = this.store.select(store => store.api.loans);
   public notes$ = this.store.select(store => store.api.notes);
 
+
+  public loanCurrent$ = this.store.select(store => store.api.loanCurrent);
+  public loanCurrentOcr$ = this.store.select(store => store.api.loanCurrentOcr);
+  public loanCurrentStatus$ = this.getStatuses([this.store.select(store => store.apiStatus[ApiProps.loanCurrent]), this.store.select(store => store.apiStatus[ApiProps.loanCurrentOcr])])
+  
+
   constructor(
     private http: HttpClient,
     private store: Store<IStore.root>,
@@ -39,13 +45,14 @@ export class ApiService extends ApiHttpService {
 
     // Output store changes to console
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
-
+    
     // On instantiation, load environment settings
     this.appSettingsGet().subscribe(
       appSettings => this.appSettingsUpdate(appSettings),
       error => console.error('Unable to get env settings', error));
+    
   }
-
+  
   // API endpoints
   /** Users endpoint */
   public users = {
@@ -58,6 +65,14 @@ export class ApiService extends ApiHttpService {
 
   public loans = {
     get: (update?: boolean) => this.getStore(ApiMap.loans.endpoint, ApiMap.loans, update)
+  }
+
+  public loanCurrent = {
+    get: (update?: boolean) => this.getStore(ApiMap.loanCurrent.endpoint, ApiMap.loanCurrent, update)
+  }
+
+  public loanCurrentOcr = {
+    get: (update?: boolean) => this.getStore(ApiMap.loanCurrentOcr.endpoint, ApiMap.loanCurrentOcr, update)
   }
 
   public vesting = {

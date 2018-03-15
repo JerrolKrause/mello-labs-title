@@ -9,18 +9,24 @@ import { UIStoreService, FormTypes } from '@ui';
 import { ApiService } from '@api'
 
 @Component({
-  selector: 'app-borrower',
-  templateUrl: './borrower.component.html',
-  styleUrls: ['./borrower.component.scss'],
+  selector: 'app-exceptions',
+  templateUrl: './exceptions.component.html',
+  styleUrls: ['./exceptions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BorrowerComponent implements OnInit {
+export class ExceptionsComponent implements OnInit {
 
-  public formBorrower: FormGroup;
+  public formExceptions: FormGroup;
   @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
 
+  public loanCurrent$ = this.api.loanCurrent$;
+  public loanCurrentOcr$ = this.api.loanCurrentOcr$;
+  public loanCurrentStatus$ = this.api.loanCurrentStatus$;
+
   public dateLastRecorded;
-  public editing = {};
+  public editing = {
+    borrower: null
+  };
   private subs: Subscription[] = [];
 
   constructor(
@@ -30,31 +36,25 @@ export class BorrowerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.formBorrower = this.fb.group({
+
+    this.formExceptions = this.fb.group({
       borrower: [null, [Validators.required]],
-      borrower2: ['Correct', [Validators.required]],
-      maritalStatus: [null, [Validators.required]]
+      maritalStatus: [null, [Validators.required]],
+      LoanPurposeName: [null, [Validators.required]]
     });
 
-    // Load the value currently in the store and then unsub
-    // Initial load data is being added to store from route component
-    this.ui.formBorrower$.subscribe(form => {
-      if (form) {
-        //console.log(form)
-        //this.formBorrower.reset();
-        //this.formBorrower.patchValue(form);
-      }
-    }).unsubscribe();
+
+    
 
     this.subs.push(
       // Watch form changes, update value in UI store
-      this.formBorrower.valueChanges.subscribe(formNew => {
+      this.formExceptions.valueChanges.subscribe(formNew => {
         this.ui.formChange(FormTypes.borrower, { ...formNew }, true);
       })
     );
 
     // Pass reference to parent
-    this.formRef.emit(this.formBorrower);
+    this.formRef.emit(this.formExceptions);
 
   }
 
@@ -71,7 +71,7 @@ export class BorrowerComponent implements OnInit {
     this.editing[field] = false;
     let valNew = {};
     valNew[field] = propNew;
-    this.formBorrower.patchValue(valNew);
+    this.formExceptions.patchValue(valNew);
   }
 
 }

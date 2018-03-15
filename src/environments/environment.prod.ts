@@ -1,5 +1,5 @@
 export const environment = {
-  appName: 'Mello Labs Angular Starter',
+  appName: 'mello Title Workflow',
   production: true,
   serviceWorker: false
 };

@@ -1,0 +1,98 @@
+<div class="row mb-2" [formGroup]="form">
+
+  <div class="col-12" [ngClass]="ocrValue ? 'col-md-4' : 'col-md-6'">
+    <i class="fa fa-check-square green" *ngIf="form.get(field).valid"></i>
+    <i class="fa fa-warning yellow" *ngIf="!form.get(field).valid"></i>
+
+    <a (click)="ui.tabChange('viewer',docTab)">{{label}}</a>
+    <ng-container *ngIf="ocrValue">
+      <br />
+      <small>
+        <app-launch-modal classes="pl-3" modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for ' + label + '?'" [isButton]="false"
+                          (onSuccess)="conditionAdd($event)">
+          <i class="fa fa-plus"></i> Add Condition
+        </app-launch-modal>
+      </small>
+    </ng-container>
+  </div>
+
+  <div class="col-12 col-md-4" *ngIf="ocrValue" [ngClass]="ocrValue ? 'col-md-4' : null">
+
+    <div class="btn-group-vertical w-100">
+      <ng-container *ngIf="!hasFuzzyMatch">
+        <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: ocrValue, value: ocrValue, form: form, field: field }"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="hasFuzzyMatch">
+        <ng-container *ngFor="let value of ocrValue">
+          <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: value, value: value, form: form, field: field }"></ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+   
+  </div>
+
+  <div class="col-12" [ngClass]="ocrValue ? 'col-md-4' : 'col-md-6'" style="position:relative;">
+    <div class="editable" (dblclick)="editing = !editing;">
+
+      <ng-container *ngIf="!editing">
+        <a class="float-right" style="position:absolute;right:20px;top:3px;z-index:2;" (click)="editing = !editing;" title="Edit this field manually">
+          <i class="fa fa-gear"></i>
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="editing">
+        <a class="float-right" style="position:absolute;right:20px;top:3px;z-index:2;" (click)="editing = !editing;updateForm(field,'')" title="Cancel manuel edit and remove value">
+          <i class="fa fa-remove"></i>
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="!editing">
+        <ng-container *ngIf="form.value[field]">
+          {{form.value[field]}}
+        </ng-container>
+        <ng-container *ngIf="!form.value[field]">
+          <em>None</em>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="editing">
+
+        <ng-container *ngIf="fieldType == 'textarea'">
+          <textarea class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="field"></textarea>
+        </ng-container>
+        <ng-container *ngIf="fieldType == 'input'">
+          <textarea class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="field"></textarea>
+        </ng-container>
+        <ng-container *ngIf="fieldType == 'radio'">
+          <fieldset class="form-group" *ngIf="fieldModel">
+            <div class="form-check" *ngFor="let model of fieldModel">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [value]="model" [formControlName]="field">
+                {{model}}
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="" [formControlName]="field">
+                <input type="text" class="form-control form-control-sm form-control-inline" />
+              </label>
+            </div>
+          </fieldset>
+        </ng-container>
+
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+
+<!-- OCR button template -->
+<ng-template #ocrValueTemplate let-value="value" let-form="form" let-field="field">
+  <button class="btn btn-sm w-100 text-left btn-secondary"
+          [disabled]="editing || form.value[field] == value"
+          (click)="updateForm(field,value)">
+    <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != value"></i>
+    <i class="fa fa-check float-right" *ngIf="form.value[field] == value"></i>
+    {{value}}
+  </button>
+</ng-template>

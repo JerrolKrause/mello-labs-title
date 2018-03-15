@@ -71,7 +71,7 @@
 
             <div class="small" *ngIf="formInfo.value.lockedBy">
               <span class="btn-group float-right">
-                <a class="btn btn-secondary btn-sm" href="mailto:eat@joes.com"><i class="fa fa-envelope"></i></a>
+                <a class="btn btn-secondary btn-sm" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
                 <a class="btn btn-secondary btn-sm" href="tel:15551234321"><i class="fa fa-phone"></i></a>
               </span>
               <div style="padding-top:5px;">

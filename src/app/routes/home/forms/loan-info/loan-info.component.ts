@@ -36,6 +36,7 @@ export class LoanInfoComponent implements OnInit {
     this.formInfo = this.fb.group({
       lnkey: [{value:null, disabled: true}, [Validators.required]],
       name: [null, [Validators.required]],
+      LastName: [null, [Validators.required]],
       loanAmount: [null, [Validators.required]],
       lockedBy: [null, [Validators.required]],
       dateEffective: [null, [Validators.required]],

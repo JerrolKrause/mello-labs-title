@@ -12,16 +12,16 @@
 
     <ngb-tab id="tab-1">
       <ng-template ngbTabTitle>
-        <i class="fa fa-warning yellow"></i> Exceptions 
+        <i class="fa fa-warning yellow"></i> Needs Verification
       </ng-template>
       <ng-template ngbTabContent>
-        <app-borrower (formRef)="formRef('borrower',$event)"></app-borrower>
+        <app-exceptions (formRef)="formRef('borrower',$event)"></app-exceptions>
       </ng-template>
     </ngb-tab>
 
     <ngb-tab id="tab-2">
       <ng-template ngbTabTitle>
-        <i class="fa fa-check green"></i> Completed
+        <i class="fa fa-check green"></i> Verified
       </ng-template>
       <ng-template ngbTabContent>
         <api-state [state]="status" [toaster]="true" [showSuccess]="false" *ngIf="formVestingStatus$ | async as status">
@@ -30,44 +30,6 @@
       </ng-template>
     </ngb-tab>
 
-
-    <!--
-  <ngb-tab id="tab-3">
-    <ng-template ngbTabTitle>
-      Property <i class="fa fa-warning yellow"></i>
-    </ng-template>
-    <ng-template ngbTabContent>
-      <app-property></app-property>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab id="tab-4">
-    <ng-template ngbTabTitle>
-      Liens <i class="fa fa-check green"></i>
-    </ng-template>
-    <ng-template ngbTabContent>
-      <app-liens></app-liens>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab id="tab-5">
-    <ng-template ngbTabTitle>
-      Notes/Comments <i class="fa fa-check green"></i>
-    </ng-template>
-    <ng-template ngbTabContent>
-      <app-notes></app-notes>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab id="tab-6">
-    <ng-template ngbTabTitle>
-      Certification <i class="fa fa-warning yellow"></i>
-    </ng-template>
-    <ng-template ngbTabContent>
-      <app-certification></app-certification>
-    </ng-template>
-  </ngb-tab>
-  -->
   </ngb-tabset>
 
 </div>
