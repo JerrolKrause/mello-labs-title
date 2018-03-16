@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input, OnDestroy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -9,40 +9,35 @@ import { UIStoreService, FormTypes } from '@ui';
 import { ApiService } from '@api'
 
 @Component({
-  selector: 'app-exceptions',
-  templateUrl: './exceptions.component.html',
-  styleUrls: ['./exceptions.component.scss'],
+  selector: 'app-verified',
+  templateUrl: './verified.component.html',
+  styleUrls: ['./verified.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExceptionsComponent implements OnInit {
+export class VerifiedComponent implements OnInit, OnDestroy {
 
-  public formExceptions: FormGroup;
-  @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
-
+  public formVerified: FormGroup;
   public loanCurrent$ = this.api.loanCurrent$;
   public loanCurrentOcr$ = this.api.loanCurrentOcr$;
   public loanCurrentStatus$ = this.api.loanCurrentStatus$;
+  @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
 
-  public dateLastRecorded;
-  public editing = {
-    borrower: null
-  };
   private subs: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
     public ui: UIStoreService,
     private api: ApiService,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-
-    this.formExceptions = this.fb.group({
-
+    
+    this.formVerified = this.fb.group({
       Borrower: [null, [Validators.required]],
       MaritalStatusName: [null, [Validators.required]],
       LoanPurposeName: [null, [Validators.required]],
-
       FullNameVesting: [null, [Validators.required]],
       LoanTypeName: [null, [Validators.required]],
       TitleVendor: [null, [Validators.required]],
@@ -53,25 +48,23 @@ export class ExceptionsComponent implements OnInit {
     });
 
     this.subs.push(
+      // Watch form changes, update value in UI store
+      this.formVerified.valueChanges.subscribe(formNew => {
+        this.ui.formChange(FormTypes.vesting, { ...formNew },true);
+      }),
       // Load the value currently in the store and then unsub
-      // Initial load data is being added to store from route component
+    // Initial load data is being added to store from route component
       this.api.loanCurrent$.subscribe(form => {
         if (form) {
-          this.formExceptions.reset();
-          this.formExceptions.patchValue(form);
+          this.formVerified.reset();
+          this.formVerified.patchValue(form);
         }
-      }),
-      // Watch form changes, update value in UI store
-      this.formExceptions.valueChanges.subscribe(formNew => {
-        this.ui.formChange(FormTypes.borrower, { ...formNew }, true);
       })
     );
 
     // Pass reference to parent
-    this.formRef.emit(this.formExceptions);
-
+    this.formRef.emit(this.formVerified);
   }
-
 
   /**
    * Change a value in the form
@@ -79,10 +72,23 @@ export class ExceptionsComponent implements OnInit {
    * @param propNew
    */
   public updateForm(field: string, propNew: string) {
-    this.editing[field] = false;
     let valNew = {};
     valNew[field] = propNew;
-    this.formExceptions.patchValue(valNew);
+    this.formVerified.patchValue(valNew);
+  }
+
+  /**
+ * Transform date supplied by datepicker to reactive form model
+ * @param field
+ * @param date
+ */
+  public dateChanged(field: 'dateLastRecorded', date) {
+    let dateNew = date.month + '/' + date.day + '/' + date.year;
+    this.updateForm(field, dateNew);
+  }
+
+  ngOnDestroy() {
+    if (this.subs.length) { this.subs.forEach(sub => sub.unsubscribe()) }
   }
 
 }

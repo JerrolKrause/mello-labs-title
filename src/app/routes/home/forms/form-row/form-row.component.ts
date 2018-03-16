@@ -14,23 +14,27 @@ export class FormRowComponent implements OnInit {
   @Input() field: string;
   @Input() fieldType: 'input' | 'textarea' | 'radio';
   @Input() fieldModel: any[];
-  @Input() docTab = 1;
+  @Input() docTab:number = 1;
   @Input() ocrValue: string | string[];
   @Input() form: FormGroup;
 
   public hasFuzzyMatch = false;
 
   public editing = false;
+
+  public valuePrev: string;
   
   constructor(
     public ui: UIStoreService
   ) { }
 
   ngOnInit() {
+    // Hold initial value
+    this.valuePrev = this.form.value[this.field];
+    // Check if fuzzy match
     if (Array.isArray(this.ocrValue)){
       this.hasFuzzyMatch = true;
     }
-    console.log(this)
   }
 
   /**
@@ -39,7 +43,7 @@ export class FormRowComponent implements OnInit {
    * @param propNew
    */
   public updateForm(field: string, propNew: string) {
-    console.log(field,propNew)
+    console.log('updateForm', field, propNew);
     this.editing = false;
     let valNew = {};
     valNew[field] = propNew;

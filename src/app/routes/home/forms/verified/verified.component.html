@@ -1,0 +1,70 @@
+<ng-container *ngIf="{ loan : loanCurrent$ | async, status : loanCurrentStatus$ | async } as compData">
+
+  <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
+    <form [formGroup]="formVerified" id="formVerified" *ngIf="compData?.loan">
+
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <strong>Field</strong>
+        </div>
+        <div class="col-12 col-md-6">
+          <strong>Loan Data</strong>
+        </div>
+      </div>
+
+      <hr />
+
+
+      <app-form-row label="Full Name Vesting"
+                    field="FullNameVesting"
+                    fieldType="input"
+                    tabindex="1"
+                    [form]="formVerified">
+      </app-form-row>
+
+      <app-form-row label="Loan Type Name"
+                    field="LoanTypeName"
+                    fieldType="input"
+                    tabindex="2"
+                    [form]="formVerified">
+      </app-form-row>
+
+      <app-form-row label="Title Vendor"
+                    field="TitleVendor"
+                    fieldType="input"
+                    tabindex="2"
+                    [form]="formVerified">
+      </app-form-row>
+
+      <app-form-row label="Ownership Type Name"
+                    field="OwnershipTypeName"
+                    fieldType="input"
+                    tabindex="1"
+                    [form]="formVerified">
+      </app-form-row>
+
+      <app-form-row label="Property Type Name"
+                    field="PropertyTypeName"
+                    fieldType="input"
+                    tabindex="3"
+                    [form]="formVerified">
+      </app-form-row>
+
+      <app-form-row label="Current Mortgage"
+                    field="CurrentMortgage"
+                    fieldType="input"
+                    tabindex="3"
+                    [form]="formVerified">
+      </app-form-row>
+
+      <app-form-row label="APN"
+                    field="APN"
+                    fieldType="input"
+                    tabindex="3"
+                    [form]="formVerified">
+      </app-form-row>
+
+      
+    </form>
+  </api-state>
+</ng-container>

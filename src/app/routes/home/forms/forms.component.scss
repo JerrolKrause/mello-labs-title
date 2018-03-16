@@ -1,4 +1,8 @@
 #app-forms{
+  .editable{padding-right:1.25rem;}
+  .editing:hover{outline: 3px dashed #c3c3c3;cursor:pointer;}
+  app-form-row:nth-of-type(odd) .striped{background-color: rgba(0,0,0,.05);}
+  form{font-size:0.85rem;}
   .nav-link{padding: 0.5rem;font-size:0.7rem;}
   .tab-pane{padding:1rem;background:#fff;}
   .btn{position:relative;}

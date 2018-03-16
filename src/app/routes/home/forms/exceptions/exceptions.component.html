@@ -1,9 +1,7 @@
 <ng-container *ngIf="{ loan : loanCurrent$ | async, ocr : loanCurrentOcr$ | async, status : loanCurrentStatus$ | async } as compData">
 
   <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
-
-    <form [formGroup]="formExceptions" id="formExceptions">
-
+    <form [formGroup]="formExceptions" id="formExceptions" *ngIf="compData?.ocr && compData?.loan">
 
       <div class="row">
         <div class="col-12 col-md-4">
@@ -16,23 +14,22 @@
           <strong>Loan Data</strong>
         </div>
       </div>
+
       <hr />
-
-
+     
       <app-form-row label="Borrower Name/s"
-                    field="borrower"
+                    field="Borrower"
                     fieldType="textarea"
-                    ocrValue="John Smith &amp; Jane Smith"
+                    [ocrValue]="compData?.ocr['Borrower']"
                     docTab="1"
                     [form]="formExceptions">
       </app-form-row>
 
-
       <app-form-row label="Marital Status"
-                    field="maritalStatus"
+                    field="MaritalStatusName"
                     fieldType="radio"
                     [fieldModel]="['Married','Un-Married','Registered/Domestic Partner']"
-                    [ocrValue]="['Married','Un-Married']"
+                    [ocrValue]="compData?.ocr['MaritalStatusName']"
                     docTab="2"
                     [form]="formExceptions">
       </app-form-row>
@@ -41,7 +38,7 @@
                     field="LoanPurposeName"
                     fieldType="radio"
                     [fieldModel]="['Purchase','Refinance']"
-                    [ocrValue]="'Refinance'"
+                    [ocrValue]="compData?.ocr['LoanPurposeName']"
                     docTab="3"
                     [form]="formExceptions">
       </app-form-row>

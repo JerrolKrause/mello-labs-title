@@ -1,10 +1,11 @@
-<div class="row mb-2" [formGroup]="form">
+<div class="row pt-2 pb-2 striped" [formGroup]="form">
 
-  <div class="col-12" [ngClass]="ocrValue ? 'col-md-4' : 'col-md-6'">
-    <i class="fa fa-check-square green" *ngIf="form.get(field).valid"></i>
-    <i class="fa fa-warning yellow" *ngIf="!form.get(field).valid"></i>
+  <div class="col-12" [ngClass]="ocrValue ? 'col-md-3' : 'col-md-6'">
+    <i class="fa fa-check-square green" *ngIf="form.get(field)?.valid"></i>
+    <i class="fa fa-warning yellow" *ngIf="!form.get(field)?.valid"></i>
 
     <a (click)="ui.tabChange('viewer',docTab)">{{label}}</a>
+
     <ng-container *ngIf="ocrValue">
       <br />
       <small>
@@ -31,20 +32,26 @@
    
   </div>
 
-  <div class="col-12" [ngClass]="ocrValue ? 'col-md-4' : 'col-md-6'" style="position:relative;">
-    <div class="editable" (dblclick)="editing = !editing;">
+  <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrValue ? 'col-md-5' : 'col-md-6'" style="position:relative;">
+    <div class="editable w-100" (dblclick)="editing = !editing;" [ngClass]="fieldType != 'radio' && !editing ? 'editing' : null">
 
-      <ng-container *ngIf="!editing">
-        <a class="float-right" style="position:absolute;right:20px;top:3px;z-index:2;" (click)="editing = !editing;" title="Edit this field manually">
+      <div class="float-right icon-action">
+        <a *ngIf="!editing" (click)="editing = !editing;" title="Edit this field manually">
           <i class="fa fa-gear"></i>
         </a>
-      </ng-container>
-
-      <ng-container *ngIf="editing">
-        <a class="float-right" style="position:absolute;right:20px;top:3px;z-index:2;" (click)="editing = !editing;updateForm(field,'')" title="Cancel manuel edit and remove value">
+        <a *ngIf="editing" (click)="editing = !editing;updateForm(field,valuePrev)" title="Cancel manuel edit and remove value">
           <i class="fa fa-remove"></i>
         </a>
-      </ng-container>
+
+        <ng-container *ngIf="form.value[field] != valuePrev && !editing">
+          <br/>
+          <a (click)="updateForm(field,valuePrev)" title="Undo changes to this field">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+          </a>
+        </ng-container>
+        
+      </div>
+
 
       <ng-container *ngIf="!editing">
         <ng-container *ngIf="form.value[field]">

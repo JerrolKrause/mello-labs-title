@@ -66,11 +66,7 @@ import { ApiService } from '@api';
 import { ViewerComponent } from './routes/home/viewer/viewer.component';
 import { FormsComponent } from './routes/home/forms/forms.component';
 import { ExceptionsComponent } from './routes/home/forms/exceptions/exceptions.component';
-import { VestingComponent } from './routes/home/forms/vesting/vesting.component';
-import { PropertyComponent } from './routes/home/forms/property/property.component';
-import { LiensComponent } from './routes/home/forms/liens/liens.component';
-import { NotesComponent } from './routes/home/forms/notes/notes.component';
-import { CertificationComponent } from './routes/home/forms/certification/certification.component';
+import { VerifiedComponent } from './routes/home/forms/verified/verified.component';
 import { LoanInfoComponent } from './routes/home/forms/loan-info/loan-info.component';
 import { LoanComponent } from './routes/loan/loan.component';
 import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
@@ -126,15 +122,7 @@ export const APP_PROVIDERS = [
 
     ExceptionsComponent,
 
-    VestingComponent,
-
-    PropertyComponent,
-
-    LiensComponent,
-
-    NotesComponent,
-
-    CertificationComponent,
+    VerifiedComponent,
 
     LoanComponent,
 
