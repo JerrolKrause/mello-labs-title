@@ -44,6 +44,7 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.api.loans.get().subscribe();
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentOcr.get().subscribe();
+    this.api.loanCurrentDocs.get().subscribe();
 
     this.subs.push(
       // On initial load, set the default open tab

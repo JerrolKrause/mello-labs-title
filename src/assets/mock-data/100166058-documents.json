@@ -1,0 +1,74 @@
+[
+  {
+    "docGuid": "ccsw9c8a9c8s",
+    "docName": "Title Report",
+    "pages": 3,
+    "docUrl": "assets/media/Title Report-4.pdf",
+    "finalStamp": true,
+    "forReview": true,
+    "rightSide": false
+  },
+  {
+    "docGuid": "b23b423b4",
+    "docName": "Title Supplement",
+    "pages": 1,
+    "docUrl": "assets/media/zip-code-lookup.pdf",
+    "finalStamp": false,
+    "forReview": true,
+    "rightSide": true
+  },
+  {
+    "docGuid": "m85mfhvgf",
+    "docName": "Tax Certification",
+    "pages": 3,
+    "docUrl": "assets/media/Title Report-9.pdf",
+    "finalStamp": true,
+    "forReview": false,
+    "rightSide": false
+  },
+  {
+    "docGuid": "dcv125bb5",
+    "docName": "Title Invoice",
+    "pages": 2,
+    "docUrl": "assets/media/zip-code-lookup.pdf",
+    "finalStamp": false,
+    "forReview": true,
+    "rightSide": false
+  },
+  {
+    "docGuid": "ddfds4674asd",
+    "docName": "CPL",
+    "pages": 8,
+    "docUrl": "assets/media/Title Report-9.pdf",
+    "finalStamp": true,
+    "forReview": true,
+    "rightSide": true
+  },
+  {
+    "docGuid": "nyh56dev65",
+    "docName": "Payoff",
+    "pages": 5,
+    "docUrl": "assets/media/Title Report-4.pdf",
+    "finalStamp": true,
+    "forReview": false,
+    "rightSide": false
+  },
+  {
+    "docGuid": "34y7vfbnd4y",
+    "docName": "Title Affidavit",
+    "pages": 13,
+    "docUrl": "assets/media/zip-code-lookup.pdf",
+    "finalStamp": false,
+    "forReview": true,
+    "rightSide": true
+  },
+  {
+    "docGuid": "cvg278ngf5",
+    "docName": "Deed",
+    "pages": 2,
+    "docUrl": "assets/media/Title Report-9.pdf",
+    "finalStamp": false,
+    "forReview": false,
+    "rightSide": false
+  }
+]

@@ -1,77 +1,57 @@
-<ng-container *ngIf="ui.tabViewer$ | async as tab">
+<ng-container *ngIf="{
+      tab : ui.tabViewer$ | async,
+      docs:loanCurrentDocs$ | async,
+      docGuid: docGuid$ | async,
+      status : loanCurrentDocsStatus$ | async } as compData">
 
-  <ul class="nav nav-tabs nav-tabs-sm nav-tabs-visible" style="border:0;" id="app-viewer">
+  <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
 
-    <li class="nav-item">
-      <a class="nav-link" (click)="ui.tabChange('viewer',1)" [ngClass]="{ 'active': tab == 1 }">
-        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Title Report-4.pdf
-      </a>
-    </li>
+    <ng-container *ngIf="compData.docs && compData.docGuid">
 
-    <li class="nav-item">
-      <a class="nav-link" (click)="ui.tabChange('viewer',2)" [ngClass]="{ 'active': tab == 2 }">
-        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Title Report-9.pdf
-      </a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" (click)="ui.tabChange('viewer',3)" [ngClass]="{ 'active': tab == 3 }">
-        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> USPS Address Confirmation
-      </a>
-    </li>
-
-  </ul>
-
-  <div class="tab-content tab-content-visible">
-
-    <div class="tab-pane" id="home" role="tabpanel" [ngClass]="{'active': tab == 1}">
       <div class="card">
-        <div class="card-block p-2">
-          <object data="assets/media/Title Report-4.pdf"
-                  type="application/pdf"
-                  class="w-100"
-                  style="border:0;height: calc(100vh - 149px);">
-            <embed src="assets/media/Title Report-4.pdf" type="application/pdf" />
-          </object>
-          <!--
-        <iframe src="/assets/media/_Funding Checklist - Retail.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
-        -->
+
+        <div class="card-header">
+          <div class="float-right">
+            <small class="mr-2">
+
+              Final Stamp:
+              <i class="fa fa-check-square green" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
+              <i class="fa fa-square" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.finalStamp"></i> |
+
+              For Review:
+              <i class="fa fa-check-square green" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.forReview"></i>
+              <i class="fa fa-square" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.forReview"></i> |
+
+              Side:
+              <i class="fa fa-arrow-right green" *ngIf="compData.docs?.dict[compData.docGuid]?.rightSide"></i>
+              <i class="fa fa-arrow-left" *ngIf="!compData.docs?.dict[compData.docGuid]?.rightSide"></i>
+            </small>
+
+            <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown" (mouseenter)="$event.stopPropagation(); myDrop.open();">
+              <button class="btn btn-secondary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Documents ({{compData.docs.src.length}})
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" [ngClass]="doc.docGuid == compData.docGuid ? 'active' : null"
+                        (click)="ui.docViewerChange(doc.docGuid)"
+                        *ngFor="let doc of compData.docs.src">
+                  {{doc.docName}}
+                </button>
+              </div>
+            </div>
+          </div>
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{compData.docs?.dict[compData.docGuid]?.docName}}
         </div>
+        
+        <object [data]="compData.docs?.dict[compData.docGuid]?.docUrl | safe: 'resourceUrl'"
+                type="application/pdf"
+                class="w-100"
+                style="border:0;height: calc(100vh - 154px);">
+          <embed [src]="compData.docs?.dict[compData.docGuid]?.docUrl | safe: 'resourceUrl'" type="application/pdf" />
+        </object>
+
       </div>
-    </div>
 
-    <div class="tab-pane" id="props" role="tabpanel" [ngClass]="{'active': tab == 2 }">
-      <div class="card">
-        <div class="card-block p-2">
-          <object data="assets/media/Title Report-9.pdf"
-                  type="application/pdf"
-                  class="w-100"
-                  style="border:0;height: calc(100vh - 149px);">
-            <embed src="assets/media/Title Report-9.pdf" type="application/pdf" />
-          </object>
-          <!--
-        <iframe src="/assets/media/_Original Closing Disclosure.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
-        -->
-        </div>
-      </div>
-    </div>
-
-    <div class="tab-pane" id="props" role="tabpanel" [ngClass]="{'active': tab == 3 }">
-      <div class="card">
-        <div class="card-block p-2">
-          <object data="assets/media/zip-code-lookup.pdf"
-                  type="application/pdf"
-                  class="w-100"
-                  style="border:0;height: calc(100vh - 149px);">
-            <embed src="assets/media/zip-code-lookup.pdf" type="application/pdf" />
-          </object>
-          <!--
-        <iframe src="/assets/media/_Original Closing Disclosure.pdf" class="w-100" style="border:0;height: calc(100vh - 129px);"></iframe>
-        -->
-        </div>
-      </div>
-    </div>
-
-  </div>
-
+    </ng-container>
+  </api-state>
 </ng-container>

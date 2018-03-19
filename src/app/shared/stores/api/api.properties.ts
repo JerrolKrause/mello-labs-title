@@ -3,6 +3,7 @@ export enum ApiProps {
   loans = 'loans',
   loanCurrent = 'loanCurrent',
   loanCurrentOcr = 'loanCurrentOcr',
+  loanCurrentDocs = 'loanCurrentDocs',
   // Loan Info
   borrower = 'borrower',
   vesting = 'vesting',

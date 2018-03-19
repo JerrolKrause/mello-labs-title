@@ -9,6 +9,7 @@ export class UIStoreService {
 
   public modal$ = this.store.select(store => store.ui.modal);
   public tabViewer$ = this.store.select(store => store.ui.tabViewer);
+  public docGuid$ = this.store.select(store => store.ui.document);
   public tabForm$ = this.store.select(store => store.ui.tabForm);
 
   public loanHasUpdate$ = this.store.select(store => store.ui.loanHasUpdate);
@@ -31,6 +32,14 @@ export class UIStoreService {
    */
   public tabChange(tabType: 'viewer' | 'form', tabNum:number) {
     this.store.dispatch({ type: UIStoreActions.TAB_CHANGE, payload: { tabType: tabType, tabNum: tabNum} });
+  }
+
+  /**
+   * Change the currently visible document in the document viewer
+   * @param docID - GUID of document
+   */
+  public docViewerChange(docID:string) {
+    this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: docID });
   }
 
   /**

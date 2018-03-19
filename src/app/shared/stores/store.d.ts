@@ -8,7 +8,8 @@ export declare namespace IStore {
     loans?: Mapped<any[]>;
     notes?: Mapped<any[]>;
     loanCurrent?: Mapped<any[]>;
-    loanCurrentOcr?: Mapped<any[]>;
+    loanCurrentOcr?: any[];
+    loanCurrentDocs?: any[];
     // Example of Store typing with mapped response
     users?: Mapped<{
       user: string;
@@ -26,6 +27,7 @@ export declare namespace IStore {
     loans?: ApiMap;
     loanCurrent?: ApiMap;
     loanCurrentOcr?: ApiMap;
+    loanCurrentDocs?: ApiMap;
     vesting?: ApiMap;
     notes?: ApiMap;
   }
@@ -37,6 +39,7 @@ export declare namespace IStore {
       options: {};
       data: any;
     };
+    document?: any;
     loanHasUpdate: boolean;
     tabViewer: number;
     tabForm: number;

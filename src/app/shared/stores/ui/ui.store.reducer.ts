@@ -10,6 +10,7 @@ const initialState: IStore.ui = {
   tabViewer: 1,
   tabForm: 1,
   loanHasUpdate: false,
+  document:null,
   forms: {
     loan: null,
     borrower: {
@@ -53,6 +54,9 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
       saveState();
     case UIStoreActions.LOAN_SAVED:
       state.loanHasUpdate = false;
+      saveState();
+    case UIStoreActions.DOC_CHANGE:
+      state.document = payload;
       saveState();
     case UIStoreActions.FORM_CHANGE:
       if (payload.loanHasUpdate){

@@ -32,6 +32,7 @@ export class ApiService extends ApiHttpService {
 
   public loanCurrent$ = this.store.select(store => store.api.loanCurrent);
   public loanCurrentOcr$ = this.store.select(store => store.api.loanCurrentOcr);
+  public loanCurrentDocs$ = this.store.select(store => store.api.loanCurrentDocs);
   public loanCurrentStatus$ = this.getStatuses([this.store.select(store => store.apiStatus[ApiProps.loanCurrent]), this.store.select(store => store.apiStatus[ApiProps.loanCurrentOcr])])
   
 
@@ -73,6 +74,10 @@ export class ApiService extends ApiHttpService {
 
   public loanCurrentOcr = {
     get: (update?: boolean) => this.getStore(ApiMap.loanCurrentOcr.endpoint, ApiMap.loanCurrentOcr, update)
+  }
+
+  public loanCurrentDocs = {
+    get: (update?: boolean) => this.getStore(ApiMap.loanCurrentDocs.endpoint, ApiMap.loanCurrentDocs, update)
   }
 
   public vesting = {

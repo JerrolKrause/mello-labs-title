@@ -63,6 +63,22 @@ export const ApiMap: IStore.ApiMapping = {
     storeProperty: ApiProps.loanCurrent,
   },
 
+  loanCurrentDocs: {
+    endpoint: 'assets/mock-data/100166058-documents.json',
+    storeProperty: ApiProps.loanCurrentDocs,
+    uniqueId: 'docGuid',
+    mapSrc: 'src',
+    map: (users: any[]) => {
+      // Sample dictionary mapping based on id property
+      const dict = {};
+      users.forEach(user => dict[user.docGuid] = user);
+      return {
+        src: users,
+        dict: dict
+      };
+    }
+  },
+
   
   loanCurrentOcr: {
     endpoint: 'assets/mock-data/100166058-ocr.json',

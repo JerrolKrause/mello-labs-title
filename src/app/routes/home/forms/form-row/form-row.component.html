@@ -4,7 +4,7 @@
     <i class="fa fa-check-square green" *ngIf="form.get(field)?.valid"></i>
     <i class="fa fa-warning yellow" *ngIf="!form.get(field)?.valid"></i>
 
-    <a (click)="ui.tabChange('viewer',docTab)">{{label}}</a>
+    <a (click)="ui.docViewerChange(docID)">{{label}}</a>
 
     <ng-container *ngIf="ocrValue">
       <br />
