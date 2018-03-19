@@ -12,7 +12,8 @@ import { UIStoreService } from '@ui';
 export class EmpowerSaveComponent implements OnInit {
 
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
- 
+  public waiting = false;
+
   constructor(
     public activeModal: NgbActiveModal,
     public ui: UIStoreService,
@@ -20,14 +21,12 @@ export class EmpowerSaveComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
   }
 
   /**
    * Submit the form
    */
   submit() {
-  
     this.activeModal.close('Success');
   } // end submit
 
