@@ -14,18 +14,30 @@
     <thead>
       <tr>
         <th>Document Name</th>
-        <th class="text-center">Final Stamp?</th>
+        <th class="text-center">Side</th>
+        <th class="text-center">For Review</th>
+        <th class="text-center">Final Stamp</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Title Report-4.pdf</td>
-        <td><input class="form-control mt-1" type="checkbox" /></td>
+    <tbody *ngIf="loanCurrentDocs$ | async as docs">
+      <tr *ngFor="let doc of docs.src">
+        <td><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{doc.docName}}</td>
+        <td class="text-center">
+          <i class="fa fa-arrow-right green" *ngIf="doc.rightSide"></i>
+          <i class="fa fa-arrow-left" *ngIf="!doc.rightSide"></i>
+
+        </td>
+        <td class="text-center">
+          <i class="fa fa-check-square green" aria-hidden="true" *ngIf="doc.forReview"></i>
+          <i class="fa fa-square" aria-hidden="true" *ngIf="!doc.forReview"></i>
+
+        </td>
+        <td class="text-center">
+          <input class="form-control mt-1" type="checkbox" *ngIf="!doc.finalStamp" />
+          <i class="fa fa-check-square green" aria-hidden="true" *ngIf="doc.finalStamp"></i>
+        </td>
       </tr>
-      <tr>
-        <td><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Title Report-9.pdf</td>
-        <td><input class="form-control mt-1" type="checkbox" /></td>
-      </tr>
+      
     </tbody>
     </table>
   </div>

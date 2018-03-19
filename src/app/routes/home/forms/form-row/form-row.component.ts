@@ -47,11 +47,18 @@ export class FormRowComponent implements OnInit {
    * @param propNew
    */
   public updateForm(field: string, propNew: string) {
-    console.log('updateForm', field, propNew);
     this.editing = false;
     let valNew = {};
     valNew[field] = propNew;
     this.form.patchValue(valNew);
+  }
+
+  /**
+   * Add a condition
+   * @param $event
+   */
+  public conditionAdd($event) {
+
   }
 
 }

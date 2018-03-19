@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from '@api';
+import { UIStoreService } from '@ui';
 
 @Component({
   selector: 'app-empower-save',
@@ -9,13 +11,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EmpowerSaveComponent implements OnInit {
 
-  public waiting = false;
-
+  public loanCurrentDocs$ = this.api.loanCurrentDocs$;
+ 
   constructor(
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    public ui: UIStoreService,
+    private api: ApiService
   ) { }
 
   ngOnInit() {
+    
   }
 
   /**

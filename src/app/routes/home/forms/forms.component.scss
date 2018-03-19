@@ -10,7 +10,7 @@
     .nav.nav-tabs{
       li{}//display:flex;justify-content: space-between;
     }
-    .tab-pane{height: calc(100vh - 310px); overflow-y: auto; overflow-x: hidden;}
+    .tab-pane{height: calc(100vh - 343px); overflow-y: auto; overflow-x: hidden;}
   }
   @media (min-width: 1650px){
     .nav-link{padding: 0.5em 1rem;}

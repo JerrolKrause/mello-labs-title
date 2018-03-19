@@ -110,69 +110,6 @@
           </div>
         </div>
 
-        <!--
-  <hr />
-
-  <div class="form-group row mb-0">
-    <label for="example-text-input" class="col-6 col-form-label small">Loan#</label>
-    <div class="col-6">
-      <input class="form-control form-control-sm" type="text" formControlName="lnkey">
-    </div>
-  </div>
-
-  <div class="form-group row mb-0">
-    <label for="example-text-input" class="col-6 col-form-label small">Borrower</label>
-    <div class="col-6">
-
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-sm" formControlName="name">
-        <a class="btn btn-outline-secondary btn-sm input-group-addon" title="Email this borrower" href="mailto:eat@joes.com">
-          <i class="fa fa-envelope"></i>
-        </a>
-        <a class="btn btn-outline-secondary btn-sm input-group-addon" title="Call this borrower" href="tel:15551234321">
-          <i class="fa fa-phone"></i>
-        </a>
-      </div>
-
-    </div>
-  </div>
-  <div class="form-group row mb-0">
-    <label for="example-text-input" class="col-6 col-form-label small">Loan Amount</label>
-    <div class="col-6">
-      <input class="form-control form-control-sm" type="text" formControlName="loanAmount" id="example-text-input">
-    </div>
-  </div>
-
-  <div class="form-group row mb-0" style="position:relative;">
-    <label for="example-text-input" class="col-6 col-form-label small">
-      <span class="hidden-lg-down">Title</span> Effective Date
-    </label>
-    <div class="col-6">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-sm" formControlName="dateEffective">
-        <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d2.close();d.toggle()" type="button">
-          <i class="fa fa-calendar"></i>
-        </button>
-      </div>
-    </div>
-    <input type="hidden" ngbDatepicker #d="ngbDatepicker" name="dp" [ngModel]="dateEffective" (ngModelChange)="dateChanged('dateEffective', $event)" [ngModelOptions]="{standalone: true}" />
-  </div>
-
-  <div class="form-group row mb-1" style="position:relative;">
-    <label for="example-text-input" class="col-6 col-form-label small">
-      <span class="hidden-lg-down"> Title</span> Expiration Date
-    </label>
-    <div class="col-6">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-sm" formControlName="dateExpiration">
-        <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d.close();d2.toggle()" type="button">
-          <i class="fa fa-calendar"></i>
-        </button>
-      </div>
-    </div>
-    <input type="hidden" ngbDatepicker #d2="ngbDatepicker" name="dp" [ngModel]="dateExpiration" (ngModelChange)="dateChanged('dateExpiration', $event)" [ngModelOptions]="{standalone: true}" />
-  </div>
-  -->
       </div>
 
       <!-- Interaction Window -->
@@ -195,20 +132,12 @@
           <i class="fa fa-file-text" aria-hidden="true"></i> <span class="hidden-lg-down">Empower</span> Notes
         </app-launch-modal>
 
-        <!--
-  <hr />
+        <app-launch-modal classes="btn-secondary btn btn-sm mb-2 w-100"
+                          modal="EmpowerNotesComponent" size="xl" [data]="lnkey"
+                          (onSuccess)="loanSave($event)">
+          <i class="fa fa-pencil" aria-hidden="true"></i> <span class="hidden-lg-down">Add</span> Note
+        </app-launch-modal>
 
-  <div class="small" *ngIf="formInfo.value.lockedBy">
-    <span class="btn-group float-right">
-      <a class="btn btn-secondary btn-xs" href="mailto:eat@joes.com"><i class="fa fa-envelope"></i></a>
-      <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-    </span>
-    <i class="fa fa-lock"></i> {{formInfo.value.lockedBy}}
-  </div>
-  <div class="small" *ngIf="!formInfo.value.lockedBy">
-    <i class="fa fa-unlock"></i> Not locked
-  </div>
-  -->
       </div>
     </div>
   </form>
