@@ -1,0 +1,13 @@
+{
+  "Borrower": "Adam Smith & Janet Smith",
+  "MaritalStatusName": [ "Married", "Un-Married" ],
+  "LoanNumber": "100166058",
+  "TitleVendor": "BNT Title Company of CA",
+  "LoanTypeName": "FixedRate",
+  "OwnershipTypeName": "FeeSimple",
+  "LoanPurposeName": [ "Purchase", "Refinance" ],
+  "RefiPurposeName": "CashOutOther",
+  "CurrentMortgage": "DMI/NATION DIRECT MT",
+  "PropertyTypeName": "PrincipalResidence",
+  "PropertyPurposeName": "Primary"
+}
