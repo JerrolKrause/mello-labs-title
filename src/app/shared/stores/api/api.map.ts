@@ -28,7 +28,9 @@ export const ApiMap: IStore.ApiMapping = {
       let dict = {};
       usersNew = users.map((user, i) => {
         let userNew = { ...user };
-
+        userNew.unverified = _.random(60);
+        userNew.complete = userNew.unverified;
+        userNew.exception = _.random(10) > 7 ? true : false;
         //userNew.lockedBy = _.random(10) > 7 ? _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0] : null;
         //userNew.state = _.shuffle(states)[0];
         //userNew.id = i;

@@ -44,56 +44,19 @@
     "canFilter": true
   },
   {
-    "prop": "borrower",
-    "label": "Borrower Info",
+    "prop": "unverified",
+    "label": "Unverified",
     "columnType": "string",
-    "width": 120,
-    "canSort": true,
-    "canGroup": true,
-    "canFilter": true
-  },
-
-  {
-    "prop": "vesting",
-    "label": "Vesting/Ownership",
-    "columnType": "string",
-    "width": 120,
+    "width": 90,
     "canSort": true,
     "canGroup": true,
     "canFilter": true
   },
   {
-    "prop": "property",
-    "label": "Property",
+    "prop": "complete",
+    "label": "Complete",
     "columnType": "string",
-    "width": 120,
-    "canSort": true,
-    "canGroup": true,
-    "canFilter": true
-  },
-  {
-    "prop": "liens",
-    "label": "Liens",
-    "columnType": "string",
-    "width": 120,
-    "canSort": true,
-    "canGroup": true,
-    "canFilter": true
-  },
-  {
-    "prop": "notes",
-    "label": "Notes/Comments",
-    "columnType": "string",
-    "width": 120,
-    "canSort": true,
-    "canGroup": true,
-    "canFilter": true
-  },
-  {
-    "prop": "certification",
-    "label": "Certification",
-    "columnType": "string",
-    "width": 120,
+    "width": 300,
     "canSort": true,
     "canGroup": true,
     "canFilter": true

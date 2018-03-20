@@ -13,22 +13,19 @@
         <div class="card-header">
           <div class="float-right">
             <small class="mr-2">
-
-              Side:
-              <i class="fa fa-arrow-right green" *ngIf="compData.docs?.dict[compData.docGuid]?.rightSide"></i>
-              <i class="fa fa-arrow-left" *ngIf="!compData.docs?.dict[compData.docGuid]?.rightSide"></i> |
-
-              For Review:
-              <i class="fa fa-check-square green" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.forReview"></i>
-              <i class="fa fa-square" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.forReview"></i> |
-
-              Final Stamp:
-              <i class="fa fa-check-square green" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
-              <i class="fa fa-square" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.finalStamp"></i> |
+              <em>Some Dewd</em> |
+              <em>02/24/2018</em> |
+              <i class="fa fa-arrow-right" title="Side" *ngIf="compData.docs?.dict[compData.docGuid]?.rightSide"></i>
+              <i class="fa fa-arrow-left" title="Side" *ngIf="!compData.docs?.dict[compData.docGuid]?.rightSide"></i> |
+              <i class="fa fa-square for-review blue" aria-hidden="true" title="For Review"></i> |
+              <i class="fa fa-check-square green" title="Final Stamp" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
+              <i class="fa fa-square" title="Final Stamp" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
 
             </small>
 
-            <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown" (mouseenter)="$event.stopPropagation(); myDrop.open();">
+            <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown"
+              (mouseenter)="$event.stopPropagation(); myDrop.open();"
+              (mouseleave)="$event.stopPropagation(); myDrop.close();">
               <button class="btn btn-secondary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
                 <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Documents ({{compData.docs.src.length}})
               </button>

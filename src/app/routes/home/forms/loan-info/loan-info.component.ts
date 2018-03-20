@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { UIStoreService, FormTypes } from '@ui';
 import { ApiService } from '@api'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loan-info',
@@ -29,13 +30,15 @@ export class LoanInfoComponent implements OnInit {
     private fb: FormBuilder,
     public ui: UIStoreService,
     private api: ApiService,
-    private cp: CurrencyPipe
+    private cp: CurrencyPipe,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.formInfo = this.fb.group({
       lnkey: [{value:null, disabled: true}, [Validators.required]],
       name: [null, [Validators.required]],
+      state: [null, [Validators.required]],
       LastName: [null, [Validators.required]],
       loanAmount: [null, [Validators.required]],
       lockedBy: [null, [Validators.required]],
@@ -83,6 +86,11 @@ export class LoanInfoComponent implements OnInit {
   public dateChanged(field: 'dateEffective' | 'dateExpiration', date) {
     let dateNew = date.month + '/' + date.day + '/' + date.year;
     this.updateForm(field,dateNew);
+  }
+
+
+  public exceptionAdded($event) {
+    this.router.navigate(['/']);
   }
 
   /**

@@ -58,14 +58,17 @@
 			"config": "./karma.conf.js"
 		}
 	},
-	"defaults": {
-		"styleExt": "scss",
+  "defaults": {
+    "styleExt": "scss",
+    "serve": {
+      "port": 4206
+    },
     "component": {
       "changeDetection": "OnPush"
     },
-		"build": {
-			"preserveSymlinks": true,
-			"showCircularDependencies": false
-		}
-	}
+    "build": {
+      "preserveSymlinks": true,
+      "showCircularDependencies": false
+    }
+  }
 }

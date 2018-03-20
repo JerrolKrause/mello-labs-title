@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public rows$ = this.api.loans$;
   public columns: Datagrid.Column[] = require('./columns.users.json');
-  public state: Datagrid.State = { "filters": [], "sorts": [], "groups": [] };//{ dir: "asc", prop: "certification" }
+  public state: Datagrid.State = { "filters": [], "sorts": [{ dir: "asc", prop: "complete" }], "groups": [] };//{ dir: "asc", prop: "certification" }
   // Inputs
   public options: Datagrid.Options = {
     selectionType: false,
@@ -46,9 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.api.loans.get().subscribe();
-    // Reset tabs
-    this.ui.tabChange('viewer', 1);
-    this.ui.tabChange('form', 1);
+    this.rows$.subscribe(rows => console.log(rows));
   }
 
   /**

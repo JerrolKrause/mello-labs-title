@@ -72,6 +72,7 @@ import { LoanComponent } from './routes/loan/loan.component';
 import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
 import { EmpowerNotesComponent } from './components/modals/empower-notes/empower-notes.component';
 import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
+import { ExceptionComponent } from './components/modals/exception/exception.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -133,6 +134,8 @@ export const APP_PROVIDERS = [
     EmpowerNotesComponent,
 
     FormRowComponent,
+
+    ExceptionComponent,
   ],
   imports: [
     // Angular
@@ -161,7 +164,7 @@ export const APP_PROVIDERS = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent
+    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent, ExceptionComponent
   ]
 })
 export class AppModule { }
