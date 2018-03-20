@@ -41,8 +41,9 @@ export declare namespace IStore {
     };
     document?: any;
     loanHasUpdate: boolean;
-    tabViewer: number;
-    tabForm: number;
+    tabViewer?: number;
+    tabDashboard?: number;
+    tabForm?: number;
     forms: {
       loan?: any;
       borrower?: any;

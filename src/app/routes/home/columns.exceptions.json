@@ -45,7 +45,7 @@
   },
   {
     "prop": "unverified",
-    "label": "Unverified",
+    "label": "Unverified Data",
     "columnType": "string",
     "width": 90,
     "canSort": true,
@@ -55,6 +55,15 @@
   {
     "prop": "complete",
     "label": "Complete",
+    "columnType": "string",
+    "width": 300,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "exceptionReason",
+    "label": "Exception Reason",
     "columnType": "string",
     "width": 300,
     "canSort": true,

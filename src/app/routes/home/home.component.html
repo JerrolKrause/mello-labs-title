@@ -1,4 +1,4 @@
-<div id="home" class="container-fluid" *ngIf="rows$ | async as rows">
+<div id="home" class="container-fluid">
 
   <!-- Filter datatable -->
   <!-- Filter datatable -->
@@ -8,11 +8,10 @@
       <a (click)="filterGlobal.term = null; onfilterGlobal()" *ngIf="filterGlobal.term" style="position:absolute;right: 10px;"><i class="fa fa-remove"></i></a>
     </label>
   </form>
+  
+  <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
 
-
-  <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" activeId="tab-1">
-
-    <ngb-tab id="tab-1">
+    <ngb-tab id="tab-1" *ngIf="rows?.src">
       <ng-template ngbTabTitle>
         In Progress
       </ng-template>
@@ -60,7 +59,7 @@
       </ng-template>
     </ngb-tab>
 
-    <ngb-tab id="tab-2">
+    <ngb-tab id="tab-2" *ngIf="rows?.src">
       <ng-template ngbTabTitle>
         Completed
       </ng-template>
@@ -94,9 +93,7 @@
                 <datagrid-column prop="complete">
                   <ng-template let-value="value" let-column="column" let-row="row" datagrid-cell-template>
                     <div class="pr-4">
-                      <ngb-progressbar type="success" [value]="100-value" *ngIf="100-value >= 80"></ngb-progressbar>
-                      <ngb-progressbar type="warning" [value]="100-value" *ngIf="100-value < 80 && 100-value > 60"></ngb-progressbar>
-                      <ngb-progressbar type="danger" [value]="100-value" *ngIf="100-value <= 60"></ngb-progressbar>
+                      <ngb-progressbar type="success" [value]="100"></ngb-progressbar>
                     </div>
                   </ng-template>
                 </datagrid-column>
@@ -108,7 +105,7 @@
       </ng-template>
     </ngb-tab>
 
-    <ngb-tab id="tab-3">
+    <ngb-tab id="tab-3" *ngIf="rows?.src">
       <ng-template ngbTabTitle>
         Exceptions
       </ng-template>
@@ -118,7 +115,7 @@
             <div style="position: relative;height: calc(100vh - 160px);overflow-y: hidden;overflow-x: hidden;">
               <datagrid #datagrid
                         [rows]="rows.src | filter: true : 'exception'"
-                        [columns]="columns"
+                        [columns]="columnsExceptions"
                         [state]="state"
                         [options]="options"
                         [filterGlobal]="filterGlobal"

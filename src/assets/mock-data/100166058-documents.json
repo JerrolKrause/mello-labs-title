@@ -5,7 +5,7 @@
     "pages": 3,
     "docUrl": "assets/media/Title Report-4.pdf",
     "finalStamp": true,
-    "forReview": true,
+    "forReview": "blue",
     "rightSide": false
   },
   {
@@ -14,7 +14,7 @@
     "pages": 1,
     "docUrl": "assets/media/zip-code-lookup.pdf",
     "finalStamp": false,
-    "forReview": true,
+    "forReview": "",
     "rightSide": true
   },
   {
@@ -23,7 +23,7 @@
     "pages": 3,
     "docUrl": "assets/media/Title Report-9.pdf",
     "finalStamp": true,
-    "forReview": false,
+    "forReview": "",
     "rightSide": false
   },
   {
@@ -32,7 +32,7 @@
     "pages": 2,
     "docUrl": "assets/media/zip-code-lookup.pdf",
     "finalStamp": false,
-    "forReview": true,
+    "forReview": "green",
     "rightSide": false
   },
   {
@@ -41,7 +41,7 @@
     "pages": 8,
     "docUrl": "assets/media/Title Report-9.pdf",
     "finalStamp": true,
-    "forReview": true,
+    "forReview": "purple",
     "rightSide": true
   },
   {
@@ -50,7 +50,7 @@
     "pages": 5,
     "docUrl": "assets/media/Title Report-4.pdf",
     "finalStamp": true,
-    "forReview": false,
+    "forReview": "",
     "rightSide": false
   },
   {
@@ -59,7 +59,7 @@
     "pages": 13,
     "docUrl": "assets/media/zip-code-lookup.pdf",
     "finalStamp": false,
-    "forReview": true,
+    "forReview": "orange",
     "rightSide": true
   },
   {
@@ -68,7 +68,7 @@
     "pages": 2,
     "docUrl": "assets/media/Title Report-9.pdf",
     "finalStamp": false,
-    "forReview": false,
+    "forReview": "orange",
     "rightSide": false
   }
 ]

@@ -11,6 +11,7 @@ export class UIStoreService {
   public tabViewer$ = this.store.select(store => store.ui.tabViewer);
   public docGuid$ = this.store.select(store => store.ui.document);
   public tabForm$ = this.store.select(store => store.ui.tabForm);
+  public tabDashboard$ = this.store.select(store => store.ui.tabDashboard);
 
   public loanHasUpdate$ = this.store.select(store => store.ui.loanHasUpdate);
   public formBorrower$ = this.store.select(store => store.ui.forms.borrower);
@@ -23,6 +24,8 @@ export class UIStoreService {
     if (window.localStorage.getItem('ui')) {
       this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
     }
+
+    // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
   }
 
   /**
@@ -30,7 +33,7 @@ export class UIStoreService {
    * @param tabType
    * @param tabNum
    */
-  public tabChange(tabType: 'viewer' | 'form', tabNum:number) {
+  public tabChange(tabType: 'dashboard' | 'viewer' | 'form', tabNum:number) {
     this.store.dispatch({ type: UIStoreActions.TAB_CHANGE, payload: { tabType: tabType, tabNum: tabNum} });
   }
 

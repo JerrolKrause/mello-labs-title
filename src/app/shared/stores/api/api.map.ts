@@ -28,9 +28,9 @@ export const ApiMap: IStore.ApiMapping = {
       let dict = {};
       usersNew = users.map((user, i) => {
         let userNew = { ...user };
-        userNew.unverified = _.random(60);
-        userNew.complete = userNew.unverified;
-        userNew.exception = _.random(10) > 7 ? true : false;
+        //userNew.unverified = _.random(60);
+        //userNew.complete = userNew.unverified;
+        //userNew.exception = _.random(10) > 7 ? true : false;
         //userNew.forReview = _.shuffle(forReview)[0];
         //userNew.lockedBy = _.random(10) > 7 ? _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0] : null;
         //userNew.state = _.shuffle(states)[0];
@@ -52,7 +52,8 @@ export const ApiMap: IStore.ApiMapping = {
         dict[userNew.lnkey] = userNew;
         return userNew;
       });
-      //console.log(JSON.stringify(usersNew));
+      // console.log(usersNew)
+      // console.log(JSON.stringify(usersNew));
 
       return {
         src: usersNew,
@@ -77,9 +78,10 @@ export const ApiMap: IStore.ApiMapping = {
       // Sample dictionary mapping based on id property
       const dict = {};
       users.forEach(user => {
-        user.forReview = _.shuffle(forReview)[0];
+        //user.forReview = _.shuffle(forReview)[0];
         dict[user.docGuid] = user
       });
+      // console.log(JSON.stringify(users));
       return {
         src: users,
         dict: dict

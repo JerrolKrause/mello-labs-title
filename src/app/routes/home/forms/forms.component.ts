@@ -56,7 +56,7 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
           this.ref.detectChanges();
         }
       })
-    )
+    );
 
   }
 

@@ -1,0 +1,64 @@
+[
+  {
+    "prop": "lnkey",
+    "label": "Loan Number",
+    "columnType": "string",
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "name",
+    "label": "Borrower",
+    "columnType": "string",
+    "width": 150,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "loanAmount",
+    "label": "Amount",
+    "columnType": "currency",
+    "width": 90,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "lockedBy",
+    "label": "Locked By",
+    "columnType": "string",
+    "width": 130,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "state",
+    "label": "State",
+    "columnType": "string",
+    "width": 50,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "unverified",
+    "label": "Unverified Data",
+    "columnType": "string",
+    "width": 90,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
+    "prop": "complete",
+    "label": "Complete",
+    "columnType": "string",
+    "width": 300,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  }
+]

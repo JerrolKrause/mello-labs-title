@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ViewEncapsulation, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { NgbTab, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
 import { Datagrid } from '@mello-labs/datagrid';
@@ -16,10 +17,13 @@ declare var require: any
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  public rows$ = this.api.loans$;
-  public columns: Datagrid.Column[] = require('./columns.users.json');
+  @ViewChild('tab') tab: NgbTabset;
+
+  public rows;
+  public columns: Datagrid.Column[] = require('./columns.loans.json');
+  public columnsExceptions: Datagrid.Column[] = require('./columns.exceptions.json');
   public state: Datagrid.State = { "filters": [], "sorts": [{ dir: "asc", prop: "complete" }], "groups": [] };//{ dir: "asc", prop: "certification" }
   // Inputs
   public options: Datagrid.Options = {
@@ -34,19 +38,39 @@ export class HomeComponent implements OnInit, OnDestroy {
     props: ['lnkey', 'name']
   };
 
+  /** Set initial visible tab from UI store */
+  public tabStart: string;
+
   /** Hold subs for unsub */
   private subs: Subscription[] = [];
 
   constructor(
     private api: ApiService,
     public ui: UIStoreService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ref: ChangeDetectorRef
   ) {
   }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.api.loans.get().subscribe();
-    this.rows$.subscribe(rows => console.log(rows));
+    this.subs.push(
+      this.api.loans$.subscribe(rows => {
+        this.rows = rows;
+        this.ref.detectChanges();
+      }),
+      // On initial load, set the default open tab
+      this.ui.tabDashboard$.subscribe(tabNum => this.tabStart = 'tab-' + tabNum),
+    );
+  }
+
+  ngAfterViewInit() {
+    this.subs.push(
+      // On tab change, update UI store
+      this.tab.tabChange.subscribe(tabNum => {
+        this.ui.tabChange('dashboard', Number(tabNum.nextId.split('-')[1]));
+      })
+    );
   }
 
   /**

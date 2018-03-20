@@ -28,9 +28,7 @@
 
         </td>
         <td class="text-center">
-          <i class="fa fa-check-square" aria-hidden="true" *ngIf="doc.forReview"></i>
-          <i class="fa fa-square" aria-hidden="true" *ngIf="!doc.forReview"></i>
-
+            <i class="fa fa-square for-review {{doc.forReview}}" aria-hidden="true" title="For Review"></i>
         </td>
         <td class="text-center">
           <input class="form-control mt-1" type="checkbox" [checked]="doc.finalStamp" />
