@@ -17,7 +17,11 @@
               <em>02/24/2018</em> |
               <i class="fa fa-arrow-right" title="Side" *ngIf="compData.docs?.dict[compData.docGuid]?.rightSide"></i>
               <i class="fa fa-arrow-left" title="Side" *ngIf="!compData.docs?.dict[compData.docGuid]?.rightSide"></i> |
-              <i class="fa fa-square for-review blue" aria-hidden="true" title="For Review"></i> |
+
+              <ng-container *ngIf="compData.docs?.dict[compData.docGuid]?.forReview">
+                <i class="fa fa-square for-review {{compData.docs?.dict[compData.docGuid]?.forReview}}" aria-hidden="true" title="For Review"></i> |
+              </ng-container>
+
               <i class="fa fa-check-square green" title="Final Stamp" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
               <i class="fa fa-square" title="Final Stamp" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
 

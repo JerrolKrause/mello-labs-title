@@ -71,6 +71,7 @@ import { LoanInfoComponent } from './routes/home/forms/loan-info/loan-info.compo
 import { LoanComponent } from './routes/loan/loan.component';
 import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
 import { EmpowerNotesComponent } from './components/modals/empower-notes/empower-notes.component';
+import { EmpowerNoteAddComponent } from './components/modals/empower-note-add/empower-note-add.component';
 import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
 import { ExceptionComponent } from './components/modals/exception/exception.component';
 
@@ -133,6 +134,8 @@ export const APP_PROVIDERS = [
 
     EmpowerNotesComponent,
 
+    EmpowerNoteAddComponent,
+
     FormRowComponent,
 
     ExceptionComponent,
@@ -164,7 +167,7 @@ export const APP_PROVIDERS = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent, ExceptionComponent
+    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent, ExceptionComponent, EmpowerNoteAddComponent
   ]
 })
 export class AppModule { }

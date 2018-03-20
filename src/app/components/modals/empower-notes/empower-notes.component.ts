@@ -40,7 +40,7 @@ export class EmpowerNotesComponent implements OnInit {
 
   public filterGlobal: Datagrid.FilterGlobal = {
     term: null,
-    props: ['description']
+    props: ['subject','description']
   };
 
   constructor(

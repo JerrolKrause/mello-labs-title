@@ -23,7 +23,7 @@ export const ApiMap: IStore.ApiMapping = {
       let namesFirst = users.map(user => user.name.split(' ')[0]);
       let namesLast = users.map(user => _.last(user.name.split(' ')));
       let states = ['AZ','CA','CO','IL','MI','NY','TX','HI','OR','WA'];
-
+      
       let usersNew = [...users, ...users, ...users];
       let dict = {};
       usersNew = users.map((user, i) => {
@@ -31,6 +31,7 @@ export const ApiMap: IStore.ApiMapping = {
         userNew.unverified = _.random(60);
         userNew.complete = userNew.unverified;
         userNew.exception = _.random(10) > 7 ? true : false;
+        //userNew.forReview = _.shuffle(forReview)[0];
         //userNew.lockedBy = _.random(10) > 7 ? _.shuffle(namesFirst)[0] + ' ' + _.shuffle(namesLast)[0] : null;
         //userNew.state = _.shuffle(states)[0];
         //userNew.id = i;
@@ -71,9 +72,14 @@ export const ApiMap: IStore.ApiMapping = {
     uniqueId: 'docGuid',
     mapSrc: 'src',
     map: (users: any[]) => {
+
+      let forReview = ['orange', 'blue', 'green', 'purple', 'red', '', ''];
       // Sample dictionary mapping based on id property
       const dict = {};
-      users.forEach(user => dict[user.docGuid] = user);
+      users.forEach(user => {
+        user.forReview = _.shuffle(forReview)[0];
+        dict[user.docGuid] = user
+      });
       return {
         src: users,
         dict: dict

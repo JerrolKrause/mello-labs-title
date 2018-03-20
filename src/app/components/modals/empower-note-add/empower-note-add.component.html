@@ -1,0 +1,55 @@
+<form name="formModal" #formModal="ngForm">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Notes - {{data}}</h3>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body" id="modal-body">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <field-component [frmGroup]="formMain" frmControl="subject" label="Subject" [inline]="true" placeholder="Type subject here..."></field-component>
+                <field-component [frmGroup]="formMain" frmControl="description" label="Note" [inline]="true" placeholder="Type note here..." type="textarea"></field-component>
+                <field-component [frmGroup]="formMain" class="positionArrow" *ngIf="noteTypes$ | async as noteTypes"
+                frmControl="category" label="Note Type" type="select" [model]="noteTypes" modelLabel="category" modelValue="category"></field-component>
+            </div>
+        </div>
+
+        <ngb-accordion #acc="ngbAccordion" class="accordion-sm">
+            <ngb-panel>
+                <ng-template ngbPanelTitle>
+                    <span>Click here to update Empower dashboard dates when this note is saved...</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row notes">
+                        <div class="col-sm-12">
+                            <p class="pt-2 pl-2"><small><em>Please select which dates you wish to be updated</em></small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <field-component [frmGroup]="formMain2" frmControl="lastContacted" [labelColumns]="4" label="Last Contacted Date" type="boolean"></field-component>
+                            <field-component [frmGroup]="formMain2" frmControl="introCall" [labelColumns]="4" label="Intro Call" type="boolean"></field-component>
+                            <field-component [frmGroup]="formMain2" frmControl="loanReview" [labelColumns]="4" label="Loan Review" type="boolean"></field-component>                            
+                        </div>
+                        <div class="col-md-6">
+                            <field-component [frmGroup]="formMain2" frmControl="loanFunded" [labelColumns]="4" label="Loan Funded Call" type="boolean"></field-component>
+                            <field-component [frmGroup]="formMain2" frmControl="appraisalReview" [labelColumns]="4" label="Appraisal Review Call" type="boolean"></field-component>
+                            <field-component [frmGroup]="formMain2" frmControl="hud1" [labelColumns]="4" label="CD Review Call" type="boolean"></field-component>                            
+                        </div>
+                        <div class="saveSettings col-12 col-md-12">
+                            <field-component [frmGroup]="formMain2" frmControl="saveSettings" [labelColumns]="4" label="Save these settings for all notes I added" type="boolean"></field-component>
+                        </div>
+                        
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
+
+    <div class="modal-footer" style="justify-content: space-between;">
+        <button type="button" class="btn btn-interact-outline float-left pull-left" (click)="activeModal.dismiss('Close click')">Cancel</button>
+        <button type="button" class="btn btn-interact" aria-label="Close" (click)="submit()" [disabled]="formMain.invalid || waiting" [ngClass]="{'btn-waiting':waiting}">
+            <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Add Note
+        </button>
+    </div>
+</form>

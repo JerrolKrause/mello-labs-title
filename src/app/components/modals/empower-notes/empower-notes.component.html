@@ -15,7 +15,7 @@
       <div class="form-inline d-inline-block float-right">
         <!-- Filter datatable -->
         <label class="icon filter" style="position:relative;">
-          <input class="form-control form-control-sm filterSearch" type="text" name="filterGlobal" placeholder="Filter borrowers/loan nums" [ngModel]="filterGlobal.term" (ngModelChange)="onfilterGlobal($event)" data-qa="hp-filter-global" />
+          <input class="form-control form-control-sm filterSearch" type="text" name="filterGlobal" placeholder="Filter subject/description" [ngModel]="filterGlobal.term" (ngModelChange)="onfilterGlobal($event)" data-qa="hp-filter-global" />
           <a (click)="filterGlobal.term = null; onfilterGlobal()" *ngIf="filterGlobal.term" style="position:absolute;right: 10px;"><i class="fa fa-remove"></i></a>
         </label>
       </div>
@@ -33,9 +33,7 @@
 
   <div class="modal-footer" style="justify-content: space-between;">
     <button type="button" class="btn btn-interact-outline float-left pull-left dismiss" (click)="activeModal.dismiss('Close click')">Cancel</button>
-    <button type="button" class="btn btn-interact submit" (click)="submit()" aria-label="Close" [disabled]="waiting" [ngClass]="{'btn-waiting':waiting}">
-      <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
-    </button>
+   
   </div>
 
 </form>
