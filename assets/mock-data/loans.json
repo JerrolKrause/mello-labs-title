@@ -32,7 +32,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "WA"
+    "state": "WA",
+    "unverified": 20,
+    "complete": 20,
+    "exception": false
   },
   {
     "id": 1,
@@ -67,7 +70,11 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "HI"
+    "state": "HI",
+    "unverified": 3,
+    "complete": 3,
+    "exception": true,
+    "exceptionReason": "I was feeling lazy"
   },
   {
     "id": 2,
@@ -102,7 +109,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "TX"
+    "state": "TX",
+    "unverified": 11,
+    "complete": 11,
+    "exception": false
   },
   {
     "id": 3,
@@ -137,7 +147,11 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "IL"
+    "state": "IL",
+    "unverified": 45,
+    "complete": 45,
+    "exception": true,
+    "exceptionReason": "Title report has wrong info"
   },
   {
     "id": 4,
@@ -172,7 +186,11 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "AZ"
+    "state": "AZ",
+    "unverified": 30,
+    "complete": 30,
+    "exception": false,
+    "exceptionReason": "I was feeling lazy"
   },
   {
     "id": 5,
@@ -207,7 +225,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Patricia Schulist",
-    "state": "TX"
+    "state": "TX",
+    "unverified": 23,
+    "complete": 23,
+    "exception": false
   },
   {
     "id": 6,
@@ -242,7 +263,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "HI"
+    "state": "HI",
+    "unverified": 25,
+    "complete": 25,
+    "exception": true
   },
   {
     "id": 7,
@@ -277,7 +301,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "WA"
+    "state": "WA",
+    "unverified": 53,
+    "complete": 53,
+    "exception": true
   },
   {
     "id": 8,
@@ -312,7 +339,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "AZ"
+    "state": "AZ",
+    "unverified": 16,
+    "complete": 16,
+    "exception": false
   },
   {
     "id": 9,
@@ -347,7 +377,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "OR"
+    "state": "OR",
+    "unverified": 32,
+    "complete": 32,
+    "exception": false
   },
   {
     "id": 10,
@@ -382,7 +415,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "WA"
+    "state": "WA",
+    "unverified": 25,
+    "complete": 25,
+    "exception": false
   },
   {
     "id": 11,
@@ -417,7 +453,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Mrs. Weissnat",
-    "state": "IL"
+    "state": "IL",
+    "unverified": 38,
+    "complete": 38,
+    "exception": true
   },
   {
     "id": 12,
@@ -452,7 +491,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Nicholas Reichert",
-    "state": "OR"
+    "state": "OR",
+    "unverified": 19,
+    "complete": 19,
+    "exception": false
   },
   {
     "id": 13,
@@ -487,7 +529,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "HI"
+    "state": "HI",
+    "unverified": 41,
+    "complete": 41,
+    "exception": false
   },
   {
     "id": 14,
@@ -522,7 +567,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Glenna Dietrich",
-    "state": "MI"
+    "state": "MI",
+    "unverified": 17,
+    "complete": 17,
+    "exception": false
   },
   {
     "id": 15,
@@ -557,7 +605,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Kurtis Schulist",
-    "state": "AZ"
+    "state": "AZ",
+    "unverified": 23,
+    "complete": 23,
+    "exception": false
   },
   {
     "id": 16,
@@ -592,7 +643,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "AZ"
+    "state": "AZ",
+    "unverified": 24,
+    "complete": 24,
+    "exception": false
   },
   {
     "id": 17,
@@ -627,7 +681,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "MI"
+    "state": "MI",
+    "unverified": 52,
+    "complete": 52,
+    "exception": false
   },
   {
     "id": 18,
@@ -662,7 +719,11 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "NY"
+    "state": "NY",
+    "unverified": 25,
+    "complete": 25,
+    "exception": false,
+    "exceptionReason": "Title docs were for a different loan"
   },
   {
     "id": 19,
@@ -697,7 +758,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "TX"
+    "state": "TX",
+    "unverified": 45,
+    "complete": 45,
+    "exception": false
   },
   {
     "id": 20,
@@ -732,7 +796,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Leanne Weissnat",
-    "state": "IL"
+    "state": "IL",
+    "unverified": 31,
+    "complete": 31,
+    "exception": false
   },
   {
     "id": 21,
@@ -767,7 +834,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "MI"
+    "state": "MI",
+    "unverified": 56,
+    "complete": 56,
+    "exception": false
   },
   {
     "id": 22,
@@ -802,7 +872,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "CA"
+    "state": "CA",
+    "unverified": 6,
+    "complete": 6,
+    "exception": false
   },
   {
     "id": 23,
@@ -837,7 +910,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "WA"
+    "state": "WA",
+    "unverified": 5,
+    "complete": 5,
+    "exception": false
   },
   {
     "id": 24,
@@ -872,7 +948,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "WA"
+    "state": "WA",
+    "unverified": 26,
+    "complete": 26,
+    "exception": false
   },
   {
     "id": 25,
@@ -907,7 +986,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "TX"
+    "state": "TX",
+    "unverified": 49,
+    "complete": 49,
+    "exception": false
   },
   {
     "id": 26,
@@ -942,7 +1024,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "AZ"
+    "state": "AZ",
+    "unverified": 4,
+    "complete": 4,
+    "exception": false
   },
   {
     "id": 27,
@@ -977,7 +1062,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "OR"
+    "state": "OR",
+    "unverified": 13,
+    "complete": 13,
+    "exception": false
   },
   {
     "id": 28,
@@ -1012,7 +1100,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": "Leanne DuBuque",
-    "state": "IL"
+    "state": "IL",
+    "unverified": 40,
+    "complete": 40,
+    "exception": false
   },
   {
     "id": 29,
@@ -1047,6 +1138,10 @@
     "dateEffective": "2/8/2018",
     "dateExpiration": "4/21/2018",
     "lockedBy": null,
-    "state": "CO"
+    "state": "CO",
+    "unverified": 43,
+    "complete": 43,
+    "exception": true,
+    "exceptionReason": "Wrong title docs"
   }
 ]
