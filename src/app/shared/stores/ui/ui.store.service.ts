@@ -17,6 +17,9 @@ export class UIStoreService {
   public formBorrower$ = this.store.select(store => store.ui.forms.borrower);
   public formVesting$ = this.store.select(store => store.ui.forms.vesting);
   public formLoan$ = this.store.select(store => store.ui.forms.loan);
+  public multiScreen$ = this.store.select(store => store.ui.multiscreen);
+
+  public screen;
 
   constructor(
     private store: Store<IStore.root>
@@ -50,6 +53,13 @@ export class UIStoreService {
    */
   public loanSaved() {
     this.store.dispatch({ type: UIStoreActions.LOAN_SAVED, payload: true });
+  }
+
+  /**
+   * Toggle multiscreen view which moves the document viewer into its own window
+   */
+  public multiScreenToggle() {
+    this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: null });
   }
 
   /**

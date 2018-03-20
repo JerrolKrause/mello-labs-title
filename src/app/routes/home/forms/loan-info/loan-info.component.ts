@@ -24,6 +24,8 @@ export class LoanInfoComponent implements OnInit {
   public dateEffective;
   public dateExpiration;
 
+  public loanCurrent$ = this.api.loanCurrent$;
+
   private subs: Subscription[] = [];
 
   constructor(
@@ -35,60 +37,13 @@ export class LoanInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.formInfo = this.fb.group({
-      lnkey: [{value:null, disabled: true}, [Validators.required]],
-      name: [null, [Validators.required]],
-      state: [null, [Validators.required]],
-      LastName: [null, [Validators.required]],
-      loanAmount: [null, [Validators.required]],
-      lockedBy: [null, [Validators.required]],
-      dateEffective: [null, [Validators.required]],
-      dateExpiration: [null, [Validators.required]]
-    });
-    
-    // Load the value currently in the store and then unsub
-    // Initial load data is being added to store from route component
-    this.ui.formLoan$.subscribe(form => {
-      if (form){
-        this.formInfo.reset();
-        this.formInfo.patchValue({ ...form, loanAmount: this.cp.transform(form.loanAmount) });
-        this.lnkey = form.lnkey;
-      }
-    }).unsubscribe();
-
-    this.subs.push(
-      // Watch form changes, update value in UI store
-      this.formInfo.valueChanges.subscribe(formNew => {
-        this.ui.formChange(FormTypes.info, { ...formNew }, true);
-      })
-    );
-
-    // Pass reference to parent
-    this.formRef.emit(this.formInfo);
+    this.api.loanCurrent.get().subscribe();
   }
 
   /**
-   * Change a value in the form
-   * @param field
-   * @param propNew
+   * When an exception is added
+   * @param $event
    */
-  public updateForm(field: string, propNew: string) {
-    let valNew = {};
-    valNew[field] = propNew;
-    this.formInfo.patchValue(valNew);
-  }
-
-  /**
-   * Transform date supplied by datepicker to reactive form model
-   * @param field
-   * @param date
-   */
-  public dateChanged(field: 'dateEffective' | 'dateExpiration', date) {
-    let dateNew = date.month + '/' + date.day + '/' + date.year;
-    this.updateForm(field,dateNew);
-  }
-
-
   public exceptionAdded($event) {
     this.router.navigate(['/']);
   }

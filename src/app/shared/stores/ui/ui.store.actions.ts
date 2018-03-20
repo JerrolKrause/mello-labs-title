@@ -8,6 +8,7 @@ export enum UIStoreActions {
   DOC_CHANGE = 'DOC_CHANGE',
   FORM_CHANGE = 'FORM_CHANGE',
   LOAN_SAVED = 'LOAN_SAVED',
+  MULTISCREEN_TOGGLE = 'MULTISCREEN_TOGGLE',
 }
 
 export enum FormTypes {

@@ -1,13 +1,5 @@
 <div id="app-forms">
 
-  <div class="mb-3">
-    <div class="card">
-      <div class="card-block" *ngIf="ui.formLoan$ | async as form">
-          <app-loan-info (formRef)="formRef('info',$event)" *ngIf="form"></app-loan-info>
-      </div>
-    </div>
-  </div>
-
   <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
 
     <ngb-tab id="tab-1">

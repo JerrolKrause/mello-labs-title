@@ -40,6 +40,7 @@ export declare namespace IStore {
       data: any;
     };
     document?: any;
+    multiscreen?: boolean;
     loanHasUpdate: boolean;
     tabViewer?: number;
     tabDashboard?: number;

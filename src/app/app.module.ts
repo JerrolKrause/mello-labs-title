@@ -35,7 +35,7 @@ import {
 import {
   FooterComponent, HeaderComponent, LayoutMainComponent, LayoutSingleComponent, NavComponent, NavSearchComponent,
   ConfirmationModalComponent, LogoutModalComponent,
-  LaunchModalComponent
+  LaunchModalComponent, DocumentViewerComponent
 } from '@components';
 
 // Shared
@@ -63,7 +63,6 @@ import {
 
 import { UIModalService, UIStoreService, UIStoreReducer } from '@ui';
 import { ApiService } from '@api';
-import { ViewerComponent } from './routes/home/viewer/viewer.component';
 import { FormsComponent } from './routes/home/forms/forms.component';
 import { ExceptionsComponent } from './routes/home/forms/exceptions/exceptions.component';
 import { VerifiedComponent } from './routes/home/forms/verified/verified.component';
@@ -74,6 +73,7 @@ import { EmpowerNotesComponent } from './components/modals/empower-notes/empower
 import { EmpowerNoteAddComponent } from './components/modals/empower-note-add/empower-note-add.component';
 import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
 import { ExceptionComponent } from './components/modals/exception/exception.component';
+import { ViewerComponent } from './routes/viewer/viewer.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -118,7 +118,7 @@ export const APP_PROVIDERS = [
     // Directives
     FullScreenDirective,
 
-    ViewerComponent,
+    DocumentViewerComponent,
 
     FormsComponent,
 
@@ -139,6 +139,8 @@ export const APP_PROVIDERS = [
     FormRowComponent,
 
     ExceptionComponent,
+
+    ViewerComponent,
   ],
   imports: [
     // Angular

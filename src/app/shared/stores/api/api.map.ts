@@ -72,18 +72,19 @@ export const ApiMap: IStore.ApiMapping = {
     storeProperty: ApiProps.loanCurrentDocs,
     uniqueId: 'docGuid',
     mapSrc: 'src',
-    map: (users: any[]) => {
+    map: (docs: any[]) => {
 
       let forReview = ['orange', 'blue', 'green', 'purple', 'red', '', ''];
       // Sample dictionary mapping based on id property
       const dict = {};
-      users.forEach(user => {
+      docs.forEach(doc => {
         //user.forReview = _.shuffle(forReview)[0];
-        dict[user.docGuid] = user
+        dict[doc.docGuid] = doc
       });
+      docs = _.shuffle(docs);
       // console.log(JSON.stringify(users));
       return {
-        src: users,
+        src: docs,
         dict: dict
       };
     }

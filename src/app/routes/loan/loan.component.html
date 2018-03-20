@@ -1,15 +1,62 @@
-<div id="home" class="container-fluid">
+<div id="app-loan" class="container-fluid" *ngIf="{multiScreen : ui.multiScreen$ | async} as compData">
 
-  <div class="row">
+  <div class="row" *ngIf="!compData.multiScreen">
     <div class="col-12 col-md-5 col-lg-6">
-      <app-viewer></app-viewer>
+      <div style="height: calc(100vh - 96px);position:relative;">
+        <app-document-viewer></app-document-viewer>
+      </div>
     </div>
     <div class="col-12 col-md-7 col-lg-6">
+
+      <div class="mb-3">
+        <div class="card">
+          <div class="card-block" *ngIf="ui.formLoan$ | async as form">
+            <app-loan-info></app-loan-info>
+          </div>
+        </div>
+      </div>
+
       <app-forms *ngIf="lnkey"></app-forms>
+
     </div>
   </div>
 
+  <div class="row" *ngIf="compData.multiScreen">
+    <div class="col-12 col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-warning yellow"></i> Needs Verification
+        </div>
+        <div class="card-block">
+          <app-exceptions (formRef)="formRef('borrower',$event)"></app-exceptions>
+        </div>
+      </div>
 
+    </div>
+    <div class="col-12 col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-check green"></i> Verified
+        </div>
+        <div class="card-block">
+          <app-verified (formRef)="formRef('vesting',$event)"></app-verified>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-12 col-md-2">
+      <div class="card">
+        <div class="card-header">
+          <button class="btn btn-sm btn-secondary float-right" (click)="ui.multiScreenToggle()">
+            <i class="fa fa-window-restore" aria-hidden="true"></i>
+          </button>
+          Actions
+        </div>
+        <app-loan-info></app-loan-info>
+      </div>
+
+    </div>
+  </div>
 
 </div>
 

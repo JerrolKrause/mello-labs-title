@@ -6,3 +6,5 @@ export * from './modals';
 
 // Components
 export * from './launch-modal/launch-modal.component';
+
+export * from './document-viewer/document-viewer.component';

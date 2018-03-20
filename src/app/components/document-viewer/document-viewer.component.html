@@ -5,10 +5,10 @@
       status : loanCurrentDocsStatus$ | async } as compData">
 
   <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
-
+    
     <ng-container *ngIf="compData.docs && compData.docGuid">
-
-      <div class="card" id="app-viewer">
+      
+      <div class="card pdf" id="app-viewer">
 
         <div class="card-header">
           <div class="float-right">
@@ -28,8 +28,8 @@
             </small>
 
             <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown"
-              (mouseenter)="$event.stopPropagation(); myDrop.open();"
-              (mouseleave)="$event.stopPropagation(); myDrop.close();">
+                 (mouseenter)="$event.stopPropagation(); myDrop.open();"
+                 (mouseleave)="$event.stopPropagation(); myDrop.close();">
               <button class="btn btn-secondary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
                 <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Documents ({{compData.docs.src.length}})
               </button>
@@ -41,14 +41,20 @@
                 </button>
               </div>
             </div>
+
+            |
+
+            <button class="btn btn-sm btn-secondary" (click)="ui.multiScreenToggle()">
+              <i class="fa fa-window-restore" aria-hidden="true"></i>
+            </button>
+
           </div>
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{compData.docs?.dict[compData.docGuid]?.docName}}
         </div>
-        
+
         <object [data]="compData.docs?.dict[compData.docGuid]?.docUrl | safe: 'resourceUrl'"
                 type="application/pdf"
-                class="w-100"
-                style="border:0;height: calc(100vh - 154px);">
+                class="w-100 pdf" style="top: 52px;">
           <embed [src]="compData.docs?.dict[compData.docGuid]?.docUrl | safe: 'resourceUrl'" type="application/pdf" />
         </object>
 

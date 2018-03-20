@@ -1,23 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 
 import { ApiService, ApiProps } from '@api'
 import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
-  selector: 'app-loan',
-  templateUrl: './loan.component.html',
-  styleUrls: ['./loan.component.scss'],
+  selector: 'app-viewer',
+  templateUrl: './viewer.component.html',
+  styleUrls: ['./viewer.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoanComponent implements OnInit {
+export class ViewerComponent implements OnInit {
 
   public lnkey: string;
   private subs: Subscription[] = [];
-  private screen;
 
   constructor(
     public ui: UIStoreService,
@@ -34,16 +32,8 @@ export class LoanComponent implements OnInit {
     this.api.loanCurrentDocs.get().subscribe();
 
     this.subs.push(
-      
       // Get LNkey from route params
       this.route.params.subscribe(params => this.lnkey = params.lnkey),
-      this.ui.multiScreen$.subscribe(multiScreen => {
-        if (multiScreen) {
-          this.ui.screen = window.open(window.location.origin + '/#/viewer/' + this.lnkey, 'Document Viewer')
-        } else if (this.ui.screen && multiScreen === false) {
-          this.ui.screen.close();
-        }
-      }),
       // Load active loan form into store
       this.api.loans$.subscribe(loans => {
         if (loans && loans.dict) {
@@ -55,17 +45,6 @@ export class LoanComponent implements OnInit {
         this.ui.formChange(FormTypes.vesting, form);
       })
     );
-  }
-
-  /**
-   * When a reactive form reference is emitted up from a child component, attach to a property here
-   * @param formType
-   * @param form
-   */
-  public formRef(formType: FormTypes, form: FormBuilder) {
-    // console.log('formRef', formType, form);
-
-    this.ref.detectChanges();
   }
 
   ngOnDestroy() {

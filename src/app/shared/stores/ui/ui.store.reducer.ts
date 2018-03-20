@@ -11,6 +11,7 @@ const initialState: IStore.ui = {
   tabForm: 1,
   tabDashboard: 1,
   loanHasUpdate: false,
+  multiscreen: false,
   document:null,
   forms: {
     loan: null,
@@ -53,18 +54,26 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
     case UIStoreActions.MODAL_UNLOAD:
       state.modal = null;
       saveState();
+      break;
     case UIStoreActions.LOAN_SAVED:
       state.loanHasUpdate = false;
       saveState();
+      break;
+    case UIStoreActions.MULTISCREEN_TOGGLE:
+      state.multiscreen = !state.multiscreen;
+      saveState();
+      break;
     case UIStoreActions.DOC_CHANGE:
       state.document = payload;
       saveState();
+      break;
     case UIStoreActions.FORM_CHANGE:
       if (payload.loanHasUpdate){
         state.loanHasUpdate = true;
       }
       state.forms[payload.formType] = { ...payload.value };
       saveState();
+      break;
     case UIStoreActions.TAB_CHANGE:
       let tabType: 'viewer' | 'form' | 'dashboard' = payload.tabType;
       let tabNum: number = payload.tabNum;
