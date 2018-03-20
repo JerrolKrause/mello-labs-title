@@ -11,6 +11,8 @@ import { UIStoreService } from '@ui';
 })
 export class ExceptionComponent implements OnInit {
 
+  public waiting;
+
   constructor(
     public activeModal: NgbActiveModal,
     public ui: UIStoreService,

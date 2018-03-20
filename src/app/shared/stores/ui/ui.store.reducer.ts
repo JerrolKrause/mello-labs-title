@@ -80,6 +80,6 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
 
   }
 
-   console.log('UI STATE: ', state);
+  // console.log('UI STATE: ', state);
   return state;
 }
