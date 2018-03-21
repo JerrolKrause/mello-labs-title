@@ -40,7 +40,9 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
   ) { }
 
   ngOnInit() {
-  
+
+    this.api.vesting.get().subscribe();
+
     this.subs.push(
       // On initial load, set the default open tab
       this.ui.tabForm$.subscribe(tabNum => this.tabStart = 'tab-' + tabNum),

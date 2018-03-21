@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,6 +12,7 @@ import { ApiService } from '@api'
   selector: 'app-exceptions',
   templateUrl: './exceptions.component.html',
   styleUrls: ['./exceptions.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExceptionsComponent implements OnInit {

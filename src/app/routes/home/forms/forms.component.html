@@ -17,7 +17,7 @@
       </ng-template>
       <ng-template ngbTabContent>
         <api-state [state]="status" [toaster]="true" [showSuccess]="false" *ngIf="formVestingStatus$ | async as status">
-          <app-verified (formRef)="formRef('vesting',$event)" *ngIf="status.loaded"></app-verified>
+          <app-verified (formRef)="formRef('vesting',$event)" *ngIf="status?.loaded"></app-verified>
         </api-state>
       </ng-template>
     </ngb-tab>

@@ -40,10 +40,7 @@ export class ViewerComponent implements OnInit {
           this.ui.formChange(FormTypes.loan, loans.dict[this.lnkey]);
         }
       }),
-      // Load vesting form info into store
-      this.api.vesting.get(true).subscribe(form => {
-        this.ui.formChange(FormTypes.vesting, form);
-      })
+     
     );
   }
 

@@ -13,22 +13,22 @@
           <tbody>
             <tr>
               <td style="width:20px;" class="text-center"><i class="fa fa-home" aria-hidden="true"></i></td>
-              <td style="width: 88px;"><strong> Loan #</strong></td>
+              <td style="width: 88px;" *ngIf="!compData.multiScreen"><strong> Loan #</strong></td>
               <td>{{compData.loan.LoanNumber}}</td>
             </tr>
             <tr>
               <td class="text-center"><i class="fa fa-file-text" aria-hidden="true"></i></td>
-              <td><strong>Order #</strong></td>
+              <td *ngIf="!compData.multiScreen"><strong>Order #</strong></td>
               <td>53366433455</td>
             </tr>
             <tr>
               <td class="text-center"><i class="fa fa-university" aria-hidden="true"></i></td>
-              <td><strong>State</strong></td>
+              <td *ngIf="!compData.multiScreen"><strong>State</strong></td>
               <td>{{compData.loan?.PropertyAddress?.State}}</td>
             </tr>
             <tr *ngIf="compData.loan?.lockedBy">
               <td class="text-center"><i class="fa fa-lock"></i></td>
-              <td>
+              <td *ngIf="!compData.multiScreen">
                 <strong>Locked By:</strong>
               </td>
               <td>
@@ -52,7 +52,7 @@
             </tr>
             <tr>
               <td class="text-center"><i class="fa fa-users"></i></td>
-              <td>
+              <td *ngIf="!compData.multiScreen">
                 <strong>Borrower/s:</strong>
               </td>
               <td>
