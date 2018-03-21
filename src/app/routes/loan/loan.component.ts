@@ -46,9 +46,11 @@ export class LoanComponent implements OnInit {
         let docGuid: string = res[1];
         // If a doc guid is present, add that to the route parameters
         let docGuidString = docGuid ? '/' + docGuid : '';
+        let slug = window.location.origin + window.location.pathname;
+
         // If multiscreen is present and a window is not yet open and has not been closed
         if (multiScreen && !this.ui.screen) {
-          this.ui.screen = window.open(window.location.origin + '/#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
+          this.ui.screen = window.open(slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
         }
         // If window has been closed
         else if (this.ui.screen && this.ui.screen.closed) {
@@ -56,12 +58,12 @@ export class LoanComponent implements OnInit {
         }
         // If multi screen has been set and a window is already opened, update url in current window
         else if (multiScreen && this.ui.screen) {
-          this.ui.screen.location.href = window.location.origin + '/#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
+          this.ui.screen.location.href = slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
         }
         // If screen is open and multiscreen is false, close window
         else if (this.ui.screen && multiScreen === false) {
           this.ui.screen.close();
-        } 
+        }
       }),
       // Load active loan form into store
       this.api.loans$.subscribe(loans => {
