@@ -1,5 +1,7 @@
 <div id="app-loan" class="container-fluid" *ngIf="{multiScreen : ui.multiScreen$ | async} as compData">
 
+
+  <!-- Non-multiscreen -->
   <div class="row" *ngIf="!compData.multiScreen">
     <div class="col-12 col-md-5 col-lg-6">
       <div style="height: calc(100vh - 96px);position:relative;">
@@ -10,7 +12,13 @@
 
       <div class="mb-3">
         <div class="card">
-          <div class="card-block" *ngIf="ui.formLoan$ | async as form">
+          <div class="card-block">
+
+            <div class="alert alert-danger icon" *ngIf="loan?.exceptionReason && !exceptionCleared">
+              <button class="btn btn-primary btn-sm float-right ml-3" (click)="exceptionCleared = true"><i class="fa fa-remove"></i> Clear Exception</button>
+              {{loan?.exceptionReason}}
+            </div>
+
             <app-loan-info></app-loan-info>
           </div>
         </div>
@@ -21,7 +29,10 @@
     </div>
   </div>
 
+
+  <!-- Multiscreen -->
   <div class="row" *ngIf="compData.multiScreen">
+
     <div class="col-12 col-md-5">
       <div class="card">
         <div class="card-header">
@@ -31,8 +42,8 @@
           <app-exceptions (formRef)="formRef('borrower',$event)"></app-exceptions>
         </div>
       </div>
-
     </div>
+
     <div class="col-12 col-md-5">
       <div class="card">
         <div class="card-header">
@@ -49,14 +60,19 @@
         <div class="card-header">
           <div class="btn-group float-right">
             <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Close multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
-              <i class="fa fa-window-restore" aria-hidden="true"></i>
-            </button>
-            <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Close multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
               <i class="fa fa-external-link-square" aria-hidden="true"></i>
             </button>
           </div>
           Actions
         </div>
+
+        <div class="card-block p-2" *ngIf="loan?.exceptionReason && !exceptionCleared">
+          <div class="alert alert-danger icon mb-0">
+            {{loan?.exceptionReason}}
+            <button class="btn btn-primary btn-sm mt-3" (click)="exceptionCleared = true"><i class="fa fa-remove"></i> Clear Exception</button>
+          </div>
+        </div>
+
         <app-loan-info></app-loan-info>
       </div>
 

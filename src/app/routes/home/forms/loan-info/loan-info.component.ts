@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { UIStoreService, FormTypes } from '@ui';
 import { ApiService } from '@api'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-loan-info',
@@ -18,13 +18,13 @@ import { Router } from '@angular/router';
 })
 export class LoanInfoComponent implements OnInit {
 
-  public formInfo: FormGroup;
-  @Output() formRef: EventEmitter<FormGroup> = new EventEmitter();
   public lnkey: string;
   public dateEffective;
   public dateExpiration;
 
   public loanCurrent$ = this.api.loanCurrent$;
+
+  public loan;
 
   private subs: Subscription[] = [];
 
@@ -33,7 +33,8 @@ export class LoanInfoComponent implements OnInit {
     public ui: UIStoreService,
     private api: ApiService,
     private cp: CurrencyPipe,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {

@@ -19,6 +19,8 @@ export class DocumentViewerComponent implements OnInit, OnChanges {
   @Input() docs: any;
   @Input() instance: number;
 
+  public lnkey: string;
+
   constructor(
     public ui: UIStoreService,
     private api: ApiService,
@@ -26,6 +28,13 @@ export class DocumentViewerComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      if (params){
+        this.lnkey = params.lnkey;
+      }
+    });
+
   /*
     // Fake document changing on route change
     this.route.params.subscribe(params => {

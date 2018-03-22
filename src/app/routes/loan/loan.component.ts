@@ -17,6 +17,10 @@ import { Observable } from 'rxjs/Observable';
 export class LoanComponent implements OnInit {
 
   public lnkey: string;
+  public loan;
+
+  public exceptionCleared = false;
+  private slug = window.location.origin + window.location.pathname;
   private subs: Subscription[] = [];
 
   constructor(
@@ -37,21 +41,30 @@ export class LoanComponent implements OnInit {
     this.ui.docViewerChange(0, null);
     this.ui.docViewerChange(1, null);
 
+
+
+
     this.subs.push(
 
       // Get LNkey from route params
       this.route.params.subscribe(params => this.lnkey = params.lnkey),
+
+      this.api.loans$.subscribe(loans => {
+        if (loans) {
+          this.loan = loans.dict[this.lnkey];
+          console.log(this.loan)
+        }
+      }),
       // Manage multiscreen functionality
       Observable.combineLatest(this.ui.multiScreen$, this.ui.docViewerGuids$).subscribe(res => {
         let multiScreen: boolean = res[0];
         let docGuid: string = res[1][0];
         // If a doc guid is present, add that to the route parameters
         let docGuidString = docGuid ? '/' + docGuid : '';
-        let slug = window.location.origin + window.location.pathname;
-
+        
         // If multiscreen is present and a window is not yet open and has not been closed
         if (multiScreen && !this.ui.screen) {
-          this.ui.screen = window.open(slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
+          this.ui.screen = window.open(this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
         }
         // If window has been closed
         else if (this.ui.screen && this.ui.screen.closed) {
@@ -59,7 +72,7 @@ export class LoanComponent implements OnInit {
         }
         // If multi screen has been set and a window is already opened, update url in current window
         else if (multiScreen && this.ui.screen) {
-          this.ui.screen.location.href = slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
+          this.ui.screen.location.href = this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
         }
         // If screen is open and multiscreen is false, close window
         else if (this.ui.screen && multiScreen === false) {
@@ -88,6 +101,11 @@ export class LoanComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    if (this.ui.screen && !this.ui.screen.closed){
+      this.ui.screen.location.href = this.slug + '#/viewer/', 'Document Viewer';
+    }
+
+
     if (this.subs.length) { this.subs.forEach(sub => sub.unsubscribe()) }
   }
 

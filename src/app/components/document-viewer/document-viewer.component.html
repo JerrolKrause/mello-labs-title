@@ -1,4 +1,10 @@
-<ng-container *ngIf="docs && docGuid">
+<ng-container *ngIf="!lnkey">
+  <div class="container-fluid pt-3">
+    <p>Please open a loan in order to view documents.</p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="lnkey && docs && docGuid">
   <div class="card pdf" id="app-viewer">
     <div class="card-header">
       <div class="float-right">
@@ -31,20 +37,25 @@
           </div>
         </div>
 
-        <ng-container *ngIf="!multiScreen">
+        <ng-container>
           |
           <div class="btn-group">
-            <button class="btn btn-sm" (click)="ui.multiDocsToggle()" title="Toggle Document Split Screen View" [ngClass]="multiDocs ? 'btn-primary' : 'btn-secondary'">
+            <button class="btn btn-sm" title="Toggle Document Split Screen View"
+              (click)="ui.multiDocsToggle()"
+              [ngClass]="multiDocs ? 'btn-primary' : 'btn-secondary'">
               <i class="fa fa-window-restore" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Open multi-screen view" [ngClass]="multiScreen ? 'btn-primary' : 'btn-secondary'">
+            <button class="btn btn-sm" title="Open multi-screen view"
+              *ngIf="ui.screen || !multiScreen"
+              (click)="ui.multiScreenToggle()"
+              [ngClass]="multiScreen ? 'btn-primary' : 'btn-secondary'">
               <i class="fa fa-external-link-square" aria-hidden="true"></i>
             </button>
           </div>
         </ng-container>
 
       </div>
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{docs?.dict[docGuid]?.docName}}
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{docs?.dict[docGuid]?.docName}} <em>({{lnkey}})</em>
     </div>
 
     <object [data]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'"

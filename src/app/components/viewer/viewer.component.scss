@@ -1,10 +1,12 @@
 #app-viewer-route{
   font-size: 0.85rem;
-  .viewer{position:absolute;top:0;left:0;bottom:0;right:0;height:100%;
+  .viewer{position:absolute;top:0;left:0;bottom:0;right:0;height:calc(100% - 10px);
     &.half{height:50%;
       &.bottom{top:50%;}
     }
   }
-  .height-full{height:calc(100vh - 1px);position:relative;}
-  .height-half{height:calc(50vh - 1px);position:relative;}
+  .nav-link {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
 }

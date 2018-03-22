@@ -74,6 +74,7 @@ import { EmpowerNoteAddComponent } from './components/modals/empower-note-add/em
 import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
 import { ExceptionComponent } from './components/modals/exception/exception.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
+import { WebToolComponent } from './components/web-tool/web-tool.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -142,6 +143,8 @@ export const APP_PROVIDERS = [
     ViewerComponent,
 
     ViewerRouteComponent,
+
+    WebToolComponent,
   ],
   imports: [
     // Angular

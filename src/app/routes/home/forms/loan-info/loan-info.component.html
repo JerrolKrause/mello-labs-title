@@ -57,15 +57,13 @@
               </td>
               <td>
                 <div class="clearfix" *ngFor="let borrower of compData.loan.Borrowers">
-                  <span class="btn-group float-right" *ngIf="!compData.multiScreen">
-                    <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-                  </span>
+                  <!--
+    <span class="btn-group float-right" *ngIf="!compData.multiScreen">
+      <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
+      <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
+    </span>
+    -->
                   <div>{{borrower.FirstName}} {{borrower.LastName}}</div>
-                  <div class="btn-group w-100" *ngIf="compData.multiScreen">
-                    <a class="btn btn-secondary btn-xs w-50" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-secondary btn-xs w-50" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-                  </div>
                 </div>
               </td>
             </tr>
@@ -92,7 +90,7 @@
           <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100"
                             modal="EmpowerNotesComponent" size="xl" [data]="lnkey"
                             (onSuccess)="loanSave($event)">
-            <i class="fa fa-file-text" aria-hidden="true"></i> <span class="hidden-lg-down">Empower</span> Notes
+            <i class="fa fa-file-text" aria-hidden="true"></i> <span class="hidden-lg-down">View</span> Notes
           </app-launch-modal>
 
           <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100"
@@ -101,10 +99,10 @@
             <i class="fa fa-pencil" aria-hidden="true"></i> <span class="hidden-lg-down">Add</span> Note
           </app-launch-modal>
 
-          <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100 mb-0"
+          <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100 mb-0 exception"
                             modal="ExceptionComponent" size="lg"
                             (onSuccess)="exceptionAdded($event)">
-            <i class="fa fa-warning" aria-hidden="true"></i> Exception
+            <i class="fa fa-warning" aria-hidden="true"></i> Add Exception
           </app-launch-modal>
         </div>
       </div>

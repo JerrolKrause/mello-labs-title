@@ -1,5 +1,8 @@
 #app-loan-info{
   font-size: 0.85rem;
   ngb-datepicker{left:auto!important;right:0!important;}
+  .exception{border-color:red;color:red;
+    .fa{color:red;}
+  }
 
 }
