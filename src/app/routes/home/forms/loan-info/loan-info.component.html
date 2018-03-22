@@ -76,12 +76,17 @@
       <!-- Interaction Window -->
       <div [ngClass]="!compData.multiScreen ? 'col-12 col-md-3 col-xl-4' : 'col-12'">
         <div [ngClass]="compData.multiScreen ? 'p-3' : ''">
-          <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'"
-                            modal="EmpowerSaveComponent" size="lg"
-                            (onSuccess)="loanSave($event)">
+          <button [ngClass]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'" (click)="loanSave()">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
-          </app-launch-modal>
+          </button>
 
+          <!--
+  <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'"
+                    modal="EmpowerSaveComponent" size="lg"
+                    (onSuccess)="loanSave($event)">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
+  </app-launch-modal>
+  -->
           <button class="btn btn-sm btn-secondary mb-1 w-100">
             <i class="fa fa-folder-open" aria-hidden="true"></i>
             Open <span class="hidden-lg-down">in Empower</span>

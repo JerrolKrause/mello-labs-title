@@ -75,6 +75,8 @@ import { FormRowComponent } from './routes/home/forms/form-row/form-row.componen
 import { ExceptionComponent } from './components/modals/exception/exception.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { WebToolComponent } from './components/web-tool/web-tool.component';
+import { DocumentStatusComponent } from './routes/home/forms/document-status/document-status.component';
+import { SortPipe } from './shared/pipes/sort.pipe';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -145,6 +147,10 @@ export const APP_PROVIDERS = [
     ViewerRouteComponent,
 
     WebToolComponent,
+
+    DocumentStatusComponent,
+
+    SortPipe,
   ],
   imports: [
     // Angular

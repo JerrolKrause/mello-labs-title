@@ -82,6 +82,19 @@ export const ApiMap: IStore.ApiMapping = {
         dict[doc.docGuid] = doc
       });
       docs = _.shuffle(docs);
+
+      // Check if a title report is in the array of docs
+      let title = docs.filter(doc => {
+        return doc.docName.toLowerCase().replace(/[^A-Z0-9]/ig, "").indexOf('titlereport') != -1 ? true : false;
+      });
+
+      // If title is present, move to front of array
+      if (title && title[0]){
+        docs = [...title, ...docs.filter(doc => {
+          return doc.docName.toLowerCase().replace(/[^A-Z0-9]/ig, "").indexOf('titlereport') == -1 ? true : false;
+        })];
+      };
+
       // console.log(JSON.stringify(users));
       return {
         src: docs,

@@ -1,0 +1,62 @@
+<ng-container *ngIf="loanCurrentDocs$ | async as docs">
+
+  <h3><i class="fa fa-arrow-right"></i> Right Side</h3>
+  <table class="table table-sm table-striped" style="border:0;">
+    <thead>
+      <tr>
+        <th>Document Name</th>
+        <th>Date Added</th>
+        <th class="text-center">For Review</th>
+        <th class="text-center">Final Stamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of docs.src | filter: true : 'rightSide'">
+        <td>
+          <a (click)="ui.docViewerChange(0,doc.docGuid)">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{doc.docName}}
+          </a>
+        </td>
+        <td><em>04/12/2018</em></td>
+        <td class="text-center">
+          <i class="fa fa-square for-review {{doc.forReview}}" aria-hidden="true" title="For Review"></i>
+        </td>
+        <td class="text-center">
+          <input class="form-control mt-1" type="checkbox"
+                 (change)="updateStatus()"
+                 [checked]="doc.finalStamp"
+                 [disabled]="doc.finalStamp" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><i class="fa fa-arrow-left"></i> Left Side</h3>
+  <table class="table table-sm table-striped" style="border:0;">
+    <tbody>
+      <tr *ngFor="let doc of docs.src | filter: false : 'rightSide'">
+        <td>
+          <a (click)="ui.docViewerChange(0,doc.docGuid)">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{doc.docName}}
+          </a>
+        </td>
+        <td><em>04/12/2018</em></td>
+        <td class="text-center">
+          <i class="fa fa-square for-review {{doc.forReview}}" aria-hidden="true" title="For Review"></i>
+        </td>
+        <td class="text-center">
+          <input class="form-control mt-1" type="checkbox"
+            (change)="updateStatus()"
+            [checked]="doc.finalStamp"
+            [disabled]="doc.finalStamp" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+
+  <button class="btn btn-sm btn-primary float-right" [disabled]="!hasUpdates">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Document Status
+  </button>
+
+</ng-container>
