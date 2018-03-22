@@ -34,16 +34,17 @@ export class LoanComponent implements OnInit {
     this.api.loanCurrentDocs.get().subscribe();
 
     // Reset doc guid every time this component is loaded
-    this.ui.docViewerChange(null);
+    this.ui.docViewerChange(0, null);
+    this.ui.docViewerChange(1, null);
 
     this.subs.push(
 
       // Get LNkey from route params
       this.route.params.subscribe(params => this.lnkey = params.lnkey),
       // Manage multiscreen functionality
-      Observable.combineLatest(this.ui.multiScreen$, this.ui.docGuid$).subscribe(res => {
+      Observable.combineLatest(this.ui.multiScreen$, this.ui.docViewerGuids$).subscribe(res => {
         let multiScreen: boolean = res[0];
-        let docGuid: string = res[1];
+        let docGuid: string = res[1][0];
         // If a doc guid is present, add that to the route parameters
         let docGuidString = docGuid ? '/' + docGuid : '';
         let slug = window.location.origin + window.location.pathname;

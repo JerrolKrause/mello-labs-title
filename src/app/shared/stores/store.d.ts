@@ -39,8 +39,9 @@ export declare namespace IStore {
       options: {};
       data: any;
     };
-    document?: any;
+    docViewerGuids?: string[];
     multiscreen?: boolean;
+    multiDocs?: boolean;
     loanHasUpdate: boolean;
     tabViewer?: number;
     tabDashboard?: number;

@@ -9,7 +9,7 @@ export class UIStoreService {
 
   public modal$ = this.store.select(store => store.ui.modal);
   public tabViewer$ = this.store.select(store => store.ui.tabViewer);
-  public docGuid$ = this.store.select(store => store.ui.document);
+  public docViewerGuids$ = this.store.select(store => store.ui.docViewerGuids);
   public tabForm$ = this.store.select(store => store.ui.tabForm);
   public tabDashboard$ = this.store.select(store => store.ui.tabDashboard);
 
@@ -18,6 +18,7 @@ export class UIStoreService {
   public formVesting$ = this.store.select(store => store.ui.forms.vesting);
   public formLoan$ = this.store.select(store => store.ui.forms.loan);
   public multiScreen$ = this.store.select(store => store.ui.multiscreen);
+  public multiScreenDocs$ = this.store.select(store => store.ui.multiDocs);
 
   public screen;
 
@@ -44,8 +45,8 @@ export class UIStoreService {
    * Change the currently visible document in the document viewer
    * @param docID - GUID of document
    */
-  public docViewerChange(docID:string) {
-    this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: docID });
+  public docViewerChange(docViewerInstance: 0 | 1, docGuid:string) {
+    this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid } });
   }
 
   /**
@@ -60,6 +61,10 @@ export class UIStoreService {
    */
   public multiScreenToggle() {
     this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: null });
+  }
+
+  public multiDocsToggle() {
+    this.store.dispatch({ type: UIStoreActions.MULTIDOCS_TOGGLE, payload: null });
   }
 
   /**

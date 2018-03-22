@@ -5,7 +5,7 @@ import {
   LoginComponent,
   QaComponent,
   LoanComponent,
-  ViewerComponent
+  ViewerRouteComponent
 } from '@routes';
 
 import { LayoutMainComponent } from '@components';
@@ -18,8 +18,8 @@ const titleSlug: string = ' | ' + environment.appName;
 export const ROUTES: Routes = [
   // Routes without masterpage or that do not need to be authenticated need to go first
   { path: 'login', component: LoginComponent, data: { title: 'Please Log In' + titleSlug } },
-  { path: 'viewer/:LNKey', component: ViewerComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
-  { path: 'viewer/:LNKey/:docGuid', component: ViewerComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
+  { path: 'viewer/:LNKey', component: ViewerRouteComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
+  { path: 'viewer/:LNKey/:docGuid', component: ViewerRouteComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
 
   // Routes that use masterpage go here
   // canActivate with AuthGuard determines if this is an authenticated only route

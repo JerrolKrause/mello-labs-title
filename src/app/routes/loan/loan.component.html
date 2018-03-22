@@ -3,7 +3,7 @@
   <div class="row" *ngIf="!compData.multiScreen">
     <div class="col-12 col-md-5 col-lg-6">
       <div style="height: calc(100vh - 96px);position:relative;">
-        <app-document-viewer></app-document-viewer>
+        <app-viewer></app-viewer>
       </div>
     </div>
     <div class="col-12 col-md-7 col-lg-6">
@@ -47,9 +47,14 @@
     <div class="col-12 col-md-2">
       <div class="card">
         <div class="card-header">
-          <button class="btn btn-sm float-right" (click)="ui.multiScreenToggle()" title="Close multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
-            <i class="fa fa-window-restore" aria-hidden="true"></i>
-          </button>
+          <div class="btn-group float-right">
+            <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Close multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
+              <i class="fa fa-window-restore" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Close multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
+              <i class="fa fa-external-link-square" aria-hidden="true"></i>
+            </button>
+          </div>
           Actions
         </div>
         <app-loan-info></app-loan-info>

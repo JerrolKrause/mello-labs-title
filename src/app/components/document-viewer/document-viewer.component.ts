@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { UIStoreService } from '@ui'
 
 import { ApiService, ApiProps } from '@api'
@@ -11,12 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./document-viewer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DocumentViewerComponent implements OnInit {
-  public loanCurrentDocs;
-  public loanCurrentDocs$ = this.api.loanCurrentDocs$;
-  public loanCurrentDocsStatus$ = this.api.getState$(ApiProps.loanCurrentDocs);
+export class DocumentViewerComponent implements OnInit, OnChanges {
 
-  public docs;
+  @Input() docGuid: string;
+  @Input() multiScreen: boolean;
+  @Input() multiDocs: boolean;
+  @Input() docs: any;
+  @Input() instance: number;
 
   constructor(
     public ui: UIStoreService,
@@ -25,7 +26,7 @@ export class DocumentViewerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+  /*
     // Fake document changing on route change
     this.route.params.subscribe(params => {
       if (this.docs) {
@@ -42,6 +43,13 @@ export class DocumentViewerComponent implements OnInit {
         }
       }
     });
+    */
+  }
+
+  ngOnChanges() {
+    if (this.docs && this.docs.src.length && !this.docGuid) {
+      this.docGuid = this.docs.src[0].docGuid;
+    }
 
   }
 

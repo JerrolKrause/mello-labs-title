@@ -12,7 +12,8 @@ const initialState: IStore.ui = {
   tabDashboard: 1,
   loanHasUpdate: false,
   multiscreen: false,
-  document:null,
+  multiDocs: false,
+  docViewerGuids:[],
   forms: {
     loan: null,
     borrower: {
@@ -21,8 +22,7 @@ Jane Smith`,
       maritalStatus:'Married'
     },
     vesting: null
-  },
-
+  }
 };
 
 export function UIStoreReducer(state = initialState, { type, payload }) {
@@ -59,12 +59,17 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
       state.loanHasUpdate = false;
       saveState();
       break;
+    case UIStoreActions.MULTIDOCS_TOGGLE:
+      state.multiDocs = !state.multiDocs;
+      saveState();
+      break;
     case UIStoreActions.MULTISCREEN_TOGGLE:
       state.multiscreen = !state.multiscreen;
       saveState();
       break;
     case UIStoreActions.DOC_CHANGE:
-      state.document = payload;
+      state.docViewerGuids[payload.instance] = payload.docGuid;
+      state.docViewerGuids = [...state.docViewerGuids];
       saveState();
       break;
     case UIStoreActions.FORM_CHANGE:

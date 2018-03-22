@@ -1,66 +1,58 @@
-<ng-container *ngIf="{
-      tab : ui.tabViewer$ | async,
-      docs:loanCurrentDocs$ | async,
-      docGuid: ui.docGuid$ | async,
-      multiScreen: ui.multiScreen$ | async,
-      status : loanCurrentDocsStatus$ | async } as compData">
+<ng-container *ngIf="docs && docGuid">
+  <div class="card pdf" id="app-viewer">
+    <div class="card-header">
+      <div class="float-right">
+        <small class="mr-2">
+          <em>JKrause</em> |
+          <em>02/24/2018</em> |
+          <i class="fa fa-arrow-right" title="Side" *ngIf="docs?.dict[docGuid]?.rightSide"></i>
+          <i class="fa fa-arrow-left" title="Side" *ngIf="!docs?.dict[docGuid]?.rightSide"></i> |
 
-  <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
-    
-    <ng-container *ngIf="compData.docs && compData.docGuid">
-      
-      <div class="card pdf" id="app-viewer">
+          <ng-container *ngIf="docs?.dict[docGuid]?.forReview">
+            <i class="fa fa-square for-review {{docs?.dict[docGuid]?.forReview}}" aria-hidden="true" title="For Review"></i> |
+          </ng-container>
 
-        <div class="card-header">
-          <div class="float-right">
-            <small class="mr-2">
-              <em>JKrause</em> |
-              <em>02/24/2018</em> |
-              <i class="fa fa-arrow-right" title="Side" *ngIf="compData.docs?.dict[compData.docGuid]?.rightSide"></i>
-              <i class="fa fa-arrow-left" title="Side" *ngIf="!compData.docs?.dict[compData.docGuid]?.rightSide"></i> |
+          <i class="fa fa-check-square green" title="Final Stamp" aria-hidden="true" *ngIf="docs?.dict[docGuid]?.finalStamp"></i>
+          <i class="fa fa-square" title="Final Stamp" aria-hidden="true" *ngIf="!docs?.dict[docGuid]?.finalStamp"></i>
+        </small>
 
-              <ng-container *ngIf="compData.docs?.dict[compData.docGuid]?.forReview">
-                <i class="fa fa-square for-review {{compData.docs?.dict[compData.docGuid]?.forReview}}" aria-hidden="true" title="For Review"></i> |
-              </ng-container>
-
-              <i class="fa fa-check-square green" title="Final Stamp" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
-              <i class="fa fa-square" title="Final Stamp" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
-            </small>
-
-            <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown"
-                 (mouseenter)="$event.stopPropagation(); myDrop.open();"
-                 (mouseleave)="$event.stopPropagation(); myDrop.close();">
-              <button class="btn btn-secondary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
-                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Documents ({{compData.docs.src.length}})
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" [ngClass]="doc.docGuid == compData.docGuid ? 'active' : null"
-                        (click)="ui.docViewerChange(doc.docGuid)"
-                        *ngFor="let doc of compData.docs.src">
-                  {{doc.docName}}
-                </button>
-              </div>
-            </div>
-
-            <ng-container *ngIf="!compData.multiScreen">
-              |
-              <button class="btn btn-sm btn-secondary" (click)="ui.multiScreenToggle()" title="Open multi-screen view">
-                <i class="fa fa-window-restore" aria-hidden="true"></i>
-              </button>
-            </ng-container>
-
+        <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown"
+             (mouseenter)="$event.stopPropagation(); myDrop.open();"
+             (mouseleave)="$event.stopPropagation(); myDrop.close();">
+          <button class="btn btn-secondary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Documents ({{docs.src.length}})
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" [ngClass]="doc.docGuid == docGuid ? 'active' : null"
+                    (click)="ui.docViewerChange(instance, doc.docGuid)"
+                    *ngFor="let doc of docs.src">
+              {{doc.docName}}
+            </button>
           </div>
-          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{compData.docs?.dict[compData.docGuid]?.docName}}
         </div>
 
-        <object [data]="compData.docs?.dict[compData.docGuid]?.docUrl | safe: 'resourceUrl'"
-                type="application/pdf"
-                class="w-100 pdf" style="top: 52px;">
-          <embed [src]="compData.docs?.dict[compData.docGuid]?.docUrl | safe: 'resourceUrl'" type="application/pdf" />
-        </object>
+        <ng-container *ngIf="!multiScreen">
+          |
+          <div class="btn-group">
+            <button class="btn btn-sm" (click)="ui.multiDocsToggle()" title="Toggle Document Split Screen View" [ngClass]="multiDocs ? 'btn-primary' : 'btn-secondary'">
+              <i class="fa fa-window-restore" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Open multi-screen view" [ngClass]="multiScreen ? 'btn-primary' : 'btn-secondary'">
+              <i class="fa fa-external-link-square" aria-hidden="true"></i>
+            </button>
+          </div>
+        </ng-container>
 
       </div>
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{docs?.dict[docGuid]?.docName}}
+    </div>
 
-    </ng-container>
-  </api-state>
+    <object [data]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'"
+            type="application/pdf"
+            class="w-100 pdf" style="top: 52px;">
+      <embed [src]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'" type="application/pdf" />
+    </object>
+
+  </div>
+
 </ng-container>

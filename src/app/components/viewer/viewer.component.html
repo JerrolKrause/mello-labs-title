@@ -1,0 +1,28 @@
+<div id="app-viewer-route" *ngIf="{
+      docs:loanCurrentDocs$ | async,
+      docViewerGuids: ui.docViewerGuids$ | async,
+      multiScreen: ui.multiScreen$ | async,
+      multiDocs: ui.multiScreenDocs$ | async,
+      status : loanCurrentDocsStatus$ | async } as compData">
+  <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
+
+    <div class="viewer" [ngClass]="compData.multiDocs ? 'half' : null" id="app-viewer-route">
+      <app-document-viewer instance="0"
+                           [docGuid]="compData?.docViewerGuids[0]"
+                           [docs]="compData.docs"
+                           [multiDocs]="compData.multiDocs"
+                           [multiScreen]="compData.multiScreen">
+      </app-document-viewer>
+    </div>
+
+    <div class="viewer half bottom" id="app-viewer-route" *ngIf="compData.multiDocs">
+      <app-document-viewer instance="1"
+                           [docGuid]="compData?.docViewerGuids[1]"
+                           [docs]="compData.docs"
+                           [multiDocs]="compData.multiDocs"
+                           [multiScreen]="compData.multiScreen">
+      </app-document-viewer>
+    </div>
+
+  </api-state>
+</div>

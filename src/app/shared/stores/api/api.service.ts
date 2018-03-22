@@ -33,7 +33,7 @@ export class ApiService extends ApiHttpService {
   public loanCurrent$ = this.store.select(store => store.api.loanCurrent);
   public loanCurrentOcr$ = this.store.select(store => store.api.loanCurrentOcr);
   public loanCurrentDocs$ = this.store.select(store => store.api.loanCurrentDocs);
-  public loanCurrentStatus$ = this.getStatuses([this.store.select(store => store.apiStatus[ApiProps.loanCurrent]), this.store.select(store => store.apiStatus[ApiProps.loanCurrentOcr])])
+  public loanCurrentStatus$ = this.getStatuses(<any>[this.store.select(store => store.apiStatus[ApiProps.loanCurrent]), this.store.select(store => store.apiStatus[ApiProps.loanCurrentOcr])])
   
 
   constructor(
@@ -42,7 +42,7 @@ export class ApiService extends ApiHttpService {
     private router: Router,
     private settings: AppSettings
   ) {
-    super(http, store, router);
+    super(<any>http, <any>store, <any>router);
 
     // Output store changes to console
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
@@ -99,7 +99,7 @@ export class ApiService extends ApiHttpService {
   /**
     * Get app and user settings needed by the API. This needs to happen before any subsequent calls
     */
-  public appSettingsGet(update?: boolean): Observable<any> {
+  public appSettingsGet(update?: boolean) {
     // If app is localhost:4200, use local settings settings instead
 
     const envUrl = this.settings.isDev ? this.envSettingsUrlDev : this.envSettingsUrlProd;

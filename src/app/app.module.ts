@@ -28,7 +28,7 @@ enableProdMode();
 
 // Routes
 import {
-  NoContentComponent, LoginComponent, HomeComponent, QaComponent
+  NoContentComponent, LoginComponent, HomeComponent, QaComponent, ViewerRouteComponent
 } from '@routes';
 
 // Components
@@ -73,11 +73,11 @@ import { EmpowerNotesComponent } from './components/modals/empower-notes/empower
 import { EmpowerNoteAddComponent } from './components/modals/empower-note-add/empower-note-add.component';
 import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
 import { ExceptionComponent } from './components/modals/exception/exception.component';
-import { ViewerComponent } from './routes/viewer/viewer.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
-  NoContentComponent, LoginComponent, HomeComponent, QaComponent,
+  NoContentComponent, LoginComponent, HomeComponent, QaComponent, ViewerRouteComponent,
 
   FooterComponent, HeaderComponent, LayoutMainComponent, LayoutSingleComponent, NavComponent, NavSearchComponent,
   LaunchModalComponent,
@@ -139,8 +139,9 @@ export const APP_PROVIDERS = [
     FormRowComponent,
 
     ExceptionComponent,
-
     ViewerComponent,
+
+    ViewerRouteComponent,
   ],
   imports: [
     // Angular
