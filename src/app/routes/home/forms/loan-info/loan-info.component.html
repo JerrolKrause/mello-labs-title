@@ -58,11 +58,11 @@
               <td>
                 <div class="clearfix" *ngFor="let borrower of compData.loan.Borrowers">
                   <!--
-    <span class="btn-group float-right" *ngIf="!compData.multiScreen">
-      <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
-      <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-    </span>
-    -->
+                  <span class="btn-group float-right" *ngIf="!compData.multiScreen">
+                    <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
+                    <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
+                  </span>
+                  -->
                   <div>{{borrower.FirstName}} {{borrower.LastName}}</div>
                 </div>
               </td>
@@ -76,17 +76,19 @@
       <!-- Interaction Window -->
       <div [ngClass]="!compData.multiScreen ? 'col-12 col-md-3 col-xl-4' : 'col-12'">
         <div [ngClass]="compData.multiScreen ? 'p-3' : ''">
+
           <button [ngClass]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'" (click)="loanSave()">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
           </button>
 
           <!--
-  <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'"
-                    modal="EmpowerSaveComponent" size="lg"
-                    (onSuccess)="loanSave($event)">
-    <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
-  </app-launch-modal>
-  -->
+          <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'"
+                            modal="EmpowerSaveComponent" size="lg"
+                            (onSuccess)="loanSave($event)">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
+          </app-launch-modal>
+          -->
+
           <button class="btn btn-sm btn-secondary mb-1 w-100">
             <i class="fa fa-folder-open" aria-hidden="true"></i>
             Open <span class="hidden-lg-down">in Empower</span>
@@ -109,6 +111,7 @@
                             (onSuccess)="exceptionAdded($event)">
             <i class="fa fa-warning" aria-hidden="true"></i> Add Exception
           </app-launch-modal>
+
         </div>
       </div>
     </div>

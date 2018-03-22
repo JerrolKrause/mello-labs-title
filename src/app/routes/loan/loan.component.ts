@@ -19,6 +19,9 @@ export class LoanComponent implements OnInit {
   public lnkey: string;
   public loan;
 
+  public contacts$ = this.api.contacts$;
+  public loanContacts$ = this.ui.loanContacts$
+
   public exceptionCleared = false;
   private slug = window.location.origin + window.location.pathname;
   private subs: Subscription[] = [];
@@ -33,6 +36,7 @@ export class LoanComponent implements OnInit {
   ngOnInit() {
 
     this.api.loans.get().subscribe();
+
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentOcr.get().subscribe();
     this.api.loanCurrentDocs.get().subscribe();
@@ -41,18 +45,12 @@ export class LoanComponent implements OnInit {
     this.ui.docViewerChange(0, null);
     this.ui.docViewerChange(1, null);
 
-
-
-
     this.subs.push(
-
       // Get LNkey from route params
       this.route.params.subscribe(params => this.lnkey = params.lnkey),
-
       this.api.loans$.subscribe(loans => {
         if (loans) {
           this.loan = loans.dict[this.lnkey];
-          console.log(this.loan)
         }
       }),
       // Manage multiscreen functionality
@@ -61,10 +59,12 @@ export class LoanComponent implements OnInit {
         let docGuid: string = res[1][0];
         // If a doc guid is present, add that to the route parameters
         let docGuidString = docGuid ? '/' + docGuid : '';
-        
+
         // If multiscreen is present and a window is not yet open and has not been closed
         if (multiScreen && !this.ui.screen) {
-          this.ui.screen = window.open(this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
+          setTimeout(() => {
+            this.ui.screen = window.open(this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
+          });
         }
         // If window has been closed
         else if (this.ui.screen && this.ui.screen.closed) {
@@ -72,7 +72,9 @@ export class LoanComponent implements OnInit {
         }
         // If multi screen has been set and a window is already opened, update url in current window
         else if (multiScreen && this.ui.screen) {
-          this.ui.screen.location.href = this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
+          setTimeout(() => {
+            this.ui.screen.location.href = this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
+          });
         }
         // If screen is open and multiscreen is false, close window
         else if (this.ui.screen && multiScreen === false) {
@@ -87,6 +89,9 @@ export class LoanComponent implements OnInit {
       }),
 
     );
+
+    // Get loan contacts
+    this.api.contacts.get(this.lnkey).subscribe()
   }
 
   /**
@@ -101,7 +106,7 @@ export class LoanComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if (this.ui.screen && !this.ui.screen.closed){
+    if (this.ui.screen && !this.ui.screen.closed) {
       this.ui.screen.location.href = this.slug + '#/viewer/', 'Document Viewer';
     }
 

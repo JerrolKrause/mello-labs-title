@@ -1,14 +1,19 @@
-<div id="app-loan" class="container-fluid" *ngIf="{multiScreen : ui.multiScreen$ | async} as compData">
+<div id="app-loan" class="container-fluid"
+     *ngIf="{
+        multiScreen : ui.multiScreen$ | async,
+        loanContactsShow : ui.loanContacts$ | async
+      } as compData">
 
-
-  <!-- Non-multiscreen -->
+  <!--
+  Non-multiscreen
+  -->
   <div class="row" *ngIf="!compData.multiScreen">
-    <div class="col-12 col-md-5 col-lg-6">
+    <div class="col-12 col-md-5" [ngClass]="compData.loanContactsShow ? 'col-lg-5' : 'col-lg-6' ">
       <div style="height: calc(100vh - 96px);position:relative;">
         <app-viewer></app-viewer>
       </div>
     </div>
-    <div class="col-12 col-md-7 col-lg-6">
+    <div class="col-12 col-md-7" [ngClass]="compData.loanContactsShow ? 'col-lg-5' : 'col-lg-6' ">
 
       <div class="mb-3">
         <div class="card">
@@ -27,13 +32,19 @@
       <app-forms *ngIf="lnkey"></app-forms>
 
     </div>
+    <!-- Loan Contacts Sidebar -->
+    <div class="col-12 col-md-3 col-lg-2" *ngIf="compData.loanContactsShow">
+      <app-loan-contacts [loanNumber]="lnkey" [contacts]="contacts$ | async"></app-loan-contacts>
+    </div>
   </div>
 
 
-  <!-- Multiscreen -->
+  <!--
+  Multiscreen
+  -->
   <div class="row" *ngIf="compData.multiScreen">
 
-    <div class="col-12 col-md-5">
+    <div class="col-12" [ngClass]="compData.loanContactsShow ? 'col-lg-4' : 'col-lg-5' ">
       <div class="card">
         <div class="card-header">
           <i class="fa fa-warning yellow"></i> Needs Verification
@@ -44,7 +55,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-md-5" [ngClass]="compData.loanContactsShow ? 'col-lg-4' : 'col-lg-5' ">
       <div class="card">
         <div class="card-header">
           <i class="fa fa-check green"></i> Verified
@@ -59,7 +70,17 @@
       <div class="card">
         <div class="card-header">
           <div class="btn-group float-right">
-            <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Close multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
+            <button class="btn btn-sm btn-secondary"
+                    title="Toggle the Loan Contacts Sidebar"
+                    *ngIf="{visible:  ui.loanContacts$ | async } as btn"
+                    (click)="ui.loanContactsToggle()"
+                    [ngClass]="{'active':btn.visible}">
+              <i aria-hidden="true" class="fa fa-users"></i>
+            </button>
+            <button class="btn btn-sm btn-secondary"
+                    title="Close multi-screen view"
+                    (click)="ui.multiScreenToggle()"
+                    [ngClass]="{'active':compData.multiScreen}">
               <i class="fa fa-external-link-square" aria-hidden="true"></i>
             </button>
           </div>
@@ -74,10 +95,14 @@
         </div>
 
         <app-loan-info></app-loan-info>
+
       </div>
-
     </div>
-  </div>
 
+    <div class="col-12 col-lg-2" *ngIf="compData.loanContactsShow" style="height: calc(100vh - 98px);">
+      <app-loan-contacts [loanNumber]="lnkey" [contacts]="contacts$ | async"></app-loan-contacts>
+    </div>
+
+  </div>
 </div>
 

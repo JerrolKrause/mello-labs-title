@@ -53,9 +53,8 @@
       </tr>
     </tbody>
   </table>
-  <hr/>
 
-  <button class="btn btn-sm btn-primary float-right" [disabled]="!hasUpdates">
+  <button class="btn btn-sm btn-primary float-right" [disabled]="!hasUpdates" (click)="hasUpdates = !hasUpdates">
     <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Document Status
   </button>
 

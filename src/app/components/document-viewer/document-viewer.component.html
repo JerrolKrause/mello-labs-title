@@ -40,15 +40,15 @@
         <ng-container>
           |
           <div class="btn-group">
-            <button class="btn btn-sm" title="Toggle Document Split Screen View"
+            <button class="btn btn-sm btn-secondary" title="Toggle Document Split Screen View"
               (click)="ui.multiDocsToggle()"
-              [ngClass]="multiDocs ? 'btn-primary' : 'btn-secondary'">
+              [ngClass]="{'active':multiDocs}">
               <i class="fa fa-window-restore" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-sm" title="Open multi-screen view"
+            <button class="btn btn-sm btn-secondary" title="Open multi-screen view"
               *ngIf="ui.screen || !multiScreen"
               (click)="ui.multiScreenToggle()"
-              [ngClass]="multiScreen ? 'btn-primary' : 'btn-secondary'">
+              [ngClass]="{'active':multiScreen}">
               <i class="fa fa-external-link-square" aria-hidden="true"></i>
             </button>
           </div>

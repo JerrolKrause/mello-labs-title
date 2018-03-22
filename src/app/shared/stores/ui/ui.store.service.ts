@@ -19,6 +19,7 @@ export class UIStoreService {
   public formLoan$ = this.store.select(store => store.ui.forms.loan);
   public multiScreen$ = this.store.select(store => store.ui.multiscreen);
   public multiScreenDocs$ = this.store.select(store => store.ui.multiDocs);
+  public loanContacts$ = this.store.select(store => store.ui.loanContacts);
 
   public screen;
 
@@ -66,8 +67,18 @@ export class UIStoreService {
     this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: null });
   }
 
+  /**
+   * Toggle the split documents viewer
+   */
   public multiDocsToggle() {
     this.store.dispatch({ type: UIStoreActions.MULTIDOCS_TOGGLE, payload: null });
+  }
+
+  /**
+   * Toggle the loan contacts sidebar
+   */
+  public loanContactsToggle() {
+    this.store.dispatch({ type: UIStoreActions.LOAN_CONTACTS_TOGGLE, payload: null });
   }
 
   /**

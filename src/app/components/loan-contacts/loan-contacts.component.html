@@ -1,0 +1,159 @@
+<div id="sidebar">
+  <h2 class="title mb-2 white"><i class="fa fa-users"></i> BCD</h2>
+  <ng-container *ngIf="!contacts || !loanNumber">
+    <p>Please supply a loan number to view contacts</p>
+  </ng-container>
+  <ng-container *ngIf="contacts && loanNumber">
+    <p data-qa="hp-sidebar-loannum">Loan Number: <strong>{{loanNumber}}</strong></p>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0,ngb-panel-1" class="accordion-inline accordion-dk">
+
+      <!-- Borrower contacts -->
+      <ngb-panel id="ngb-panel-0">
+        <ng-template ngbPanelTitle>
+          Borrower Contacts
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <ul class="list-group mb-2" data-qa="hp-sidebar-borrowers">
+            <li class="list-group-item list-group-item-action flex-column align-items-start"
+                *ngIf="!contacts.borrowers?.length">
+              No borrower contacts found.
+            </li>
+            <ng-container *ngIf="contacts.borrowers?.length">
+              <li class="list-group-item list-group-item-action flex-column align-items-start"
+                  [class.resizePadding]="resizeText"
+                  *ngFor="let contact of contacts.borrowers;let rowIndex = index">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <p class="mb-0" [class.resizeText]="resizeText">
+                    <strong>{{contact.name}}</strong><br />
+                    <small>
+                      <ng-container *ngIf="rowIndex == 0">
+                        Primary Borrower
+                      </ng-container>
+                      <ng-container *ngIf="rowIndex != 0">
+                        Co-Borrower
+                      </ng-container>
+                    </small>
+                  </p>
+                  <div class="btn-group btn-group-vertical" role="group">
+                    <ng-container *ngIf="settings?.lookup?.BccM4Notes == 'false';else bccM4NotesBorrower">
+                      <a class="btn btn-interact-outline btn-sm btn-faded d-inline-block" *ngIf="contact.email"
+                         href="mailto:{{contact.email}}?subject={{loanNumber}}, {{contact.name}}" data-qa="hp-sidebar-borrowers-email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </a>
+                    </ng-container>
+                    <ng-template #bccM4NotesBorrower>
+                      <a class="btn btn-interact-outline btn-sm btn-faded d-inline-block" *ngIf="contact.email"
+                         href="mailto:{{contact.email}}?bcc=m4notes@loandepot.com&subject={{loanNumber}}, {{contact.name}}" data-qa="hp-sidebar-borrowers-email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </a>
+                    </ng-template>
+                    <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                      <button class="btn btn-interact-outline btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                      </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <ng-container *ngTemplateOutlet="phoneDropdown;context:{$implicit: contact, isBorrower: true }"></ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+
+      <!-- Loan Contacts-->
+      <ngb-panel id="ngb-panel-1">
+        <ng-template ngbPanelTitle>
+          Loan Contacts
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <ul class="list-group" data-qa="hp-sidebar-contacts">
+            <li class="list-group-item list-group-item-action flex-column align-items-start" *ngIf="!contacts.employees?.length">
+              No loan contacts found.
+            </li>
+            <ng-container *ngIf="contacts.employees?.length">
+              <li class="list-group-item list-group-item-action flex-column align-items-start steelBlueBgr"
+                  [class.resizePadding]="resizeText"
+                  *ngFor="let contact of contacts.employees">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <p class="mb-0" [class.resizeText]="resizeText">
+                    <strong>{{contact.employeeName}}</strong><br />
+                    <small *ngIf="contact.bcdRole">{{contact.bcdRole}}</small>
+                  </p>
+                  <div class="btn-group btn-group-vertical" role="group" aria-label="Basic example">
+                    <ng-container *ngIf="settings?.lookup?.BccM4Notes == 'false';else bccM4Notes">
+                      <a class="btn btn-interact-outline btn-sm btn-faded" *ngIf="contact.email" href="mailto:{{contact.email}}?subject={{loanNumber}}, [{{contacts.borrowers[0].nameLast}}]" data-qa="hp-sidebar-contacts-email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </a>
+                    </ng-container>
+                    <ng-template #bccM4Notes>
+                      <a class="btn btn-interact-outline btn-sm btn-faded" *ngIf="contact.email" href="mailto:{{contact.email}}?bcc=m4notes@loandepot.com&subject={{loanNumber}}, [{{contacts.borrowers[0].nameLast}}]" data-qa="hp-sidebar-contacts-email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </a>
+                    </ng-template>
+
+                    <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                      <button class="btn btn-interact-outline btn-sm btn-faded" id="dropdownBasic1" ngbDropdownToggle>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                      </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+
+                        <ng-container *ngTemplateOutlet="phoneDropdown;context:{$implicit: contact, isBorrower: false }"></ng-container>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+
+    </ngb-accordion>
+
+  </ng-container>
+</div>
+
+<!-- Dropdown template for formatting phone numbers-->
+<ng-template #phoneDropdown let-contact let-other="isBorrower">
+  <!-- Main Phone -->
+  <div class="btn-group" role="group" aria-label="Basic example" *ngIf="contact.phone">
+    <a class="btn dropdown-item" title="Click to call" href="tel:{{contact.phone}}" (click)="openEmpowerNotes(other, settings?.lookup?.PhoneNotesPop, contact.phone)" data-qa="hp-sidebar-borrowers-phone">
+      Phone<br />
+      <i class="fa fa-phone" aria-hidden="true"></i>  <span>{{contact.phone}}</span><hr />
+    </a>
+    <button type="button" (click)="copyToClipboard(contact.phone)" class="btn btn-secondary" title="Copy to clipboard"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- Direct Phone -->
+  <div class="btn-group" role="group" aria-label="Basic example" *ngIf="contact.directWorkPhone">
+    <a class="btn dropdown-item" title="Click to call" href="tel:{{contact.directWorkPhone}}" (click)="openEmpowerNotes(other, settings?.lookup?.PhoneNotesPop, contact.directWorkPhone)" data-qa="hp-sidebar-borrowers-phone">
+      Direct Work Phone<br />
+      <i class="fa fa-phone" aria-hidden="true"></i>  <span>{{contact.directWorkPhone}}</span><hr />
+    </a>
+    <button type="button" (click)="copyToClipboard(contact.directWorkPhone)" class="btn btn-secondary" title="Copy to clipboard"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- Other Phone -->
+  <div class="btn-group" role="group" aria-label="Basic example" *ngIf="contact.otherPhone">
+    <a class="btn dropdown-item" title="Click to call" href="tel:{{contact.otherPhone}}" (click)="openEmpowerNotes(other, settings?.lookup?.PhoneNotesPop, contact.otherPhone)" data-qa="hp-sidebar-borrowers-phone">
+      Other Phone<br />
+      <i class="fa fa-phone" aria-hidden="true"></i>  <span>{{contact.otherPhone}}</span><hr />
+    </a>
+    <button type="button" (click)="copyToClipboard(contact.otherPhone)" class="btn btn-secondary" title="Copy to clipboard"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- Other Phone -->
+  <div class="btn-group" role="group" aria-label="Basic example" *ngIf="contact.uvoeWorkPhone">
+    <a class="btn dropdown-item" title="Click to call" href="tel:{{contact.uvoeWorkPhone}}" (click)="openEmpowerNotes(other, settings?.lookup?.PhoneNotesPop, contact.uvoeWorkPhone) " data-qa="hp-sidebar-borrowers-phone">
+      Other Work Phone<br />
+      <i class="fa fa-phone" aria-hidden="true"></i>  <span>{{contact.uvoeWorkPhone}}</span><hr />
+    </a>
+    <button type="button" (click)="copyToClipboard(contact.uvoeWorkPhone)" class="btn btn-secondary" title="Copy to clipboard"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+  </div>
+
+</ng-template>

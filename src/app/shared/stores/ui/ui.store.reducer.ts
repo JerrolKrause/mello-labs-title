@@ -13,6 +13,7 @@ const initialState: IStore.ui = {
   loanHasUpdate: false,
   multiscreen: false,
   multiDocs: false,
+  loanContacts: false,
   docViewerGuids:[],
   forms: {
     loan: null,
@@ -57,6 +58,10 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
       break;
     case UIStoreActions.LOAN_SAVED:
       state.loanHasUpdate = false;
+      saveState();
+      break;
+    case UIStoreActions.LOAN_CONTACTS_TOGGLE:
+      state.loanContacts = !state.loanContacts;
       saveState();
       break;
     case UIStoreActions.MULTIDOCS_TOGGLE:

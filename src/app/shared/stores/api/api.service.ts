@@ -28,7 +28,7 @@ export class ApiService extends ApiHttpService {
 
   public loans$ = this.store.select(store => store.api.loans);
   public notes$ = this.store.select(store => store.api.notes);
-
+  public contacts$ = this.store.select(store => store.api.contacts);
 
   public loanCurrent$ = this.store.select(store => store.api.loanCurrent);
   public loanCurrentOcr$ = this.store.select(store => store.api.loanCurrentOcr);
@@ -64,6 +64,10 @@ export class ApiService extends ApiHttpService {
     delete: (user) => this.deleteStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, user)
   };
 
+  public contacts = {
+    get: (loanNumber: string, update?: boolean) => this.getStore(ApiMap.contacts.endpoint + '?' + loanNumber, ApiMap.contacts, update)
+  }
+
   public loans = {
     get: (update?: boolean) => this.getStore(ApiMap.loans.endpoint, ApiMap.loans, update)
   }
@@ -85,7 +89,7 @@ export class ApiService extends ApiHttpService {
   }
 
   public notes = {
-    get: (lnkey: string, update?: boolean) => this.getStore(ApiMap.notes.endpoint + '?' + lnkey, ApiMap.notes, update)
+    get: (loanNumber: string, update?: boolean) => this.getStore(ApiMap.notes.endpoint + '?' + loanNumber, ApiMap.notes, update)
   }
 
   /**

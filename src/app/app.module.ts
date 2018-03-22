@@ -77,6 +77,7 @@ import { ViewerComponent } from './components/viewer/viewer.component';
 import { WebToolComponent } from './components/web-tool/web-tool.component';
 import { DocumentStatusComponent } from './routes/home/forms/document-status/document-status.component';
 import { SortPipe } from './shared/pipes/sort.pipe';
+import { LoanContactsComponent } from './components/loan-contacts/loan-contacts.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -151,6 +152,8 @@ export const APP_PROVIDERS = [
     DocumentStatusComponent,
 
     SortPipe,
+
+    LoanContactsComponent,
   ],
   imports: [
     // Angular

@@ -1,5 +1,13 @@
 <div id="app-forms">
 
+  <button class="btn btn-sm btn-secondary float-right"
+          title="Toggle the Loan Contacts Sidebar"
+          *ngIf="{visible:  ui.loanContacts$ | async } as btn"
+          (click)="ui.loanContactsToggle()"
+          [ngClass]="{'active':btn.visible}">
+    <i aria-hidden="true" class="fa fa-users"></i>
+  </button>
+
   <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
 
     <ngb-tab id="tab-1">

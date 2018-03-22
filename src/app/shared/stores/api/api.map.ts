@@ -109,6 +109,11 @@ export const ApiMap: IStore.ApiMapping = {
     storeProperty: ApiProps.loanCurrentOcr,
   },
 
+  contacts: {
+    endpoint: 'assets/mock-data/loan-contacts.json',
+    storeProperty: ApiProps.contacts
+  },
+
   vesting: {
     endpoint: 'assets/mock-data/vesting.json',
     storeProperty: ApiProps.vesting,

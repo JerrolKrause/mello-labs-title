@@ -7,6 +7,7 @@ export declare namespace IStore {
   interface api {
     loans?: Mapped<any[]>;
     notes?: Mapped<any[]>;
+    contacts?: Mapped<any[]>;
     loanCurrent?: Mapped<any[]>;
     loanCurrentOcr?: any[];
     loanCurrentDocs?: any[];
@@ -25,6 +26,7 @@ export declare namespace IStore {
   export interface ApiMapping {
     users?: ApiMap;
     loans?: ApiMap;
+    contacts?: ApiMap;
     loanCurrent?: ApiMap;
     loanCurrentOcr?: ApiMap;
     loanCurrentDocs?: ApiMap;
@@ -42,6 +44,7 @@ export declare namespace IStore {
     docViewerGuids?: string[];
     multiscreen?: boolean;
     multiDocs?: boolean;
+    loanContacts?: boolean;
     loanHasUpdate: boolean;
     tabViewer?: number;
     tabDashboard?: number;
