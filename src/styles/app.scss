@@ -30,6 +30,8 @@ ngb-datepicker{
  .nav-link.active{position: relative; z-index: 2;top: 1px;}
 }
 
+
+
 .for-review{ display: block;height: 12px;width: 12px;overflow: hidden;text-indent: -999px;border-radius: 3px;    position: relative;top: 2px;
   &.orange{background-color: #f7b733;background: -webkit-gradient(linear,left top,left bottom,from(#f7b733),to(#fc781a));background: linear-gradient(to bottom,#f7b733,#fc781a);}
   &.blue{background-color: #0575e6;background: -webkit-gradient(linear,left top,left bottom,from(#0575e6),to(#021b79));background: linear-gradient(to bottom,#0575e6,#021b79);}

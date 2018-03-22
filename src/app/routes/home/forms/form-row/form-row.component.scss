@@ -1,1 +1,4 @@
 .icon-action{position:absolute;right:16px;z-index:2;width: 15px;}
+
+.editable, .editing{padding-right:1.25rem;}
+.editable:hover{outline: 3px dashed #c3c3c3;cursor:pointer;}

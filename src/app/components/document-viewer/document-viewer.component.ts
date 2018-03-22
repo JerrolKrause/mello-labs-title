@@ -16,9 +16,6 @@ export class DocumentViewerComponent implements OnInit {
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
   public loanCurrentDocsStatus$ = this.api.getState$(ApiProps.loanCurrentDocs);
 
-  
-  public docGuid$ = this.ui.docGuid$;
-
   public docs;
 
   constructor(

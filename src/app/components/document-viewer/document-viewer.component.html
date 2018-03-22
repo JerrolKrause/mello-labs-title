@@ -1,7 +1,8 @@
 <ng-container *ngIf="{
       tab : ui.tabViewer$ | async,
       docs:loanCurrentDocs$ | async,
-      docGuid: docGuid$ | async,
+      docGuid: ui.docGuid$ | async,
+      multiScreen: ui.multiScreen$ | async,
       status : loanCurrentDocsStatus$ | async } as compData">
 
   <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
@@ -24,7 +25,6 @@
 
               <i class="fa fa-check-square green" title="Final Stamp" aria-hidden="true" *ngIf="compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
               <i class="fa fa-square" title="Final Stamp" aria-hidden="true" *ngIf="!compData.docs?.dict[compData.docGuid]?.finalStamp"></i>
-
             </small>
 
             <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown"
@@ -42,11 +42,12 @@
               </div>
             </div>
 
-            |
-
-            <button class="btn btn-sm btn-secondary" (click)="ui.multiScreenToggle()">
-              <i class="fa fa-window-restore" aria-hidden="true"></i>
-            </button>
+            <ng-container *ngIf="!compData.multiScreen">
+              |
+              <button class="btn btn-sm btn-secondary" (click)="ui.multiScreenToggle()" title="Open multi-screen view">
+                <i class="fa fa-window-restore" aria-hidden="true"></i>
+              </button>
+            </ng-container>
 
           </div>
           <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{compData.docs?.dict[compData.docGuid]?.docName}}

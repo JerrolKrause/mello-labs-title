@@ -33,7 +33,7 @@
   </div>
 
   <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrValue ? 'col-md-5' : 'col-md-6'" style="position:relative;">
-    <div class="editable w-100" (dblclick)="editing = !editing;" [ngClass]="fieldType != 'radio' && !editing ? 'editing' : null">
+    <div class="w-100" (dblclick)="editing = !editing;" [ngClass]="editing ? 'editing' : 'editable'">
 
       <div class="float-right icon-action">
         <a *ngIf="!editing" (click)="editing = !editing;" title="Edit this field manually">
