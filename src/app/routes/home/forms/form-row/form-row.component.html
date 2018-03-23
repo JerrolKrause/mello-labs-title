@@ -29,7 +29,7 @@
         </ng-container>
       </ng-container>
     </div>
-   
+
   </div>
 
   <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrValue ? 'col-md-5' : 'col-md-6'" style="position:relative;">
@@ -44,12 +44,12 @@
         </a>
 
         <ng-container *ngIf="form.value[field] != valuePrev && !editing">
-          <br/>
+          <br />
           <a (click)="updateForm(field,valuePrev)" title="Undo changes to this field">
             <i class="fa fa-undo" aria-hidden="true"></i>
           </a>
         </ng-container>
-        
+
       </div>
 
 
@@ -64,12 +64,28 @@
 
       <ng-container *ngIf="editing">
 
+        <!-- Input -->
+        <ng-container *ngIf="fieldType == 'input'">
+          <input class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="field" />
+        </ng-container>
+
+        <!-- Text area-->
         <ng-container *ngIf="fieldType == 'textarea'">
           <textarea class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="field"></textarea>
         </ng-container>
-        <ng-container *ngIf="fieldType == 'input'">
-          <textarea class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="field"></textarea>
+
+        <!-- Date box-->
+        <ng-container *ngIf="fieldType == 'date'">
+          <div class="input-group input-group-sm">
+            <input class="form-control form-control-sm" [formControlName]="field">
+            <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+          <input type="hidden" ngbDatepicker #d="ngbDatepicker" name="dp" [ngModel]="dateEffective" (ngModelChange)="dateChanged(field, $event)" [ngModelOptions]="{standalone: true}" />
         </ng-container>
+
+        <!-- Radio -->
         <ng-container *ngIf="fieldType == 'radio'">
           <fieldset class="form-group" *ngIf="fieldModel">
             <div class="form-check" *ngFor="let model of fieldModel">
@@ -78,7 +94,7 @@
                 {{model}}
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" *ngIf="radioFreeform">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input" value="" [formControlName]="field">
                 <input type="text" class="form-control form-control-sm form-control-inline" />

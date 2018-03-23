@@ -1,0 +1,150 @@
+[
+  {
+    "label": "Borrower Name(s):",
+    "field": "BorrowerNames",
+    "fieldType": "input"
+  },
+  {
+    "label": "Marital Status",
+    "field": "MaritalStatusName",
+    "fieldType": "radio",
+    "fieldModel": [ "Married", "Un-Married", "Registered/Domestic Partner" ],
+    "radioFreeform": true
+  },
+  {
+    "label": "Full Name on Vesting:",
+    "field": "FullNameVesting",
+    "fieldType": "textarea"
+  },
+  {
+    "label": "Date Last Recorded Deed:",
+    "field": "LastRecordedDeedDate",
+    "fieldType": "date"
+  },
+  {
+    "label": "Closing in a Trust: (!)",
+    "field": "NeedProp",
+    "fieldType": "radio",
+    "fieldModel": [ "Yes - Need approval from Trust Docs Department", "No" ]
+  },
+  {
+    "label": "Spousal Signature Required: (!)",
+    "field": "NeedProp",
+    "fieldType": "radio",
+    "fieldModel": [ "Yes", "No" ]
+  },
+  {
+    "label": "Type of Ownership",
+    "field": "OwnershipTypeName",
+    "fieldType": "radio",
+    "fieldModel": [ "Fee Simple", "Land Contract", "Life Estate", "Leasehold" ],
+    "radioFreeform": true
+  },
+  {
+    "label": "Property Address: (!)",
+    "field": "NeedProp",
+    "fieldType": "radio",
+    "fieldModel": [ "Yes", "No" ]
+  },
+  {
+    "label": "APN:",
+    "field": "APN",
+    "fieldType": "input"
+  },
+  {
+    "label": "Country on Title matches Appraisal and Empower: (!)",
+    "field": "NeedProp",
+    "fieldType": "radio",
+    "fieldModel": [ "Yes", "No" ]
+  },
+  {
+    "label": "Legal Description on Title matches Appraisal: (!)",
+    "field": "NeedProp",
+    "fieldType": "radio",
+    "fieldModel": [ "Yes", "No" ]
+  },
+  {
+    "label": "Property Type:",
+    "field": "PropertyTypeName",
+    "fieldType": "radio",
+    "fieldModel": [ "Single Family", "Multi-Family", "PUD", "Condo", "Manufactured" ]
+  },
+  {
+    "label": "Property Type on Title matches Empower and Appraisal: (!)",
+    "field": "NeedProp",
+    "fieldType": "radio",
+    "fieldModel": [ "Yes", "No" ]
+  },
+
+  {
+    "label": "Current Mortgage:",
+    "field": "CurrentMortgage",
+    "fieldType": "input"
+  },
+  {
+    "label": "HELOC/2nd Mortgage:",
+    "field": "HELOC2ndMortgage",
+    "fieldType": "input"
+  },
+  {
+    "label": "UCC:",
+    "field": "UCC",
+    "fieldType": "input"
+  },
+  {
+    "label": "Additional Liens:",
+    "field": "AdditionalLiens1",
+    "fieldType": "input"
+  },
+  {
+    "label": "Additional Liens:",
+    "field": "AdditionalLiens2",
+    "fieldType": "input"
+  },
+  {
+    "label": "Additional Liens:",
+    "field": "AdditionalLiens3",
+    "fieldType": "input"
+  },
+
+  {
+    "label": "Property Taxes:",
+    "field": "PropertyTaxes",
+    "fieldType": "input"
+  },
+  {
+    "label": "Special Assessments:",
+    "field": "SpecialAssessments",
+    "fieldType": "input"
+  },
+  {
+    "label": "HERO/PACE:",
+    "field": "HERO",
+    "fieldType": "input"
+  },
+  {
+    "label": "Liens/Judgements:",
+    "field": "LiensJudgments1",
+    "fieldType": "input"
+  },
+  {
+    "label": "Liens/Judgements:",
+    "field": "LiensJudgments2",
+    "fieldType": "input"
+  },
+  {
+    "label": "Liens/Judgements:",
+    "field": "LiensJudgments3",
+    "fieldType": "input"
+  },
+  {
+    "label": "Additional Comments: (!)",
+    "field": "NeedProp",
+    "fieldType": "textarea"
+  },
+  {
+    "label": "Additional Notes to Underwriter: (!)",
+    "field": "NeedProp",
+    "fieldType": "textarea"
+  }
+]

@@ -24,7 +24,8 @@ export class FormsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public lnkey: string;
   public loan;
-
+  public loanCurrent$ = this.api.loanCurrent$;
+  public loanCurrentOcr$ = this.api.loanCurrentOcr$;
   public formInfoStatus$ = this.api.getState$(ApiProps.loans);
   public formVestingStatus$ = this.api.getState$(ApiProps.vesting);
   public formVesting: FormBuilder;

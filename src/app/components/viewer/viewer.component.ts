@@ -38,8 +38,6 @@ export class ViewerComponent implements OnInit {
       this.isStandalone = true;
     }
 
-    console.log(this.router.url)
-
     this.subs.push(
       // Get LNkey from route params
       this.route.params.subscribe(params => this.lnkey = params.lnkey),

@@ -17,6 +17,7 @@ export class FormRowComponent implements OnInit {
   @Input() fieldModel: any[];
   @Input() docTab:number = 1;
   @Input() ocrValue: string | string[];
+  @Input() radioFreeform = false;
   @Input() form: FormGroup;
 
   public hasFuzzyMatch = false;
@@ -39,6 +40,7 @@ export class FormRowComponent implements OnInit {
     if (Array.isArray(this.ocrValue)){
       this.hasFuzzyMatch = true;
     }
+
   }
 
   /**
@@ -51,6 +53,16 @@ export class FormRowComponent implements OnInit {
     let valNew = {};
     valNew[field] = propNew;
     this.form.patchValue(valNew);
+  }
+
+  /**
+   * When a date is changed, update the form model
+   * @param field
+   * @param date
+   */
+  public dateChanged(field: string, date) {
+    this.updateForm(field, date.month + '/' + date.day + '/' + date.year);
+    this.editing = true;
   }
 
   /**

@@ -30,29 +30,29 @@ export class DocumentViewerComponent implements OnInit, OnChanges {
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-      if (params){
+      if (params) {
         this.lnkey = params.lnkey;
       }
     });
 
-  /*
-    // Fake document changing on route change
-    this.route.params.subscribe(params => {
-      if (this.docs) {
-        this.ui.docViewerChange(_.shuffle(this.docs)[0].docGuid);
-      }
-    });
-
-    let docsSub = this.loanCurrentDocs$.subscribe((docs :any) => {
-      if (docs && docs.src) {
-        this.docs = docs.src;
-        this.ui.docViewerChange(docs.src[0].docGuid);
-        if (docsSub){
-          docsSub.unsubscribe();
+    /*
+      // Fake document changing on route change
+      this.route.params.subscribe(params => {
+        if (this.docs) {
+          this.ui.docViewerChange(_.shuffle(this.docs)[0].docGuid);
         }
-      }
-    });
-    */
+      });
+  
+      let docsSub = this.loanCurrentDocs$.subscribe((docs :any) => {
+        if (docs && docs.src) {
+          this.docs = docs.src;
+          this.ui.docViewerChange(docs.src[0].docGuid);
+          if (docsSub){
+            docsSub.unsubscribe();
+          }
+        }
+      });
+      */
   }
 
   ngOnChanges() {

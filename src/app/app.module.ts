@@ -66,7 +66,7 @@ import { ApiService } from '@api';
 import { FormsComponent } from './routes/home/forms/forms.component';
 import { ExceptionsComponent } from './routes/home/forms/exceptions/exceptions.component';
 import { VerifiedComponent } from './routes/home/forms/verified/verified.component';
-import { LoanInfoComponent } from './routes/home/forms/loan-info/loan-info.component';
+import { LoanInfoComponent } from './components/loan-info/loan-info.component';
 import { LoanComponent } from './routes/loan/loan.component';
 import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
 import { EmpowerNotesComponent } from './components/modals/empower-notes/empower-notes.component';
@@ -75,9 +75,10 @@ import { FormRowComponent } from './routes/home/forms/form-row/form-row.componen
 import { ExceptionComponent } from './components/modals/exception/exception.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { WebToolComponent } from './components/web-tool/web-tool.component';
-import { DocumentStatusComponent } from './routes/home/forms/document-status/document-status.component';
+import { DocumentStatusComponent } from './components/document-status/document-status.component';
 import { SortPipe } from './shared/pipes/sort.pipe';
 import { LoanContactsComponent } from './components/loan-contacts/loan-contacts.component';
+import { FormTitleComponent } from './components/form-title/form-title.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -154,6 +155,8 @@ export const APP_PROVIDERS = [
     SortPipe,
 
     LoanContactsComponent,
+
+    FormTitleComponent,
   ],
   imports: [
     // Angular

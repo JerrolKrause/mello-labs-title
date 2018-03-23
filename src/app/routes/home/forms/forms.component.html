@@ -7,7 +7,17 @@
         <i class="fa fa-warning yellow"></i> Needs Verification
       </ng-template>
       <ng-template ngbTabContent>
+
+        <ng-container *ngIf="{ocr : loanCurrentOcr$ | async, loan: loanCurrent$ | async} as data">
+          <app-form-title *ngIf="data.ocr && data.loan"
+                          [ocr]="data.ocr"
+                          [formData]="data.loan">
+          </app-form-title>
+        </ng-container>
+
+        <!--
         <app-exceptions (formRef)="formRef('borrower',$event)"></app-exceptions>
+        -->
       </ng-template>
     </ngb-tab>
 
@@ -17,11 +27,19 @@
       </ng-template>
       <ng-template ngbTabContent>
         <api-state [state]="status" [toaster]="true" [showSuccess]="false" *ngIf="formVestingStatus$ | async as status">
-          <app-verified (formRef)="formRef('vesting',$event)" *ngIf="status?.loaded"></app-verified>
+         
+          <ng-container *ngIf="{loan: loanCurrent$ | async} as data">
+            <app-form-title *ngIf="data.loan && status?.loaded"
+                            [formData]="data.loan">
+            </app-form-title>
+          </ng-container>
+
+          <!--
+          <app-verified (formRef)="formRef('vesting',$event)"></app-verified>
+          -->
         </api-state>
       </ng-template>
     </ngb-tab>
-
 
     <ngb-tab id="tab-3">
       <ng-template ngbTabTitle>
