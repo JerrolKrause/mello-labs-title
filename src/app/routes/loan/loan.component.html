@@ -50,7 +50,12 @@
           <i class="fa fa-warning yellow"></i> Needs Verification
         </div>
         <div class="card-block">
-          <app-exceptions (formRef)="formRef('borrower',$event)"></app-exceptions>
+          <ng-container *ngIf="{ocr : loanCurrentOcr$ | async, loan: loanCurrent$ | async} as data">
+            <app-form-title *ngIf="data.ocr && data.loan"
+                            [ocr]="data.ocr"
+                            [formData]="data.loan">
+            </app-form-title>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -61,7 +66,11 @@
           <i class="fa fa-check green"></i> Verified
         </div>
         <div class="card-block">
-          <app-verified (formRef)="formRef('vesting',$event)"></app-verified>
+          <ng-container *ngIf="{loan: loanCurrent$ | async} as data">
+            <app-form-title *ngIf="data.loan"
+                            [formData]="data.loan">
+            </app-form-title>
+          </ng-container>
         </div>
       </div>
     </div>

@@ -21,6 +21,8 @@ export class LoanComponent implements OnInit {
 
   public contacts$ = this.api.contacts$;
   public loanContacts$ = this.ui.loanContacts$
+  public loanCurrent$ = this.api.loanCurrent$;
+  public loanCurrentOcr$ = this.api.loanCurrentOcr$;
 
   public exceptionCleared = false;
   private slug = window.location.origin + window.location.pathname;
