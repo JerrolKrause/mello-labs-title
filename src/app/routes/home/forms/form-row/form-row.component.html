@@ -120,7 +120,7 @@
 <ng-template #ocrValueTemplate let-value="value" let-form="form" let-field="field">
   <button class="btn btn-sm w-100 text-left btn-secondary"
           [disabled]="editing || form.value[field] == value"
-          (click)="updateForm(field,value)">
+          (click)="updateForm(viewModel.field,value)">
     <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != value"></i>
     <i class="fa fa-check float-right" *ngIf="form.value[field] == value"></i>
     {{value}}
