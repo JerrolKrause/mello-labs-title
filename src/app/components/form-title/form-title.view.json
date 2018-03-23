@@ -2,84 +2,98 @@
   {
     "label": "Borrower Name(s):",
     "field": "BorrowerNames",
-    "fieldType": "input"
+    "fieldType": "input",
+    "required" :  true
   },
   {
     "label": "Marital Status",
     "field": "MaritalStatusName",
     "fieldType": "radio",
     "fieldModel": [ "Married", "Un-Married", "Registered/Domestic Partner" ],
-    "radioFreeform": true
+    "radioFreeform": true,
+    "required": true
   },
   {
     "label": "Full Name on Vesting:",
     "field": "FullNameVesting",
-    "fieldType": "textarea"
+    "fieldType": "textarea",
+    "required": true
   },
   {
     "label": "Date Last Recorded Deed:",
     "field": "LastRecordedDeedDate",
-    "fieldType": "date"
+    "fieldType": "date",
+    "required": true
   },
   {
     "label": "Closing in a Trust: (!)",
     "field": "NeedProp",
     "fieldType": "radio",
-    "fieldModel": [ "Yes - Need approval from Trust Docs Department", "No" ]
+    "fieldModel": [ "Yes - Need approval from Trust Docs Department", "No" ],
+    "required": true
   },
   {
     "label": "Spousal Signature Required: (!)",
     "field": "NeedProp",
     "fieldType": "radio",
-    "fieldModel": [ "Yes", "No" ]
+    "fieldModel": [ "Yes", "No" ],
+    "required": true
   },
   {
     "label": "Type of Ownership",
     "field": "OwnershipTypeName",
     "fieldType": "radio",
     "fieldModel": [ "Fee Simple", "Land Contract", "Life Estate", "Leasehold" ],
-    "radioFreeform": true
+    "radioFreeform": true,
+    "required": true
   },
   {
     "label": "Property Address: (!)",
     "field": "NeedProp",
     "fieldType": "radio",
-    "fieldModel": [ "Yes", "No" ]
+    "fieldModel": [ "Yes", "No" ],
+    "required": true
   },
   {
     "label": "APN:",
     "field": "APN",
-    "fieldType": "input"
+    "fieldType": "input",
+    "required": true
   },
   {
     "label": "Country on Title matches Appraisal and Empower: (!)",
     "field": "NeedProp",
     "fieldType": "radio",
-    "fieldModel": [ "Yes", "No" ]
+    "fieldModel": [ "Yes", "No" ],
+    "required": true
   },
   {
     "label": "Legal Description on Title matches Appraisal: (!)",
     "field": "NeedProp",
     "fieldType": "radio",
-    "fieldModel": [ "Yes", "No" ]
+    "fieldModel": [ "Yes", "No" ],
+    "required": true
   },
   {
     "label": "Property Type:",
     "field": "PropertyTypeName",
     "fieldType": "radio",
-    "fieldModel": [ "Single Family", "Multi-Family", "PUD", "Condo", "Manufactured" ]
+    "fieldModel": [ "Single Family", "Multi-Family", "PUD", "Condo", "Manufactured" ],
+    "required": true
   },
   {
     "label": "Property Type on Title matches Empower and Appraisal: (!)",
     "field": "NeedProp",
     "fieldType": "radio",
-    "fieldModel": [ "Yes", "No" ]
+    "fieldModel": [ "Yes", "No" ],
+    "required": true
   },
 
   {
     "label": "Current Mortgage:",
     "field": "CurrentMortgage",
-    "fieldType": "input"
+    "fieldType": "input",
+    "required": true
   },
   {
     "label": "HELOC/2nd Mortgage:",
@@ -110,7 +124,8 @@
   {
     "label": "Property Taxes:",
     "field": "PropertyTaxes",
-    "fieldType": "input"
+    "fieldType": "input",
+    "required": true
   },
   {
     "label": "Special Assessments:",

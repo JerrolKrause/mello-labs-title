@@ -17,32 +17,7 @@
 
       <hr />
      
-      <app-form-row label="Borrower Name/s"
-                    field="Borrower"
-                    fieldType="textarea"
-                    [ocrValue]="compData?.ocr['Borrower']"
-                    docTab="1"
-                    [form]="formExceptions">
-      </app-form-row>
-
-      <app-form-row label="Marital Status"
-                    field="MaritalStatusName"
-                    fieldType="radio"
-                    [fieldModel]="['Married','Un-Married','Registered/Domestic Partner']"
-                    [ocrValue]="compData?.ocr['MaritalStatusName']"
-                    docTab="2"
-                    [form]="formExceptions">
-      </app-form-row>
-
-      <app-form-row label="Loan Purpose"
-                    field="LoanPurposeName"
-                    fieldType="radio"
-                    [fieldModel]="['Purchase','Refinance']"
-                    [ocrValue]="compData?.ocr['LoanPurposeName']"
-                    docTab="3"
-                    [form]="formExceptions">
-      </app-form-row>
-
+   
 
     </form>
   </api-state>

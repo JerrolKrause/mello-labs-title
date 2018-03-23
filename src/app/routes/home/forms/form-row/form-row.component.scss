@@ -2,3 +2,6 @@
 
 .editable, .editing{padding-right:1.25rem;}
 .editable:hover{outline: 3px dashed #c3c3c3;cursor:pointer;}
+.editing{
+  label{-webkit-user-select: none;-moz-user-select: none;-khtml-user-select: none;-ms-user-select: none;}
+}

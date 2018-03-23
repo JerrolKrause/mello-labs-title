@@ -1,13 +1,21 @@
 <form [formGroup]="formTitle" id="formTitle">
 
   <div class="row">
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-3" [ngClass]="ocr ? 'col-md-3' : 'col-md-5' ">
       <strong>Field</strong>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4" *ngIf="ocr">
       <strong>Suggested Results</strong>
     </div>
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-md-5" [ngClass]="ocr ? 'col-md-5' : 'col-md-7' ">
+      <a class="float-right" (click)="editGlobal = !editGlobal">
+        <ng-container *ngIf="!editGlobal">
+          <i class="fa fa-gear"></i> Edit All
+        </ng-container>
+        <ng-container *ngIf="editGlobal">
+          <i class="fa fa-remove"></i> Cancel Edit All
+        </ng-container>
+      </a>
       <strong>Loan Data</strong>
     </div>
   </div>
@@ -17,11 +25,8 @@
   <ng-container *ngFor="let field of formView">
     <app-form-row *ngIf="!ocr || (ocr && ocr[field.field])"
                   [form]="formTitle"
-                  [label]="field.label"
-                  [field]="field.field"
-                  [fieldModel]="field.fieldModel"
-                  [radioFreeform]="field.radioFreeform"
-                  [fieldType]="field.fieldType"
+                  [viewModel]="field"
+                  [editing]="editGlobal ? true : false"
                   [ocrValue]="ocr && ocr[field.field] ? ocr[field.field] : null">
     </app-form-row>
   </ng-container>

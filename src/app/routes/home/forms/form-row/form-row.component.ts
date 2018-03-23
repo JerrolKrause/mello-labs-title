@@ -1,7 +1,35 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { UIStoreService, FormTypes } from '@ui';
 import * as _ from 'lodash';
+
+export interface viewModel {
+  label: string;
+  field: string;
+  fieldType: 'input' | 'textarea' | 'radio' | 'date',
+  fieldModel: string[],
+  radioFreeform: boolean,
+  required: boolean
+}
+
+export const hasRequiredField = (abstractControl: AbstractControl): boolean => {
+  if (abstractControl.validator) {
+    const validator = abstractControl.validator({} as AbstractControl);
+    if (validator && validator.required) {
+      return true;
+    }
+  }
+  if (abstractControl['controls']) {
+    for (const controlName in abstractControl['controls']) {
+      if (abstractControl['controls'][controlName]) {
+        if (hasRequiredField(abstractControl['controls'][controlName])) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};
 
 @Component({
   selector: 'app-form-row',
@@ -11,19 +39,14 @@ import * as _ from 'lodash';
 })
 export class FormRowComponent implements OnInit {
 
-  @Input() label: string;
-  @Input() field: string;
-  @Input() fieldType: 'input' | 'textarea' | 'radio';
-  @Input() fieldModel: any[];
-  @Input() docTab:number = 1;
-  @Input() ocrValue: string | string[];
-  @Input() radioFreeform = false;
   @Input() form: FormGroup;
+  @Input() viewModel: viewModel;
+  @Input() ocrValue: string | string[];
+  @Input() editing = false;
 
   public hasFuzzyMatch = false;
   public docID: string;
-  public editing = false;
-
+  
   public valuePrev: string;
   
   constructor(
@@ -31,16 +54,34 @@ export class FormRowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
+    // If viewmodel specifies required, set required in form
+    if (this.viewModel.required) {
+      this.form.get(this.viewModel.field).setValidators([Validators.required]);
+    }
+
     this.docID = _.shuffle(['ccsw9c8a9c8s', 'b23b423b4', 'm85mfhvgf', 'dcv125bb5', 'ddfds4674asd'])[0];
 
-    // Hold initial value
-    this.valuePrev = this.form.value[this.field];
+    if (this.viewModel && this.form){
+      // Hold initial value
+      this.valuePrev = this.form.value[this.viewModel.field];
+    }
+    
     // Check if fuzzy match
     if (Array.isArray(this.ocrValue)){
       this.hasFuzzyMatch = true;
     }
 
+  }
+
+  /**
+   * Toggle Editing of this field
+   * @param $event
+   */
+  public editToggle($event: MouseEvent) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.editing = !this.editing;
   }
 
   /**

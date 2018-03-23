@@ -21,6 +21,7 @@ export class FormTitleComponent implements OnInit, OnChanges {
   @Input() ocr;
   @Input() formData;
   public formTitle: FormGroup;
+  public editGlobal;
   
   public formView = require('./form-title.view.json');
   public formModel = require('./form-title.model.json');
