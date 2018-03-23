@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
 import { ApiService, ApiProps } from '@api'
 import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { PostMessageService } from '@shared';
 
 @Component({
   selector: 'app-viewer',
@@ -12,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewerComponent implements OnInit {
+export class ViewerComponent implements OnInit, AfterViewInit {
 
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
   public loanCurrentDocsStatus$ = this.api.getState$(ApiProps.loanCurrentDocs);
@@ -26,7 +28,8 @@ export class ViewerComponent implements OnInit {
     private api: ApiService,
     private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messaging: PostMessageService
   ) { }
 
   ngOnInit() {
@@ -49,6 +52,12 @@ export class ViewerComponent implements OnInit {
       }),
      
     );
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.messaging.postMessage('iframe', {}, '*', 'pdfViewer');
+    });
   }
 
   ngOnDestroy() {

@@ -49,7 +49,7 @@
         <div class="card-header">
           <i class="fa fa-warning yellow"></i> Needs Verification
         </div>
-        <div class="card-block">
+        <div class="card-block p-3">
           <ng-container *ngIf="{ocr : loanCurrentOcr$ | async, loan: loanCurrent$ | async} as data">
             <app-form-title *ngIf="data.ocr && data.loan"
                             [ocr]="data.ocr"
@@ -65,7 +65,7 @@
         <div class="card-header">
           <i class="fa fa-check green"></i> Verified
         </div>
-        <div class="card-block">
+        <div class="card-block p-3">
           <ng-container *ngIf="{loan: loanCurrent$ | async} as data">
             <app-form-title *ngIf="data.loan"
                             [formData]="data.loan">

@@ -41,14 +41,14 @@
           |
           <div class="btn-group">
             <button class="btn btn-sm btn-secondary" title="Toggle Document Split Screen View"
-              (click)="ui.multiDocsToggle()"
-              [ngClass]="{'active':multiDocs}">
+                    (click)="ui.multiDocsToggle()"
+                    [ngClass]="{'active':multiDocs}">
               <i class="fa fa-window-restore" aria-hidden="true"></i>
             </button>
             <button class="btn btn-sm btn-secondary" title="Open multi-screen view"
-              *ngIf="ui.screen || !multiScreen"
-              (click)="ui.multiScreenToggle()"
-              [ngClass]="{'active':multiScreen}">
+                    *ngIf="ui.screen || !multiScreen"
+                    (click)="ui.multiScreenToggle()"
+                    [ngClass]="{'active':multiScreen}">
               <i class="fa fa-external-link-square" aria-hidden="true"></i>
             </button>
           </div>
@@ -58,7 +58,15 @@
       <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{docs?.dict[docGuid]?.docName}} <em>({{lnkey}})</em>
     </div>
 
-    <object [data]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'"
+    <!-- Annotate demo -->
+    <iframe *ngIf="!demo"
+            id="pdfViewer"
+            src="//loandepot.webhop.net/TitleWorkflow/docannotations.aspx"
+            style="border:0;top: 52px;" class="w-100 pdf"></iframe>
+
+    <!-- Local fallback if not on remote server -->
+    <object *ngIf="demo"
+            [data]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'"
             type="application/pdf"
             class="w-100 pdf" style="top: 52px;">
       <embed [src]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'" type="application/pdf" />
