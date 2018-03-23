@@ -14,7 +14,16 @@
             <tr>
               <td style="width:20px;" class="text-center"><i class="fa fa-home" aria-hidden="true"></i></td>
               <td style="width: 88px;" *ngIf="!compData.multiScreen"><strong> Loan #</strong></td>
-              <td>{{compData.loan.LoanNumber}}</td>
+              <td>
+                <button class="btn btn-xs btn-secondary float-right"
+                        title="Toggle the Loan Contacts Sidebar"
+                        *ngIf="{visible:  ui.loanContacts$ | async } as btn"
+                        (click)="ui.loanContactsToggle()"
+                        [ngClass]="{'active':btn.visible}">
+                  <i aria-hidden="true" class="fa fa-users"></i>
+                </button>
+                {{compData.loan.LoanNumber}}
+              </td>
             </tr>
             <tr>
               <td class="text-center"><i class="fa fa-file-text" aria-hidden="true"></i></td>

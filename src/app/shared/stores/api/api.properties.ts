@@ -1,7 +1,7 @@
 /** String enum of store properties/primary keys */
 export enum ApiProps {
   loans = 'loans',
-  contacts = 'contacts';
+  contacts = 'contacts',
   loanCurrent = 'loanCurrent',
   loanCurrentOcr = 'loanCurrentOcr',
   loanCurrentDocs = 'loanCurrentDocs',

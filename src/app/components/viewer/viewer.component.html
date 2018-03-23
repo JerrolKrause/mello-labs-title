@@ -6,63 +6,50 @@
       status : loanCurrentDocsStatus$ | async } as compData">
   <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
 
-    <!--
-    <div class="btn-group float-right">
-      <button class="btn btn-sm" (click)="ui.multiDocsToggle()" title="Toggle Document Split Screen View" [ngClass]="compData.multiDocs ? 'btn-primary' : 'btn-secondary'">
-        <i class="fa fa-window-restore" aria-hidden="true"></i>
-      </button>
-      <button class="btn btn-sm" (click)="ui.multiScreenToggle()" title="Open multi-screen view" [ngClass]="compData.multiScreen ? 'btn-primary' : 'btn-secondary'">
-        <i class="fa fa-external-link-square" aria-hidden="true"></i>
-      </button>
-    </div>
-    -->
-    <div class="viewer" [ngClass]="compData.multiDocs ? 'half' : null" id="app-viewer-route">
-      <app-document-viewer instance="0"
-                           [docGuid]="compData?.docViewerGuids[0]"
-                           [docs]="compData.docs"
-                           [multiDocs]="compData.multiDocs"
-                           [multiScreen]="compData.multiScreen">
-      </app-document-viewer>
-    </div>
+    <!-- Integrated doc viewer -->
+    <ng-container *ngIf="!isStandalone">
+      <div class="viewer" [ngClass]="compData.multiDocs ? 'half' : null" id="app-viewer-route">
+        <app-document-viewer instance="0"
+                             [docGuid]="compData?.docViewerGuids[0]"
+                             [docs]="compData.docs"
+                             [multiDocs]="compData.multiDocs"
+                             [multiScreen]="compData.multiScreen">
+        </app-document-viewer>
+      </div>
 
-    <div class="viewer half bottom" id="app-viewer-route" *ngIf="compData.multiDocs">
-      <app-document-viewer instance="1"
-                           [docGuid]="compData?.docViewerGuids[1]"
-                           [docs]="compData.docs"
-                           [multiDocs]="compData.multiDocs"
-                           [multiScreen]="compData.multiScreen">
-      </app-document-viewer>
-    </div>
+      <div class="viewer half bottom" id="app-viewer-route" *ngIf="compData.multiDocs">
+        <app-document-viewer instance="1"
+                             [docGuid]="compData?.docViewerGuids[1]"
+                             [docs]="compData.docs"
+                             [multiDocs]="compData.multiDocs"
+                             [multiScreen]="compData.multiScreen">
+        </app-document-viewer>
+      </div>
+    </ng-container>
 
-
-    <!--
-  <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
-
-    <ngb-tab id="tab-1">
-      <ng-template ngbTabTitle>
-        <i class="fa fa fa-file-pdf-o"></i> Document Viewer
-      </ng-template>
-      <ng-template ngbTabContent>
-
-
-
-
-      </ng-template>
-    </ngb-tab>
-
-    <ngb-tab id="tab-2">
-      <ng-template ngbTabTitle>
-        <i class="fa fa-globe" aria-hidden="true"></i> Web Browser
-      </ng-template>
-      <ng-template ngbTabContent>
-        <app-web-tool>
-        </app-web-tool>
-      </ng-template>
-    </ngb-tab>
-
-    </ngb-tabset>
-    -->
-
+    <!-- Standalone doc viewer -->
+    <ng-container *ngIf="isStandalone">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12" [ngClass]="compData.multiDocs ? 'col-md-6' : null" style="height: 100vh;">
+            <app-document-viewer instance="0"
+                                 [docGuid]="compData?.docViewerGuids[0]"
+                                 [docs]="compData.docs"
+                                 [multiDocs]="compData.multiDocs"
+                                 [multiScreen]="compData.multiScreen">
+            </app-document-viewer>
+          </div>
+          <div class="col-12 col-md-6" *ngIf="compData.multiDocs" style="height: 100vh;">
+            <app-document-viewer instance="1"
+                                 [docGuid]="compData?.docViewerGuids[1]"
+                                 [docs]="compData.docs"
+                                 [multiDocs]="compData.multiDocs"
+                                 [multiScreen]="compData.multiScreen">
+            </app-document-viewer>
+          </div>
+        </div>
+      </div>
+    </ng-container>
 
   </api-state>
 </div>

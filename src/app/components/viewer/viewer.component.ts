@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEnca
 import { ApiService, ApiProps } from '@api'
 import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-viewer',
@@ -14,12 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewerComponent implements OnInit {
 
-
-
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
   public loanCurrentDocsStatus$ = this.api.getState$(ApiProps.loanCurrentDocs);
 
-
+  public isStandalone = false;
   public lnkey: string;
   private subs: Subscription[] = [];
 
@@ -27,13 +25,20 @@ export class ViewerComponent implements OnInit {
     public ui: UIStoreService,
     private api: ApiService,
     private ref: ChangeDetectorRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
 
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentDocs.get().subscribe();
+
+    if (this.router.url.indexOf('viewer') != -1) {
+      this.isStandalone = true;
+    }
+
+    console.log(this.router.url)
 
     this.subs.push(
       // Get LNkey from route params
