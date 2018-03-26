@@ -1,6 +1,7 @@
 <div id="app-loan" class="container-fluid"
      *ngIf="{
         multiScreen : ui.multiScreen$ | async,
+        multiDocs : ui.multiDocs$ | async,
         loanContactsShow : ui.loanContacts$ | async
       } as compData">
 
@@ -86,6 +87,12 @@
                     [ngClass]="{'active':btn.visible}">
               <i aria-hidden="true" class="fa fa-users"></i>
             </button>
+              <button class="btn btn-sm btn-secondary"
+                      title="Toggle Document Split Screen View"
+                      (click)="ui.multiDocsToggle()"
+                      [ngClass]="{'active': compData.multiDocs}">
+                <i class="fa fa-window-restore" aria-hidden="true"></i>
+              </button>
             <button class="btn btn-sm btn-secondary"
                     title="Close multi-screen view"
                     (click)="ui.multiScreenToggle()"

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { ApiService, ApiProps } from '@api'
@@ -6,7 +6,7 @@ import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-
+import { PostMessageService } from '@shared';
 
 @Component({
   selector: 'app-loan',
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./loan.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoanComponent implements OnInit {
+export class LoanComponent implements OnInit, AfterViewInit {
 
   public lnkey: string;
   public loan;
@@ -32,7 +32,8 @@ export class LoanComponent implements OnInit {
     public ui: UIStoreService,
     private api: ApiService,
     private ref: ChangeDetectorRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messaging: PostMessageService
   ) { }
 
   ngOnInit() {
@@ -60,12 +61,11 @@ export class LoanComponent implements OnInit {
         let multiScreen: boolean = res[0];
         let docGuid: string = res[1][0];
         // If a doc guid is present, add that to the route parameters
-        let docGuidString = docGuid ? '/' + docGuid : '';
-
+        
         // If multiscreen is present and a window is not yet open and has not been closed
         if (multiScreen && !this.ui.screen) {
           setTimeout(() => {
-            this.ui.screen = window.open(this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer');
+            this.ui.screen = window.open(this.slug + '#/viewer/' + this.lnkey, 'Document Viewer');
           });
         }
         // If window has been closed
@@ -75,12 +75,13 @@ export class LoanComponent implements OnInit {
         // If multi screen has been set and a window is already opened, update url in current window
         else if (multiScreen && this.ui.screen) {
           setTimeout(() => {
-            this.ui.screen.location.href = this.slug + '#/viewer/' + this.lnkey + docGuidString, 'Document Viewer';
+            this.ui.screen.location.href = this.slug + '#/viewer/' + this.lnkey, 'Document Viewer';
           });
         }
         // If screen is open and multiscreen is false, close window
         else if (this.ui.screen && multiScreen === false) {
           this.ui.screen.close();
+          this.ui.screen = null;
         }
       }),
       // Load active loan form into store
@@ -105,6 +106,11 @@ export class LoanComponent implements OnInit {
     // console.log('formRef', formType, form);
 
     this.ref.detectChanges();
+  }
+
+
+  ngAfterViewInit() {
+   
   }
 
   ngOnDestroy() {

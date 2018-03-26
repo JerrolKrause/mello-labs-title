@@ -21,7 +21,18 @@ export class DocumentViewerComponent implements OnInit, OnChanges{
 
   public lnkey: string;
 
-  public demo = false;
+  public webLinks = [
+    {
+      label: 'USPS Address Verification',
+      url: 'https://tools.usps.com/go/ZipLookupResultsAction!input.action'
+    },
+    {
+      label: 'Title Request Form',
+      url: 'http://ldcorp/dept/IT/SitePages/Home.aspx'
+    },
+  ]
+
+  public demo = true;
 
   constructor(
     public ui: UIStoreService,
@@ -57,6 +68,10 @@ export class DocumentViewerComponent implements OnInit, OnChanges{
         }
       });
       */
+  }
+
+  public windowOpen(url:string) {
+    window.open(url);
   }
 
   ngOnChanges() {

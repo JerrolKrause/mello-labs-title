@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { IStore } from '@shared';
 import { UIStoreActions, FormTypes } from './ui.store.actions';
 
+import { Subscription } from 'rxjs/Subscription';
+import { PostMessageService } from 'src/app/shared/services/post-message.service';
+
 @Injectable()
 export class UIStoreService {
 
@@ -18,18 +21,26 @@ export class UIStoreService {
   public formVesting$ = this.store.select(store => store.ui.forms.vesting);
   public formLoan$ = this.store.select(store => store.ui.forms.loan);
   public multiScreen$ = this.store.select(store => store.ui.multiscreen);
-  public multiScreenDocs$ = this.store.select(store => store.ui.multiDocs);
+  public multiDocs$ = this.store.select(store => store.ui.multiDocs);
   public loanContacts$ = this.store.select(store => store.ui.loanContacts);
 
-  public screen;
+  public screen: Window;
 
   constructor(
-    private store: Store<IStore.root>
+    private store: Store<IStore.root>,
+    private messaging: PostMessageService
   ) {
+    // Rehydrate UI state from localstorage
     if (window.localStorage.getItem('ui')) {
       this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
     }
 
+    // Listen for any interapp communication on same domain
+    this.messaging.listenForMessages([window.location.origin]).subscribe(message => {
+      // console.warn('Message Received', message);
+      // Update UI state from localstorage
+      this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
+    });
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
   }
 
@@ -39,7 +50,8 @@ export class UIStoreService {
    * @param tabNum
    */
   public tabChange(tabType: 'dashboard' | 'viewer' | 'form', tabNum:number) {
-    this.store.dispatch({ type: UIStoreActions.TAB_CHANGE, payload: { tabType: tabType, tabNum: tabNum} });
+    this.store.dispatch({ type: UIStoreActions.TAB_CHANGE, payload: { tabType: tabType, tabNum: tabNum } });
+    this.resyncUI();
   }
 
   /**
@@ -48,6 +60,7 @@ export class UIStoreService {
    */
   public docViewerChange(docViewerInstance: 0 | 1, docGuid:string) {
     this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid } });
+    this.resyncUI();
   }
 
   /**
@@ -61,10 +74,8 @@ export class UIStoreService {
    * Toggle multiscreen view which moves the document viewer into its own window
    */
   public multiScreenToggle(multiScreen = true) {
-    //if (!this.screen && multiScreen){
-    //  window.close();
-    //}
     this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: null });
+    this.resyncUI();
   }
 
   /**
@@ -72,6 +83,7 @@ export class UIStoreService {
    */
   public multiDocsToggle() {
     this.store.dispatch({ type: UIStoreActions.MULTIDOCS_TOGGLE, payload: null });
+    this.resyncUI();
   }
 
   /**
@@ -96,5 +108,13 @@ export class UIStoreService {
     this.store.dispatch({ type: UIStoreActions.REHYDRATE, payload: uiState });
   }
 
+
+  private resyncUI() {
+    if (this.screen) {
+      this.messaging.postMessageToWindow(this.screen, { event: 'RESYNC_UI', payload: 'To Child' })
+    } else if (window.opener) {
+      this.messaging.postMessageToWindow(window.opener, { event: 'RESYNC_UI', payload: 'To Parent' });
+    }
+  }
 
 }

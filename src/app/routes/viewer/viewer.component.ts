@@ -8,7 +8,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ViewerRouteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }

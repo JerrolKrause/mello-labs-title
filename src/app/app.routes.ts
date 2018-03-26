@@ -20,8 +20,7 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'Please Log In' + titleSlug } },
   { path: 'viewer', component: ViewerRouteComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
   { path: 'viewer/:lnkey', component: ViewerRouteComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
-  { path: 'viewer/:lnkey/:docGuid', component: ViewerRouteComponent, data: { title: 'Document Viewer' + titleSlug }, canActivate: [AuthGuard], },
-
+  
   // Routes that use masterpage go here
   // canActivate with AuthGuard determines if this is an authenticated only route
   {

@@ -2,7 +2,7 @@
       docs:loanCurrentDocs$ | async,
       docViewerGuids: ui.docViewerGuids$ | async,
       multiScreen: ui.multiScreen$ | async,
-      multiDocs: ui.multiScreenDocs$ | async,
+      multiDocs: ui.multiDocs$ | async,
       status : loanCurrentDocsStatus$ | async } as compData">
   <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
 

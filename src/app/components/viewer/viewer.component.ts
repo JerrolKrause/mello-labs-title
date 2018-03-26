@@ -55,9 +55,14 @@ export class ViewerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.messaging.postMessage('iframe', {}, '*', 'pdfViewer');
-    });
+    //console.log('Posting and listening for messages');
+    //this.messaging.listenForMessages().subscribe(message => {
+    //  console.log('listenForMessages', message);
+    //});
+    //  setTimeout(() => {
+    //    this.messaging.postMessage('iframe', { event: 'Test', payload: 'Test' }, '*', 'pdfViewer');
+    //    this.messaging.postMessage('url', { event: 'Test2', payload: 'Test2' }, '*');
+    //}, 1000);
   }
 
   ngOnDestroy() {
