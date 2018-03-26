@@ -82,7 +82,7 @@
     </div>
     <!-- Loan Contacts Sidebar -->
     <div class="col-12 col-md-3 col-lg-2" *ngIf="compData.loanContactsShow">
-      <app-loan-contacts [loanNumber]="lnkey" [contacts]="contacts$ | async"></app-loan-contacts>
+      <app-loan-contacts [loanNumber]="settings.lnkey" [contacts]="contacts$ | async"></app-loan-contacts>
     </div>
   </div>
 
@@ -162,7 +162,7 @@
     </div>
 
     <div class="col-12 col-lg-2" *ngIf="compData.loanContactsShow" style="height: calc(100vh - 98px);">
-      <app-loan-contacts [loanNumber]="lnkey" [contacts]="contacts$ | async"></app-loan-contacts>
+      <app-loan-contacts [loanNumber]="settings.lnkey" [contacts]="contacts$ | async"></app-loan-contacts>
     </div>
 
   </div>

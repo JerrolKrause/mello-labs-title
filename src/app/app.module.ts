@@ -47,6 +47,7 @@ import {
   AuthGuard,
   ServiceWorkerService,
   PostMessageService,
+  AppCommsService,
 
   // Interceptors
   HttpInterceptorService,
@@ -92,6 +93,7 @@ export const APP_PROVIDERS = [
   AuthService,
   ApiService,
   AppSettings,
+  AppCommsService,
   UIModalService,
   UIStoreService,
   AuthGuard,

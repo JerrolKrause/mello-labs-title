@@ -6,6 +6,7 @@ enum Props {
   token = 'token',
   apiUrl = 'apiUrl',
   userName = 'userName',
+  lnkey = 'lnkey'
 }
 
 // Getter/setters for app settings. Will read/write to app settings and on app load will try to reload from localstorage/sessionstorage
@@ -38,6 +39,16 @@ export class AppSettings {
   }
   public set apiUrl(value: string) {
     this.propSet(Props.apiUrl, value);
+  }
+
+  /** Username */
+  private _lnkey: string = null;
+  /** Username */
+  public get lnkey(): string {
+    return this.propGet(Props.lnkey);
+  }
+  public set lnkey(value: string) {
+    this.propSet(Props.lnkey, value);
   }
 
   /** Username */
