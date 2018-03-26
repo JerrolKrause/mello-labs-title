@@ -118,7 +118,7 @@ export class UIStoreService {
 
     // Listen for any interapp communication on same domain
     this.messaging.listenForMessages([window.location.origin]).subscribe(message => {
-      console.log('Message Received', message);
+      // console.log('Message Received', message);
       switch (message.event) {
         case MessageActions.RESYNC_UI:
           if (message.payload) {

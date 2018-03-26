@@ -34,7 +34,7 @@ import {
 // Components
 import {
   FooterComponent, HeaderComponent, LayoutMainComponent, LayoutSingleComponent, NavComponent, NavSearchComponent,
-  ConfirmationModalComponent, LogoutModalComponent,
+  ConfirmationModalComponent, LogoutModalComponent, ExceptionComponent,
   LaunchModalComponent, DocumentViewerComponent
 } from '@components';
 
@@ -83,7 +83,7 @@ export const APP_COMPONENTS = [
   FooterComponent, HeaderComponent, LayoutMainComponent, LayoutSingleComponent, NavComponent, NavSearchComponent,
   LaunchModalComponent,
 
-  ConfirmationModalComponent, LogoutModalComponent
+  ConfirmationModalComponent, LogoutModalComponent, ExceptionComponent,
 ];
 
 // Application wide providers
@@ -174,7 +174,7 @@ export const APP_PROVIDERS = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent, EmpowerNoteAddComponent
+    ConfirmationModalComponent, LogoutModalComponent, ExceptionComponent, EmpowerSaveComponent, EmpowerNotesComponent, EmpowerNoteAddComponent
   ]
 })
 export class AppModule { }
