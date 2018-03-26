@@ -1,11 +1,11 @@
 {
   "borrowers": [
     {
-      "name": "Sisco, Steven",
-      "phone": "7025100724",
+      "name": "Smith, John",
+      "phone": "(555) 555-5555",
       "uTimeZoneDesc": "Pacific Time Zone",
       "whichBorr": 1,
-      "address": "7620 Turquoise Stone Court",
+      "address": "6561 Irvine Center Drive",
       "city": "Las Vegas",
       "county": "Clark",
       "state": "NV",
@@ -15,66 +15,66 @@
   ],
   "employees": [
     {
-      "phone": "(949) 461-3828",
+      "phone": "(555) 555-5555",
       "extension": "1828",
-      "email": "CDitchfield@loandepot.com",
-      "employeeName": "Cassandra Ditchfield",
+      "email": "test@loandepot.com",
+      "employeeName": "Cassandra Production Manager",
       "bcdRole": "Production Manager",
       "userId": 0
     },
     {
-      "phone": "(949) 470-6696",
+      "phone": "(555) 555-5555",
       "extension": "1396",
-      "email": "DConrad@loandepot.com",
-      "employeeName": "Daniel Conrad",
+      "email": "test@loandepot.com",
+      "employeeName": "Daniel Mortgage Banker",
       "bcdRole": "Mortgage Banker",
       "userId": 0
     },
     {
-      "phone": "(949) 595-7071",
+      "phone": "(555) 555-5555",
       "extension": "1671",
-      "email": "KHunter@loandepot.com",
-      "employeeName": "Kenneth Hunter",
+      "email": "test@loandepot.com",
+      "employeeName": "Kenneth Appraisal Coordinator",
       "bcdRole": "Appraisal Coordinator",
       "userId": 0
     },
     {
-      "phone": "(949) 595-7062",
+      "phone": "(555) 555-5555",
       "extension": "1662",
-      "email": "msoutherland@loandepot.com",
-      "employeeName": "Melissa Southerland",
+      "email": "test@loandepot.com",
+      "employeeName": "Melissa Processing Manager",
       "bcdRole": "Processing Manager",
       "userId": 0
     },
     {
-      "phone": "(949) 461-3772",
+      "phone": "(555) 555-5555",
       "extension": "1772",
-      "email": "ibang@loandepot.com",
-      "employeeName": "Irene Bang",
+      "email": "test@loandepot.com",
+      "employeeName": "Irene Sr Account Manager",
       "bcdRole": "Sr Account Manager",
       "userId": 0
     },
     {
-      "phone": "(949) 282-5347",
+      "phone": "(555) 555-5555",
       "extension": "4047",
-      "email": "LLarman@loandepot.com",
-      "employeeName": "Lori Larman",
+      "email": "test@loandepot.com",
+      "employeeName": "Lori Account Manager",
       "bcdRole": "Account Manager",
       "userId": 0
     },
     {
-      "phone": "(949) 465-9050",
+      "phone": "(555) 555-5555",
       "extension": "3550",
-      "email": "JMa@ldescrow.com",
-      "employeeName": "Johnny Ma",
+      "email": "test@loandepot.com",
+      "employeeName": "Johnny Escrow Officer",
       "bcdRole": "Escrow Officer",
       "userId": 0
     },
     {
-      "phone": "(949) 609-6611",
+      "phone": "(555) 555-5555",
       "extension": "3211",
-      "email": "TuHo@ldescrow.com",
-      "employeeName": "Tuan Ho",
+      "email": "test@loandepot.com",
+      "employeeName": "Tuan Escrow Assistant",
       "bcdRole": "Escrow Assistant",
       "userId": 0
     }
