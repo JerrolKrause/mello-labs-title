@@ -30,7 +30,54 @@
         </div>
       </div>
 
-      <app-forms *ngIf="lnkey"></app-forms>
+      <div id="app-forms">
+
+        <ngb-tabset #tab="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
+
+          <ngb-tab id="tab-1">
+            <ng-template ngbTabTitle>
+              <i class="fa fa-warning yellow"></i> Needs Verification
+            </ng-template>
+            <ng-template ngbTabContent>
+
+              <ng-container *ngIf="{ocr : loanCurrentOcr$ | async, loan: loanCurrent$ | async} as data">
+                <app-form-title *ngIf="data.ocr && data.loan"
+                                [ocr]="data.ocr"
+                                [formData]="data.loan">
+                </app-form-title>
+              </ng-container>
+
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab id="tab-2">
+            <ng-template ngbTabTitle>
+              <i class="fa fa-check green"></i> Verified
+            </ng-template>
+            <ng-template ngbTabContent>
+
+              <ng-container *ngIf="{loan: loanCurrent$ | async} as data">
+                <app-form-title *ngIf="data.loan"
+                                [formData]="data.loan">
+                </app-form-title>
+              </ng-container>
+
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab id="tab-3">
+            <ng-template ngbTabTitle>
+              <i class="fa fa-file-pdf-o"></i> Document Status
+            </ng-template>
+            <ng-template ngbTabContent>
+              <app-document-status></app-document-status>
+            </ng-template>
+          </ngb-tab>
+
+        </ngb-tabset>
+
+      </div>
+
 
     </div>
     <!-- Loan Contacts Sidebar -->

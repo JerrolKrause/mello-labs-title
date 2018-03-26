@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { ApiService, ApiProps } from '@api'
@@ -12,6 +12,7 @@ import { PostMessageService } from '@shared';
   selector: 'app-loan',
   templateUrl: './loan.component.html',
   styleUrls: ['./loan.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoanComponent implements OnInit, AfterViewInit {
@@ -57,11 +58,7 @@ export class LoanComponent implements OnInit, AfterViewInit {
         }
       }),
       // Manage multiscreen functionality
-      Observable.combineLatest(this.ui.multiScreen$, this.ui.docViewerGuids$).subscribe(res => {
-        let multiScreen: boolean = res[0];
-        let docGuid: string = res[1][0];
-        // If a doc guid is present, add that to the route parameters
-        
+      this.ui.multiScreen$.subscribe(multiScreen => {
         // If multiscreen is present and a window is not yet open and has not been closed
         if (multiScreen && !this.ui.screen) {
           setTimeout(() => {
@@ -89,8 +86,7 @@ export class LoanComponent implements OnInit, AfterViewInit {
         if (loans && loans.dict) {
           this.ui.formChange(FormTypes.loan, loans.dict[this.lnkey]);
         }
-      }),
-
+      })
     );
 
     // Get loan contacts
@@ -104,7 +100,6 @@ export class LoanComponent implements OnInit, AfterViewInit {
    */
   public formRef(formType: FormTypes, form: FormBuilder) {
     // console.log('formRef', formType, form);
-
     this.ref.detectChanges();
   }
 

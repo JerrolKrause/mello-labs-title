@@ -24,10 +24,10 @@ export class AppSettings {
   private _token: string = null;
   /** API token for EPS */
   public get token(): string {
-    return this.propGet(Props.token, 'sessionStorage');
+    return this.propGet(Props.token);
   }
   public set token(value: string) {
-    this.propSet(Props.token, value, 'sessionStorage');
+    this.propSet(Props.token, value);
   }
 
   /** Web Api Url */

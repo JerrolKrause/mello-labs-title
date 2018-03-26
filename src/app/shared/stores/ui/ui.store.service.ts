@@ -6,6 +6,13 @@ import { UIStoreActions, FormTypes } from './ui.store.actions';
 
 import { Subscription } from 'rxjs/Subscription';
 import { PostMessageService } from 'src/app/shared/services/post-message.service';
+import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
+
+export enum MessageActions {
+  RESYNC_UI = 'RESYNC_UI',
+  END_MULTISCREEN = 'END_MULTISCREEN'
+}
 
 @Injectable()
 export class UIStoreService {
@@ -28,19 +35,14 @@ export class UIStoreService {
 
   constructor(
     private store: Store<IStore.root>,
-    private messaging: PostMessageService
+    private messaging: PostMessageService,
+    private route: ActivatedRoute,
   ) {
     // Rehydrate UI state from localstorage
     if (window.localStorage.getItem('ui')) {
       this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
     }
-
-    // Listen for any interapp communication on same domain
-    this.messaging.listenForMessages([window.location.origin]).subscribe(message => {
-      // console.warn('Message Received', message);
-      // Update UI state from localstorage
-      this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
-    });
+    this.multiAppCommunication();
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
   }
 
@@ -58,7 +60,7 @@ export class UIStoreService {
    * Change the currently visible document in the document viewer
    * @param docID - GUID of document
    */
-  public docViewerChange(docViewerInstance: 0 | 1, docGuid:string) {
+  public docViewerChange(docViewerInstance: 0 | 1, docGuid: string) {
     this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid } });
     this.resyncUI();
   }
@@ -73,8 +75,8 @@ export class UIStoreService {
   /**
    * Toggle multiscreen view which moves the document viewer into its own window
    */
-  public multiScreenToggle(multiScreen = true) {
-    this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: null });
+  public multiScreenToggle(multiScreen: boolean = null) {
+    this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: multiScreen });
     this.resyncUI();
   }
 
@@ -104,16 +106,49 @@ export class UIStoreService {
   }
 
   /**  Reload the last UI state from localstorage */
-  public rehydrateUI = (uiState: any) => {
+  public rehydrateUI(uiState: any) {
+    // console.log('rehydrateUI', uiState);
     this.store.dispatch({ type: UIStoreActions.REHYDRATE, payload: uiState });
   }
 
+  /**
+   * Manage multi app communication via postmessage
+   */
+  private multiAppCommunication() {
 
+    // Listen for any interapp communication on same domain
+    this.messaging.listenForMessages([window.location.origin]).subscribe(message => {
+      console.log('Message Received', message);
+      switch (message.event) {
+        case MessageActions.RESYNC_UI:
+          if (message.payload) {
+            this.rehydrateUI(message.payload);
+          } else { // Update UI state from localstorage
+            this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
+          }
+          break;
+        case MessageActions.END_MULTISCREEN:
+          this.multiScreenToggle(false);
+          break;
+      }
+    });
+
+    // When this window is closed, tell parent to end multiscreen
+    window.onbeforeunload = () => {
+      if (window.opener){
+        this.messaging.postMessageToWindow(window.opener, { event: MessageActions.END_MULTISCREEN, payload: null });
+      }
+    }
+  }
+
+  /**
+   * Resync the UI state between multiple instances of the web app
+   */
   private resyncUI() {
     if (this.screen) {
-      this.messaging.postMessageToWindow(this.screen, { event: 'RESYNC_UI', payload: 'To Child' })
+      this.messaging.postMessageToWindow(this.screen, { event: MessageActions.RESYNC_UI, payload: null })
     } else if (window.opener) {
-      this.messaging.postMessageToWindow(window.opener, { event: 'RESYNC_UI', payload: 'To Parent' });
+      this.messaging.postMessageToWindow(window.opener, { event: MessageActions.RESYNC_UI, payload: null });
     }
   }
 

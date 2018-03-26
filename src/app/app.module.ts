@@ -63,16 +63,12 @@ import {
 
 import { UIModalService, UIStoreService, UIStoreReducer } from '@ui';
 import { ApiService } from '@api';
-import { FormsComponent } from './routes/home/forms/forms.component';
-import { ExceptionsComponent } from './routes/home/forms/exceptions/exceptions.component';
-import { VerifiedComponent } from './routes/home/forms/verified/verified.component';
 import { LoanInfoComponent } from './components/loan-info/loan-info.component';
 import { LoanComponent } from './routes/loan/loan.component';
 import { EmpowerSaveComponent } from './components/modals/empower-save/empower-save.component';
 import { EmpowerNotesComponent } from './components/modals/empower-notes/empower-notes.component';
 import { EmpowerNoteAddComponent } from './components/modals/empower-note-add/empower-note-add.component';
-import { FormRowComponent } from './routes/home/forms/form-row/form-row.component';
-import { ExceptionComponent } from './components/modals/exception/exception.component';
+import { FormRowComponent } from './components/form-title/form-row/form-row.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { WebToolComponent } from './components/web-tool/web-tool.component';
 import { DocumentStatusComponent } from './components/document-status/document-status.component';
@@ -125,12 +121,6 @@ export const APP_PROVIDERS = [
 
     DocumentViewerComponent,
 
-    FormsComponent,
-
-    ExceptionsComponent,
-
-    VerifiedComponent,
-
     LoanComponent,
 
     LoanInfoComponent,
@@ -143,7 +133,6 @@ export const APP_PROVIDERS = [
 
     FormRowComponent,
 
-    ExceptionComponent,
     ViewerComponent,
 
     ViewerRouteComponent,
@@ -185,7 +174,7 @@ export const APP_PROVIDERS = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent, ExceptionComponent, EmpowerNoteAddComponent
+    ConfirmationModalComponent, LogoutModalComponent, EmpowerSaveComponent, EmpowerNotesComponent, EmpowerNoteAddComponent
   ]
 })
 export class AppModule { }

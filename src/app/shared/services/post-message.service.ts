@@ -58,7 +58,9 @@ export class PostMessageService {
    * @param urlTarget - If the target url is known, only post to that domain. Otherwise its *
    */
   public postMessageToParent(message: Message, urlTarget: string = '*') {
-    window.parent.postMessage(this.addMetadata(message), urlTarget);
+    if (window.parent){
+      window.parent.postMessage(this.addMetadata(message), urlTarget);
+    }
   }
 
   /**
@@ -68,6 +70,7 @@ export class PostMessageService {
    * @param urlTarget  - If the target url is known, only post to that domain. Otherwise its *
    */
   public postMessageToIframe(id: string, message: Message, urlTarget: string = '*') {
+    // Make sure the element is on the DOM
     if ((<any>document).getElementById(id) && (<any>document).getElementById(id).contentWindow) {
       (<any>document).getElementById(id).contentWindow.postMessage(this.addMetadata(message), urlTarget);
     }
@@ -79,7 +82,7 @@ export class PostMessageService {
    * @param message - The message payload
    * @param urlTarget  - If the target url is known, only post to that domain. Otherwise its *
    */
-  public postMessageToWindow(reference: Window, message: Message, urlTarget: string = '*' ) {
+  public postMessageToWindow(reference: Window, message: Message, urlTarget: string = '*') {
     reference.postMessage(this.addMetadata(message), urlTarget);
   }
 

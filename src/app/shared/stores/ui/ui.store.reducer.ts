@@ -27,7 +27,7 @@ Jane Smith`,
 };
 
 export function UIStoreReducer(state = initialState, { type, payload }) {
-   // console.log('UI REDUCER:', type, payload);
+  // console.log('UI REDUCER:', type, payload, JSON.parse(JSON.stringify(state)));
 
   // Write state to localstorage for persistence
   const saveState = () => {
@@ -69,7 +69,7 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
       saveState();
       break;
     case UIStoreActions.MULTISCREEN_TOGGLE:
-      state.multiscreen = !state.multiscreen;
+      state.multiscreen = payload !== null ? payload : !state.multiscreen;
       saveState();
       break;
     case UIStoreActions.DOC_CHANGE:
@@ -99,6 +99,6 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
 
   }
 
-  // console.log('UI STATE: ', state);
+  // console.log('UI STATE: ', JSON.parse(JSON.stringify(state)));
   return state;
 }

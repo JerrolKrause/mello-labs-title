@@ -4,6 +4,7 @@
       multiScreen: ui.multiScreen$ | async,
       multiDocs: ui.multiDocs$ | async,
       status : loanCurrentDocsStatus$ | async } as compData">
+
   <api-state [state]="compData?.status" [toaster]="true" [showSuccess]="false" *ngIf="compData?.status">
 
     <!-- Integrated doc viewer -->
