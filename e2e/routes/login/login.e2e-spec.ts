@@ -24,13 +24,7 @@ describe('Login Page', () => {
     let result = 3;
     expect<any>(subject).toEqual(result);
   });
-
-  it('should have login button be disabled by default', () => {
-    let subject = element(by.css('form button[type="submit"]'));
-    let result = true;
-    expect<any>(subject.isEnabled()).toEqual(false);
-  });
-
+  
   it('should show password in plain text after clicking Show Password', () => {
     element(by.css('form .toggle-pwd')).click();
     let subject = element(by.css('form .password')).getAttribute('type')

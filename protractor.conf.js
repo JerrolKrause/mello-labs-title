@@ -7,15 +7,15 @@ exports.config = {
   allScriptsTimeout: 11000,
   // Comment out All tests and uncomment/change one of the other lines to only run a few tests
   specs: [
-    //'./e2e/**/*.e2e-spec.ts', // All tests
-    //'./e2e/routes/login/**/*.e2e-spec.ts'  // Login route only
-    './e2e/components/pipes/**/*.e2e-spec.ts' // Components only
+    './e2e/**/*.e2e-spec.ts', // All tests
+   // './e2e/routes/loan/**/*.e2e-spec.ts'  // Login route only
+    //'./e2e/components/pipes/**/*.e2e-spec.ts' // Components only
   ],
   capabilities: {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  baseUrl: 'http://localhost:4206/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
@@ -27,7 +27,7 @@ exports.config = {
       project: 'e2e/tsconfig.e2e.json'
     });
     require("zone.js/dist/zone-node");
-
+    
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
     console.log('onPrepare');
     // Login to get initial token and such
@@ -37,7 +37,11 @@ exports.config = {
     element(by.css('form .password')).clear();
     element(by.css('form .password')).sendKeys('123456');
     element(by.css('form button[type="submit"]')).click();
-
+    
+    
+    
+    //element(by.css('form button[type="submit"]')).
+    
     return browser.driver.wait(function () {
       return browser.driver.getCurrentUrl().then(function (url) {
         return url.indexOf('login') === -1 ? true : false;

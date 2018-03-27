@@ -4,7 +4,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { UIStoreService } from '@ui';
+import { UIStoreService, FormTypes } from '@ui';
 import { ApiService } from '@api'
 
 declare var require: any
@@ -34,7 +34,11 @@ export class FormTitleComponent implements OnInit, OnChanges {
     this.formTitle = this.createFormModel(this.formModel);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formTitle.valueChanges.subscribe(form => {
+      this.ui.formChange(FormTypes.borrower, form, true);
+    });
+  }
 
   ngOnChanges(model) {
     if (this.formData) {

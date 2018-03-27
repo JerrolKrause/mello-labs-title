@@ -32,7 +32,7 @@ export class DocumentViewerComponent implements OnInit, OnChanges{
     },
   ]
 
-  public demo = true;
+  public demo = false;
 
   constructor(
     public ui: UIStoreService,

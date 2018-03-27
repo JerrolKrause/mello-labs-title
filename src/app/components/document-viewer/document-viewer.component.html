@@ -9,29 +9,29 @@
     <div class="card-header">
       <div class="float-right">
         <small class="mr-2">
-          <em>JKrause</em> |
-          <em>02/24/2018</em> |
-          <i class="fa fa-arrow-right" title="Side" *ngIf="docs?.dict[docGuid]?.rightSide"></i>
-          <i class="fa fa-arrow-left" title="Side" *ngIf="!docs?.dict[docGuid]?.rightSide"></i> |
+          <em class="e2e-created-by">JKrause</em> |
+          <em class="e2e-created-on">02/24/2018</em> |
+          <i class="fa fa-arrow-right e2e-side" title="Side" *ngIf="docs?.dict[docGuid]?.rightSide"></i>
+          <i class="fa fa-arrow-left e2e-side" title="Side" *ngIf="!docs?.dict[docGuid]?.rightSide"></i> |
 
           <ng-container *ngIf="docs?.dict[docGuid]?.forReview">
-            <i class="fa fa-square for-review {{docs?.dict[docGuid]?.forReview}}" aria-hidden="true" title="For Review"></i> |
+            <i class="fa fa-square e2e-for-review {{docs?.dict[docGuid]?.forReview}}" aria-hidden="true" title="For Review"></i> |
           </ng-container>
 
-          <i class="fa fa-check-square green" title="Final Stamp" aria-hidden="true" *ngIf="docs?.dict[docGuid]?.finalStamp"></i>
-          <i class="fa fa-square" title="Final Stamp" aria-hidden="true" *ngIf="!docs?.dict[docGuid]?.finalStamp"></i>
+          <i class="fa fa-check-square green e2e-final-stamp" title="Final Stamp" aria-hidden="true" *ngIf="docs?.dict[docGuid]?.finalStamp"></i>
+          <i class="fa fa-square e2e-final-stamp" title="Final Stamp" aria-hidden="true" *ngIf="!docs?.dict[docGuid]?.finalStamp"></i>
         </small>
 
         <div class="btn-group">
           <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop="ngbDropdown"
                (mouseenter)="$event.stopPropagation(); myDrop.open();"
                (mouseleave)="$event.stopPropagation(); myDrop.close();">
-            <button class="btn btn-secondary btn-sm"
+            <button class="btn btn-secondary btn-sm e2e-dropdown-docs"
                     style="border-top-right-radius:0;border-bottom-right-radius:0;"
                     id="dropdownBasic1" ngbDropdownToggle>
               <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="hidden-lg-down">Docs ({{docs.src.length}})</span>
             </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="e2e-dropdown-docs-list">
               <button class="dropdown-item" [ngClass]="doc.docGuid == docGuid ? 'active' : null"
                       (click)="ui.docViewerChange(instance, doc.docGuid)"
                       *ngFor="let doc of docs.src">
@@ -43,11 +43,11 @@
           <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop2="ngbDropdown"
                (mouseenter)="$event.stopPropagation(); myDrop2.open();"
                (mouseleave)="$event.stopPropagation(); myDrop2.close();">
-            <button class="btn btn-secondary btn-sm" id="dropdownBasic1"
+            <button class="btn btn-secondary btn-sm e2e-dropdown-web" id="dropdownBasic1"
                     style="border-top-left-radius:0;border-bottom-left-radius:0;border-left:0;" ngbDropdownToggle>
               <i class="fa fa-globe" aria-hidden="true"></i> <span class="hidden-lg-down">Web ({{webLinks.length}})</span>
             </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="e2e-dropdown-web-list">
               <button class="dropdown-item"
                       (click)="windowOpen(web.url)"
                       *ngFor="let web of webLinks">
@@ -60,12 +60,12 @@
         <ng-container>
           |
           <div class="btn-group">
-            <button class="btn btn-sm btn-secondary" title="Toggle Document Split Screen View"
+            <button class="btn btn-sm btn-secondary e2e-splitscreen" title="Toggle Document Split Screen View"
                     (click)="ui.multiDocsToggle()"
                     [ngClass]="{'active':multiDocs}">
               <i class="fa fa-window-restore" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-sm btn-secondary" title="Open multi-screen view"
+            <button class="btn btn-sm btn-secondary e2e-multiscreen" title="Open multi-screen view"
                     *ngIf="ui.screen || !multiScreen"
                     (click)="ui.multiScreenToggle()"
                     [ngClass]="{'active':multiScreen}">
@@ -75,21 +75,21 @@
         </ng-container>
 
       </div>
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{docs?.dict[docGuid]?.docName}} <em>({{lnkey}})</em>
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="e2e-docname">{{docs?.dict[docGuid]?.docName}} <em>({{lnkey}})</em></span>
     </div>
 
     <!-- Annotate demo,  | safe: 'resourceUrl' -->
     <iframe *ngIf="!demo"
             id="pdfViewer"
             src="//loandepot.webhop.net/TitleWorkflow/docannotations.aspx?docid=1"
-            style="border:0;top: 52px;" class="w-100 pdf"></iframe>
+            style="border:0;top: 52px;" class="w-100 pdf e2e-document"></iframe>
 
     <!-- Local fallback if not on remote server -->
     <object *ngIf="demo"
             id="pdfViewer"
             [data]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'"
             type="application/pdf"
-            class="w-100 pdf" style="top: 52px;">
+            class="w-100 pdf e2e-document" style="top: 52px;">
       <embed [src]="docs?.dict[docGuid]?.docUrl | safe: 'resourceUrl'" type="application/pdf" />
     </object>
 
