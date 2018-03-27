@@ -16,7 +16,7 @@
     <ng-container *ngIf="ocrValue">
       <br />
       <small>
-        <app-launch-modal classes="pl-3" modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for ' + label + '?'" [isButton]="false"
+        <app-launch-modal classes="pl-3" modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for ' + viewModel.label + '?'" [isButton]="false"
                           (onSuccess)="conditionAdd($event)">
           <i class="fa fa-plus"></i> Add Condition
         </app-launch-modal>

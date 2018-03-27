@@ -12,9 +12,16 @@ export enum MessageActions {
   END_MULTISCREEN = 'END_MULTISCREEN'
 }
 
+/**
+ * Manages communication between multiple app instances or apps that live on separate domains
+ * COMMON USAGES:
+ *
+ */
 @Injectable()
 export class AppCommsService {
-
+  /** A list of domains to allow communication from, based on window.location.origin */
+  private allowedDomains: string[] = [window.location.origin];
+  /** Hold subs for unsub */
   private subs: Subscription[] = [];
 
   constructor(
@@ -39,7 +46,7 @@ export class AppCommsService {
       ]).subscribe(res => this.resyncUI()),
 
       // Listen for any interapp communication on same domain
-      this.messaging.listenForMessages([window.location.origin]).subscribe(message => {
+      this.messaging.listenForMessages(this.allowedDomains).subscribe(message => {
         // console.log('Message Received', message);
         switch (message.event) {
           case MessageActions.RESYNC_UI:
@@ -47,7 +54,7 @@ export class AppCommsService {
             if (message.payload) {
               this.ui.rehydrateUI(message.payload);
             }
-            // Update UI state from localstorage
+            // Otherwise update UI state from localstorage
             else {
               this.ui.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
             }
