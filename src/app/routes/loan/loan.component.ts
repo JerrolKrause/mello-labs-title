@@ -1,12 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { NgbTab, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiService, ApiProps } from '@api'
 import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { PostMessageService, AppSettings } from '@shared';
+import { PostMessageService, AppSettings, AppCommsService } from '@shared';
 
 @Component({
   selector: 'app-loan',
@@ -17,12 +18,27 @@ import { PostMessageService, AppSettings } from '@shared';
 })
 export class LoanComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('tab') tab: NgbTabset;
+
   public loan;
 
   public contacts$ = this.api.contacts$;
   public loanContacts$ = this.ui.loanContacts$
   public loanCurrent$ = this.api.loanCurrent$;
   public loanCurrentOcr$ = this.api.loanCurrentOcr$;
+
+  public tabStart = 'tab-1';
+
+  public webLinks = [
+    {
+      label: 'USPS Address Verification',
+      url: 'https://tools.usps.com/go/ZipLookupResultsAction!input.action'
+    },
+    {
+      label: 'Title Request Form',
+      url: 'http://ldcorp/dept/IT/SitePages/Home.aspx'
+    },
+  ];
 
   public exceptionCleared = false;
   private slug = window.location.origin + window.location.pathname;
@@ -34,13 +50,13 @@ export class LoanComponent implements OnInit, AfterViewInit {
     private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
     private messaging: PostMessageService,
-    public settings: AppSettings
+    public settings: AppSettings,
+    private comms: AppCommsService
   ) { }
 
   ngOnInit() {
 
     this.api.loans.get().subscribe();
-
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentOcr.get().subscribe();
     this.api.loanCurrentDocs.get().subscribe();
@@ -51,46 +67,31 @@ export class LoanComponent implements OnInit, AfterViewInit {
 
     this.subs.push(
       // Get LNkey from route params
-      this.route.params.subscribe(params => this.settings.lnkey = params.lnkey),
+      this.route.params.subscribe(params => {
+        this.settings.lnkey = params.lnkey;
+        this.comms.multiScreenState(); // Update multiscreen if present
+      }),
       this.api.loans$.subscribe(loans => {
         if (loans) {
           this.loan = loans.dict[this.settings.lnkey];
         }
       }),
-      // Manage multiscreen functionality
-      //this.ui.multiScreen$.subscribe(multiScreen => {
-      //  // If multiscreen is present and a window is not yet open and has not been closed
-      //  if (multiScreen && !this.ui.screen) {
-      //    setTimeout(() => {
-      //      this.ui.screen = window.open(this.slug + '#/viewer/' + this.lnkey, 'Document Viewer');
-      //    });
-      //  }
-      //  // If window has been closed
-      //  else if (this.ui.screen && this.ui.screen.closed) {
-      //    this.ui.screen = null;
-      //  }
-      //  // If multi screen has been set and a window is already opened, update url in current window
-      //  else if (multiScreen && this.ui.screen) {
-      //    setTimeout(() => {
-      //      this.ui.screen.location.href = this.slug + '#/viewer/' + this.lnkey, 'Document Viewer';
-      //    });
-      //  }
-      //  // If screen is open and multiscreen is false, close window
-      //  else if (this.ui.screen && multiScreen === false) {
-      //    this.ui.screen.close();
-      //    this.ui.screen = null;
-      //  }
-      //}),
       // Load active loan form into store
       this.api.loans$.subscribe(loans => {
         if (loans && loans.dict) {
           this.ui.formChange(FormTypes.loan, loans.dict[this.settings.lnkey]);
         }
-      })
+      }),
+      // Initial visible tab
+      this.ui.tabForm$.subscribe(tabNum => this.tabStart = 'tab-' + tabNum)
     );
 
     // Get loan contacts
     this.api.contacts.get(this.settings.lnkey).subscribe()
+  }
+
+  public windowOpen(url: string) {
+    window.open(url);
   }
 
   /**
@@ -104,7 +105,16 @@ export class LoanComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngAfterViewInit() {  }
+  ngAfterViewInit() {
+  // On tab change, update UI store
+    if (this.tab){
+      this.subs.push(
+        this.tab.tabChange.subscribe(tabNum => {
+          this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
+        })
+      );
+    }
+  }
 
   ngOnDestroy() {
     if (this.ui.screen && !this.ui.screen.closed) {

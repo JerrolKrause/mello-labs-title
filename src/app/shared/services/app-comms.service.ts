@@ -98,7 +98,7 @@ export class AppCommsService {
   /**
    * Manage the state of multiscreen functionality
    */
-  private multiScreenState() {
+  public multiScreenState() {
     let slug = window.location.origin + window.location.pathname;
     this.subs.push(
       this.ui.multiScreen$.subscribe(multiScreen => {

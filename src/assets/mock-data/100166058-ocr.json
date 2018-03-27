@@ -1,13 +1,93 @@
-{
-  "BorrowerNames": "Adam Smith & Janet Smith",
-  "MaritalStatusName": [ "Married", "Un-Married" ],
-  "LoanNumber": "100166058",
-  "TitleVendor": "BNT Title Company of CA",
-  "LoanTypeName": "Fixed Rate",
-  "OwnershipTypeName": "Fee Simple",
-  "LoanPurposeName": [ "Purchase", "Refinance" ],
-  "RefiPurposeName": "CashOutOther",
-  "CurrentMortgage": "DMI/NATION DIRECT MT",
-  "PropertyTypeName": "Single Family",
-  "PropertyPurposeName": "Primary"
-}
+[
+  {
+    "Id": "46f847ba-6f6f-4725-877a-f8b3af6532af",
+    "docId": "1",
+    "pageNumber": 1,
+    "field": "Order ID",
+    "value": "CA3059211",
+    "bounds": {
+      "x": 680,
+      "y": 126,
+      "w": 144,
+      "h": 28
+    }
+  },
+  {
+    "Id": "d958d5a4-7d9d-4a48-8641-5e767365f25d",
+    "docId": "1",
+    "pageNumber": 2,
+    "field": "Order ID",
+    "value": "CA3059211",
+    "bounds": {
+      "x": 650,
+      "y": 332,
+      "w": 144,
+      "h": 28
+    }
+  },
+  {
+    "Id": "8b974b99-34fa-41a8-af9d-24ba6247dd19",
+    "docId": "1",
+    "pageNumber": 2,
+    "field": "Loan Amount",
+    "value": "$200,000.00",
+    "bounds": {
+      "x": 546,
+      "y": 440,
+      "w": 244,
+      "h": 28
+    }
+  },
+  {
+    "Id": "126eae5b-5ced-4ca7-94ff-c0160d94d4ca",
+    "docId": "1",
+    "pageNumber": 2,
+    "field": "Property Address",
+    "value": "6561 Irvine Center Drive, Irvine CA, 92618",
+    "bounds": {
+      "x": 100,
+      "y": 554,
+      "w": 200,
+      "h": 68
+    }
+  },
+  {
+    "Id": "f0426859-f9e4-4f82-a480-e88f6150d3e3",
+    "docId": "1",
+    "pageNumber": 2,
+    "field": "Name",
+    "value": "Jerrol Kraus",
+    "bounds": {
+      "x": 134,
+      "y": 890,
+      "w": 116,
+      "h": 28
+    }
+  },
+  {
+    "Id": "860639f7-3573-4539-852f-e658969bbf7d",
+    "docId": "1",
+    "pageNumber": 3,
+    "field": "Assessor's Parcel No",
+    "value": "123-3212-123-32",
+    "bounds": {
+      "x": 102,
+      "y": 424,
+      "w": 380,
+      "h": 28
+    }
+  },
+  {
+    "Id": "c6f883a0-64c4-4088-8603-de79307a24a5",
+    "docId": "2",
+    "pageNumber": 1,
+    "field": "Address",
+    "value": "6561 Irvine Center Drive, Irvine CA, 92618",
+    "bounds": {
+      "x": 120,
+      "y": 448,
+      "w": 180,
+      "h": 42
+    }
+  }
+]

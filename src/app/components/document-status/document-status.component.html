@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let doc of docs.src | filter: true : 'rightSide'">
+      <tr *ngFor="let doc of docs.src | filter: true : 'rightSide'" [ngClass]="doc.isTitleReport ? 'strong' : '' ">
         <td>
           <a (click)="ui.docViewerChange(0,doc.docGuid)">
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{doc.docName}}
@@ -34,7 +34,7 @@
   <h3><i class="fa fa-arrow-left"></i> Left Side</h3>
   <table class="table table-sm table-striped" style="border:0;">
     <tbody>
-      <tr *ngFor="let doc of docs.src | filter: false : 'rightSide'">
+      <tr *ngFor="let doc of docs.src | filter: false : 'rightSide'" [ngClass]="doc.isTitleReport ? 'strong' : '' ">
         <td>
           <a (click)="ui.docViewerChange(0,doc.docGuid)">
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{doc.docName}}

@@ -12,8 +12,6 @@ import { PostMessageService } from 'src/app/shared/services/post-message.service
 import { AppCommsService } from 'src/app/shared/services/app-comms.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-
-
 export enum MessageActions {
   RESYNC_UI = 'RESYNC_UI',
   END_MULTISCREEN = 'END_MULTISCREEN'

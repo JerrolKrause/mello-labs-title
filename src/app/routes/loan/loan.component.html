@@ -20,7 +20,7 @@
         <div class="card">
           <div class="card-block">
 
-            <div class="alert alert-danger icon" *ngIf="loan?.exceptionReason && !exceptionCleared">
+            <div class="alert alert-warning icon" *ngIf="loan?.exceptionReason && !exceptionCleared">
               <button class="btn btn-primary btn-sm float-right ml-3" (click)="exceptionCleared = true"><i class="fa fa-remove"></i> Clear Exception</button>
               {{loan?.exceptionReason}}
             </div>
@@ -71,6 +71,19 @@
             </ng-template>
             <ng-template ngbTabContent>
               <app-document-status></app-document-status>
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab id="tab-4">
+            <ng-template ngbTabTitle>
+              <i class="fa fa-globe" aria-hidden="true"></i> Web Links
+            </ng-template>
+            <ng-template ngbTabContent>
+              <a class="d-block p-1"
+                      (click)="windowOpen(web.url)"
+                      *ngFor="let web of webLinks">
+                <i class="fa fa-external-link-square"></i> {{web.label}}
+              </a>
             </ng-template>
           </ngb-tab>
 

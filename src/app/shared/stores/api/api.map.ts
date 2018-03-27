@@ -19,11 +19,11 @@ export const ApiMap: IStore.ApiMapping = {
     uniqueId: 'lnkey',
     mapSrc: 'src',
     map: (users: any[]) => {
-     
+
       let namesFirst = users.map(user => user.name.split(' ')[0]);
       let namesLast = users.map(user => _.last(user.name.split(' ')));
-      let states = ['AZ','CA','CO','IL','MI','NY','TX','HI','OR','WA'];
-      
+      let states = ['AZ', 'CA', 'CO', 'IL', 'MI', 'NY', 'TX', 'HI', 'OR', 'WA'];
+
       let usersNew = [...users, ...users, ...users];
       let dict = {};
       usersNew = users.map((user, i) => {
@@ -73,7 +73,6 @@ export const ApiMap: IStore.ApiMapping = {
     uniqueId: 'docGuid',
     mapSrc: 'src',
     map: (docs: any[]) => {
-
       let forReview = ['orange', 'blue', 'green', 'purple', 'red', '', ''];
       // Sample dictionary mapping based on id property
       const dict = {};
@@ -89,7 +88,8 @@ export const ApiMap: IStore.ApiMapping = {
       });
 
       // If title is present, move to front of array
-      if (title && title[0]){
+      if (title && title[0]) {
+        title[0].isTitleReport = true;
         docs = [...title, ...docs.filter(doc => {
           return doc.docName.toLowerCase().replace(/[^A-Z0-9]/ig, "").indexOf('titlereport') == -1 ? true : false;
         })];
@@ -103,10 +103,21 @@ export const ApiMap: IStore.ApiMapping = {
     }
   },
 
-  
   loanCurrentOcr: {
+    //endpoint: '//loandepot.webhop.net/OCRService/api/GetOcrMetadata',
     endpoint: 'assets/mock-data/100166058-ocr.json',
     storeProperty: ApiProps.loanCurrentOcr,
+    uniqueId: 'Id',
+    mapSrc: 'src',
+    map: (docs: any[]) => {
+      // Sample dictionary mapping based on id property
+      const dict = {};
+      docs.forEach(doc => dict[doc.Id] = doc);
+      return {
+        src: docs,
+        dict: dict
+      };
+    }
   },
 
   contacts: {

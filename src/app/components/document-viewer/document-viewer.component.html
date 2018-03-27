@@ -40,24 +40,26 @@
             </div>
           </div>
 
-          <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop2="ngbDropdown"
-               (mouseenter)="$event.stopPropagation(); myDrop2.open();"
-               (mouseleave)="$event.stopPropagation(); myDrop2.close();">
-            <button class="btn btn-secondary btn-sm e2e-dropdown-web" id="dropdownBasic1"
-                    style="border-top-left-radius:0;border-bottom-left-radius:0;border-left:0;" ngbDropdownToggle>
-              <i class="fa fa-globe" aria-hidden="true"></i> <span class="hidden-lg-down">Web ({{webLinks.length}})</span>
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="e2e-dropdown-web-list">
-              <button class="dropdown-item"
-                      (click)="windowOpen(web.url)"
-                      *ngFor="let web of webLinks">
-                <i class="fa fa-external-link-square"></i> {{web.label}}
-              </button>
-            </div>
-          </div>
-        </div>
+          <!--
+  <div ngbDropdown class="d-inline-block" placement="bottom-right" #myDrop2="ngbDropdown"
+       (mouseenter)="$event.stopPropagation(); myDrop2.open();"
+       (mouseleave)="$event.stopPropagation(); myDrop2.close();">
+    <button class="btn btn-secondary btn-sm e2e-dropdown-web" id="dropdownBasic1"
+            style="border-top-left-radius:0;border-bottom-left-radius:0;border-left:0;" ngbDropdownToggle>
+      <i class="fa fa-globe" aria-hidden="true"></i> <span class="hidden-lg-down">Web ({{webLinks.length}})</span>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="e2e-dropdown-web-list">
+      <button class="dropdown-item"
+              (click)="windowOpen(web.url)"
+              *ngFor="let web of webLinks">
+        <i class="fa fa-external-link-square"></i> {{web.label}}
+      </button>
+    </div>
+  </div>
+  -->
 
-        <ng-container>
+        </div>
+  
           |
           <div class="btn-group">
             <button class="btn btn-sm btn-secondary e2e-splitscreen" title="Toggle Document Split Screen View"
@@ -72,10 +74,9 @@
               <i class="fa fa-external-link-square" aria-hidden="true"></i>
             </button>
           </div>
-        </ng-container>
 
-      </div>
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="e2e-docname">{{docs?.dict[docGuid]?.docName}} <em>({{lnkey}})</em></span>
+        </div>
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <strong class="e2e-docname">{{docs?.dict[docGuid]?.docName}} <em>({{lnkey}})</em></strong>
     </div>
 
     <!-- Annotate demo,  | safe: 'resourceUrl' -->
