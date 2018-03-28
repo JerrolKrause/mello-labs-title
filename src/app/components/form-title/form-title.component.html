@@ -23,11 +23,13 @@
   <hr />
 
   <ng-container *ngFor="let field of formView">
-    <app-form-row *ngIf="!ocr || (ocr && ocr[field.field])"
+    
+    <app-form-row *ngIf="!ocr || (ocr.dict && ocr.dict[field.field])"
                   [form]="formTitle"
                   [viewModel]="field"
                   [editing]="editGlobal ? true : false"
-                  [ocrValue]="ocr && ocr[field.field] ? ocr[field.field] : null">
+                  [ocrModel]="ocr && ocr.dict[field.field] ? ocr.dict[field.field] : null"
+                  [ocrValue]="ocr && ocr.dict[field.field] ? ocr.dict[field.field].value : null">
     </app-form-row>
   </ng-container>
 

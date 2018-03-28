@@ -63,8 +63,8 @@ export class UIStoreService {
    * Change the currently visible document in the document viewer
    * @param docID - GUID of document
    */
-  public docViewerChange(docViewerInstance: 0 | 1, docGuid: string) {
-    this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid } });
+  public docViewerChange(docViewerInstance: 0 | 1, docGuid: string, pageNumber?: number, bounds?: any) {
+    this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid, pageNumber: pageNumber, bounds: bounds } });
   }
 
   /**

@@ -9,7 +9,8 @@ import { AppSettings } from '@shared';
 
 export enum MessageActions {
   RESYNC_UI = 'RESYNC_UI',
-  END_MULTISCREEN = 'END_MULTISCREEN'
+  END_MULTISCREEN = 'END_MULTISCREEN',
+  BOUNDS_CHANGE = 'BOUNDS_CHANGE',
 }
 
 /**
@@ -38,6 +39,19 @@ export class AppCommsService {
   public commsEnable() {
 
     this.subs = [
+      // Pass OCR annotate coordinates to the PDF viewer for highlight
+      this.ui.docViewerGuids$.subscribe(docs => {
+        if (docs && docs[0] && docs[0].bounds){
+          setTimeout(() => {
+            let payload = {
+              bounds: docs[0].bounds,
+              pageNumber: docs[0].pageNumber
+            }
+            this.messaging.postMessageToIframe('pdfViewer', { event: MessageActions.BOUNDS_CHANGE, payload: payload });
+          }, 500);
+        }
+      }),
+
       // Watch UI Store changes and fire the resync UI method to update store state in all instances
       Observable.combineLatest([
         this.ui.multiDocs$,

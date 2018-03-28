@@ -12,6 +12,21 @@ export interface viewModel {
   required: boolean
 }
 
+export interface ocrModel {
+  Id: string;
+  docId: string;
+  pageNumber: number;
+  field: string;
+  label: string;
+  value: string;
+  bounds: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  }
+}
+
 export const hasRequiredField = (abstractControl: AbstractControl): boolean => {
   if (abstractControl.validator) {
     const validator = abstractControl.validator({} as AbstractControl);
@@ -42,6 +57,7 @@ export class FormRowComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() viewModel: viewModel;
   @Input() ocrValue: string | string[];
+  @Input() ocrModel: ocrModel;
   @Input() editing = false;
 
   public hasFuzzyMatch = false;

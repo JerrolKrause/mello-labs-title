@@ -11,9 +11,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./document-viewer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DocumentViewerComponent implements OnInit, OnChanges{
+export class DocumentViewerComponent implements OnInit, OnChanges {
 
   @Input() docGuid: string;
+  @Input() bounds: {
+    h: number;
+    w: number;
+    x: number;
+    y: number;
+  };
+  @Input() pageNumber: number;
   @Input() multiScreen: boolean;
   @Input() multiDocs: boolean;
   @Input() docs: any;
@@ -42,14 +49,14 @@ export class DocumentViewerComponent implements OnInit, OnChanges{
 
   ngOnInit() {
 
-    
+
 
     this.route.params.subscribe(params => {
       if (params) {
         this.lnkey = params.lnkey;
       }
     });
-    
+
     /*
       // Fake document changing on route change
       this.route.params.subscribe(params => {
@@ -70,7 +77,7 @@ export class DocumentViewerComponent implements OnInit, OnChanges{
       */
   }
 
-  public windowOpen(url:string) {
+  public windowOpen(url: string) {
     window.open(url);
   }
 
@@ -81,6 +88,6 @@ export class DocumentViewerComponent implements OnInit, OnChanges{
 
   }
 
-  
+
 
 }

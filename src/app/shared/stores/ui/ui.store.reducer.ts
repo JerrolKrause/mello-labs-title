@@ -73,7 +73,11 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
       saveState();
       break;
     case UIStoreActions.DOC_CHANGE:
-      state.docViewerGuids[payload.instance] = payload.docGuid;
+      state.docViewerGuids[payload.instance] = {
+        docGuid : payload.docGuid,
+        bounds: payload.bounds,
+        pageNumber: payload.pageNumber
+      };
       state.docViewerGuids = [...state.docViewerGuids];
       saveState();
       break;

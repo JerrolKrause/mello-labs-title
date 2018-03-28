@@ -112,7 +112,7 @@ export const ApiMap: IStore.ApiMapping = {
     map: (docs: any[]) => {
       // Sample dictionary mapping based on id property
       const dict = {};
-      docs.forEach(doc => dict[doc.Id] = doc);
+      docs.forEach(doc => dict[doc.field] = doc);
       return {
         src: docs,
         dict: dict

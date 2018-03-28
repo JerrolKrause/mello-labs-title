@@ -35,6 +35,7 @@ export class FormTitleComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log(this.ocr);
     this.formTitle.valueChanges.subscribe(form => {
       this.ui.formChange(FormTypes.borrower, form, true);
     });

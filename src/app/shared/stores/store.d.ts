@@ -41,7 +41,7 @@ export declare namespace IStore {
       options: {};
       data: any;
     };
-    docViewerGuids?: string[];
+    docViewerGuids?: document[];
     multiscreen?: boolean;
     multiDocs?: boolean;
     loanContacts?: boolean;
@@ -56,6 +56,16 @@ export declare namespace IStore {
     }
   }
 
+  interface document {
+    docGuid: string;
+    pageNumber: number;
+    bounds: {
+      h: number;
+      w: number;
+      x: number;
+      y: number;
+    }
+  }
 
   /*************************
   * Non-customizable interfaces

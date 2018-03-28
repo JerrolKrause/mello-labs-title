@@ -1,5 +1,7 @@
 {
   "NeedProp": "N/A",
+  "OrderID": true,
+  "AccessorsParcel":  true,
   "Borrower": true,
   "LoanNumber": true,
   "TitleVendor": true,
@@ -12,6 +14,7 @@
   "BorrowerNames": null,
   "MaritalStatus": 1,
   "MaritalStatusName": null,
+  "Address":  null,
   "PropertyAddress": {
     "County": "Alameda",
     "Street1": "37903 Vallejo St",

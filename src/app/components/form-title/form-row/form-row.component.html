@@ -1,6 +1,6 @@
 <div class="row pt-2 pb-2 striped" [formGroup]="form">
 
-  <div class="col-12" [ngClass]="ocrValue ? 'col-md-3' : 'col-md-5'">
+  <div class="col-12" [ngClass]="ocrModel ? 'col-md-3' : 'col-md-5'">
 
     <ng-container *ngIf="viewModel.required">
       <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.valid"></i>
@@ -11,9 +11,9 @@
       <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
     </ng-container>
 
-    <a (click)="ui.docViewerChange(0,docID)">{{viewModel.label}}</a>
+    <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel.label}}</a>
 
-    <ng-container *ngIf="ocrValue">
+    <ng-container *ngIf="ocrModel">
       <br />
       <small>
         <app-launch-modal classes="pl-3" modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for ' + viewModel.label + '?'" [isButton]="false"
@@ -24,11 +24,11 @@
     </ng-container>
   </div>
 
-  <div class="col-12 col-md-4" *ngIf="ocrValue" [ngClass]="ocrValue ? 'col-md-4' : null">
+  <div class="col-12 col-md-4" *ngIf="ocrModel" [ngClass]="ocrModel ? 'col-md-4' : null">
 
     <div class="btn-group-vertical w-100">
       <ng-container *ngIf="!hasFuzzyMatch">
-        <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: ocrValue, value: ocrValue, form: form, field: field }"></ng-container>
+        <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: ocrModel, value: ocrModel, form: form, field: field }"></ng-container>
       </ng-container>
       <ng-container *ngIf="hasFuzzyMatch">
         <ng-container *ngFor="let value of ocrValue">
@@ -39,7 +39,7 @@
 
   </div>
 
-  <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrValue ? 'col-md-5' : 'col-md-7'" style="position:relative;">
+  <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrModel ? 'col-md-5' : 'col-md-7'" style="position:relative;">
     <div class="w-100" (dblclick)="editToggle($event)" [ngClass]="editing ? 'editing' : 'editable'">
 
       <div class="float-right icon-action">
@@ -56,7 +56,6 @@
             <i class="fa fa-undo" aria-hidden="true"></i>
           </a>
         </ng-container>
-
       </div>
 
 
@@ -117,12 +116,13 @@
 </div>
 
 <!-- OCR button template -->
-<ng-template #ocrValueTemplate let-value="value" let-form="form" let-field="field">
+<ng-template #ocrValueTemplate let-value="ocrModel" let-form="form" let-field="field">
   <button class="btn btn-sm w-100 text-left btn-secondary"
-          [disabled]="editing || form.value[field] == value"
-          (click)="updateForm(viewModel.field,value)">
-    <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != value"></i>
-    <i class="fa fa-check float-right" *ngIf="form.value[field] == value"></i>
-    {{value}}
+          *ngIf="ocrModel?.value"
+          [disabled]="editing || form.value[field] == ocrModel.value"
+          (click)="updateForm(viewModel.field,ocrModel.value)">
+    <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != ocrModel.value"></i>
+    <i class="fa fa-check float-right" *ngIf="form.value[field] == ocrModel.value"></i>
+    {{ocrModel.value}}
   </button>
 </ng-template>

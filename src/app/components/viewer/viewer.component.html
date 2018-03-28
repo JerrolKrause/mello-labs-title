@@ -11,7 +11,9 @@
     <ng-container *ngIf="!isStandalone">
       <div class="viewer" [ngClass]="compData.multiDocs ? 'half' : null" id="app-viewer-route">
         <app-document-viewer instance="0"
-                             [docGuid]="compData?.docViewerGuids[0]"
+                             [docGuid]="compData?.docViewerGuids[0].docGuid"
+                             [bounds]="compData?.docViewerGuids[0].bounds"
+                             [pageNumber]="compData?.docViewerGuids[1].pageNumber"
                              [docs]="compData.docs"
                              [multiDocs]="compData.multiDocs"
                              [multiScreen]="compData.multiScreen">
@@ -20,7 +22,9 @@
 
       <div class="viewer half bottom" id="app-viewer-route" *ngIf="compData.multiDocs">
         <app-document-viewer instance="1"
-                             [docGuid]="compData?.docViewerGuids[1]"
+                             [docGuid]="compData?.docViewerGuids[1].docGuid"
+                             [bounds]="compData?.docViewerGuids[1].bounds"
+                             [pageNumber]="compData?.docViewerGuids[1].pageNumber"
                              [docs]="compData.docs"
                              [multiDocs]="compData.multiDocs"
                              [multiScreen]="compData.multiScreen">
@@ -28,13 +32,16 @@
       </div>
     </ng-container>
 
+
     <!-- Standalone doc viewer -->
     <ng-container *ngIf="isStandalone">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12" [ngClass]="compData.multiDocs ? 'col-md-6' : null" style="height: 100vh;">
             <app-document-viewer instance="0"
-                                 [docGuid]="compData?.docViewerGuids[0]"
+                                 [docGuid]="compData?.docViewerGuids[0].docGuid"
+                                 [bounds]="compData?.docViewerGuids[0].bounds"
+                                 [pageNumber]="compData?.docViewerGuids[1].pageNumber"
                                  [docs]="compData.docs"
                                  [multiDocs]="compData.multiDocs"
                                  [multiScreen]="compData.multiScreen">
@@ -42,7 +49,9 @@
           </div>
           <div class="col-12 col-md-6" *ngIf="compData.multiDocs" style="height: 100vh;">
             <app-document-viewer instance="1"
-                                 [docGuid]="compData?.docViewerGuids[1]"
+                                 [docGuid]="compData?.docViewerGuids[1].docGuid"
+                                 [bounds]="compData?.docViewerGuids[1].bounds"
+                                 [pageNumber]="compData?.docViewerGuids[1].pageNumber"
                                  [docs]="compData.docs"
                                  [multiDocs]="compData.multiDocs"
                                  [multiScreen]="compData.multiScreen">

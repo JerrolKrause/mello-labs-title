@@ -3,7 +3,7 @@
     "label": "Borrower Name(s):",
     "field": "BorrowerNames",
     "fieldType": "input",
-    "required" :  true
+    "required": true
   },
   {
     "label": "Marital Status",
@@ -86,6 +86,31 @@
     "field": "NeedProp",
     "fieldType": "radio",
     "fieldModel": [ "Yes", "No" ],
+    "required": true
+  },
+
+  {
+    "label": "Order ID:",
+    "field": "OrderID",
+    "fieldType": "input",
+    "required": true
+  },
+  {
+    "label": "Loan Amount:",
+    "field": "LoanAmount",
+    "fieldType": "input",
+    "required": true
+  },
+  {
+    "label": "Address:",
+    "field": "Address",
+    "fieldType": "input",
+    "required": true
+  },
+  {
+    "label": "Accessors Parcel:",
+    "field": "AccessorsParcel",
+    "fieldType": "input",
     "required": true
   },
 
