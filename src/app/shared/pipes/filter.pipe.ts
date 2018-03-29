@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * USAGE:  | filter: 'John' : 'fullName'
  */
 @Pipe({
-  name: 'filter'
+  name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
   transform(arr: string[], searchValue: string | boolean, objProp: string) {
@@ -14,14 +14,16 @@ export class FilterPipe implements PipeTransform {
     }
     // Clean up the string to make matching easier
     const simplifyString = (str: string | boolean) => {
-      return str.toString().toLowerCase().trim().replace(/[^a-z0-9]/gi, '');
+      return str
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]/gi, '');
     };
 
-    return arr.filter((elem:any) => {
+    return arr.filter((elem: any) => {
       // If objProp was supplied, search the prop within the object, otherwise its a string array and search that
-      const stringSearch = objProp ?
-        simplifyString(elem[objProp]) :
-        simplifyString(elem);
+      const stringSearch = objProp ? simplifyString(elem[objProp]) : simplifyString(elem);
       // If includes, return value
       return stringSearch.includes(simplifyString(searchValue)) ? true : false;
     });

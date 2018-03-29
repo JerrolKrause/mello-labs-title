@@ -1,4 +1,23 @@
-#app-viewer{position:absolute;top:0;right:0;bottom:0;left:0;height: 100%;
-  .dropdown-menu{margin-top:0!important;right: 0!important;left: auto!important;}
-  .pdf{border:0;position:absolute;top:52px;right:0;bottom:0;left:0;height: 100%;height: calc(100% - 52px);}
+#app-viewer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  .dropdown-menu {
+    margin-top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+  }
+  .pdf {
+    border: 0;
+    position: absolute;
+    top: 52px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    height: calc(100% - 52px);
+  }
 }

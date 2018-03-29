@@ -6,15 +6,14 @@ enum Props {
   token = 'token',
   apiUrl = 'apiUrl',
   userName = 'userName',
-  lnkey = 'lnkey'
+  lnkey = 'lnkey',
 }
 
 // Getter/setters for app settings. Will read/write to app settings and on app load will try to reload from localstorage/sessionstorage
 @Injectable()
 export class AppSettings {
-
   /** Development domains. Used for the isDev property to help set/disable functionality that may not be available yet */
-  private domainsDev: string[] = ['localhost:4206', '127.0.0.1:8080', 'jerrolkrause.github.io','localhost:49152'];
+  private domainsDev: string[] = ['localhost:4206', '127.0.0.1:8080', 'jerrolkrause.github.io', 'localhost:49152'];
 
   /** Is this application in a development environment as defined by domainsDev and window.location.host */
   public get isDev(): boolean {
@@ -65,24 +64,22 @@ export class AppSettings {
     this.propSet(Props.userName, value);
   }
 
-  constructor(
-  ) {
-  }
+  constructor() {}
 
   /**
-  * Return a property. Loads it from this service first if available, if not looks in localstorage, if not there either return null
-  * @param prop - App settings property
-  * @param location - Location of locally stored prop, either sessionStorage or localStorage
-  */
+   * Return a property. Loads it from this service first if available, if not looks in localstorage, if not there either return null
+   * @param prop - App settings property
+   * @param location - Location of locally stored prop, either sessionStorage or localStorage
+   */
   private propGet(propKey: string, location: 'localStorage' | 'sessionStorage' = 'localStorage') {
     return window[location].getItem(propKey) || null;
   }
 
   /**
-  * Set an app settings property. Write to localstorage if present, delete from localstorage if null
-  * @param prop - App settings property
-  * @param location - Location of locally stored prop, either sessionStorage or localStorage
-  */
+   * Set an app settings property. Write to localstorage if present, delete from localstorage if null
+   * @param prop - App settings property
+   * @param location - Location of locally stored prop, either sessionStorage or localStorage
+   */
   private propSet(prop: string, value: string | null, location: 'localStorage' | 'sessionStorage' = 'localStorage') {
     if (value) {
       window[location].setItem(prop, value);
@@ -90,5 +87,4 @@ export class AppSettings {
       window[location].removeItem(prop);
     }
   }
-
 }

@@ -6,26 +6,20 @@ import { UIStoreService } from '@ui';
   selector: 'app-document-status',
   templateUrl: './document-status.component.html',
   styleUrls: ['./document-status.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentStatusComponent implements OnInit {
-
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
 
   public documents = {};
 
   public hasUpdates = false;
 
-  constructor(
-    public ui: UIStoreService,
-    private api: ApiService
-  ) { }
+  constructor(public ui: UIStoreService, private api: ApiService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public updateStatus() {
     this.hasUpdates = true;
   }
-
 }

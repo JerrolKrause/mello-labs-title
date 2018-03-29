@@ -12,21 +12,19 @@ import { ApiProps } from './api.properties';
 import * as _ from 'lodash';
 
 export const ApiMap: IStore.ApiMapping = {
-
   loans: {
     endpoint: 'assets/mock-data/loans.json',
     storeProperty: ApiProps.loans,
     uniqueId: 'lnkey',
     mapSrc: 'src',
     map: (users: any[]) => {
-
       // let namesFirst = users.map(user => user.name.split(' ')[0]);
       // let namesLast = users.map(user => _.last(user.name.split(' ')));
       // let states = ['AZ', 'CA', 'CO', 'IL', 'MI', 'NY', 'TX', 'HI', 'OR', 'WA'];
 
       let usersNew = [...users, ...users, ...users];
-      let dict:any = {};
-      usersNew = users.map((user:any) => {
+      let dict: any = {};
+      usersNew = users.map((user: any) => {
         let userNew = { ...user };
         //userNew.unverified = _.random(60);
         //userNew.complete = userNew.unverified;
@@ -57,9 +55,9 @@ export const ApiMap: IStore.ApiMapping = {
 
       return {
         src: usersNew,
-        dict: dict
+        dict: dict,
       };
-    }
+    },
   },
 
   loanCurrent: {
@@ -78,29 +76,42 @@ export const ApiMap: IStore.ApiMapping = {
       const dict: any = {};
       docs.forEach(doc => {
         //user.forReview = _.shuffle(forReview)[0];
-        dict[doc.docGuid] = doc
+        dict[doc.docGuid] = doc;
       });
       docs = _.shuffle(docs);
 
       // Check if a title report is in the array of docs
       let title = docs.filter(doc => {
-        return doc.docName.toLowerCase().replace(/[^A-Z0-9]/ig, "").indexOf('titlereport') != -1 ? true : false;
+        return doc.docName
+          .toLowerCase()
+          .replace(/[^A-Z0-9]/gi, '')
+          .indexOf('titlereport') != -1
+          ? true
+          : false;
       });
 
       // If title is present, move to front of array
       if (title && title[0]) {
         title[0].isTitleReport = true;
-        docs = [...title, ...docs.filter(doc => {
-          return doc.docName.toLowerCase().replace(/[^A-Z0-9]/ig, "").indexOf('titlereport') == -1 ? true : false;
-        })];
-      };
+        docs = [
+          ...title,
+          ...docs.filter(doc => {
+            return doc.docName
+              .toLowerCase()
+              .replace(/[^A-Z0-9]/gi, '')
+              .indexOf('titlereport') == -1
+              ? true
+              : false;
+          }),
+        ];
+      }
 
       // console.log(JSON.stringify(users));
       return {
         src: docs,
-        dict: dict
+        dict: dict,
       };
-    }
+    },
   },
 
   loanCurrentOcr: {
@@ -112,17 +123,17 @@ export const ApiMap: IStore.ApiMapping = {
     map: (docs: any[]) => {
       // Sample dictionary mapping based on id property
       const dict: any = {};
-      docs.forEach(doc => dict[doc.field] = doc);
+      docs.forEach(doc => (dict[doc.field] = doc));
       return {
         src: docs,
-        dict: dict
+        dict: dict,
       };
-    }
+    },
   },
 
   contacts: {
     endpoint: 'assets/mock-data/loan-contacts.json',
-    storeProperty: ApiProps.contacts
+    storeProperty: ApiProps.contacts,
   },
 
   vesting: {
@@ -144,13 +155,12 @@ export const ApiMap: IStore.ApiMapping = {
     mapSrc: 'src',
     map: (users: any[]) => {
       // Sample dictionary mapping based on id property
-      const dict:any = {};
-      users.forEach(user => dict[user.id] = user);
+      const dict: any = {};
+      users.forEach(user => (dict[user.id] = user));
       return {
         src: users,
-        dict: dict
+        dict: dict,
       };
-    }
-  }
-
+    },
+  },
 };

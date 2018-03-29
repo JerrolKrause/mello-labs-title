@@ -6,12 +6,13 @@ describe('EmpowerNotesComponent', () => {
   let component: EmpowerNotesComponent;
   let fixture: ComponentFixture<EmpowerNotesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EmpowerNotesComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [EmpowerNotesComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmpowerNotesComponent);

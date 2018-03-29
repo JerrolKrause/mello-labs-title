@@ -1,39 +1,72 @@
 #sidebar {
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#083053),to(#478cc6));    background-image: linear-gradient(to bottom,#083053 0,#478cc6 100%);    color: #fff;    margin-left: -15px;    margin-right: -15px;    padding: 1rem;
-    //position:absolute;top:0;bottom:0;left:0;right:0;
-    height:100%;overflow: auto;
-  .list-group-item {padding: 0.4rem 1.25rem;
-      &.resizePadding {padding: 0.4rem 0.7rem; }
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#083053), to(#478cc6));
+  background-image: linear-gradient(to bottom, #083053 0, #478cc6 100%);
+  color: #fff;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 1rem;
+  //position:absolute;top:0;bottom:0;left:0;right:0;
+  height: 100%;
+  overflow: auto;
+  .list-group-item {
+    padding: 0.4rem 1.25rem;
+    &.resizePadding {
+      padding: 0.4rem 0.7rem;
+    }
   }
 
-  .steelBlueBgr{background-color: lightsteelblue;
-      .btn-faded { background-color: lavender;}
+  .steelBlueBgr {
+    background-color: lightsteelblue;
+    .btn-faded {
+      background-color: lavender;
+    }
   }
 
-  .dropdown-menu{padding:0;overflow: hidden;
-      .btn{background:#fff;border:0;box-shadow:none;}
-      .btn:hover{background-color: lavender;}
-      .dropdown-item {
-	      hr { margin: 0.2rem 0 0;}
-	      span {font-size: 0.9rem;vertical-align: top;}
-	      &:first-of-type { padding-top: 5px;}
-	      &:last-of-type hr {display:none;}
-	      &:hover hr {opacity: 0;}
+  .dropdown-menu {
+    padding: 0;
+    overflow: hidden;
+    .btn {
+      background: #fff;
+      border: 0;
+      box-shadow: none;
+    }
+    .btn:hover {
+      background-color: lavender;
+    }
+    .dropdown-item {
+      hr {
+        margin: 0.2rem 0 0;
       }
+      span {
+        font-size: 0.9rem;
+        vertical-align: top;
+      }
+      &:first-of-type {
+        padding-top: 5px;
+      }
+      &:last-of-type hr {
+        display: none;
+      }
+      &:hover hr {
+        opacity: 0;
+      }
+    }
   }
   .resizeText {
-	  font-size: 0.85rem;
+    font-size: 0.85rem;
   }
 
   #sidebar .btn-group.btn-group-vertical {
-	  a.btn.d-inline-block {
-		  border-radius: 0.2rem;
-		  margin-bottom: 1px;
-		  &:hover i.fa {color: #fff;}
-	  }
+    a.btn.d-inline-block {
+      border-radius: 0.2rem;
+      margin-bottom: 1px;
+      &:hover i.fa {
+        color: #fff;
+      }
+    }
 
-	  launch-modal.d-inline-block {
-		  margin-bottom: 2px;
-	  }
+    launch-modal.d-inline-block {
+      margin-bottom: 2px;
+    }
   }
 }

@@ -10,5 +10,5 @@ export enum ApiProps {
   vesting = 'vesting',
   notes = 'notes',
   // Example
-  users = 'users'
+  users = 'users',
 }

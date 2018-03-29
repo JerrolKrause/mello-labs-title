@@ -5,11 +5,14 @@ import { PostMessageService } from './post-message.service';
 describe('PostMessageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PostMessageService]
+      providers: [PostMessageService],
     });
   });
 
-  it('should be created', inject([PostMessageService], (service: PostMessageService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([PostMessageService], (service: PostMessageService) => {
+      expect(service).toBeTruthy();
+    }),
+  );
 });

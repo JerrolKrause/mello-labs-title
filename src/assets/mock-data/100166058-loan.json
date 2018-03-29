@@ -5,7 +5,8 @@
   "EscrowVendor": "BNT Title Company of CA",
   "LoanCoverageAmount": "$495,000",
   "LoanAmount": "$495,000",
-  "FullNameVesting": "Jivco Jetchev and Maria Jetchev as Trustees of The Jivco and Maria Jetchev Living Trust,\r\ndated June 22, 2017",
+  "FullNameVesting":
+    "Jivco Jetchev and Maria Jetchev as Trustees of The Jivco and Maria Jetchev Living Trust,\r\ndated June 22, 2017",
   "LoanType": 1,
   "LoanTypeName": "Fixed Rate",
   "BorrowerNames": "John Smith & Jane Smith",

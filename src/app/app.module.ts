@@ -27,15 +27,21 @@ import { ROUTES } from './app.routes';
 enableProdMode();
 
 // Routes
-import {
-  NoContentComponent, LoginComponent, HomeComponent, QaComponent, ViewerRouteComponent
-} from '@routes';
+import { NoContentComponent, LoginComponent, HomeComponent, QaComponent, ViewerRouteComponent } from '@routes';
 
 // Components
 import {
-  FooterComponent, HeaderComponent, LayoutMainComponent, LayoutSingleComponent, NavComponent, NavSearchComponent,
-  ConfirmationModalComponent, LogoutModalComponent, ExceptionComponent,
-  LaunchModalComponent, DocumentViewerComponent
+  FooterComponent,
+  HeaderComponent,
+  LayoutMainComponent,
+  LayoutSingleComponent,
+  NavComponent,
+  NavSearchComponent,
+  ConfirmationModalComponent,
+  LogoutModalComponent,
+  ExceptionComponent,
+  LaunchModalComponent,
+  DocumentViewerComponent,
 } from '@components';
 
 // Shared
@@ -55,12 +61,13 @@ import {
   AuthService,
 
   // Pipes
-  FilterPipe, DebouncePipe, StringPipe,
+  FilterPipe,
+  DebouncePipe,
+  StringPipe,
 
   // Directives
-  FullScreenDirective
+  FullScreenDirective,
 } from '@shared';
-
 
 import { UIModalService, UIStoreService, UIStoreReducer } from '@ui';
 import { ApiService } from '@api';
@@ -78,12 +85,23 @@ import { FormTitleComponent } from './components/form-title/form-title.component
 
 // Application wide providers
 export const APP_COMPONENTS = [
-  NoContentComponent, LoginComponent, HomeComponent, QaComponent, ViewerRouteComponent,
+  NoContentComponent,
+  LoginComponent,
+  HomeComponent,
+  QaComponent,
+  ViewerRouteComponent,
 
-  FooterComponent, HeaderComponent, LayoutMainComponent, LayoutSingleComponent, NavComponent, NavSearchComponent,
+  FooterComponent,
+  HeaderComponent,
+  LayoutMainComponent,
+  LayoutSingleComponent,
+  NavComponent,
+  NavSearchComponent,
   LaunchModalComponent,
 
-  ConfirmationModalComponent, LogoutModalComponent, ExceptionComponent,
+  ConfirmationModalComponent,
+  LogoutModalComponent,
+  ExceptionComponent,
 ];
 
 // Application wide providers
@@ -100,14 +118,15 @@ export const APP_PROVIDERS = [
   PostMessageService,
 
   // Angular Pipes
-  DatePipe, CurrencyPipe,
+  DatePipe,
+  CurrencyPipe,
 
-  {// Global exception handler
+  {
+    // Global exception handler
     provide: ErrorHandler,
-    useClass: GlobalErrorHandler
+    useClass: GlobalErrorHandler,
   },
 ];
-
 
 @NgModule({
   declarations: [
@@ -115,7 +134,9 @@ export const APP_PROVIDERS = [
     APP_COMPONENTS,
 
     // Pipes
-    FilterPipe, DebouncePipe, StringPipe,
+    FilterPipe,
+    DebouncePipe,
+    StringPipe,
 
     // Directives
     FullScreenDirective,
@@ -129,7 +150,6 @@ export const APP_PROVIDERS = [
     EmpowerSaveComponent,
 
     EmpowerNotesComponent,
-
 
     FormRowComponent,
 
@@ -150,7 +170,8 @@ export const APP_PROVIDERS = [
   imports: [
     // Angular
     BrowserModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.serviceWorker }),
@@ -162,19 +183,23 @@ export const APP_PROVIDERS = [
     ApiToolsModule.forRoot(),
     FormToolsModule.forRoot(),
     UtilitiesModule.forRoot(),
-    DatagridModule.forRoot()
+    DatagridModule.forRoot(),
   ],
   providers: [
     APP_PROVIDERS,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationModalComponent, LogoutModalComponent, ExceptionComponent, EmpowerSaveComponent, EmpowerNotesComponent
-  ]
+    ConfirmationModalComponent,
+    LogoutModalComponent,
+    ExceptionComponent,
+    EmpowerSaveComponent,
+    EmpowerNotesComponent,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

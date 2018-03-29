@@ -11,14 +11,9 @@ export class ServiceWorkerService {
   /** Notify app when a new version is available */
   public updateAvailable$ = new BehaviorSubject(false);
   /** Holds set interval */
-  private counter:any;
+  private counter: any;
 
-  constructor(
-    private sw: SwUpdate,
-    private modals: UIModalService,
-    private zone: NgZone
-  ) {
-
+  constructor(private sw: SwUpdate, private modals: UIModalService, private zone: NgZone) {
     if (this.sw.isEnabled && environment.serviceWorker) {
       //console.log('Service worker enabled');
 
@@ -37,17 +32,22 @@ export class ServiceWorkerService {
             //console.log("Checking for new version of the app 7");
             this.sw.checkForUpdate();
           });
-        }, 5000 * 60); 
+        }, 5000 * 60);
       });
     }
   }
 
   public openModal() {
-    this.modals.open('ConfirmationModalComponent', false, 'lg',
-      `A new version of ${environment.appName} is available, would you like to update to the latest version?`)
+    this.modals
+      .open(
+        'ConfirmationModalComponent',
+        false,
+        'lg',
+        `A new version of ${environment.appName} is available, would you like to update to the latest version?`,
+      )
       .result.then(
-      () => this.sw.activateUpdate(),
-      () => console.warn('User is on an outdated version of the application'));
+        () => this.sw.activateUpdate(),
+        () => console.warn('User is on an outdated version of the application'),
+      );
   }
-
 }

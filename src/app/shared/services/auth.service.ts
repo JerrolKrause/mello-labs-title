@@ -20,9 +20,9 @@ export class AuthService {
   /** Is session expired */
   public sessionExpired = false;
   /** How long to show the modal window */
-  public modalDuration = 12; // 120 
+  public modalDuration = 12; // 120
   /** Holds the logout session timer */
-  public sessionTimer: any = null; // 
+  public sessionTimer: any = null; //
   /** Holds reference to logout modal */
   public logOutModal: NgbModalRef | null;
   /** The http call so a token can be refreshed with a callback and success method */
@@ -36,7 +36,7 @@ export class AuthService {
     private route: ActivatedRoute,
     private settings: AppSettings,
     private modals: UIModalService,
-    private api: ApiService
+    private api: ApiService,
   ) {
     // If token is passed in via query param, update settings. Standard query param: /#/?token=123456
     this.route.queryParams.subscribe(queryParams => {
@@ -48,7 +48,7 @@ export class AuthService {
 
     // If a token is passed in via matrix notation params, update app settings.
     // Need to use matrix notation /#/route;token=123456456456
-    this.router.events.subscribe((val:any) => {
+    this.router.events.subscribe((val: any) => {
       if (val instanceof RoutesRecognized && (<any>val).state.root.firstChild.params.token) {
         this.settings.token = (<any>val).state.root.firstChild.params.token;
         this.setTimer(this.setTimerDefaultSeconds); // Start the session timer with the default time
@@ -60,7 +60,7 @@ export class AuthService {
    * Log the user in
    * @param data
    */
-  public logIn(data:any) {
+  public logIn(data: any) {
     const url = this.settings.apiUrl + this.authUrl;
 
     // If no auth endpoint set up yet, use a get and set the token properties so the rest of the app can work
@@ -79,7 +79,7 @@ export class AuthService {
       this.setTimer(response.data.expirationSeconds);
       return response;
     });
-  }// end LogIn
+  } // end LogIn
 
   /**
    * Refresh the token
@@ -99,7 +99,7 @@ export class AuthService {
       () => {
         // console.log('Error refreshing token');
         this.logOut();
-      }
+      },
     );
   } // end RefreshToken
 
@@ -116,7 +116,7 @@ export class AuthService {
       this.sessionExpired = true;
       this.launchLogoutModal();
       // Double the modal duration to add a buffer between server countdown and browser countdown
-    }, (expirationSeconds - this.modalDuration * 2) * 1000); 
+    }, (expirationSeconds - this.modalDuration * 2) * 1000);
   } // end SetTimer
 
   /**
@@ -125,14 +125,17 @@ export class AuthService {
   private launchLogoutModal(): void {
     clearTimeout(this.sessionTimer);
     // Open log out modal window
-    this.modals.open('LogoutModalComponent', false, 'lg', this.modalDuration).result.then(() => {
-      this.logOut();
-    }, (dismissReason) => {// When modal is dismissed
-      if (dismissReason !== 'norefresh') {
-        this.refreshTokenUpdate();
-      }
-    });
-
+    this.modals.open('LogoutModalComponent', false, 'lg', this.modalDuration).result.then(
+      () => {
+        this.logOut();
+      },
+      dismissReason => {
+        // When modal is dismissed
+        if (dismissReason !== 'norefresh') {
+          this.refreshTokenUpdate();
+        }
+      },
+    );
   } // end launchLogoutModal
 
   /**
@@ -145,10 +148,9 @@ export class AuthService {
     // Don't throw a redirect url if this is the dashboard since that is default on login
     const returnUrl = this.router.url !== '/' && this.router.url !== '/login' ? this.router.url.split('?')[0] : null;
     let queryParams = { returnUrl: returnUrl };
-    if (logoutType){
+    if (logoutType) {
       (<any>queryParams)['session'] = logoutType;
     }
     this.router.navigate(['/login'], { queryParams: queryParams });
   } // end LogOut
-
 }

@@ -3,29 +3,24 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 import { UIStoreService, FormTypes } from '@ui';
 
-declare var require: any
-
+declare var require: any;
 
 @Component({
   selector: 'app-form-title',
   templateUrl: './form-title.component.html',
   styleUrls: ['./form-title.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormTitleComponent implements OnInit, OnChanges {
-
-  @Input() ocr:any;
+  @Input() ocr: any;
   @Input() formData: any;
   public formTitle: FormGroup;
   public editGlobal: any;
-  
+
   public formView = require('./form-title.view.json');
   public formModel = require('./form-title.model.json');
 
-  constructor(
-    private fb: FormBuilder,
-    public ui: UIStoreService
-  ) {
+  constructor(private fb: FormBuilder, public ui: UIStoreService) {
     this.formTitle = this.createFormModel(this.formModel);
   }
 
@@ -48,26 +43,23 @@ export class FormTitleComponent implements OnInit, OnChanges {
    * @param defaultRequired - Should all fields be required. Default is false
    */
   private createFormModel(model: any, defaultRequired = false) {
-    let formModel:any = {};
+    let formModel: any = {};
     // Loop through all props in the model
     Object.keys(model).forEach(key => {
       // If this is a nested object, recurse to create form group
       if (model[key] && typeof model[key] === 'object' && !Array.isArray(model[key])) {
         formModel[key] = this.createFormModel(model[key]);
-      }
-      // If this is an array, recurse to create a form array
-      else if (model[key] && typeof model[key] === 'object' && Array.isArray(model[key])) {
-        let formArray:any = [];
-        model[key].forEach((item:any) => formArray.push(this.createFormModel(item)));
+      } else if (model[key] && typeof model[key] === 'object' && Array.isArray(model[key])) {
+        // If this is an array, recurse to create a form array
+        let formArray: any = [];
+        model[key].forEach((item: any) => formArray.push(this.createFormModel(item)));
         formModel[key] = this.fb.array(formArray);
-      }
-      // Standard value
-      else {
+      } else {
+        // Standard value
         formModel[key] = defaultRequired ? [null, [Validators.required]] : [null, []];
       }
     });
 
     return this.fb.group(formModel);
   }
-
 }

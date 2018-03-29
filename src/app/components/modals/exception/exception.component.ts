@@ -6,18 +6,12 @@ import { UIStoreService } from '@ui';
   selector: 'app-exception',
   templateUrl: './exception.component.html',
   styleUrls: ['./exception.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExceptionComponent implements OnInit {
+  public waiting: boolean;
 
-  public waiting:boolean;
+  constructor(public activeModal: NgbActiveModal, public ui: UIStoreService) {}
 
-  constructor(
-    public activeModal: NgbActiveModal,
-    public ui: UIStoreService
-  ) { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

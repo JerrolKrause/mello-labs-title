@@ -7,10 +7,9 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
   public formMain: FormGroup;
   public waiting: boolean;
   public errorApi: IErrorApi | null;
@@ -20,19 +19,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   public showPassword = false;
   public returnUrl: string;
 
-  public subs: Subscription[] = []
+  public subs: Subscription[] = [];
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private settings: AppSettings
-  ) {
-  }
-  
-  public ngOnInit() {
+    private settings: AppSettings,
+  ) {}
 
+  public ngOnInit() {
     let isLogin, hasLogin;
     if (window.localStorage.rememberLogin && this.settings.userName) {
       isLogin = this.settings.userName;
@@ -50,16 +47,17 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (params.session === 'loggedout') {
           this.loggedout = true;
         }
-      })
+      }),
     );
 
     window.clearTimeout(this.authService.sessionTimer); // When the page is loaded, clear any legacy timeouts
     this.authService.logOutModal = null; // Get rid of logout modal if it persists
 
-    this.formMain = this.fb.group({ // <-- the parent FormGroup
+    this.formMain = this.fb.group({
+      // <-- the parent FormGroup
       userName: [isLogin || 'jkrause', [Validators.required]],
       password: ['password', [Validators.required]],
-      remember: [hasLogin]
+      remember: [hasLogin],
     });
 
     // get return url from route parameters or default to '/'
@@ -67,8 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   /**
-  * Submit the form
-  */
+   * Submit the form
+   */
   public onLogin() {
     this.waiting = true;
     this.errorApi = null;
@@ -89,21 +87,22 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigate([this.returnUrl]);
         this.waiting = false;
       },
-      (error) => {
+      error => {
         error.errorMsg = 'Error logging in.';
-        if (error.statusText = 'Unauthorized') {
+        if ((error.statusText = 'Unauthorized')) {
           error.errorMsg = 'Invalid username or password, please try again.';
           this.showErrorDetails = false;
         }
 
         this.errorApi = error;
         this.waiting = false;
-      }
+      },
     );
-
   } // end onSubmit
 
   ngOnDestroy() {
-    if (this.subs.length) { this.subs.forEach(sub => sub.unsubscribe()) }
+    if (this.subs.length) {
+      this.subs.forEach(sub => sub.unsubscribe());
+    }
   }
 }

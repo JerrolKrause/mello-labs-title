@@ -6,12 +6,13 @@ describe('FormRowComponent', () => {
   let component: FormRowComponent;
   let fixture: ComponentFixture<FormRowComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FormRowComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [FormRowComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FormRowComponent);

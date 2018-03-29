@@ -1,7 +1,7 @@
 export declare namespace IStore {
   /*************************
-  * App specific interfaces
-  *************************/
+   * App specific interfaces
+   *************************/
 
   /** API Store */
   interface api {
@@ -33,7 +33,7 @@ export declare namespace IStore {
     vesting: ApiMap;
     notes: ApiMap;
   }
-  
+
   /** UI Store */
   interface ui {
     modal: null | {
@@ -53,7 +53,7 @@ export declare namespace IStore {
       loan: any;
       borrower: any;
       vesting: any;
-    }
+    };
   }
 
   interface document {
@@ -64,12 +64,12 @@ export declare namespace IStore {
       w: number;
       x: number;
       y: number;
-    }
+    };
   }
 
   /*************************
-  * Non-customizable interfaces
-  *************************/
+   * Non-customizable interfaces
+   *************************/
 
   /** The root store which contains the other stores */
   interface root {
@@ -123,8 +123,6 @@ export declare namespace IStore {
     /** Occasionally a unique piece of information needs to be passed to the reducer from the method.  This property can have data assigned to pass to the reducer */
     data?: any;
   }
-
-
 
   interface Rest {
     storeProp: string;

@@ -1,8 +1,17 @@
-#app-viewer-route{
+#app-viewer-route {
   font-size: 0.85rem;
-  .viewer{position:absolute;top:0;left:0;bottom:0;right:0;height:calc(100% - 10px);
-    &.half{height:50%;
-      &.bottom{top:50%;}
+  .viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: calc(100% - 10px);
+    &.half {
+      height: 50%;
+      &.bottom {
+        top: 50%;
+      }
     }
   }
   .nav-link {

@@ -4,15 +4,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-web-tool',
   templateUrl: './web-tool.component.html',
   styleUrls: ['./web-tool.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebToolComponent implements OnInit {
+  public iframeUrl = 'https://tools.usps.com/go/ZipLookupResultsAction!input.action'; //'http://localhost:4206';
 
-  public iframeUrl = 'https://tools.usps.com/go/ZipLookupResultsAction!input.action'//'http://localhost:4206';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

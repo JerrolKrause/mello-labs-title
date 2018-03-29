@@ -1,7 +1,25 @@
-.icon-action{position:absolute;right:16px;z-index:2;width: 15px;}
-.btn{white-space: initial;}
-.editable, .editing{padding-right:1.25rem;}
-.editable:hover{outline: 3px dashed #c3c3c3;cursor:pointer;}
-.editing{
-  label{-webkit-user-select: none;-moz-user-select: none;-khtml-user-select: none;-ms-user-select: none;}
+.icon-action {
+  position: absolute;
+  right: 16px;
+  z-index: 2;
+  width: 15px;
+}
+.btn {
+  white-space: initial;
+}
+.editable,
+.editing {
+  padding-right: 1.25rem;
+}
+.editable:hover {
+  outline: 3px dashed #c3c3c3;
+  cursor: pointer;
+}
+.editing {
+  label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+  }
 }

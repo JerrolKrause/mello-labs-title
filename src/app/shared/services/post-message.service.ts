@@ -4,7 +4,6 @@ import { Subject } from 'rxjs/Subject';
 import { AppSettings } from '@shared';
 import { ObjectUtils } from '@utils';
 
-
 interface Message {
   event?: string;
   payload?: any;
@@ -17,20 +16,16 @@ interface MessageComplete extends Message {
 
 @Injectable()
 export class PostMessageService {
-
   /** Postmessage response */
   public postMessage$: Subject<Message> = new Subject();
   /** Holds postmessage event listener */
-  private postMessageListener:any;
+  private postMessageListener: any;
   /** An array of domains to accept postmessage responses from, based on window.location.origin */
   private allowedDomains: string[];
   /** Generate a random number to identify this app. Used to drop same domain postmessages */
   private appId = Math.floor(Math.random() * 10000000);
 
-  constructor(
-    private settings: AppSettings
-  ) {
-  }
+  constructor(private settings: AppSettings) {}
 
   /**
    * Activates the post message listener
@@ -55,7 +50,7 @@ export class PostMessageService {
    * Stop listening for postmessage events
    */
   public stopListening() {
-    window.removeEventListener('message',this.postMessageListener);
+    window.removeEventListener('message', this.postMessageListener);
   }
 
   /**
@@ -64,7 +59,7 @@ export class PostMessageService {
    * @param urlTarget - If the target url is known, only post to that domain. Otherwise its *
    */
   public postMessageToParent(message: Message, urlTarget: string = '*') {
-    if (window.parent){
+    if (window.parent) {
       window.parent.postMessage(this.addMetadata(message), urlTarget);
     }
   }
@@ -99,10 +94,10 @@ export class PostMessageService {
   private messageReceived(event: MessageEvent) {
     // Scrub webpackOk events and same appId origination
     if (event.data && event.data.type != 'webpackOk' && event.data.appId != this.appId) {
-    // Sanitize incoming payload
+      // Sanitize incoming payload
       let msg: MessageComplete = ObjectUtils.sanitize(event.data);
       // Check if allowable domains
-      if (this.allowedDomains && this.allowedDomains.indexOf(event.origin) != -1 || !this.allowedDomains) {
+      if ((this.allowedDomains && this.allowedDomains.indexOf(event.origin) != -1) || !this.allowedDomains) {
         this.postMessage$.next(msg);
       } else {
         console.error('Message from unauthorized source');
@@ -118,8 +113,7 @@ export class PostMessageService {
     return {
       ...ObjectUtils.sanitize(msg),
       appId: this.appId,
-      token: this.settings.token
-    }
+      token: this.settings.token,
+    };
   }
-
 }

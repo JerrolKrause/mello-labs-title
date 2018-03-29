@@ -6,12 +6,13 @@ describe('ExceptionComponent', () => {
   let component: ExceptionComponent;
   let fixture: ComponentFixture<ExceptionComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ExceptionComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ExceptionComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExceptionComponent);

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
-import { UIStoreService } from '@ui'
+import { UIStoreService } from '@ui';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,12 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-document-viewer',
   templateUrl: './document-viewer.component.html',
   styleUrls: ['./document-viewer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentViewerComponent implements OnInit, OnChanges {
-
   @Input() docGuid: string;
-  @Input() bounds: {
+  @Input()
+  bounds: {
     h: number;
     w: number;
     x: number;
@@ -29,25 +29,19 @@ export class DocumentViewerComponent implements OnInit, OnChanges {
   public webLinks = [
     {
       label: 'USPS Address Verification',
-      url: 'https://tools.usps.com/go/ZipLookupResultsAction!input.action'
+      url: 'https://tools.usps.com/go/ZipLookupResultsAction!input.action',
     },
     {
       label: 'Title Request Form',
-      url: 'http://ldcorp/dept/IT/SitePages/Home.aspx'
+      url: 'http://ldcorp/dept/IT/SitePages/Home.aspx',
     },
-  ]
+  ];
 
   public demo = false;
 
-  constructor(
-    public ui: UIStoreService,
-    private route: ActivatedRoute
-  ) { }
+  constructor(public ui: UIStoreService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-
-
-
     this.route.params.subscribe(params => {
       if (params) {
         this.lnkey = params.lnkey;
@@ -82,9 +76,5 @@ export class DocumentViewerComponent implements OnInit, OnChanges {
     if (this.docs && this.docs.src.length && !this.docGuid) {
       this.docGuid = this.docs.src[0].docGuid;
     }
-
   }
-
-
-
 }

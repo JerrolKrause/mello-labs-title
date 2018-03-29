@@ -6,10 +6,10 @@ import * as _ from 'lodash';
 export interface viewModel {
   label: string;
   field: string;
-  fieldType: 'input' | 'textarea' | 'radio' | 'date',
-  fieldModel: string[],
-  radioFreeform: boolean,
-  required: boolean
+  fieldType: 'input' | 'textarea' | 'radio' | 'date';
+  fieldModel: string[];
+  radioFreeform: boolean;
+  required: boolean;
 }
 
 export interface ocrModel {
@@ -24,17 +24,16 @@ export interface ocrModel {
     y: number;
     w: number;
     h: number;
-  }
+  };
 }
 
 @Component({
   selector: 'app-form-row',
   templateUrl: './form-row.component.html',
   styleUrls: ['./form-row.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormRowComponent implements OnInit {
-
   @Input() form: FormGroup;
   @Input() viewModel: viewModel | null;
   @Input() ocrValue: string | string[];
@@ -43,15 +42,12 @@ export class FormRowComponent implements OnInit {
 
   public hasFuzzyMatch = false;
   public docID: string;
-  
+
   public valuePrev: string;
-  
-  constructor(
-    public ui: UIStoreService
-  ) { }
+
+  constructor(public ui: UIStoreService) {}
 
   ngOnInit() {
-
     let val = this.viewModel ? this.form.get(this.viewModel.field) : null;
     // If viewmodel specifies required, set required in form
     if (this.form && val && this.viewModel && this.viewModel.required && this.viewModel.field && Validators) {
@@ -60,16 +56,15 @@ export class FormRowComponent implements OnInit {
 
     this.docID = _.shuffle(['ccsw9c8a9c8s', 'b23b423b4', 'm85mfhvgf', 'dcv125bb5', 'ddfds4674asd'])[0];
 
-    if (this.viewModel && this.form && this.viewModel.field){
+    if (this.viewModel && this.form && this.viewModel.field) {
       // Hold initial value
       this.valuePrev = this.form.value[this.viewModel.field];
     }
-    
+
     // Check if fuzzy match
-    if (Array.isArray(this.ocrValue)){
+    if (Array.isArray(this.ocrValue)) {
       this.hasFuzzyMatch = true;
     }
-
   }
 
   /**
@@ -89,12 +84,11 @@ export class FormRowComponent implements OnInit {
    */
   public updateForm(field: string, propNew: string) {
     this.editing = false;
-    let valNew:any = {};
+    let valNew: any = {};
     valNew[field] = propNew;
-    if (this.form){
+    if (this.form) {
       this.form.patchValue(valNew);
     }
-    
   }
 
   /**
@@ -102,7 +96,7 @@ export class FormRowComponent implements OnInit {
    * @param field
    * @param date
    */
-  public dateChanged(field: string, date:any) {
+  public dateChanged(field: string, date: any) {
     this.updateForm(field, date.month + '/' + date.day + '/' + date.year);
     this.editing = true;
   }
@@ -111,8 +105,5 @@ export class FormRowComponent implements OnInit {
    * Add a condition
    * @param $event
    */
-  public conditionAdd() {
-
-  }
-
+  public conditionAdd() {}
 }

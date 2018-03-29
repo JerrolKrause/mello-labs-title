@@ -7,21 +7,15 @@ import { UIStoreService } from '@ui';
   selector: 'app-empower-save',
   templateUrl: './empower-save.component.html',
   styleUrls: ['./empower-save.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmpowerSaveComponent implements OnInit {
-
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
   public waiting = false;
 
-  constructor(
-    public activeModal: NgbActiveModal,
-    public ui: UIStoreService,
-    private api: ApiService
-  ) { }
+  constructor(public activeModal: NgbActiveModal, public ui: UIStoreService, private api: ApiService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   /**
    * Submit the form
@@ -29,5 +23,4 @@ export class EmpowerSaveComponent implements OnInit {
   submit() {
     this.activeModal.close('Success');
   } // end submit
-
 }

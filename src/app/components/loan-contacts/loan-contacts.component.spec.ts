@@ -6,12 +6,13 @@ describe('LoanContactsComponent', () => {
   let component: LoanContactsComponent;
   let fixture: ComponentFixture<LoanContactsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LoanContactsComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [LoanContactsComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoanContactsComponent);

@@ -9,19 +9,17 @@ import { AuthService, AppCommsService } from '@shared'; //ServiceWorkerService,
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private title: Title,
     private authService: AuthService,
     //private sw: ServiceWorkerService,
-    private comms: AppCommsService
-  ) {
-  }
+    private comms: AppCommsService,
+  ) {}
 
   ngOnInit() {
     this.routeChange();
@@ -29,9 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   /**
-  * Actions to perform on route change
-  * Page titles are in app.routes.ts
-  */
+   * Actions to perform on route change
+   * Page titles are in app.routes.ts
+   */
   public routeChange() {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
@@ -44,7 +42,7 @@ export class AppComponent implements OnInit {
       })
       .filter(route => route.outlet === 'primary')
       .mergeMap(route => route.data)
-      .subscribe((event) => {
+      .subscribe(event => {
         this.title.setTitle(event['title']); // Change document title
         // If auth endpoint is available and not on the login page
         if (this.authService.hasAuthEndpoint && this.router.url.toLowerCase().indexOf('login') === -1) {

@@ -21,5 +21,5 @@ export enum FormTypes {
   property = 'property',
   liens = 'liens',
   notes = 'notes',
-  certification = 'certification'
+  certification = 'certification',
 }

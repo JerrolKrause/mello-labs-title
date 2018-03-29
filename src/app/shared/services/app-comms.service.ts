@@ -25,26 +25,20 @@ export class AppCommsService {
   /** Hold subs for unsub */
   private subs: Subscription[] = [];
 
-  constructor(
-    private messaging: PostMessageService,
-    private settings: AppSettings,
-    private ui: UIStoreService,
-  ) {
-  }
+  constructor(private messaging: PostMessageService, private settings: AppSettings, private ui: UIStoreService) {}
 
   /**
    * Start listening for app communication
    */
   public commsEnable() {
-
     this.subs = [
       // Pass OCR annotate coordinates to the PDF viewer for highlight
       this.ui.docViewerGuids$.subscribe(docs => {
         if (docs && docs[0] && docs[0].bounds) {
           let payload = {
             ...docs[0].bounds,
-            pageNumber: docs[0].pageNumber
-          }
+            pageNumber: docs[0].pageNumber,
+          };
           this.messaging.postMessageToIframe('pdfViewer', { event: MessageActions.BOUNDS_CHANGE, payload: payload });
           // HACK: Set a delay in case the frame hasn't finished loading yet
           setTimeout(() => {
@@ -54,11 +48,9 @@ export class AppCommsService {
       }),
 
       // Watch UI Store changes and fire the resync UI method to update store state in all instances
-      Observable.combineLatest([
-        this.ui.multiDocs$,
-        this.ui.multiScreen$,
-        this.ui.docViewerGuids$
-      ]).subscribe(() => this.resyncUI()),
+      Observable.combineLatest([this.ui.multiDocs$, this.ui.multiScreen$, this.ui.docViewerGuids$]).subscribe(() =>
+        this.resyncUI(),
+      ),
 
       // Listen for any interapp communication on same domain
       this.messaging.listenForMessages(this.allowedDomains).subscribe(message => {
@@ -68,9 +60,8 @@ export class AppCommsService {
             // If a UI store state payload was passed, load that into the store
             if (message.payload) {
               this.ui.rehydrateUI(message.payload);
-            }
-            // Otherwise update UI state from localstorage
-            else {
+            } else {
+              // Otherwise update UI state from localstorage
               this.ui.rehydrateUI(JSON.parse(<any>window.localStorage.getItem('ui')));
             }
             break;
@@ -78,7 +69,7 @@ export class AppCommsService {
             this.ui.multiScreenToggle(false);
             break;
         }
-      })
+      }),
     ];
 
     // Manage the state of multiscreen functionality
@@ -89,22 +80,24 @@ export class AppCommsService {
       if (window.opener) {
         this.messaging.postMessageToWindow(window.opener, { event: MessageActions.END_MULTISCREEN, payload: null });
       }
-    }
+    };
   }
 
   /**
    * Disable app communication
    */
   public commsDisable() {
-    if (this.subs.length) { this.subs.forEach(sub => sub.unsubscribe()) }
+    if (this.subs.length) {
+      this.subs.forEach(sub => sub.unsubscribe());
+    }
   }
 
   /**
-  * Resync the UI state between multiple instances of the web app
-  */
+   * Resync the UI state between multiple instances of the web app
+   */
   private resyncUI() {
     if (this.ui.screen) {
-      this.messaging.postMessageToWindow(this.ui.screen, { event: MessageActions.RESYNC_UI, payload: null })
+      this.messaging.postMessageToWindow(this.ui.screen, { event: MessageActions.RESYNC_UI, payload: null });
     } else if (window.opener) {
       this.messaging.postMessageToWindow(window.opener, { event: MessageActions.RESYNC_UI, payload: null });
     }
@@ -122,26 +115,22 @@ export class AppCommsService {
           setTimeout(() => {
             this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
           });
-        }
-        // If window has been closed
-        else if (this.ui.screen && this.ui.screen.closed) {
+        } else if (this.ui.screen && this.ui.screen.closed) {
+          // If window has been closed
           this.ui.screen = null;
-        }
-        // If multi screen has been set and a window is already opened, update url in current window
-        else if (multiScreen) {
+        } else if (multiScreen) {
+          // If multi screen has been set and a window is already opened, update url in current window
           setTimeout(() => {
-            if (this.ui.screen){
-              this.ui.screen.location.href = slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer';
+            if (this.ui.screen) {
+              (this.ui.screen.location.href = slug + '#/viewer/' + this.settings.lnkey), 'Document Viewer';
             }
           });
-        }
-        // If screen is open and multiscreen is false, close window
-        else if (this.ui.screen && multiScreen === false) {
+        } else if (this.ui.screen && multiScreen === false) {
+          // If screen is open and multiscreen is false, close window
           this.ui.screen.close();
           this.ui.screen = null;
         }
-      })
+      }),
     );
   }
-
 }

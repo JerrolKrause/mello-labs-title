@@ -19,11 +19,11 @@ import { UIModalService } from '@ui';
             <a class="{{classes}}" (click)="openModal()" *ngIf="!isButton" [ngClass]="{'disabled': disabled }">
                 <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
             </a>
-            <ng-template #contentTpl><ng-content></ng-content></ng-template>`
+            <ng-template #contentTpl><ng-content></ng-content></ng-template>`,
 })
 export class LaunchModalComponent implements OnInit, OnDestroy {
   /** Is this a button tag or an a link */
-  @Input() isButton = true; // 
+  @Input() isButton = true; //
   /** The modal component name to launch */
   @Input() modal: string;
   /** Should the modal persist on reload */
@@ -33,7 +33,7 @@ export class LaunchModalComponent implements OnInit, OnDestroy {
   /** Any model data that needs to be passed to the modal component */
   @Input() dataAlt: any;
   /** CSS classes to apply to the button */
-  @Input() classes = ''; // 
+  @Input() classes = ''; //
   /** Default size of the modal, can be sm/md/lg/xl/full */
   @Input() size: 'sm' | 'lg' | 'xl' | 'full' = 'lg';
   /** Is the button or a tag disabled */
@@ -46,18 +46,14 @@ export class LaunchModalComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
 
-  constructor(
-    private modals: UIModalService
-  ) {
-  }
+  constructor(private modals: UIModalService) {}
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 
   /**
-  * Open a modal window
-  * Attach a success function and pass any relevant data to the modal component
-  */
+   * Open a modal window
+   * Attach a success function and pass any relevant data to the modal component
+   */
   public openModal() {
     if (this.size === 'xl') {
       this.windowClass += ' modal-xl';
@@ -69,17 +65,16 @@ export class LaunchModalComponent implements OnInit, OnDestroy {
     const modal = this.modals.open(<any>this.modal, this.persist, this.size, this.data, this.dataAlt);
     // If static modal
     if (modal) {
-      modal.result.then(
-        reason => this.onSuccess.emit(reason),
-        reason => this.onDismiss.emit(reason));
+      modal.result.then(reason => this.onSuccess.emit(reason), reason => this.onDismiss.emit(reason));
     } else {
       // If observable modal. KNOWN BUG: If the page is refreshed and the app is dependent on an onSuccess method
       // that method will not be persisted
       this.sub = this.modals.modalRef$.subscribe(modalElem => {
         if (modalElem) {
           modalElem.result.then(
-            (reason:any) => this.onSuccess.emit(reason),
-            (reason: any) => this.onDismiss.emit(reason));
+            (reason: any) => this.onSuccess.emit(reason),
+            (reason: any) => this.onDismiss.emit(reason),
+          );
         }
       });
     }
@@ -90,5 +85,4 @@ export class LaunchModalComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe(); // Unsub from modal observable
     }
   }
-
 }

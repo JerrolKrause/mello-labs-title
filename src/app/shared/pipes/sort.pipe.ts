@@ -5,10 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 
 @Pipe({
-  name: 'sort'
+  name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-
   transform(arr: any[], sortDir: 'asc' | 'desc' = 'asc', objProp: string): any {
     //console.log(arr, sortDir, objProp);
     let arrayNew = arr;
@@ -24,5 +23,4 @@ export class SortPipe implements PipeTransform {
     //console.log(arrayNew)
     return arrayNew;
   }
-
 }

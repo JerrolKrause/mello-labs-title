@@ -5,12 +5,11 @@ import { UIStoreActions, FormTypes } from './ui.store.actions';
 
 export enum MessageActions {
   RESYNC_UI = 'RESYNC_UI',
-  END_MULTISCREEN = 'END_MULTISCREEN'
+  END_MULTISCREEN = 'END_MULTISCREEN',
 }
 
 @Injectable()
 export class UIStoreService {
-
   public modal$ = this.store.select(store => store.ui.modal);
   public tabViewer$ = this.store.select(store => store.ui.tabViewer);
   public docViewerGuids$ = this.store.select(store => store.ui.docViewerGuids);
@@ -27,17 +26,14 @@ export class UIStoreService {
 
   public screen: Window | null;
 
-  constructor(
-    private store: Store<IStore.root>
-  ) {
+  constructor(private store: Store<IStore.root>) {
     // Rehydrate UI state from localstorage
     if (window.localStorage.getItem('ui')) {
       this.rehydrateUI(JSON.parse(<string>window.localStorage.getItem('ui')));
     }
-   
+
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
   }
-  
 
   /**
    * Change the active visible tab
@@ -53,7 +49,10 @@ export class UIStoreService {
    * @param docID - GUID of document
    */
   public docViewerChange(docViewerInstance: 0 | 1, docGuid: string | null, pageNumber?: number, bounds?: any) {
-    this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid, pageNumber: pageNumber, bounds: bounds } });
+    this.store.dispatch({
+      type: UIStoreActions.DOC_CHANGE,
+      payload: { instance: docViewerInstance, docGuid: docGuid, pageNumber: pageNumber, bounds: bounds },
+    });
   }
 
   /**
@@ -91,7 +90,10 @@ export class UIStoreService {
    * @param loanHasUpdate - Should this form change set the loanHasUpdate flag
    */
   public formChange(formType: FormTypes, value: any, loanHasUpdate = false) {
-    this.store.dispatch({ type: UIStoreActions.FORM_CHANGE, payload: { formType: formType, value: value, loanHasUpdate: loanHasUpdate } });
+    this.store.dispatch({
+      type: UIStoreActions.FORM_CHANGE,
+      payload: { formType: formType, value: value, loanHasUpdate: loanHasUpdate },
+    });
   }
 
   /**  Reload the last UI state from localstorage */
@@ -99,5 +101,4 @@ export class UIStoreService {
     // console.log('rehydrateUI', uiState);
     this.store.dispatch({ type: UIStoreActions.REHYDRATE, payload: uiState });
   }
-
 }

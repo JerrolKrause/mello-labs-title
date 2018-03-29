@@ -74,7 +74,8 @@
   {
     "subject": "Purpose Of Loan",
     "noteDate": "2015-02-23T16:26:00Z",
-    "description": "Cashout to take care of debt and lower interest rate. Payment is still less than what he is currently paying. ",
+    "description":
+      "Cashout to take care of debt and lower interest rate. Payment is still less than what he is currently paying. ",
     "category": "Origination",
     "lastModName": "Jane Doe",
     "lastModUser": "jdoe",
@@ -219,5 +220,4 @@
     "lastModUser": "LD\\jdoe",
     "noteAge": "Older"
   }
- 
 ]

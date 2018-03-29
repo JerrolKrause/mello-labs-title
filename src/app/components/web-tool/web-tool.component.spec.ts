@@ -6,12 +6,13 @@ describe('WebToolComponent', () => {
   let component: WebToolComponent;
   let fixture: ComponentFixture<WebToolComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WebToolComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [WebToolComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WebToolComponent);

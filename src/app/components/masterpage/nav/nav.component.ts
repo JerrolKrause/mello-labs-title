@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService, ServiceWorkerService } from '@shared';
 
-
 @Component({
   selector: 'app-nav',
-  templateUrl: './nav.component.html'
+  templateUrl: './nav.component.html',
 })
 export class NavComponent {
-
   /** Is the dropdown menu open on mobile */
   public isOpen = false;
 
@@ -16,11 +14,7 @@ export class NavComponent {
   // Does the app have an update
   public hasUpdate$ = this.sw.updateAvailable$;
 
-  constructor(
-    private auth: AuthService,
-    private sw: ServiceWorkerService
-  ) {
-  }
+  constructor(private auth: AuthService, private sw: ServiceWorkerService) {}
 
   public updateApp() {
     this.sw.openModal();
@@ -29,5 +23,4 @@ export class NavComponent {
   public logOut() {
     this.auth.logOut('loggedout');
   }
-
 }

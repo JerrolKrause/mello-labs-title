@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
-import { ApiService, ApiProps } from '@api'
-import { UIStoreService, FormTypes } from '@ui'
+import { ApiService, ApiProps } from '@api';
+import { UIStoreService, FormTypes } from '@ui';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,10 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewerComponent implements OnInit, AfterViewInit {
-
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
   public loanCurrentDocsStatus$ = this.api.getState$(ApiProps.loanCurrentDocs);
 
@@ -25,11 +24,10 @@ export class ViewerComponent implements OnInit, AfterViewInit {
     public ui: UIStoreService,
     private api: ApiService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentDocs.get().subscribe();
 
@@ -39,14 +37,13 @@ export class ViewerComponent implements OnInit, AfterViewInit {
 
     this.subs.push(
       // Get LNkey from route params
-      this.route.params.subscribe(params => this.lnkey = params.lnkey),
+      this.route.params.subscribe(params => (this.lnkey = params.lnkey)),
       // Load active loan form into store
       this.api.loans$.subscribe(loans => {
         if (loans && loans.dict) {
           this.ui.formChange(FormTypes.loan, loans.dict[this.lnkey]);
         }
       }),
-     
     );
   }
 
@@ -62,7 +59,8 @@ export class ViewerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
-    if (this.subs.length) { this.subs.forEach(sub => sub.unsubscribe()) }
+    if (this.subs.length) {
+      this.subs.forEach(sub => sub.unsubscribe());
+    }
   }
-
 }

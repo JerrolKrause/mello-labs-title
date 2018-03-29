@@ -5,11 +5,14 @@ import { AppCommsService } from './app-comms.service';
 describe('AppCommsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AppCommsService]
+      providers: [AppCommsService],
     });
   });
 
-  it('should be created', inject([AppCommsService], (service: AppCommsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([AppCommsService], (service: AppCommsService) => {
+      expect(service).toBeTruthy();
+    }),
+  );
 });

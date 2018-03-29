@@ -2,7 +2,7 @@ import { IStore } from '@shared';
 import { UIStoreActions } from './ui.store.actions';
 
 /** Which properties of the store properties to NOT persist or save to local storage */
-const ignoreProps = ['loanHasUpdate','forms'];
+const ignoreProps = ['loanHasUpdate', 'forms'];
 
 // Define initial store state : State.main
 const initialState: IStore.ui = {
@@ -14,24 +14,24 @@ const initialState: IStore.ui = {
   multiscreen: false,
   multiDocs: false,
   loanContacts: false,
-  docViewerGuids:[],
+  docViewerGuids: [],
   forms: {
     loan: null,
     borrower: {
       borrower: `John Smith
 Jane Smith`,
-      maritalStatus:'Married'
+      maritalStatus: 'Married',
     },
-    vesting: null
-  }
+    vesting: null,
+  },
 };
 
-export function UIStoreReducer(state = initialState, { type, payload }:any) {
+export function UIStoreReducer(state = initialState, { type, payload }: any) {
   // console.log('UI REDUCER:', type, payload, JSON.parse(JSON.stringify(state)));
 
   // Write state to localstorage for persistence
   const saveState = () => {
-    let stateNew:any = { ...state };
+    let stateNew: any = { ...state };
     // Delete any keys that should not be persisted
     for (let key in stateNew) {
       if (stateNew.hasOwnProperty(key) && ignoreProps.indexOf(key) != -1 && stateNew[key]) {
@@ -43,7 +43,6 @@ export function UIStoreReducer(state = initialState, { type, payload }:any) {
   };
 
   switch (type) {
-
     case UIStoreActions.REHYDRATE:
       state = { ...initialState, ...payload };
       saveState();
@@ -74,15 +73,15 @@ export function UIStoreReducer(state = initialState, { type, payload }:any) {
       break;
     case UIStoreActions.DOC_CHANGE:
       state.docViewerGuids[payload.instance] = {
-        docGuid : payload.docGuid,
+        docGuid: payload.docGuid,
         bounds: payload.bounds,
-        pageNumber: payload.pageNumber
+        pageNumber: payload.pageNumber,
       };
       state.docViewerGuids = [...state.docViewerGuids];
       saveState();
       break;
     case UIStoreActions.FORM_CHANGE:
-      if (payload.loanHasUpdate){
+      if (payload.loanHasUpdate) {
         state.loanHasUpdate = true;
       }
       (<any>state).forms[payload.formType] = { ...payload.value };
@@ -100,7 +99,6 @@ export function UIStoreReducer(state = initialState, { type, payload }:any) {
       }
       saveState();
       break;
-
   }
 
   // console.log('UI STATE: ', JSON.parse(JSON.stringify(state)));

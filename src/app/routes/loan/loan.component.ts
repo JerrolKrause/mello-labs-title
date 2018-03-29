@@ -1,9 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  AfterViewInit,
+  ViewEncapsulation,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
-import { ApiService } from '@api'
-import { UIStoreService, FormTypes } from '@ui'
+import { ApiService } from '@api';
+import { UIStoreService, FormTypes } from '@ui';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { AppSettings, AppCommsService } from '@shared';
@@ -13,16 +21,15 @@ import { AppSettings, AppCommsService } from '@shared';
   templateUrl: './loan.component.html',
   styleUrls: ['./loan.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoanComponent implements OnInit, AfterViewInit {
-
   @ViewChild('tab') tab: NgbTabset;
 
-  public loan:any;
+  public loan: any;
 
   public contacts$ = this.api.contacts$;
-  public loanContacts$ = this.ui.loanContacts$
+  public loanContacts$ = this.ui.loanContacts$;
   public loanCurrent$ = this.api.loanCurrent$;
   public loanCurrentOcr$ = this.api.loanCurrentOcr$;
 
@@ -31,11 +38,11 @@ export class LoanComponent implements OnInit, AfterViewInit {
   public webLinks = [
     {
       label: 'USPS Address Verification',
-      url: 'https://tools.usps.com/go/ZipLookupResultsAction!input.action'
+      url: 'https://tools.usps.com/go/ZipLookupResultsAction!input.action',
     },
     {
       label: 'Title Request Form',
-      url: 'http://ldcorp/dept/IT/SitePages/Home.aspx'
+      url: 'http://ldcorp/dept/IT/SitePages/Home.aspx',
     },
   ];
 
@@ -49,11 +56,10 @@ export class LoanComponent implements OnInit, AfterViewInit {
     private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
     public settings: AppSettings,
-    private comms: AppCommsService
-  ) { }
+    private comms: AppCommsService,
+  ) {}
 
   ngOnInit() {
-
     this.api.loans.get().subscribe();
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentOcr.get().subscribe();
@@ -81,15 +87,13 @@ export class LoanComponent implements OnInit, AfterViewInit {
         }
       }),
       // Initial visible tab
-      this.ui.tabForm$.subscribe(tabNum => this.tabStart = 'tab-' + tabNum)
+      this.ui.tabForm$.subscribe(tabNum => (this.tabStart = 'tab-' + tabNum)),
     );
 
     // Get loan contacts
-    if (this.settings.lnkey){
-      this.api.contacts.get(this.settings.lnkey).subscribe()
+    if (this.settings.lnkey) {
+      this.api.contacts.get(this.settings.lnkey).subscribe();
     }
-
-    
   }
 
   public windowOpen(url: string) {
@@ -102,29 +106,29 @@ export class LoanComponent implements OnInit, AfterViewInit {
    * @param form
    */
   public formRef(formType: FormTypes, form: FormBuilder) {
-     console.log('formRef', formType, form);
+    console.log('formRef', formType, form);
     this.ref.detectChanges();
   }
 
-
   ngAfterViewInit() {
-  // On tab change, update UI store
-    if (this.tab){
+    // On tab change, update UI store
+    if (this.tab) {
       this.subs.push(
-        this.tab.tabChange.subscribe((tabNum:any) => {
+        this.tab.tabChange.subscribe((tabNum: any) => {
           this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
-        })
+        }),
       );
     }
   }
 
   ngOnDestroy() {
     if (this.ui.screen && !this.ui.screen.closed) {
-      this.ui.screen.location.href = this.slug + '#/viewer/', 'Document Viewer';
+      (this.ui.screen.location.href = this.slug + '#/viewer/'), 'Document Viewer';
     }
     this.settings.lnkey = null;
 
-    if (this.subs.length) { this.subs.forEach(sub => sub.unsubscribe()) }
+    if (this.subs.length) {
+      this.subs.forEach(sub => sub.unsubscribe());
+    }
   }
-
 }

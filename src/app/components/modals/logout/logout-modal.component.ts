@@ -6,19 +6,16 @@ import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-logout-modal',
-  templateUrl: './logout-modal.component.html'
+  templateUrl: './logout-modal.component.html',
 })
 export class LogoutModalComponent implements OnInit, OnDestroy {
-
   public logoutTimer$: Subscription; // Holds the countdown obserable
   public counter: number; // Log out after this many seconds
   // public modalDuration: number = 120; // This number is passed in through the modal reference, will default to 120 if not specified
   public data: any; // Data is actually passed through the modal service not here
   public dataAlt: any; // Data is actually passed through the modal service not here
 
-  constructor(
-    public activeModal: NgbActiveModal
-  ) {
+  constructor(public activeModal: NgbActiveModal) {
     this.data = 120;
   }
 
@@ -41,5 +38,4 @@ export class LogoutModalComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     this.logoutTimer$.unsubscribe(); // Unsub from timer on modal close
   }
-
 }

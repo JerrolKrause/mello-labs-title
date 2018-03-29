@@ -4,25 +4,21 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@a
   selector: 'app-loan-contacts',
   templateUrl: './loan-contacts.component.html',
   styleUrls: ['./loan-contacts.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoanContactsComponent implements OnInit, OnChanges {
-
   @Input() contacts: any[];
   @Input() loanNumber: string;
-  
-  constructor() { }
 
-  ngOnInit() {
-    
-  }
+  constructor() {}
+
+  ngOnInit() {}
 
   ngOnChanges() {
-    console.log(this.contacts)
+    console.log(this.contacts);
   }
 
   public openEmpowerNotes(a: any, b: any, c: any) {
     console.log(a, b, c);
   }
-
 }
