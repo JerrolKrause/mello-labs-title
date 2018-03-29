@@ -3,11 +3,6 @@ import { Store } from '@ngrx/store';
 import { IStore } from '@shared';
 import { UIStoreActions, FormTypes } from './ui.store.actions';
 
-export enum MessageActions {
-  RESYNC_UI = 'RESYNC_UI',
-  END_MULTISCREEN = 'END_MULTISCREEN',
-}
-
 @Injectable()
 export class UIStoreService {
   public modal$ = this.store.select(store => store.ui.modal);
@@ -32,7 +27,7 @@ export class UIStoreService {
       this.rehydrateUI(JSON.parse(<string>window.localStorage.getItem('ui')));
     }
 
-    // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
+     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store.ui))));
   }
 
   /**
