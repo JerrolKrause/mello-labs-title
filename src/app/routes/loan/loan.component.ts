@@ -1,13 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NgbTab, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
-import { ApiService, ApiProps } from '@api'
+import { ApiService } from '@api'
 import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { PostMessageService, AppSettings, AppCommsService } from '@shared';
+import { AppSettings, AppCommsService } from '@shared';
 
 @Component({
   selector: 'app-loan',
@@ -20,7 +19,7 @@ export class LoanComponent implements OnInit, AfterViewInit {
 
   @ViewChild('tab') tab: NgbTabset;
 
-  public loan;
+  public loan:any;
 
   public contacts$ = this.api.contacts$;
   public loanContacts$ = this.ui.loanContacts$
@@ -49,7 +48,6 @@ export class LoanComponent implements OnInit, AfterViewInit {
     private api: ApiService,
     private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private messaging: PostMessageService,
     public settings: AppSettings,
     private comms: AppCommsService
   ) { }
@@ -72,13 +70,13 @@ export class LoanComponent implements OnInit, AfterViewInit {
         this.comms.multiScreenState(); // Update multiscreen if present
       }),
       this.api.loans$.subscribe(loans => {
-        if (loans) {
+        if (loans && this.settings.lnkey) {
           this.loan = loans.dict[this.settings.lnkey];
         }
       }),
       // Load active loan form into store
       this.api.loans$.subscribe(loans => {
-        if (loans && loans.dict) {
+        if (loans && loans.dict && this.settings.lnkey) {
           this.ui.formChange(FormTypes.loan, loans.dict[this.settings.lnkey]);
         }
       }),
@@ -87,7 +85,11 @@ export class LoanComponent implements OnInit, AfterViewInit {
     );
 
     // Get loan contacts
-    this.api.contacts.get(this.settings.lnkey).subscribe()
+    if (this.settings.lnkey){
+      this.api.contacts.get(this.settings.lnkey).subscribe()
+    }
+
+    
   }
 
   public windowOpen(url: string) {
@@ -100,7 +102,7 @@ export class LoanComponent implements OnInit, AfterViewInit {
    * @param form
    */
   public formRef(formType: FormTypes, form: FormBuilder) {
-    // console.log('formRef', formType, form);
+     console.log('formRef', formType, form);
     this.ref.detectChanges();
   }
 
@@ -109,7 +111,7 @@ export class LoanComponent implements OnInit, AfterViewInit {
   // On tab change, update UI store
     if (this.tab){
       this.subs.push(
-        this.tab.tabChange.subscribe(tabNum => {
+        this.tab.tabChange.subscribe((tabNum:any) => {
           this.ui.tabChange('form', Number(tabNum.nextId.split('-')[1]));
         })
       );

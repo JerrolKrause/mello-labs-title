@@ -18,7 +18,7 @@ export class ConfirmationModalComponent {
     statusText?: string;
     type?: number;
     url?: string;
-  };
+  } | null;
   public data: any; // Data is actually passed through the modal service not here
   public dataAlt: any; // Data is actually passed through the modal service not here
   public onSuccess: EventEmitter<any> = new EventEmitter();

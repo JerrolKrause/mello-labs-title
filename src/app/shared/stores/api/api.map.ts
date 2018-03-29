@@ -20,13 +20,13 @@ export const ApiMap: IStore.ApiMapping = {
     mapSrc: 'src',
     map: (users: any[]) => {
 
-      let namesFirst = users.map(user => user.name.split(' ')[0]);
-      let namesLast = users.map(user => _.last(user.name.split(' ')));
-      let states = ['AZ', 'CA', 'CO', 'IL', 'MI', 'NY', 'TX', 'HI', 'OR', 'WA'];
+      // let namesFirst = users.map(user => user.name.split(' ')[0]);
+      // let namesLast = users.map(user => _.last(user.name.split(' ')));
+      // let states = ['AZ', 'CA', 'CO', 'IL', 'MI', 'NY', 'TX', 'HI', 'OR', 'WA'];
 
       let usersNew = [...users, ...users, ...users];
-      let dict = {};
-      usersNew = users.map((user, i) => {
+      let dict:any = {};
+      usersNew = users.map((user:any) => {
         let userNew = { ...user };
         //userNew.unverified = _.random(60);
         //userNew.complete = userNew.unverified;
@@ -73,9 +73,9 @@ export const ApiMap: IStore.ApiMapping = {
     uniqueId: 'docGuid',
     mapSrc: 'src',
     map: (docs: any[]) => {
-      let forReview = ['orange', 'blue', 'green', 'purple', 'red', '', ''];
+      // let forReview = ['orange', 'blue', 'green', 'purple', 'red', '', ''];
       // Sample dictionary mapping based on id property
-      const dict = {};
+      const dict: any = {};
       docs.forEach(doc => {
         //user.forReview = _.shuffle(forReview)[0];
         dict[doc.docGuid] = doc
@@ -111,7 +111,7 @@ export const ApiMap: IStore.ApiMapping = {
     mapSrc: 'src',
     map: (docs: any[]) => {
       // Sample dictionary mapping based on id property
-      const dict = {};
+      const dict: any = {};
       docs.forEach(doc => dict[doc.field] = doc);
       return {
         src: docs,
@@ -144,7 +144,7 @@ export const ApiMap: IStore.ApiMapping = {
     mapSrc: 'src',
     map: (users: any[]) => {
       // Sample dictionary mapping based on id property
-      const dict = {};
+      const dict:any = {};
       users.forEach(user => dict[user.id] = user);
       return {
         src: users,

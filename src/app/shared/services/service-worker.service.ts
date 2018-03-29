@@ -3,8 +3,6 @@ import { SwUpdate } from '@angular/service-worker';
 import { UIModalService } from '@ui';
 import { environment } from '../../../environments/environment.prod';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { timer } from 'rxjs/observable/timer';
 
 @Injectable()
 export class ServiceWorkerService {
@@ -12,10 +10,8 @@ export class ServiceWorkerService {
   public isEnabled = environment.serviceWorker;
   /** Notify app when a new version is available */
   public updateAvailable$ = new BehaviorSubject(false);
-  /** Has the modal been popped already */
-  private modalPopped = false;
   /** Holds set interval */
-  private counter;
+  private counter:any;
 
   constructor(
     private sw: SwUpdate,
@@ -52,7 +48,6 @@ export class ServiceWorkerService {
       .result.then(
       () => this.sw.activateUpdate(),
       () => console.warn('User is on an outdated version of the application'));
-    this.modalPopped = true;
   }
 
 }

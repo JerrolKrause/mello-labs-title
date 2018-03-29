@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 import { AuthService, AppSettings } from '@shared';
-import { ApiService } from '@api';
-import { UIStoreService } from '@ui';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -15,7 +13,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public formMain: FormGroup;
   public waiting: boolean;
-  public errorApi: IErrorApi;
+  public errorApi: IErrorApi | null;
   public showErrorDetails = false;
   public sessionExpired: boolean;
   public loggedout: boolean;
@@ -29,8 +27,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private api: ApiService,
-    private ui: UIStoreService,
     private settings: AppSettings
   ) {
   }
@@ -88,7 +84,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Authenticate
     this.authService.logIn(this.formMain.value).subscribe(
-      (success) => {
+      () => {
         this.settings.userName = this.formMain.value.userName;
         this.router.navigate([this.returnUrl]);
         this.waiting = false;

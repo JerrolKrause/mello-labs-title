@@ -24,7 +24,7 @@ export class ApiService extends ApiHttpService {
   /** Get the API state using api props */
   public getState$ = (apiProp: ApiProps) => this.store.select(store => store.apiStatus[apiProp]);
   /** Get the API data using api props */
-  public getData$ = (apiProp: ApiProps) => this.store.select(store => store.api[apiProp]);
+  //public getData$ = (apiProp: ApiProps) => this.store.select(store => store.api[apiProp]);
 
   public loans$ = this.store.select(store => store.api.loans);
   public notes$ = this.store.select(store => store.api.notes);
@@ -43,14 +43,13 @@ export class ApiService extends ApiHttpService {
     private settings: AppSettings
   ) {
     super(<any>http, <any>store, <any>router);
-
     // Output store changes to console
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
     
     // On instantiation, load environment settings
     this.appSettingsGet().subscribe(
       appSettings => this.appSettingsUpdate(appSettings),
-      error => console.error('Unable to get env settings', error));
+      error => console.error('Unable to get env settings', error, this.http));
     
   }
   
@@ -58,10 +57,10 @@ export class ApiService extends ApiHttpService {
   /** Users endpoint */
   public users = {
     get: (update?: boolean) => this.getStore(ApiMap.users.endpoint, ApiMap.users, update),
-    getOne: (user, update?: boolean) => this.getStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, update),
-    post: (user) => this.postStore(ApiMap.users.endpoint, ApiMap.users, user),
-    put: (user) => this.putStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, user),
-    delete: (user) => this.deleteStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, user)
+    getOne: (user:any, update?: boolean) => this.getStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, update),
+    post: (user: any) => this.postStore(ApiMap.users.endpoint, ApiMap.users, user),
+    put: (user: any) => this.putStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, user),
+    delete: (user: any) => this.deleteStore(ApiMap.users.endpoint + '/' + user.id, ApiMap.users, user)
   };
 
   public contacts = {
@@ -96,7 +95,7 @@ export class ApiService extends ApiHttpService {
    * Set all env settings in app settings
    * @param settings
    */
-  public appSettingsUpdate(settings) {
+  public appSettingsUpdate(settings: any) {
     this.settings.apiUrl = settings.ApiUrl;
   }
 

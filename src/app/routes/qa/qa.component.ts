@@ -9,8 +9,8 @@ export class QaComponent implements OnInit {
 
   public launchModalWorks: boolean;
 
-  public filterFruit;
-  public filterFruitMore;
+  public filterFruit:any;
+  public filterFruitMore: any;
   public fruits = ['Apple', 'Orange', 'Kiwi', 'Marionberries', 'Loganberries', 'Mangostein', 'Peach', 'Pear', 'Blackberries','Strawberries'];
   public fruitsMore = [
     { name: 'Apple' },
@@ -30,7 +30,7 @@ export class QaComponent implements OnInit {
   ngOnInit() {
   }
 
-  public launchModalSuccess(event) {
+  public launchModalSuccess(event: any) {
     if (event){
       this.launchModalWorks = true;
     }

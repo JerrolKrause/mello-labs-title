@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
@@ -17,7 +17,6 @@ export class LogoutModalComponent implements OnInit, OnDestroy {
   public dataAlt: any; // Data is actually passed through the modal service not here
 
   constructor(
-    private modalService: NgbModal,
     public activeModal: NgbActiveModal
   ) {
     this.data = 120;
@@ -27,7 +26,7 @@ export class LogoutModalComponent implements OnInit, OnDestroy {
     this.counter = this.data; // How long to display the modal window
 
     // Create a timer obserable that counts down
-    this.logoutTimer$ = Observable.interval(1000).subscribe(res => {
+    this.logoutTimer$ = Observable.interval(1000).subscribe(() => {
       // If timer is greater than 0, count down.
       if (this.counter > 1) {
         this.counter--;

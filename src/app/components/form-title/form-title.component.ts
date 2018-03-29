@@ -1,11 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, ViewEncapsulation, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-
 import { UIStoreService, FormTypes } from '@ui';
-import { ApiService } from '@api'
 
 declare var require: any
 
@@ -18,18 +14,17 @@ declare var require: any
 })
 export class FormTitleComponent implements OnInit, OnChanges {
 
-  @Input() ocr;
-  @Input() formData;
+  @Input() ocr:any;
+  @Input() formData: any;
   public formTitle: FormGroup;
-  public editGlobal;
+  public editGlobal: any;
   
   public formView = require('./form-title.view.json');
   public formModel = require('./form-title.model.json');
 
   constructor(
     private fb: FormBuilder,
-    public ui: UIStoreService,
-    private api: ApiService
+    public ui: UIStoreService
   ) {
     this.formTitle = this.createFormModel(this.formModel);
   }
@@ -41,7 +36,7 @@ export class FormTitleComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges(model) {
+  ngOnChanges() {
     if (this.formData) {
       this.formTitle.patchValue(this.formData);
     }
@@ -53,7 +48,7 @@ export class FormTitleComponent implements OnInit, OnChanges {
    * @param defaultRequired - Should all fields be required. Default is false
    */
   private createFormModel(model: any, defaultRequired = false) {
-    let formModel = {};
+    let formModel:any = {};
     // Loop through all props in the model
     Object.keys(model).forEach(key => {
       // If this is a nested object, recurse to create form group
@@ -62,8 +57,8 @@ export class FormTitleComponent implements OnInit, OnChanges {
       }
       // If this is an array, recurse to create a form array
       else if (model[key] && typeof model[key] === 'object' && Array.isArray(model[key])) {
-        let formArray = [];
-        model[key].forEach(item => formArray.push(this.createFormModel(item)));
+        let formArray:any = [];
+        model[key].forEach((item:any) => formArray.push(this.createFormModel(item)));
         formModel[key] = this.fb.array(formArray);
       }
       // Standard value

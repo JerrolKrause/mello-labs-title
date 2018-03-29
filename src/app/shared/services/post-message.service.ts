@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 
 import { AppSettings } from '@shared';
 import { ObjectUtils } from '@utils';
@@ -22,7 +21,7 @@ export class PostMessageService {
   /** Postmessage response */
   public postMessage$: Subject<Message> = new Subject();
   /** Holds postmessage event listener */
-  private postMessageListener;
+  private postMessageListener:any;
   /** An array of domains to accept postmessage responses from, based on window.location.origin */
   private allowedDomains: string[];
   /** Generate a random number to identify this app. Used to drop same domain postmessages */
@@ -50,6 +49,13 @@ export class PostMessageService {
       this.postMessageListener = (<any>window).attachEvent('onmessage', this.messageReceived.bind(this), false);
     }
     return this.postMessage$;
+  }
+
+  /**
+   * Stop listening for postmessage events
+   */
+  public stopListening() {
+    window.removeEventListener('message',this.postMessageListener);
   }
 
   /**

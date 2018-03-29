@@ -1,8 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { UIStoreService } from '@ui'
 
-import { ApiService, ApiProps } from '@api'
-import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -43,7 +41,6 @@ export class DocumentViewerComponent implements OnInit, OnChanges {
 
   constructor(
     public ui: UIStoreService,
-    private api: ApiService,
     private route: ActivatedRoute
   ) { }
 

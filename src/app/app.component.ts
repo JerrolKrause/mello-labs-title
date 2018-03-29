@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { SwUpdate } from '@angular/service-worker';
 import { Title } from '@angular/platform-browser';
-import { environment } from '../environments/environment.prod';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-import { AuthService, ServiceWorkerService, AppCommsService } from '@shared';
-import { UIModalService } from '@ui';
+import { AuthService, AppCommsService } from '@shared'; //ServiceWorkerService,
 
 @Component({
   selector: 'app-root',
@@ -21,15 +18,14 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private title: Title,
     private authService: AuthService,
-    private swUpdate: SwUpdate,
-    private modals: UIModalService,
-    private sw: ServiceWorkerService,
+    //private sw: ServiceWorkerService,
     private comms: AppCommsService
   ) {
   }
 
   ngOnInit() {
     this.routeChange();
+    this.comms.commsEnable();
   }
 
   /**

@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-
 import { IStore } from '@shared';
 import { UIStoreActions, FormTypes } from './ui.store.actions';
-
-
-import { PostMessageService } from 'src/app/shared/services/post-message.service';
-import { AppCommsService } from 'src/app/shared/services/app-comms.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export enum MessageActions {
   RESYNC_UI = 'RESYNC_UI',
@@ -34,16 +25,14 @@ export class UIStoreService {
   public multiDocs$ = this.store.select(store => store.ui.multiDocs);
   public loanContacts$ = this.store.select(store => store.ui.loanContacts);
 
-  public screen: Window;
+  public screen: Window | null;
 
   constructor(
-    private store: Store<IStore.root>,
-    private messaging: PostMessageService,
-    private route: ActivatedRoute
+    private store: Store<IStore.root>
   ) {
     // Rehydrate UI state from localstorage
     if (window.localStorage.getItem('ui')) {
-      this.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
+      this.rehydrateUI(JSON.parse(<string>window.localStorage.getItem('ui')));
     }
    
     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store))));
@@ -63,7 +52,7 @@ export class UIStoreService {
    * Change the currently visible document in the document viewer
    * @param docID - GUID of document
    */
-  public docViewerChange(docViewerInstance: 0 | 1, docGuid: string, pageNumber?: number, bounds?: any) {
+  public docViewerChange(docViewerInstance: 0 | 1, docGuid: string | null, pageNumber?: number, bounds?: any) {
     this.store.dispatch({ type: UIStoreActions.DOC_CHANGE, payload: { instance: docViewerInstance, docGuid: docGuid, pageNumber: pageNumber, bounds: bounds } });
   }
 
@@ -77,7 +66,7 @@ export class UIStoreService {
   /**
    * Toggle multiscreen view which moves the document viewer into its own window
    */
-  public multiScreenToggle(multiScreen: boolean = null) {
+  public multiScreenToggle(multiScreen: boolean) {
     this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: multiScreen });
   }
 

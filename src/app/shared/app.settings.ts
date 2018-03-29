@@ -22,42 +22,46 @@ export class AppSettings {
   }
 
   /** API token for EPS */
-  private _token: string = null;
+  private _token: string | null = null;
   /** API token for EPS */
-  public get token(): string {
-    return this.propGet(Props.token);
+  public get token(): string | null {
+    return this._token || this.propGet(Props.token);
   }
-  public set token(value: string) {
+  public set token(value: string | null) {
+    this._token = value;
     this.propSet(Props.token, value);
   }
 
   /** Web Api Url */
-  private _apiUrl: string = null;
+  private _apiUrl: string | null = null;
   /** Web Api Url */
-  public get apiUrl(): string {
-    return this.propGet(Props.apiUrl);
+  public get apiUrl(): string | null {
+    return this._apiUrl || this.propGet(Props.apiUrl);
   }
-  public set apiUrl(value: string) {
+  public set apiUrl(value: string | null) {
+    this._apiUrl = value;
     this.propSet(Props.apiUrl, value);
   }
 
   /** Username */
-  private _lnkey: string = null;
+  private _lnkey: string | null = null;
   /** Username */
-  public get lnkey(): string {
-    return this.propGet(Props.lnkey);
+  public get lnkey(): string | null {
+    return this._lnkey || this.propGet(Props.lnkey);
   }
-  public set lnkey(value: string) {
+  public set lnkey(value: string | null) {
+    this._lnkey = value;
     this.propSet(Props.lnkey, value);
   }
 
   /** Username */
-  private _userName: string = null;
+  private _userName: string | null = null;
   /** Username */
-  public get userName(): string {
-    return this.propGet(Props.userName);
+  public get userName(): string | null {
+    return this._userName || this.propGet(Props.userName);
   }
-  public set userName(value: string) {
+  public set userName(value: string | null) {
+    this._userName = value;
     this.propSet(Props.userName, value);
   }
 
@@ -70,11 +74,8 @@ export class AppSettings {
   * @param prop - App settings property
   * @param location - Location of locally stored prop, either sessionStorage or localStorage
   */
-  private propGet(prop: string, location: 'localStorage' | 'sessionStorage' = 'localStorage') {
-    if (!this['_' + prop] && window[location].getItem(prop)) {
-      this['_' + prop] = window[location].getItem(prop);
-    }
-    return this['_' + prop] || null;
+  private propGet(propKey: string, location: 'localStorage' | 'sessionStorage' = 'localStorage') {
+    return window[location].getItem(propKey) || null;
   }
 
   /**
@@ -82,13 +83,11 @@ export class AppSettings {
   * @param prop - App settings property
   * @param location - Location of locally stored prop, either sessionStorage or localStorage
   */
-  private propSet(prop: string, value: string, location: 'localStorage' | 'sessionStorage' = 'localStorage') {
+  private propSet(prop: string, value: string | null, location: 'localStorage' | 'sessionStorage' = 'localStorage') {
     if (value) {
       window[location].setItem(prop, value);
-      this['_' + prop] = value;
     } else {
       window[location].removeItem(prop);
-      this['_' + prop] = null;
     }
   }
 

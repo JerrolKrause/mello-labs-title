@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs/Subscription';
 
 import { UIModalService } from '@ui';
@@ -48,7 +47,6 @@ export class LaunchModalComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   constructor(
-    private modalService: NgbModal,
     private modals: UIModalService
   ) {
   }
@@ -80,8 +78,8 @@ export class LaunchModalComponent implements OnInit, OnDestroy {
       this.sub = this.modals.modalRef$.subscribe(modalElem => {
         if (modalElem) {
           modalElem.result.then(
-            reason => this.onSuccess.emit(reason),
-            reason => this.onDismiss.emit(reason));
+            (reason:any) => this.onSuccess.emit(reason),
+            (reason: any) => this.onDismiss.emit(reason));
         }
       });
     }

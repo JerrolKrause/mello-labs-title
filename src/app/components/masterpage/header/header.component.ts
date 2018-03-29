@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   public ngOnInit() {
     // On route change, close nav window
-    this.router.events.subscribe((val) => {
+    this.router.events.subscribe(() => {
       this.isOpen = false;
     });
   }

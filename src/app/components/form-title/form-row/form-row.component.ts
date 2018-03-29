@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { UIStoreService, FormTypes } from '@ui';
+import { Validators, FormGroup } from '@angular/forms';
+import { UIStoreService } from '@ui';
 import * as _ from 'lodash';
 
 export interface viewModel {
@@ -27,7 +27,6 @@ export interface ocrModel {
   }
 }
 
-
 @Component({
   selector: 'app-form-row',
   templateUrl: './form-row.component.html',
@@ -37,7 +36,7 @@ export interface ocrModel {
 export class FormRowComponent implements OnInit {
 
   @Input() form: FormGroup;
-  @Input() viewModel: viewModel;
+  @Input() viewModel: viewModel | null;
   @Input() ocrValue: string | string[];
   @Input() ocrModel: ocrModel;
   @Input() editing = false;
@@ -53,14 +52,15 @@ export class FormRowComponent implements OnInit {
 
   ngOnInit() {
 
+    let val = this.viewModel ? this.form.get(this.viewModel.field) : null;
     // If viewmodel specifies required, set required in form
-    if (this.viewModel.required) {
-      this.form.get(this.viewModel.field).setValidators([Validators.required]);
+    if (this.form && val && this.viewModel && this.viewModel.required && this.viewModel.field && Validators) {
+      val.setValidators([Validators.required]);
     }
 
     this.docID = _.shuffle(['ccsw9c8a9c8s', 'b23b423b4', 'm85mfhvgf', 'dcv125bb5', 'ddfds4674asd'])[0];
 
-    if (this.viewModel && this.form){
+    if (this.viewModel && this.form && this.viewModel.field){
       // Hold initial value
       this.valuePrev = this.form.value[this.viewModel.field];
     }
@@ -89,9 +89,12 @@ export class FormRowComponent implements OnInit {
    */
   public updateForm(field: string, propNew: string) {
     this.editing = false;
-    let valNew = {};
+    let valNew:any = {};
     valNew[field] = propNew;
-    this.form.patchValue(valNew);
+    if (this.form){
+      this.form.patchValue(valNew);
+    }
+    
   }
 
   /**
@@ -99,7 +102,7 @@ export class FormRowComponent implements OnInit {
    * @param field
    * @param date
    */
-  public dateChanged(field: string, date) {
+  public dateChanged(field: string, date:any) {
     this.updateForm(field, date.month + '/' + date.day + '/' + date.year);
     this.editing = true;
   }
@@ -108,7 +111,7 @@ export class FormRowComponent implements OnInit {
    * Add a condition
    * @param $event
    */
-  public conditionAdd($event) {
+  public conditionAdd() {
 
   }
 

@@ -21,7 +21,7 @@ export class LoanContactsComponent implements OnInit, OnChanges {
     console.log(this.contacts)
   }
 
-  public openEmpowerNotes(a,b,c) {
+  public openEmpowerNotes(a: any, b: any, c: any) {
     console.log(a, b, c);
   }
 

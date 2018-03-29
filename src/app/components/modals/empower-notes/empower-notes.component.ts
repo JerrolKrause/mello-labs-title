@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, EventEmitter } from '@angular/core';
 import { NgbActiveModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Datagrid } from '@mello-labs/datagrid';
-import { FormControl, Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '@api';
 
 @Component({
@@ -17,10 +17,11 @@ export class EmpowerNotesComponent implements OnInit {
   public onSuccess: EventEmitter<any> = new EventEmitter();
   public formMain: FormGroup;
 
+
   public notes$ = this.api.notes$;
   public waiting = false;
   /** Reference to datagrid */
-  @ViewChild('dataGrid') dataGrid;
+  @ViewChild('dataGrid') dataGrid: any;
   @ViewChild('tabs') tabs: NgbTabset;
 
   public options: Datagrid.Options = {
@@ -41,7 +42,7 @@ export class EmpowerNotesComponent implements OnInit {
   ];
 
   public filterGlobal: Datagrid.FilterGlobal = {
-    term: null,
+    term: '',
     props: ['subject','description']
   };
 
@@ -68,7 +69,7 @@ export class EmpowerNotesComponent implements OnInit {
 	* Update the global filter term
 	* @param searchTerm
 	*/
-  public onfilterGlobal(searchTerm: string = null) {
+  public onfilterGlobal(searchTerm: string) {
     this.filterGlobal = { ...this.filterGlobal, term: searchTerm };
   }
 

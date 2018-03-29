@@ -30,7 +30,6 @@ export class AppCommsService {
     private settings: AppSettings,
     private ui: UIStoreService,
   ) {
-    this.commsEnable();
   }
 
   /**
@@ -59,7 +58,7 @@ export class AppCommsService {
         this.ui.multiDocs$,
         this.ui.multiScreen$,
         this.ui.docViewerGuids$
-      ]).subscribe(res => this.resyncUI()),
+      ]).subscribe(() => this.resyncUI()),
 
       // Listen for any interapp communication on same domain
       this.messaging.listenForMessages(this.allowedDomains).subscribe(message => {
@@ -72,7 +71,7 @@ export class AppCommsService {
             }
             // Otherwise update UI state from localstorage
             else {
-              this.ui.rehydrateUI(JSON.parse(window.localStorage.getItem('ui')));
+              this.ui.rehydrateUI(JSON.parse(<any>window.localStorage.getItem('ui')));
             }
             break;
           case MessageActions.END_MULTISCREEN:
@@ -129,9 +128,11 @@ export class AppCommsService {
           this.ui.screen = null;
         }
         // If multi screen has been set and a window is already opened, update url in current window
-        else if (multiScreen && this.ui.screen) {
+        else if (multiScreen) {
           setTimeout(() => {
-            this.ui.screen.location.href = slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer';
+            if (this.ui.screen){
+              this.ui.screen.location.href = slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer';
+            }
           });
         }
         // If screen is open and multiscreen is false, close window

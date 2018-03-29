@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '@api';
 import { UIStoreService } from '@ui';
 
 @Component({
@@ -11,12 +10,11 @@ import { UIStoreService } from '@ui';
 })
 export class ExceptionComponent implements OnInit {
 
-  public waiting;
+  public waiting:boolean;
 
   constructor(
     public activeModal: NgbActiveModal,
-    public ui: UIStoreService,
-    private api: ApiService
+    public ui: UIStoreService
   ) { }
 
   ngOnInit() {

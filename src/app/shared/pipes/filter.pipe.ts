@@ -17,7 +17,7 @@ export class FilterPipe implements PipeTransform {
       return str.toString().toLowerCase().trim().replace(/[^a-z0-9]/gi, '');
     };
 
-    return arr.filter(elem => {
+    return arr.filter((elem:any) => {
       // If objProp was supplied, search the prop within the object, otherwise its a string array and search that
       const stringSearch = objProp ?
         simplifyString(elem[objProp]) :

@@ -1,17 +1,20 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "baseUrl": ".",
     "declaration": false,
-    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
+    "lib": [
+      "es2017",
+      "dom"
     ],
-    "baseUrl": ".",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist/out-tsc",
     "paths": {
       "@routes": [ "./src/app/routes" ],
       "@components": [ "./src/app/components" ],
@@ -21,10 +24,19 @@
       "@api": [ "./src/app/shared/stores/api" ],
       "@utils": [ "./src/app/shared/utils" ]
     },
-    "lib": [
-      "es2017",
-      "dom"
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": false,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
     ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": false
   },
   "include": [
     "src/**/*",

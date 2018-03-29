@@ -1,4 +1,4 @@
-import { Directive, ElementRef, AfterViewInit, OnChanges, HostBinding, Input, HostListener } from '@angular/core';
+import { Directive, ElementRef, AfterViewInit, OnChanges, Input, HostListener } from '@angular/core';
 
 type overflow = 'auto' | 'hidden' | 'inherit' | 'initial' | 'overlay' | 'scroll' | 'visible';
 
@@ -16,7 +16,7 @@ export class FullScreenDirective implements AfterViewInit, OnChanges {
   public height: number;
 
   /** How much to offset the top of the grid. Will adjust automatically if null */
-  @Input() offsetTop: number = null;
+  @Input() offsetTop: number | null;
   /** How much to offset the bottom of the grid */
   @Input() offsetBottom = 25;
   /** What percent of the viewport height to display, default is 100% */

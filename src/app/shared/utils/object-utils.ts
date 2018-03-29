@@ -11,7 +11,7 @@ export class ObjectUtils {
    * @param obj - Any object
    */
   static cleanup(obj: Object) {
-    return function prune(current) {
+    return function prune(current:any) {
       _.forOwn(current, function (value, key) {
         if (_.isUndefined(value) || _.isNull(value) || _.isNaN(value) ||
           (_.isString(value) && _.isEmpty(value)) ||

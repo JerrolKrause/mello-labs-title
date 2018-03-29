@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router, RoutesRecognized, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/interval';
 
 import { UIModalService } from '@ui';
 import { ApiService } from '@api';
-import { IStore } from '../stores/store';
 import { AppSettings } from '../app.settings';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +24,7 @@ export class AuthService {
   /** Holds the logout session timer */
   public sessionTimer: any = null; // 
   /** Holds reference to logout modal */
-  public logOutModal: NgbModalRef;
+  public logOutModal: NgbModalRef | null;
   /** The http call so a token can be refreshed with a callback and success method */
   public refreshToken = this.http.put(this.settings.apiUrl + '/authentication/token', null);
   /** If a token is passed in without logging in no timer duration is present. Default to this */
@@ -34,10 +32,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<IStore.root>,
     private settings: AppSettings,
     private modals: UIModalService,
     private api: ApiService
@@ -52,9 +48,9 @@ export class AuthService {
 
     // If a token is passed in via matrix notation params, update app settings.
     // Need to use matrix notation /#/route;token=123456456456
-    this.router.events.subscribe(val => {
-      if (val instanceof RoutesRecognized && val.state.root.firstChild.params.token) {
-        this.settings.token = val.state.root.firstChild.params.token;
+    this.router.events.subscribe((val:any) => {
+      if (val instanceof RoutesRecognized && (<any>val).state.root.firstChild.params.token) {
+        this.settings.token = (<any>val).state.root.firstChild.params.token;
         this.setTimer(this.setTimerDefaultSeconds); // Start the session timer with the default time
       }
     });
@@ -64,7 +60,7 @@ export class AuthService {
    * Log the user in
    * @param data
    */
-  public logIn(data) {
+  public logIn(data:any) {
     const url = this.settings.apiUrl + this.authUrl;
 
     // If no auth endpoint set up yet, use a get and set the token properties so the rest of the app can work
@@ -100,7 +96,7 @@ export class AuthService {
         }
         return true;
       },
-      (response: any) => {
+      () => {
         // console.log('Error refreshing token');
         this.logOut();
       }
@@ -129,7 +125,7 @@ export class AuthService {
   private launchLogoutModal(): void {
     clearTimeout(this.sessionTimer);
     // Open log out modal window
-    this.modals.open('LogoutModalComponent', false, 'lg', this.modalDuration).result.then((closeReason) => {
+    this.modals.open('LogoutModalComponent', false, 'lg', this.modalDuration).result.then(() => {
       this.logOut();
     }, (dismissReason) => {// When modal is dismissed
       if (dismissReason !== 'norefresh') {
@@ -150,7 +146,7 @@ export class AuthService {
     const returnUrl = this.router.url !== '/' && this.router.url !== '/login' ? this.router.url.split('?')[0] : null;
     let queryParams = { returnUrl: returnUrl };
     if (logoutType){
-      queryParams['session'] = logoutType;
+      (<any>queryParams)['session'] = logoutType;
     }
     this.router.navigate(['/login'], { queryParams: queryParams });
   } // end LogOut

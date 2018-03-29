@@ -1,13 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { CurrencyPipe } from '@angular/common'
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { UIStoreService, FormTypes } from '@ui';
+import { UIStoreService } from '@ui';
 import { ApiService } from '@api'
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-loan-info',
@@ -19,22 +16,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoanInfoComponent implements OnInit {
 
   public lnkey: string;
-  public dateEffective;
-  public dateExpiration;
 
   public loanCurrent$ = this.api.loanCurrent$;
-
-  public loan;
 
   private subs: Subscription[] = [];
 
   constructor(
-    private fb: FormBuilder,
     public ui: UIStoreService,
     private api: ApiService,
-    private cp: CurrencyPipe,
     private router: Router,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -45,7 +35,7 @@ export class LoanInfoComponent implements OnInit {
    * When an exception is added
    * @param $event
    */
-  public exceptionAdded($event) {
+  public exceptionAdded() {
     this.router.navigate(['/']);
   }
 

@@ -1,5 +1,5 @@
 import { IStore } from '@shared';
-import { UIStoreActions, FormTypes } from './ui.store.actions';
+import { UIStoreActions } from './ui.store.actions';
 
 /** Which properties of the store properties to NOT persist or save to local storage */
 const ignoreProps = ['loanHasUpdate','forms'];
@@ -26,12 +26,12 @@ Jane Smith`,
   }
 };
 
-export function UIStoreReducer(state = initialState, { type, payload }) {
+export function UIStoreReducer(state = initialState, { type, payload }:any) {
   // console.log('UI REDUCER:', type, payload, JSON.parse(JSON.stringify(state)));
 
   // Write state to localstorage for persistence
   const saveState = () => {
-    let stateNew = { ...state };
+    let stateNew:any = { ...state };
     // Delete any keys that should not be persisted
     for (let key in stateNew) {
       if (stateNew.hasOwnProperty(key) && ignoreProps.indexOf(key) != -1 && stateNew[key]) {
@@ -85,7 +85,7 @@ export function UIStoreReducer(state = initialState, { type, payload }) {
       if (payload.loanHasUpdate){
         state.loanHasUpdate = true;
       }
-      state.forms[payload.formType] = { ...payload.value };
+      (<any>state).forms[payload.formType] = { ...payload.value };
       saveState();
       break;
     case UIStoreActions.TAB_CHANGE:

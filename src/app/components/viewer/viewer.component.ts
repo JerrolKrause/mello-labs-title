@@ -1,11 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
 import { ApiService, ApiProps } from '@api'
 import { UIStoreService, FormTypes } from '@ui'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { PostMessageService } from '@shared';
 
 @Component({
   selector: 'app-viewer',
@@ -26,10 +24,8 @@ export class ViewerComponent implements OnInit, AfterViewInit {
   constructor(
     public ui: UIStoreService,
     private api: ApiService,
-    private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private router: Router,
-    private messaging: PostMessageService
+    private router: Router
   ) { }
 
   ngOnInit() {

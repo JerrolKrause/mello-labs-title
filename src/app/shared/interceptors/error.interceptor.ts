@@ -3,7 +3,7 @@ import { ErrorHandler, Injectable } from '@angular/core';
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
 
-  private errorLogApi = '/api/logerror'; // API to post errors too
+  // private errorLogApi = '/api/logerror'; // API to post errors too
 
   constructor(
   ) {
@@ -12,7 +12,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   // Custom error handler for application/angular errors
   // Uses plain JS to eliminate any dependencies that may not be available due to the error
-  public handleError(error) {
+  public handleError(error:any) {
     console.error(error);
     // Only throw application errors to the dom. If the error has an errorMsg then it is an internal error
     if (!error.errorMsg) {
@@ -26,8 +26,9 @@ export class GlobalErrorHandler implements ErrorHandler {
       if (error.message) {
         errorConcat += error.message.substring(0, 600);
       }
-      const errorEscaped = errorConcat.replace(/[\"&<>]/g, (a) => { // Escape HTML before being outputted to DOM
-        return { '"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;' }[a];
+      const errorEscaped = errorConcat.replace(/[\"&<>]/g, (a: any) => { // Escape HTML before being outputted to DOM
+        let chars: any = { '"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+        return chars[a];
       });
 
       // this.logError(errorConcat); // Log Error, uncomment to add if API is available
@@ -64,13 +65,13 @@ export class GlobalErrorHandler implements ErrorHandler {
    */
   public removeError() {
     if (document.getElementById('errorApp')) {
-      document.getElementById('errorApp').parentNode.removeChild(document.getElementById('errorApp'));
+      (<any>document).getElementById('errorApp').parentNode.removeChild(document.getElementById('errorApp'));
     }
   } // end removeError
 
   /**
    * Log the error to an API
-   */
+   
   private logError(errorMsg: string) {
     const http = new XMLHttpRequest();
     const params = 'NEEDKEY=' + errorMsg;
@@ -86,5 +87,5 @@ export class GlobalErrorHandler implements ErrorHandler {
     };
     http.send(params);
   } // end logError
-
+  */
 }

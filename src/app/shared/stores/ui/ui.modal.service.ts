@@ -46,7 +46,7 @@ export class UIModalService {
       // Make sure modal exists AND that a token is present in app settings. This prevents a modal from persisting after logout
       if (modal && Object.keys(modal).length && this.settings.token) {
         // Store reference to the modal instance
-        const modalRef = this.modalService.open(this.modalList[modal.modalId], modal.options);
+        const modalRef = this.modalService.open((<any>this).modalList[modal.modalId], modal.options);
         // Add any passed in data to the modal instance after it has opened
         if (modal.data) {
           modalRef.componentInstance.data = modal.data;
@@ -107,11 +107,11 @@ export class UIModalService {
   private onClose() {
     this.modalRef$.subscribe(modal => {
       // Wait for promise that is returned when modal is closed or dismissed
-      modal.result.then((closeReason) => {
+      modal.result.then(() => {
         this.store.dispatch({ type: UIStoreActions.MODAL_UNLOAD, payload: null });
         this.api.resetErrors();
         this.api.resetSuccess();
-      }, (dismissReason) => {
+      }, () => {
         // On modal dismiss, which is closed without performing an action
         this.store.dispatch({ type: UIStoreActions.MODAL_UNLOAD, payload: null });
         this.api.resetErrors();

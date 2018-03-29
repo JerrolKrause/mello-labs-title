@@ -13,8 +13,8 @@ export class SortPipe implements PipeTransform {
     //console.log(arr, sortDir, objProp);
     let arrayNew = arr;
 
-    const sortAsc = (a, b) => a[objProp] - b[objProp];
-    const sortDesc = (a, b) => b[objProp] - a[objProp];
+    const sortAsc = (a: any, b: any) => a[objProp] - b[objProp];
+    const sortDesc = (a: any, b: any) => b[objProp] - a[objProp];
 
     if (objProp) {
       arrayNew = sortDir == 'asc' ? arrayNew.sort(sortAsc) : arrayNew.sort(sortDesc);

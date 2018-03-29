@@ -2,16 +2,16 @@
 
   <div class="col-12" [ngClass]="ocrModel ? 'col-md-3' : 'col-md-5'">
 
-    <ng-container *ngIf="viewModel.required">
+    <ng-container *ngIf="viewModel?.required">
       <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.valid"></i>
       <i class="fa fa-warning yellow" *ngIf="!form.get(viewModel.field)?.valid"></i>
     </ng-container>
-    <ng-container *ngIf="!viewModel.required">
+    <ng-container *ngIf="!viewModel?.required">
       <i class="fa fa-question-circle" style="color: #99a7b9;" aria-hidden="true" *ngIf="!form.get(viewModel.field)?.value"></i>
       <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
     </ng-container>
 
-    <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel.label}}</a>
+    <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel?.label}}</a>
 
     <ng-container *ngIf="ocrModel">
       <br />
@@ -50,7 +50,7 @@
           <i class="fa fa-remove"></i>
         </a>
 
-        <ng-container *ngIf="form.value[viewModel.field] != valuePrev && !editing">
+        <ng-container *ngIf="form?.value[viewModel?.field] != valuePrev && !editing">
           <br />
           <a (click)="updateForm(viewModel.field,valuePrev)" title="Undo changes to this field">
             <i class="fa fa-undo" aria-hidden="true"></i>

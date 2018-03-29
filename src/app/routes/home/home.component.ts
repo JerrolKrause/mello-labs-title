@@ -1,11 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ViewEncapsulation, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { NgbTab, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs/Subscription';
-import * as _ from 'lodash';
 import { Datagrid } from '@mello-labs/datagrid';
 
-import { ApiService, ApiProps } from '@api';
+import { ApiService } from '@api';
 import { UIStoreService } from '@ui';
 
 declare var require: any
@@ -21,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('tab') tab: NgbTabset;
 
-  public rows;
+  public rows:any;
   public columns: Datagrid.Column[] = require('./columns.loans.json');
   public columnsExceptions: Datagrid.Column[] = require('./columns.exceptions.json');
   public state: Datagrid.State = { "filters": [], "sorts": [{ dir: "asc", prop: "complete" }], "groups": [] };//{ dir: "asc", prop: "certification" }
@@ -34,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public filterGlobal = {
-    term: null,
+    term: '',
     props: ['lnkey', 'name']
   };
 
@@ -47,7 +45,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private api: ApiService,
     public ui: UIStoreService,
-    private fb: FormBuilder,
     private ref: ChangeDetectorRef
   ) {
   }
@@ -67,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     this.subs.push(
       // On tab change, update UI store
-      this.tab.tabChange.subscribe(tabNum => {
+      this.tab.tabChange.subscribe((tabNum:any) => {
         this.ui.tabChange('dashboard', Number(tabNum.nextId.split('-')[1]));
       })
     );
@@ -77,11 +74,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 	 * Update the global filter term
 	 * @param searchTerm
 	 */
-  public onfilterGlobal(searchTerm: string = null) {
+  public onfilterGlobal(searchTerm: string) {
     this.filterGlobal = { ...this.filterGlobal, term: searchTerm };
   }
 
-  public onStateChange(state) {
+  public onStateChange() {//state:any
   }
 
   ngOnDestroy() {
