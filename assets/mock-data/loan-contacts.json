@@ -79,8 +79,5 @@
       "userId": 0
     }
   ],
-  "brokers": [
-    { "bcdRole": "Loan Officer" },
-    { "bcdRole": "Processor" }
-  ]
+  "brokers": [{ "bcdRole": "Loan Officer" }, { "bcdRole": "Processor" }]
 }
