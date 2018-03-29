@@ -11,29 +11,59 @@
 
   <div class="modal-body" id="modal-body">
 
-    <div class="clearfix mb-2">
-      <div class="form-inline d-inline-block float-right">
-        <!-- Filter datatable -->
-        <label class="icon filter" style="position:relative;">
-          <input class="form-control form-control-sm filterSearch" type="text" name="filterGlobal" placeholder="Filter subject/description" [ngModel]="filterGlobal.term" (ngModelChange)="onfilterGlobal($event)" data-qa="hp-filter-global" />
-          <a (click)="filterGlobal.term = null; onfilterGlobal()" *ngIf="filterGlobal.term" style="position:absolute;right: 10px;"><i class="fa fa-remove"></i></a>
-        </label>
-      </div>
+    <div class="form-inline d-inline-block float-right mt-2" *ngIf="this.tabs.activeId == 'tab-1' ">
+      <!-- Filter datatable -->
+      <label class="icon filter" style="position:relative;">
+        <input class="form-control form-control-sm filterSearch" type="text" name="filterGlobal" placeholder="Filter subject/description" [ngModel]="filterGlobal.term" (ngModelChange)="onfilterGlobal($event)" data-qa="hp-filter-global" />
+        <a (click)="filterGlobal.term = null; onfilterGlobal()" *ngIf="filterGlobal.term" style="position:absolute;right: 10px;"><i class="fa fa-remove"></i></a>
+      </label>
     </div>
 
-    <datagrid #dataGrid *ngIf="notes$ | async as notes"
-              [rows]="notes"
-              [columns]="columns"
-              [state]="{}"
-              [options]="options"
-              [filterGlobal]="filterGlobal">
-    </datagrid>
+    <ngb-tabset #tabs="ngbTabset" class="nav-tabs-sm" [activeId]="tabStart">
+
+      <ngb-tab id="tab-1">
+        <ng-template ngbTabTitle>
+          <i aria-hidden="true" class="fa fa-file-text"></i> Current Notes
+        </ng-template>
+        <ng-template ngbTabContent>
+
+          <datagrid #dataGrid *ngIf="notes$ | async as notes"
+                    [rows]="notes"
+                    [columns]="columns"
+                    [state]="{}"
+                    [options]="options"
+                    [filterGlobal]="filterGlobal">
+          </datagrid>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab id="tab-2">
+        <ng-template ngbTabTitle>
+          <i aria-hidden="true" class="fa fa-pencil"></i> Add Note
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="p-3" style="border-top: 1px solid #ddd;">
+            <field-component [frmGroup]="formMain" frmControl="subject" label="Subject" [inline]="true" placeholder="Type subject here..."></field-component>
+            <field-component [frmGroup]="formMain" frmControl="description" label="Note" [inline]="true" placeholder="Type note here..." type="textarea"></field-component>
+            <field-component [frmGroup]="formMain" class="positionArrow" *ngIf="noteTypes$ | async as noteTypes"
+                             frmControl="category" label="Note Type" type="select" [model]="noteTypes" modelLabel="category" modelValue="category"></field-component>
+            <div class="text-right">
+              <button class="btn btn-primary" (click)="activeModal.close('Close click')">
+                <i aria-hidden="true" class="fa fa-pencil"></i> Add Note
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+
+
 
   </div>
 
   <div class="modal-footer" style="justify-content: space-between;">
     <button type="button" class="btn btn-interact-outline float-left pull-left dismiss" (click)="activeModal.dismiss('Close click')">Cancel</button>
-   
+
   </div>
 
 </form>

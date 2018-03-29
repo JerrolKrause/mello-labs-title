@@ -61,7 +61,7 @@
     <!-- Annotate demo,  | safe: 'resourceUrl' -->
     <iframe *ngIf="!demo"
             id="pdfViewer"
-            [src]="'//loandepot.webhop.net/TitleWorkflow/docannotations.aspx?docid=' + docGuid | safe: 'resourceUrl'"
+            [src]="'http://loandepot.webhop.net/TitleWorkflow/docannotations.aspx?docid=' + docGuid | safe: 'resourceUrl'"
             style="border:0;top: 52px;" class="w-100 pdf e2e-document"></iframe>
 
     <!-- Local fallback if not on remote server -->

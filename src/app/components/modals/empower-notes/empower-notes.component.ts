@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, EventEmitter } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Datagrid } from '@mello-labs/datagrid';
-
+import { FormControl, Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { ApiService } from '@api';
 
 @Component({
@@ -15,11 +15,13 @@ export class EmpowerNotesComponent implements OnInit {
   public data: any; // Data is actually passed through the modal service not here
   public dataAlt: any; // Data is actually passed through the modal service not here
   public onSuccess: EventEmitter<any> = new EventEmitter();
+  public formMain: FormGroup;
 
   public notes$ = this.api.notes$;
   public waiting = false;
   /** Reference to datagrid */
   @ViewChild('dataGrid') dataGrid;
+  @ViewChild('tabs') tabs: NgbTabset;
 
   public options: Datagrid.Options = {
     scrollbarH: false,
@@ -45,11 +47,21 @@ export class EmpowerNotesComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private api: ApiService
-  ) { }
+    private api: ApiService,
+    private fb: FormBuilder
+  ) {
+    this.formMain = this.fb.group({ // <-- formGroup for LoanNotes
+      subject: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      category: ['', []],
+      lnkeys: [[this.data], [Validators.required]],
+      loanNumber: [this.data, [Validators.required]]
+    });
+  }
 
   ngOnInit() {
     this.api.notes.get(this.data).subscribe();
+    
   }
 
   /**
@@ -64,7 +76,6 @@ export class EmpowerNotesComponent implements OnInit {
    * Submit the form
    */
   submit() {
-
     this.activeModal.close('Success');
   } // end submit
 

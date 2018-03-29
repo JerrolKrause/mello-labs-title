@@ -41,12 +41,14 @@ export class AppCommsService {
     this.subs = [
       // Pass OCR annotate coordinates to the PDF viewer for highlight
       this.ui.docViewerGuids$.subscribe(docs => {
-        if (docs && docs[0] && docs[0].bounds){
+        if (docs && docs[0] && docs[0].bounds) {
+          let payload = {
+            ...docs[0].bounds,
+            pageNumber: docs[0].pageNumber
+          }
+          this.messaging.postMessageToIframe('pdfViewer', { event: MessageActions.BOUNDS_CHANGE, payload: payload });
+          // HACK: Set a delay in case the frame hasn't finished loading yet
           setTimeout(() => {
-            let payload = {
-              bounds: docs[0].bounds,
-              pageNumber: docs[0].pageNumber
-            }
             this.messaging.postMessageToIframe('pdfViewer', { event: MessageActions.BOUNDS_CHANGE, payload: payload });
           }, 500);
         }
