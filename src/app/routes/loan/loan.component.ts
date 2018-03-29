@@ -6,6 +6,7 @@ import {
   AfterViewInit,
   ViewEncapsulation,
   ViewChild,
+  OnDestroy
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +24,7 @@ import { AppSettings, AppCommsService } from '@shared';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoanComponent implements OnInit, AfterViewInit {
+export class LoanComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('tab') tab: NgbTabset;
 
   public loan: any;
@@ -123,7 +124,7 @@ export class LoanComponent implements OnInit, AfterViewInit {
 
   ngOnDestroy() {
     if (this.ui.screen && !this.ui.screen.closed) {
-      (this.ui.screen.location.href = this.slug + '#/viewer/'), 'Document Viewer';
+      this.ui.screen.location.href = this.slug + '#/viewer/';
     }
     this.settings.lnkey = null;
 

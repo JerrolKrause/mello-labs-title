@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, AfterViewInit, OnDestroy } from '@angular/core';
 
 import { ApiService, ApiProps } from '@api';
 import { UIStoreService, FormTypes } from '@ui';
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ViewerComponent implements OnInit, AfterViewInit {
+export class ViewerComponent implements OnInit, AfterViewInit, OnDestroy {
   public loanCurrentDocs$ = this.api.loanCurrentDocs$;
   public loanCurrentDocsStatus$ = this.api.getState$(ApiProps.loanCurrentDocs);
 
@@ -31,7 +31,7 @@ export class ViewerComponent implements OnInit, AfterViewInit {
     this.api.loanCurrent.get().subscribe();
     this.api.loanCurrentDocs.get().subscribe();
 
-    if (this.router.url.indexOf('viewer') != -1) {
+    if (this.router.url.indexOf('viewer') !== -1) {
       this.isStandalone = true;
     }
 

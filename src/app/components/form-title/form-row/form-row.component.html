@@ -11,7 +11,12 @@
       <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
     </ng-container>
 
-    <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel?.label}}</a>
+    <ng-container *ngIf="ocrModel">
+      <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel?.label}}</a>
+    </ng-container>
+    <ng-container *ngIf="!ocrModel">
+      {{viewModel?.label}}
+    </ng-container>
 
     <ng-container *ngIf="ocrModel">
       <br />

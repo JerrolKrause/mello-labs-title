@@ -43,7 +43,7 @@ export class FormTitleComponent implements OnInit, OnChanges {
    * @param defaultRequired - Should all fields be required. Default is false
    */
   private createFormModel(model: any, defaultRequired = false) {
-    let formModel: any = {};
+    const formModel: any = {};
     // Loop through all props in the model
     Object.keys(model).forEach(key => {
       // If this is a nested object, recurse to create form group
@@ -51,7 +51,7 @@ export class FormTitleComponent implements OnInit, OnChanges {
         formModel[key] = this.createFormModel(model[key]);
       } else if (model[key] && typeof model[key] === 'object' && Array.isArray(model[key])) {
         // If this is an array, recurse to create a form array
-        let formArray: any = [];
+        const formArray: any = [];
         model[key].forEach((item: any) => formArray.push(this.createFormModel(item)));
         formModel[key] = this.fb.array(formArray);
       } else {

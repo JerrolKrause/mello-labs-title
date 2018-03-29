@@ -35,7 +35,7 @@ export class AppCommsService {
       // Pass OCR annotate coordinates to the PDF viewer for highlight
       this.ui.docViewerGuids$.subscribe(docs => {
         if (docs && docs[0] && docs[0].bounds) {
-          let payload = {
+          const payload = {
             ...docs[0].bounds,
             pageNumber: docs[0].pageNumber,
           };
@@ -107,7 +107,7 @@ export class AppCommsService {
    * Manage the state of multiscreen functionality
    */
   public multiScreenState() {
-    let slug = window.location.origin + window.location.pathname;
+    const slug = window.location.origin + window.location.pathname;
     this.subs.push(
       this.ui.multiScreen$.subscribe(multiScreen => {
         // If multiscreen is present and a window is not yet open and has not been closed
@@ -122,7 +122,7 @@ export class AppCommsService {
           // If multi screen has been set and a window is already opened, update url in current window
           setTimeout(() => {
             if (this.ui.screen) {
-              (this.ui.screen.location.href = slug + '#/viewer/' + this.settings.lnkey), 'Document Viewer';
+              this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
             }
           });
         } else if (this.ui.screen && multiScreen === false) {

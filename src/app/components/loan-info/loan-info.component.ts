@@ -1,7 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
-import { Subscription } from 'rxjs/Subscription';
-
 import { UIStoreService } from '@ui';
 import { ApiService } from '@api';
 import { Router } from '@angular/router';
@@ -17,8 +15,6 @@ export class LoanInfoComponent implements OnInit {
   public lnkey: string;
 
   public loanCurrent$ = this.api.loanCurrent$;
-
-  private subs: Subscription[] = [];
 
   constructor(public ui: UIStoreService, private api: ApiService, private router: Router) {}
 
@@ -41,9 +37,4 @@ export class LoanInfoComponent implements OnInit {
     this.ui.loanSaved();
   }
 
-  ngOnDestroy() {
-    if (this.subs.length) {
-      this.subs.forEach(sub => sub.unsubscribe());
-    }
-  }
 }

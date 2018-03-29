@@ -23,9 +23,9 @@ export const ApiMap: IStore.ApiMapping = {
       // let states = ['AZ', 'CA', 'CO', 'IL', 'MI', 'NY', 'TX', 'HI', 'OR', 'WA'];
 
       let usersNew = [...users, ...users, ...users];
-      let dict: any = {};
+      const dict: any = {};
       usersNew = users.map((user: any) => {
-        let userNew = { ...user };
+        const userNew = { ...user };
         //userNew.unverified = _.random(60);
         //userNew.complete = userNew.unverified;
         //userNew.exception = _.random(10) > 7 ? true : false;
@@ -81,11 +81,11 @@ export const ApiMap: IStore.ApiMapping = {
       docs = _.shuffle(docs);
 
       // Check if a title report is in the array of docs
-      let title = docs.filter(doc => {
+      const title = docs.filter(doc => {
         return doc.docName
           .toLowerCase()
           .replace(/[^A-Z0-9]/gi, '')
-          .indexOf('titlereport') != -1
+          .indexOf('titlereport') !== -1
           ? true
           : false;
       });
@@ -99,7 +99,7 @@ export const ApiMap: IStore.ApiMapping = {
             return doc.docName
               .toLowerCase()
               .replace(/[^A-Z0-9]/gi, '')
-              .indexOf('titlereport') == -1
+              .indexOf('titlereport') === -1
               ? true
               : false;
           }),

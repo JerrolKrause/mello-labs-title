@@ -3,7 +3,7 @@ import { Validators, FormGroup } from '@angular/forms';
 import { UIStoreService } from '@ui';
 import * as _ from 'lodash';
 
-export interface viewModel {
+export interface ViewModel {
   label: string;
   field: string;
   fieldType: 'input' | 'textarea' | 'radio' | 'date';
@@ -12,7 +12,7 @@ export interface viewModel {
   required: boolean;
 }
 
-export interface ocrModel {
+export interface OcrModel {
   Id: string;
   docId: string;
   pageNumber: number;
@@ -35,9 +35,9 @@ export interface ocrModel {
 })
 export class FormRowComponent implements OnInit {
   @Input() form: FormGroup;
-  @Input() viewModel: viewModel | null;
+  @Input() viewModel: ViewModel | null;
   @Input() ocrValue: string | string[];
-  @Input() ocrModel: ocrModel;
+  @Input() ocrModel: OcrModel;
   @Input() editing = false;
 
   public hasFuzzyMatch = false;
@@ -48,7 +48,7 @@ export class FormRowComponent implements OnInit {
   constructor(public ui: UIStoreService) {}
 
   ngOnInit() {
-    let val = this.viewModel ? this.form.get(this.viewModel.field) : null;
+    const val = this.viewModel ? this.form.get(this.viewModel.field) : null;
     // If viewmodel specifies required, set required in form
     if (this.form && val && this.viewModel && this.viewModel.required && this.viewModel.field && Validators) {
       val.setValidators([Validators.required]);
@@ -84,7 +84,7 @@ export class FormRowComponent implements OnInit {
    */
   public updateForm(field: string, propNew: string) {
     this.editing = false;
-    let valNew: any = {};
+    const valNew: any = {};
     valNew[field] = propNew;
     if (this.form) {
       this.form.patchValue(valNew);

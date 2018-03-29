@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1698C0D-BEF6-42C5-AADC-052FCFBB6309}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>WEB</RootNamespace>
+    <AssemblyName>WEB</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".angular-cli.json" />
+    <None Include=".editorconfig" />
+    <None Include=".tfignore" />
+    <None Include="App.config" />
+    <None Include="CHANGELOG.md" />
+    <None Include="e2e\tsconfig.e2e.json" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\WEB.csproj.CoreCompileInputs.cache" />
+    <None Include="package-lock.json" />
+    <None Include="package.json" />
+    <None Include="README.md" />
+    <None Include="src\app\components\document-status\document-status.component.scss" />
+    <None Include="src\app\components\document-viewer\document-viewer.component.scss" />
+    <None Include="src\app\components\form-title\form-row\form-row.component.scss" />
+    <None Include="src\app\components\form-title\form-title.component.scss" />
+    <None Include="src\app\components\form-title\form-title.model.json" />
+    <None Include="src\app\components\form-title\form-title.view.json" />
+    <None Include="src\app\components\loan-contacts\loan-contacts.component.scss" />
+    <None Include="src\app\components\loan-info\loan-info.component.scss" />
+    <None Include="src\app\components\modals\empower-notes\empower-notes.component.scss" />
+    <None Include="src\app\components\modals\empower-save\empower-save.component.scss" />
+    <None Include="src\app\components\modals\exception\exception.component.scss" />
+    <None Include="src\app\components\viewer\viewer.component.scss" />
+    <None Include="src\app\components\web-tool\web-tool.component.scss" />
+    <None Include="src\app\routes\home\columns.exceptions.json" />
+    <None Include="src\app\routes\home\columns.loans.json" />
+    <None Include="src\app\routes\home\home.component.scss" />
+    <None Include="src\app\routes\loan\loan.component.scss" />
+    <None Include="src\app\routes\qa\qa.component.scss" />
+    <None Include="src\app\routes\viewer\viewer.component.scss" />
+    <None Include="src\assets\.gitkeep" />
+    <None Include="src\assets\media\Title Report-4.pdf" />
+    <None Include="src\assets\media\Title Report-9.pdf" />
+    <None Include="src\assets\media\zip-code-lookup.pdf" />
+    <None Include="src\assets\mock-data\100166058-documents.json" />
+    <None Include="src\assets\mock-data\100166058-loan.json" />
+    <None Include="src\assets\mock-data\100166058-ocr.json" />
+    <None Include="src\assets\mock-data\env-settings.json" />
+    <None Include="src\assets\mock-data\loan-contacts.json" />
+    <None Include="src\assets\mock-data\loans.json" />
+    <None Include="src\assets\mock-data\login.json" />
+    <None Include="src\assets\mock-data\notes.json" />
+    <None Include="src\assets\mock-data\users.json" />
+    <None Include="src\assets\mock-data\vesting.json" />
+    <None Include="src\manifest.json" />
+    <None Include="src\ngsw-config.json" />
+    <None Include="src\styles.scss" />
+    <None Include="src\styles\app.scss" />
+    <None Include="src\tsconfig.app.json" />
+    <None Include="src\tsconfig.spec.json" />
+    <None Include="tsconfig.json" />
+    <None Include="tslint.json" />
+    <None Include="yarn-error.log" />
+    <None Include="yarn.lock" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="karma.conf.js" />
+    <Content Include="protractor.conf.js" />
+    <Content Include="src\apple-touch-icon.png" />
+    <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\components\document-status\document-status.component.html" />
+    <Content Include="src\app\components\document-viewer\document-viewer.component.html" />
+    <Content Include="src\app\components\form-title\form-row\form-row.component.html" />
+    <Content Include="src\app\components\form-title\form-title.component.html" />
+    <Content Include="src\app\components\loan-contacts\loan-contacts.component.html" />
+    <Content Include="src\app\components\loan-info\loan-info.component.html" />
+    <Content Include="src\app\components\masterpage\footer\footer.component.html" />
+    <Content Include="src\app\components\masterpage\header\header.component.html" />
+    <Content Include="src\app\components\masterpage\main\layout-main.component.html" />
+    <Content Include="src\app\components\masterpage\nav\nav.component.html" />
+    <Content Include="src\app\components\masterpage\nav\search\nav-search.component.html" />
+    <Content Include="src\app\components\masterpage\single\layout-single.component.html" />
+    <Content Include="src\app\components\modals\confirmation\confirmation-modal.component.html" />
+    <Content Include="src\app\components\modals\empower-notes\empower-notes.component.html" />
+    <Content Include="src\app\components\modals\empower-save\empower-save.component.html" />
+    <Content Include="src\app\components\modals\exception\exception.component.html" />
+    <Content Include="src\app\components\modals\logout\logout-modal.component.html" />
+    <Content Include="src\app\components\viewer\viewer.component.html" />
+    <Content Include="src\app\components\web-tool\web-tool.component.html" />
+    <Content Include="src\app\routes\home\home.component.html" />
+    <Content Include="src\app\routes\loan\loan.component.html" />
+    <Content Include="src\app\routes\login\login.component.html" />
+    <Content Include="src\app\routes\no-content\no-content.component.html" />
+    <Content Include="src\app\routes\qa\qa.component.html" />
+    <Content Include="src\app\routes\viewer\viewer.component.html" />
+    <Content Include="src\assets\icons\favicon-144x144.png" />
+    <Content Include="src\assets\icons\favicon-192x192.png" />
+    <Content Include="src\assets\icons\favicon-36x36.png" />
+    <Content Include="src\assets\icons\favicon-48x48.png" />
+    <Content Include="src\assets\icons\favicon-72x72.png" />
+    <Content Include="src\assets\icons\favicon-96x96.png" />
+    <Content Include="src\assets\img\title-workflow-logo.png" />
+    <Content Include="src\favicon.ico" />
+    <Content Include="src\index.html" />
+    <Content Include="src\safari-pinned-tab.svg" />
+    <Content Include="tools\gulp\inline-resources.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="e2e\app.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\app.po.ts" />
+    <TypeScriptCompile Include="e2e\components\modals\confirmation\confirmation.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\components\pipes\filter.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\components\qa.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\components\qa.po.ts" />
+    <TypeScriptCompile Include="e2e\routes\home\home.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\routes\home\home.po.ts" />
+    <TypeScriptCompile Include="e2e\routes\loan\document-viewer\document-viewer.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\routes\loan\document-viewer\document-viewer.po.ts" />
+    <TypeScriptCompile Include="e2e\routes\login\login.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\routes\login\login.po.ts" />
+    <TypeScriptCompile Include="src\app\app.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\app.routes.ts" />
+    <TypeScriptCompile Include="src\app\components\document-status\document-status.component.ts" />
+    <TypeScriptCompile Include="src\app\components\document-viewer\document-viewer.component.ts" />
+    <TypeScriptCompile Include="src\app\components\form-title\form-row\form-row.component.ts" />
+    <TypeScriptCompile Include="src\app\components\form-title\form-title.component.ts" />
+    <TypeScriptCompile Include="src\app\components\index.ts" />
+    <TypeScriptCompile Include="src\app\components\launch-modal\launch-modal.component.ts" />
+    <TypeScriptCompile Include="src\app\components\loan-contacts\loan-contacts.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\loan-contacts\loan-contacts.component.ts" />
+    <TypeScriptCompile Include="src\app\components\loan-info\loan-info.component.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\footer\footer.component.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\header\header.component.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\index.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\main\layout-main.component.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\nav\nav.component.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\nav\search\nav-search.component.ts" />
+    <TypeScriptCompile Include="src\app\components\masterpage\single\layout-single.component.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\confirmation\confirmation-modal.component.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\empower-notes\empower-notes.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\empower-notes\empower-notes.component.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\empower-save\empower-save.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\empower-save\empower-save.component.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\exception\exception.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\exception\exception.component.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\index.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\logout\logout-modal.component.ts" />
+    <TypeScriptCompile Include="src\app\components\viewer\viewer.component.ts" />
+    <TypeScriptCompile Include="src\app\components\web-tool\web-tool.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\web-tool\web-tool.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\home\home.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\routes\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\index.ts" />
+    <TypeScriptCompile Include="src\app\routes\loan\loan.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\login\login.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\routes\login\login.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\no-content\no-content.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\qa\qa.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\routes\qa\qa.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\viewer\viewer.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\routes\viewer\viewer.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\app.settings.ts" />
+    <TypeScriptCompile Include="src\app\shared\directives\full-screen.directive.ts" />
+    <TypeScriptCompile Include="src\app\shared\index.ts" />
+    <TypeScriptCompile Include="src\app\shared\interceptors\auth-guard.interceptor.ts" />
+    <TypeScriptCompile Include="src\app\shared\interceptors\error.interceptor.ts" />
+    <TypeScriptCompile Include="src\app\shared\interceptors\http.interceptor.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\debounce.pipe.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\filter.pipe.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\sort.pipe.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\string.pipe.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\app-comms.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\auth.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\post-message.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\service-worker.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\api\api.map.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\api\api.properties.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\api\api.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\api\index.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\store.d.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\ui\index.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\ui\ui.modal.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\ui\ui.store.actions.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\ui\ui.store.reducer.ts" />
+    <TypeScriptCompile Include="src\app\shared\stores\ui\ui.store.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\index.ts" />
+    <TypeScriptCompile Include="src\app\shared\utils\object-utils.ts" />
+    <TypeScriptCompile Include="src\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="src\environments\environment.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\polyfills.ts" />
+    <TypeScriptCompile Include="src\test.ts" />
+    <TypeScriptCompile Include="src\typings.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="e2e\routes\loan\loan-info\" />
+    <Folder Include="e2e\routes\loan\title-form\" />
+    <Folder Include="e2e\routes\qa\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

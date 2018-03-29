@@ -65,7 +65,7 @@ export class UIStoreService {
   /**
    * Toggle multiscreen view which moves the document viewer into its own window
    */
-  public multiScreenToggle(multiScreen: boolean) {
+  public multiScreenToggle(multiScreen: boolean | null = null) {
     this.store.dispatch({ type: UIStoreActions.MULTISCREEN_TOGGLE, payload: multiScreen });
   }
 

@@ -9,7 +9,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
   transform(arr: string[], searchValue: string | boolean, objProp: string) {
     // If no string value, return whole array
-    if (!searchValue && searchValue != false) {
+    if (!searchValue && searchValue !== false) {
       return arr;
     }
     // Clean up the string to make matching easier

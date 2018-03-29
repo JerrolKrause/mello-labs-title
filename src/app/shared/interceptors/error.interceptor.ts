@@ -26,7 +26,7 @@ export class GlobalErrorHandler implements ErrorHandler {
       }
       const errorEscaped = errorConcat.replace(/[\"&<>]/g, (a: any) => {
         // Escape HTML before being outputted to DOM
-        let chars: any = { '"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+        const chars: any = { '"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;' };
         return chars[a];
       });
 

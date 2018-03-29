@@ -93,11 +93,11 @@ export class PostMessageService {
    */
   private messageReceived(event: MessageEvent) {
     // Scrub webpackOk events and same appId origination
-    if (event.data && event.data.type != 'webpackOk' && event.data.appId != this.appId) {
+    if (event.data && event.data.type !== 'webpackOk' && event.data.appId !== this.appId) {
       // Sanitize incoming payload
-      let msg: MessageComplete = ObjectUtils.sanitize(event.data);
+      const msg: MessageComplete = ObjectUtils.sanitize(event.data);
       // Check if allowable domains
-      if ((this.allowedDomains && this.allowedDomains.indexOf(event.origin) != -1) || !this.allowedDomains) {
+      if ((this.allowedDomains && this.allowedDomains.indexOf(event.origin) !== -1) || !this.allowedDomains) {
         this.postMessage$.next(msg);
       } else {
         console.error('Message from unauthorized source');

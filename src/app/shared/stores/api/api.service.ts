@@ -20,10 +20,7 @@ export class ApiService extends ApiHttpService {
   // Store selectors
   /** Users store selection */
   public users$ = this.store.select(store => store.api.users);
-  /** Get the API state using api props */
-  public getState$ = (apiProp: ApiProps) => this.store.select(store => store.apiStatus[apiProp]);
-  /** Get the API data using api props */
-  //public getData$ = (apiProp: ApiProps) => this.store.select(store => store.api[apiProp]);
+  
 
   public loans$ = this.store.select(store => store.api.loans);
   public notes$ = this.store.select(store => store.api.notes);
@@ -93,6 +90,11 @@ export class ApiService extends ApiHttpService {
     get: (loanNumber: string, update?: boolean) =>
       this.getStore(ApiMap.notes.endpoint + '?' + loanNumber, ApiMap.notes, update),
   };
+
+  /** Get the API state using api props */
+  public getState$ = (apiProp: ApiProps) => this.store.select(store => store.apiStatus[apiProp]);
+  /** Get the API data using api props */
+  //public getData$ = (apiProp: ApiProps) => this.store.select(store => store.api[apiProp]);
 
   /**
    * Set all env settings in app settings

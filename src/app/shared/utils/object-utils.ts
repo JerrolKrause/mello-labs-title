@@ -24,7 +24,9 @@ export class ObjectUtils {
       });
       // remove any leftover undefined values from the delete
       // operation on an array
-      if (_.isArray(current)) _.pull(current, undefined);
+      if (_.isArray(current)) {
+        _.pull(current, undefined)
+      };
 
       return current;
     })(_.cloneDeep(obj)); // Do not modify the original object, create a clone instead
