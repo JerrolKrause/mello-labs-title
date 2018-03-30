@@ -80,19 +80,101 @@
             </ng-template>
             <ng-template ngbTabContent>
               <a class="d-block p-1"
-                      (click)="windowOpen(web.url)"
-                      *ngFor="let web of webLinks">
+                 (click)="windowOpen(web.url)"
+                 *ngFor="let web of webLinks">
                 <i class="fa fa-external-link-square"></i> {{web.label}}
               </a>
             </ng-template>
           </ngb-tab>
 
+          <ngb-tab id="tab-5">
+            <ng-template ngbTabTitle>
+              <i class="fa fa-commenting" aria-hidden="true"></i> Commentary
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="row mb-2">
+                <div class="col-12 col-md-4">
+                  Enter Notes
+                </div>
+                <div class="col-12 col-md-8">
+                  <textarea class="form-control" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-12 col-md-4">
+                  Additional Comments
+                </div>
+                <div class="col-12 col-md-8">
+                  <textarea class="form-control" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-12 col-md-4">
+                  Notes to Underwriter
+                </div>
+                <div class="col-12 col-md-8">
+                  <textarea class="form-control" rows="4"></textarea>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab id="tab-6">
+            <ng-template ngbTabTitle>
+              <i class="fa fa-random" aria-hidden="true"></i> Decision
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="row" id="decision">
+                <div class="col-12 col-md-4">
+                  <strong>Reviewer Decision</strong>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios1" value="option1">
+                    <label class="form-check-label" for="exampleRadios1">
+                      Accepted
+                    </label>
+                  </div>
+
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Pending
+                    </label>
+                  </div>
+
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3">
+                      Escalated
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" [(ngModel)]="condition" name="exampleRadios" id="exampleRadios4" value="option4" [(ngModel)]="condition">
+                    <label class="form-check-label" for="exampleRadios4">
+                      Deficient
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <button class="btn btn-sm btn-primary w-100" [disabled]="!condition">Apply</button>
+                </div>
+              </div>
+              <!--
+      <hr />
+      History coming soon
+      -->
+            </ng-template>
+          </ngb-tab>
+
+
+
         </ngb-tabset>
 
       </div>
-
-
     </div>
+
     <!-- Loan Contacts Sidebar -->
     <div class="col-12 col-md-3 col-lg-2" *ngIf="compData.loanContactsShow">
       <app-loan-contacts [loanNumber]="settings.lnkey" [contacts]="contacts$ | async"></app-loan-contacts>

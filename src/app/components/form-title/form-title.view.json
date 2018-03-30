@@ -90,12 +90,6 @@
   },
 
   {
-    "label": "Order ID:",
-    "field": "OrderID",
-    "fieldType": "input",
-    "required": true
-  },
-  {
     "label": "Loan Amount:",
     "field": "LoanAmount",
     "fieldType": "input",

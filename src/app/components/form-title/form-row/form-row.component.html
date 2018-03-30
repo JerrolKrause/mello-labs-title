@@ -11,17 +11,21 @@
       <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
     </ng-container>
 
-    <ng-container *ngIf="ocrModel">
-      <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel?.label}}</a>
-    </ng-container>
-    <ng-container *ngIf="!ocrModel">
-      {{viewModel?.label}}
-    </ng-container>
+    {{viewModel?.label}}
+
+    <!--
+  <ng-container *ngIf="ocrModel">
+    <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel?.label}}</a>
+  </ng-container>
+  <ng-container *ngIf="!ocrModel">
+    {{viewModel?.label}}
+  </ng-container>
+  -->
 
     <ng-container *ngIf="ocrModel">
       <br />
       <small>
-        <app-launch-modal classes="pl-3" modal="ConfirmationModalComponent" size="md" [data]="'Add a condition for ' + viewModel.label + '?'" [isButton]="false"
+        <app-launch-modal classes="pl-3" modal="ConditionsComponent" size="lg" [data]="ocrModel" [isButton]="false"
                           (onSuccess)="conditionAdd($event)">
           <i class="fa fa-plus"></i> Add Condition
         </app-launch-modal>
@@ -31,16 +35,37 @@
 
   <div class="col-12 col-md-4" *ngIf="ocrModel" [ngClass]="ocrModel ? 'col-md-4' : null">
 
-    <div class="btn-group-vertical w-100">
-      <ng-container *ngIf="!hasFuzzyMatch">
-        <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: ocrModel, value: ocrModel, form: form, field: field }"></ng-container>
-      </ng-container>
-      <ng-container *ngIf="hasFuzzyMatch">
-        <ng-container *ngFor="let value of ocrValue">
-          <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: value, value: value, form: form, field: field }"></ng-container>
-        </ng-container>
-      </ng-container>
-    </div>
+    <ng-container *ngFor="let entry of ocrModel">
+      <div class="btn-group w-100 mb-1">
+
+        <button class="btn btn-sm btn-secondary"
+                style="width:30px"
+                (click)="ui.docViewerChange(0, entry.docId, entry.pageNumber, entry.bounds)">
+          <i class="fa fa-file-pdf-o"></i>
+        </button>
+
+        <button class="btn btn-sm text-left btn-secondary"
+                *ngIf="entry?.value"
+                style="width:calc(100% - 30px)"
+                [disabled]="editing || form.value[field] == entry.value"
+                (click)="updateForm(viewModel.field,entry.value)">
+          <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != entry.value"></i>
+          <i class="fa fa-check float-right" *ngIf="form.value[field] == entry.value"></i>
+          {{entry.value}}
+        </button>
+      </div>
+    </ng-container>
+
+    <!--
+     <ng-container *ngIf="!hasFuzzyMatch">
+       <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: ocrModel, value: ocrModel, form: form, field: field }"></ng-container>
+     </ng-container>
+     <ng-container *ngIf="hasFuzzyMatch">
+       <ng-container *ngFor="let value of ocrValue">
+         <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: value, value: value, form: form, field: field }"></ng-container>
+       </ng-container>
+     </ng-container>
+    -->
 
   </div>
 
@@ -122,12 +147,22 @@
 
 <!-- OCR button template -->
 <ng-template #ocrValueTemplate let-value="ocrModel" let-form="form" let-field="field">
-  <button class="btn btn-sm w-100 text-left btn-secondary"
-          *ngIf="ocrModel?.value"
-          [disabled]="editing || form.value[field] == ocrModel.value"
-          (click)="updateForm(viewModel.field,ocrModel.value)">
-    <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != ocrModel.value"></i>
-    <i class="fa fa-check float-right" *ngIf="form.value[field] == ocrModel.value"></i>
-    {{ocrModel.value}}
-  </button>
+  <div class="btn-group w-100">
+
+    <button class="btn btn-sm btn-secondary"
+            style="width:30px"
+            (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">
+      <i class="fa fa-file-pdf-o"></i>
+    </button>
+
+    <button class="btn btn-sm text-left btn-secondary"
+            *ngIf="ocrModel?.value"
+            style="width:calc(100% - 30px)"
+            [disabled]="editing || form.value[field] == ocrModel.value"
+            (click)="updateForm(viewModel.field,ocrModel.value)">
+      <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != ocrModel.value"></i>
+      <i class="fa fa-check float-right" *ngIf="form.value[field] == ocrModel.value"></i>
+      {{ocrModel.value}}
+    </button>
+  </div>
 </ng-template>

@@ -82,6 +82,7 @@ import { DocumentStatusComponent } from './components/document-status/document-s
 import { SortPipe } from './shared/pipes/sort.pipe';
 import { LoanContactsComponent } from './components/loan-contacts/loan-contacts.component';
 import { FormTitleComponent } from './components/form-title/form-title.component';
+import { ConditionsComponent } from './components/modals/conditions/conditions.component';
 
 // Application wide providers
 export const APP_COMPONENTS = [
@@ -166,6 +167,8 @@ export const APP_PROVIDERS = [
     LoanContactsComponent,
 
     FormTitleComponent,
+
+    ConditionsComponent,
   ],
   imports: [
     // Angular
@@ -200,6 +203,7 @@ export const APP_PROVIDERS = [
     ExceptionComponent,
     EmpowerSaveComponent,
     EmpowerNotesComponent,
+    ConditionsComponent
   ],
 })
 export class AppModule {}

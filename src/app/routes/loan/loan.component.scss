@@ -31,4 +31,10 @@
       padding: 0.5em 1rem;
     }
   }
+
+  #decision{
+   .form-check-input{margin-top:0;margin-left:0;}
+  .form-check-label{top: -3px;}
+  }
+  
 }

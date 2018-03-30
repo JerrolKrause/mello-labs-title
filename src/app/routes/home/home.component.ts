@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   public rows: any;
   public columns: Datagrid.Column[] = require('./columns.loans.json');
   public columnsExceptions: Datagrid.Column[] = require('./columns.exceptions.json');
+  public columnsResubmissions: Datagrid.Column[] = require('./columns.resubmissions.json');
   public state: Datagrid.State = { filters: [], sorts: [{ dir: 'asc', prop: 'complete' }], groups: [] }; //{ dir: "asc", prop: "certification" }
   // Inputs
   public options: Datagrid.Options = {

@@ -26,6 +26,9 @@ export const ApiMap: IStore.ApiMapping = {
       const dict: any = {};
       usersNew = users.map((user: any) => {
         const userNew = { ...user };
+
+        userNew.reviewedCount = _.random(5) + 1;
+        userNew.lastStatus = _.shuffle(['Wrong documents', 'Borrower name on title incorrect', 'Missing Documents', 'Condition not met'])[0];
         //userNew.unverified = _.random(60);
         //userNew.complete = userNew.unverified;
         //userNew.exception = _.random(10) > 7 ? true : false;
@@ -123,7 +126,12 @@ export const ApiMap: IStore.ApiMapping = {
     map: (docs: any[]) => {
       // Sample dictionary mapping based on id property
       const dict: any = {};
-      docs.forEach(doc => (dict[doc.field] = doc));
+      docs.forEach(doc => {
+        if (!dict[doc.field]){
+          dict[doc.field] = [];
+        }
+        dict[doc.field].push(doc);
+      });
       return {
         src: docs,
         dict: dict,

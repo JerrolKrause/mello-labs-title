@@ -48,6 +48,7 @@ export class FormRowComponent implements OnInit {
   constructor(public ui: UIStoreService) {}
 
   ngOnInit() {
+
     const val = this.viewModel ? this.form.get(this.viewModel.field) : null;
     // If viewmodel specifies required, set required in form
     if (this.form && val && this.viewModel && this.viewModel.required && this.viewModel.field && Validators) {

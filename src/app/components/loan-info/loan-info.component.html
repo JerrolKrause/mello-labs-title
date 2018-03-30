@@ -4,119 +4,118 @@
       multiScreen : ui.multiScreen$ | async }
       as compData">
 
-    <div class="row" *ngIf="compData.loan" id="app-loan-info">
+  <div class="row" *ngIf="compData.loan" id="app-loan-info">
+    <!-- Data Window-->
+    <div [ngClass]="!compData.multiScreen ? 'col-12 col-md-9 col-xl-8' : 'col-12'">
 
-      <!-- Data Window-->
-      <div [ngClass]="!compData.multiScreen ? 'col-12 col-md-9 col-xl-8' : 'col-12'">
-
-        <table class="table table-sm table-bordered table-striped mb-0">
-          <tbody>
-            <tr>
-              <td style="width:20px;" class="text-center"><i class="fa fa-home" aria-hidden="true"></i></td>
-              <td style="width: 88px;" *ngIf="!compData.multiScreen"><strong> Loan #</strong></td>
-              <td>
-                <button class="btn btn-xs btn-secondary float-right"
-                        title="Toggle the Loan Contacts Sidebar"
-                        *ngIf="{visible:  ui.loanContacts$ | async } as btn"
-                        (click)="ui.loanContactsToggle()"
-                        [ngClass]="{'active':btn.visible}">
-                  <i aria-hidden="true" class="fa fa-users"></i>
-                </button>
-                {{compData.loan.LoanNumber}}
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center"><i class="fa fa-file-text" aria-hidden="true"></i></td>
-              <td *ngIf="!compData.multiScreen"><strong>Order #</strong></td>
-              <td>53366433455</td>
-            </tr>
-            <tr>
-              <td class="text-center"><i class="fa fa-university" aria-hidden="true"></i></td>
-              <td *ngIf="!compData.multiScreen"><strong>State</strong></td>
-              <td>{{compData.loan?.PropertyAddress?.State}}</td>
-            </tr>
-            <tr *ngIf="compData.loan?.lockedBy">
-              <td class="text-center"><i class="fa fa-lock"></i></td>
-              <td *ngIf="!compData.multiScreen">
-                <strong>Locked By:</strong>
-              </td>
-              <td>
+      <table class="table table-sm table-bordered table-striped mb-0">
+        <tbody>
+          <tr>
+            <td style="width:20px;" class="text-center"><i class="fa fa-home" aria-hidden="true"></i></td>
+            <td style="width: 88px;" *ngIf="!compData.multiScreen"><strong> Loan #</strong></td>
+            <td>
+              <button class="btn btn-xs btn-secondary float-right"
+                      title="Toggle the Loan Contacts Sidebar"
+                      *ngIf="{visible:  ui.loanContacts$ | async } as btn"
+                      (click)="ui.loanContactsToggle()"
+                      [ngClass]="{'active':btn.visible}">
+                <i aria-hidden="true" class="fa fa-users"></i>
+              </button>
+              {{compData.loan.LoanNumber}}
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center"><i class="fa fa-file-text" aria-hidden="true"></i></td>
+            <td *ngIf="!compData.multiScreen"><strong>Order #</strong></td>
+            <td>53366433455</td>
+          </tr>
+          <tr>
+            <td class="text-center"><i class="fa fa-university" aria-hidden="true"></i></td>
+            <td *ngIf="!compData.multiScreen"><strong>State</strong></td>
+            <td>{{compData.loan?.PropertyAddress?.State}}</td>
+          </tr>
+          <tr *ngIf="compData.loan?.lockedBy">
+            <td class="text-center"><i class="fa fa-lock"></i></td>
+            <td *ngIf="!compData.multiScreen">
+              <strong>Locked By:</strong>
+            </td>
+            <td>
+              <div>
+                <span class="btn-group float-right" *ngIf="!compData.multiScreen">
+                  <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
+                  <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
+                </span>
                 <div>
-                  <span class="btn-group float-right" *ngIf="!compData.multiScreen">
-                    <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-                  </span>
-                  <div>
-                    {{compData.loan?.lockedBy}}
-                  </div>
-                  <div class="btn-group w-100" *ngIf="compData.multiScreen">
-                    <a class="btn btn-secondary btn-xs w-50" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-secondary btn-xs w-50" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-                  </div>
+                  {{compData.loan?.lockedBy}}
                 </div>
-                <div *ngIf="!compData.loan?.lockedBy">
-                  Not locked
+                <div class="btn-group w-100" *ngIf="compData.multiScreen">
+                  <a class="btn btn-secondary btn-xs w-50" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
+                  <a class="btn btn-secondary btn-xs w-50" href="tel:15551234321"><i class="fa fa-phone"></i></a>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center"><i class="fa fa-users"></i></td>
-              <td *ngIf="!compData.multiScreen">
-                <strong>Borrower/s:</strong>
-              </td>
-              <td>
-                <div class="clearfix" *ngFor="let borrower of compData.loan.Borrowers">
-                  <!--
-                  <span class="btn-group float-right" *ngIf="!compData.multiScreen">
-                    <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
-                    <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
-                  </span>
-                  -->
-                  <div>{{borrower.FirstName}} {{borrower.LastName}}</div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+              <div *ngIf="!compData.loan?.lockedBy">
+                Not locked
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center"><i class="fa fa-users"></i></td>
+            <td *ngIf="!compData.multiScreen">
+              <strong>Borrower/s:</strong>
+            </td>
+            <td>
+              <div class="clearfix" *ngFor="let borrower of compData.loan.Borrowers">
+                <!--
+              <span class="btn-group float-right" *ngIf="!compData.multiScreen">
+                <a class="btn btn-secondary btn-xs" [href]="'mailto:eat@joes.com?subject=['+ formInfo?.value?.LastName +'] – ' + lnkey"><i class="fa fa-envelope"></i></a>
+                <a class="btn btn-secondary btn-xs" href="tel:15551234321"><i class="fa fa-phone"></i></a>
+              </span>
+              -->
+                <div>{{borrower.FirstName}} {{borrower.LastName}}</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      </div>
+    </div>
 
 
-      <!-- Interaction Window -->
-      <div [ngClass]="!compData.multiScreen ? 'col-12 col-md-3 col-xl-4' : 'col-12'">
-        <div [ngClass]="compData.multiScreen ? 'p-3' : ''">
+    <!-- Interaction Window -->
+    <div [ngClass]="!compData.multiScreen ? 'col-12 col-md-3 col-xl-4' : 'col-12'">
+      <div [ngClass]="compData.multiScreen ? 'p-3' : ''">
 
-          <button [ngClass]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'" (click)="loanSave()">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
-          </button>
+        <button [ngClass]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'" (click)="loanSave()">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
+        </button>
 
-          <!--
-          <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'"
-                            modal="EmpowerSaveComponent" size="lg"
-                            (onSuccess)="loanSave($event)">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
-          </app-launch-modal>
-          -->
+        <!--
+      <app-launch-modal [classes]="compData.hasUpdate ? 'btn-primary btn btn-sm mb-1 w-100' : 'btn-secondary btn btn-sm mb-1 w-100'"
+                        modal="EmpowerSaveComponent" size="lg"
+                        (onSuccess)="loanSave($event)">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save <span class="hidden-lg-down">to Empower</span>
+      </app-launch-modal>
+      -->
 
-          <button class="btn btn-sm btn-secondary mb-1 w-100">
-            <i class="fa fa-folder-open" aria-hidden="true"></i>
-            Open <span class="hidden-lg-down">in Empower</span>
-          </button>
+        <button class="btn btn-sm btn-secondary mb-1 w-100">
+          <i class="fa fa-folder-open" aria-hidden="true"></i>
+          Open <span class="hidden-lg-down">in Empower</span>
+        </button>
 
-          <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100"
-                            modal="EmpowerNotesComponent" size="xl" [data]="lnkey"
-                            (onSuccess)="loanSave($event)">
-            <i class="fa fa-file-text" aria-hidden="true"></i> <span class="hidden-lg-down">View/Add</span> Notes
-          </app-launch-modal>
+        <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100"
+                          modal="EmpowerNotesComponent" size="xl" [data]="lnkey"
+                          (onSuccess)="loanSave($event)">
+          <i class="fa fa-file-text" aria-hidden="true"></i> <span class="hidden-lg-down">View/Add</span> Notes
+        </app-launch-modal>
 
-          <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100 mb-0 exception"
-                            modal="ExceptionComponent" size="lg"
-                            (onSuccess)="exceptionAdded($event)">
-            <i class="fa fa-warning" aria-hidden="true"></i> Add <span class="hidden-lg-down">Exception</span>
-          </app-launch-modal>
+        <app-launch-modal classes="btn-secondary btn btn-sm mb-1 w-100 mb-0 exception"
+                          modal="ExceptionComponent" size="lg"
+                          (onSuccess)="exceptionAdded($event)">
+          <i class="fa fa-warning" aria-hidden="true"></i> Add <span class="hidden-lg-down">Exception</span>
+        </app-launch-modal>
 
-        </div>
       </div>
     </div>
+  </div>
 
 </ng-container>

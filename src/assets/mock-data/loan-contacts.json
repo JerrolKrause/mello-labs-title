@@ -1,4 +1,18 @@
 {
+  "title": [
+    {
+      "name": "Johnson, John",
+      "phone": "(555) 555-5555",
+      "uTimeZoneDesc": "Pacific Time Zone",
+      "whichBorr": 1,
+      "address": "6561 Irvine Center Drive",
+      "city": "Las Vegas",
+      "county": "Clark",
+      "state": "NV",
+      "zip": "89113",
+      "birthDate": "1956-07-07T00:00:00"
+    }
+  ],
   "borrowers": [
     {
       "name": "Smith, John",
@@ -79,5 +93,8 @@
       "userId": 0
     }
   ],
-  "brokers": [{ "bcdRole": "Loan Officer" }, { "bcdRole": "Processor" }]
+  "brokers": [
+    { "bcdRole": "Loan Officer" },
+    { "bcdRole": "Processor" }
+  ]
 }

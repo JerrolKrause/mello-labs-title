@@ -51,11 +51,13 @@
     <None Include="src\app\components\form-title\form-title.view.json" />
     <None Include="src\app\components\loan-contacts\loan-contacts.component.scss" />
     <None Include="src\app\components\loan-info\loan-info.component.scss" />
+    <None Include="src\app\components\modals\conditions\conditions.component.scss" />
     <None Include="src\app\components\modals\empower-notes\empower-notes.component.scss" />
     <None Include="src\app\components\modals\empower-save\empower-save.component.scss" />
     <None Include="src\app\components\modals\exception\exception.component.scss" />
     <None Include="src\app\components\viewer\viewer.component.scss" />
     <None Include="src\app\components\web-tool\web-tool.component.scss" />
+    <None Include="src\app\routes\home\columns.resubmissions.json" />
     <None Include="src\app\routes\home\columns.exceptions.json" />
     <None Include="src\app\routes\home\columns.loans.json" />
     <None Include="src\app\routes\home\home.component.scss" />
@@ -105,6 +107,7 @@
     <Content Include="src\app\components\masterpage\nav\nav.component.html" />
     <Content Include="src\app\components\masterpage\nav\search\nav-search.component.html" />
     <Content Include="src\app\components\masterpage\single\layout-single.component.html" />
+    <Content Include="src\app\components\modals\conditions\conditions.component.html" />
     <Content Include="src\app\components\modals\confirmation\confirmation-modal.component.html" />
     <Content Include="src\app\components\modals\empower-notes\empower-notes.component.html" />
     <Content Include="src\app\components\modals\empower-save\empower-save.component.html" />
@@ -163,6 +166,8 @@
     <TypeScriptCompile Include="src\app\components\masterpage\nav\nav.component.ts" />
     <TypeScriptCompile Include="src\app\components\masterpage\nav\search\nav-search.component.ts" />
     <TypeScriptCompile Include="src\app\components\masterpage\single\layout-single.component.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\conditions\conditions.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\modals\conditions\conditions.component.ts" />
     <TypeScriptCompile Include="src\app\components\modals\confirmation\confirmation-modal.component.ts" />
     <TypeScriptCompile Include="src\app\components\modals\empower-notes\empower-notes.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\modals\empower-notes\empower-notes.component.ts" />

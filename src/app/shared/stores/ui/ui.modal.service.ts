@@ -13,6 +13,7 @@ import {
   EmpowerSaveComponent,
   EmpowerNotesComponent,
   ExceptionComponent,
+  ConditionsComponent
 } from '@modals';
 
 /** Sample Usage: 
@@ -27,7 +28,8 @@ type modals =
   | 'ConfirmationModalComponent'
   | 'EmpowerSaveComponent'
   | 'EmpowerNotesComponent'
-  | 'ExceptionComponent';
+  | 'ExceptionComponent'
+  | 'ConditionsComponent'  ;
 
 @Injectable()
 export class UIModalService {
@@ -42,6 +44,7 @@ export class UIModalService {
     EmpowerSaveComponent: EmpowerSaveComponent,
     EmpowerNotesComponent: EmpowerNotesComponent,
     ExceptionComponent: ExceptionComponent,
+    ConditionsComponent: ConditionsComponent
   };
 
   constructor(
