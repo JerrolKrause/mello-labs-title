@@ -6,4 +6,6 @@
 export const environment = {
   production: false,
   serviceWorker: false,
+  /** Which UI store properties to not write to localstorage */
+  uiStoreIgnoreProps: ['loanHasUpdate', 'forms']
 };

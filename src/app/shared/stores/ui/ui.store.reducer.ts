@@ -1,9 +1,6 @@
 import { IStore } from '@shared';
 import { UIStoreActions } from './ui.store.actions';
 
-/** Which properties of the store properties to NOT persist or save to local storage */
-const ignoreProps = ['loanHasUpdate', 'forms'];
-
 // Define initial store state : State.main
 const initialState: IStore.ui = {
   modal: null,
@@ -29,47 +26,27 @@ Jane Smith`,
 export function UIStoreReducer(state = initialState, { type, payload }: any) {
   // console.log('UI REDUCER:', type, payload, JSON.parse(JSON.stringify(state)));
 
-  // Write state to localstorage for persistence
-  const saveState = () => {
-    const stateNew: any = { ...state };
-    // Delete any keys that should not be persisted
-    for (const key in stateNew) {
-      if (stateNew.hasOwnProperty(key) && ignoreProps.indexOf(key) !== -1 && stateNew[key]) {
-        delete stateNew[key];
-      }
-    }
-    // Save UI state to localstorage
-    window.localStorage.setItem('ui', JSON.stringify(stateNew));
-  };
-
   switch (type) {
     case UIStoreActions.REHYDRATE:
       state = { ...initialState, ...payload };
-      saveState();
       break;
     case UIStoreActions.MODAL_OPEN:
       state.modal = { ...payload };
-      saveState();
       break;
     case UIStoreActions.MODAL_UNLOAD:
       state.modal = null;
-      saveState();
       break;
     case UIStoreActions.LOAN_SAVED:
       state.loanHasUpdate = false;
-      saveState();
       break;
     case UIStoreActions.LOAN_CONTACTS_TOGGLE:
       state.loanContacts = !state.loanContacts;
-      saveState();
       break;
     case UIStoreActions.MULTIDOCS_TOGGLE:
       state.multiDocs = !state.multiDocs;
-      saveState();
       break;
     case UIStoreActions.MULTISCREEN_TOGGLE:
       state.multiscreen = payload !== null ? payload : !state.multiscreen;
-      saveState();
       break;
     case UIStoreActions.DOC_CHANGE:
       state.docViewerGuids[payload.instance] = {
@@ -78,14 +55,12 @@ export function UIStoreReducer(state = initialState, { type, payload }: any) {
         pageNumber: payload.pageNumber,
       };
       state.docViewerGuids = [...state.docViewerGuids];
-      saveState();
       break;
     case UIStoreActions.FORM_CHANGE:
       if (payload.loanHasUpdate) {
         state.loanHasUpdate = true;
       }
       (<any>state).forms[payload.formType] = { ...payload.value };
-      saveState();
       break;
     case UIStoreActions.TAB_CHANGE:
       const tabType: 'viewer' | 'form' | 'dashboard' = payload.tabType;
@@ -97,10 +72,9 @@ export function UIStoreReducer(state = initialState, { type, payload }: any) {
       } else if (tabType === 'dashboard') {
         state.tabDashboard = tabNum;
       }
-      saveState();
       break;
   }
-
+  state = { ...state };
   // console.log('UI STATE: ', JSON.parse(JSON.stringify(state)));
   return state;
 }

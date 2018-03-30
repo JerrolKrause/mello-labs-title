@@ -112,19 +112,13 @@ export class AppCommsService {
       this.ui.multiScreen$.subscribe(multiScreen => {
         // If multiscreen is present and a window is not yet open and has not been closed
         if (multiScreen && !this.ui.screen && !window.opener) {
-          setTimeout(() => {
-            this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
-          });
+          this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
         } else if (this.ui.screen && this.ui.screen.closed) {
           // If window has been closed
           this.ui.screen = null;
-        } else if (multiScreen) {
+        } else if (multiScreen && this.ui.screen) {
           // If multi screen has been set and a window is already opened, update url in current window
-          setTimeout(() => {
-            if (this.ui.screen) {
               this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
-            }
-          });
         } else if (this.ui.screen && multiScreen === false) {
           // If screen is open and multiscreen is false, close window
           this.ui.screen.close();

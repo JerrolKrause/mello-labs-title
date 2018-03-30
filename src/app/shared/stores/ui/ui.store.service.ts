@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IStore } from '@shared';
 import { UIStoreActions, FormTypes } from './ui.store.actions';
+import { environment } from '@env';
 
 @Injectable()
 export class UIStoreService {
@@ -27,7 +28,8 @@ export class UIStoreService {
       this.rehydrateUI(JSON.parse(<string>window.localStorage.getItem('ui')));
     }
 
-     // this.store.subscribe(store => console.log(JSON.parse(JSON.stringify(store.ui))));
+    // On UI store changes, persist to localstorage //.debounceTime(250)
+    this.store.select(storeRoot => storeRoot.ui).subscribe(uiState => this.saveStoreState(uiState));
   }
 
   /**
@@ -95,5 +97,21 @@ export class UIStoreService {
   public rehydrateUI(uiState: any) {
     // console.log('rehydrateUI', uiState);
     this.store.dispatch({ type: UIStoreActions.REHYDRATE, payload: uiState });
+  }
+
+  /**
+   * Save the UI store state to localstorage for persistance
+   * @param state
+   */
+  private saveStoreState(state: IStore.ui) {
+    /** Which properties of the store properties to NOT persist or save to local storage */
+    const stateNew: any = { ...state }; 
+    // Delete any keys that should not be persisted
+    for (const key in stateNew) {
+      if (stateNew.hasOwnProperty(key) && environment.uiStoreIgnoreProps.indexOf(key) !== -1 && stateNew[key]) {
+        delete stateNew[key];
+      }
+    }
+    window.localStorage.setItem('ui', JSON.stringify(stateNew));
   }
 }

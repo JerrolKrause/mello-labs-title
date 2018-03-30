@@ -184,7 +184,6 @@
     <TypeScriptCompile Include="src\app\routes\no-content\no-content.component.ts" />
     <TypeScriptCompile Include="src\app\routes\qa\qa.component.spec.ts" />
     <TypeScriptCompile Include="src\app\routes\qa\qa.component.ts" />
-    <TypeScriptCompile Include="src\app\routes\viewer\viewer.component.spec.ts" />
     <TypeScriptCompile Include="src\app\routes\viewer\viewer.component.ts" />
     <TypeScriptCompile Include="src\app\shared\app.settings.ts" />
     <TypeScriptCompile Include="src\app\shared\directives\full-screen.directive.ts" />
