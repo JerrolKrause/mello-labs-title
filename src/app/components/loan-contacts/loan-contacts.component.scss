@@ -1,6 +1,8 @@
-#sidebar {
+#loan-contacts {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#083053), to(#478cc6));
   background-image: linear-gradient(to bottom, #083053 0, #478cc6 100%);
+
+ 
   color: #fff;
   margin-left: -15px;
   margin-right: -15px;
@@ -15,24 +17,17 @@
     }
   }
 
+  .card{box-shadow: none;}
+
   .steelBlueBgr {
     background-color: lightsteelblue;
-    .btn-faded {
-      background-color: lavender;
-    }
+    .btn-faded { background-color: lavender;}
   }
 
-  .dropdown-menu {
-    padding: 0;
-    overflow: hidden;
-    .btn {
-      background: #fff;
-      border: 0;
-      box-shadow: none;
+  .dropdown-menu {padding: 0; overflow: hidden;
+    .btn { background: #fff;border: 0;box-shadow: none;
     }
-    .btn:hover {
-      background-color: lavender;
-    }
+    .btn:hover {background-color: lavender;}
     .dropdown-item {
       hr {
         margin: 0.2rem 0 0;
@@ -69,4 +64,10 @@
       margin-bottom: 2px;
     }
   }
+
+  // Labs styling
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e4b0c6), to(#f7276e));
+  background-image: linear-gradient(180deg, #e4b0c6 0, #f7276e);
+  .steelBlueBgr{background:white!important;}
+
 }

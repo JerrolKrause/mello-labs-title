@@ -62,6 +62,15 @@
     "canFilter": true
   },
   {
+    "prop": "exceptionType",
+    "label": "Exception Type",
+    "columnType": "string",
+    "width": 90,
+    "canSort": true,
+    "canGroup": true,
+    "canFilter": true
+  },
+  {
     "prop": "exceptionReason",
     "label": "Exception Reason",
     "columnType": "string",

@@ -13,6 +13,9 @@ export class ConditionsComponent implements OnInit {
 
   public condition: any;
   public condition2: any;
+  public who: any;
+  public type: any;
+  public waiting: boolean;
 
   constructor(public activeModal: NgbActiveModal) { }
 

@@ -116,6 +116,10 @@
                   <textarea class="form-control" rows="4"></textarea>
                 </div>
               </div>
+              <hr />
+              <div class="text-right">
+                <button class="btn btn-sm btn-primary" [disabled]="!condition">Save Notes</button>
+              </div>
             </ng-template>
           </ngb-tab>
 
@@ -151,20 +155,24 @@
                   </div>
 
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" [(ngModel)]="condition" name="exampleRadios" id="exampleRadios4" value="option4" [(ngModel)]="condition">
+                    <input class="form-check-input" type="radio" [(ngModel)]="condition" name="exampleRadios" id="exampleRadios4" value="option4">
                     <label class="form-check-label" for="exampleRadios4">
                       Deficient
                     </label>
                   </div>
                 </div>
                 <div class="col-12 col-md-4">
-                  <button class="btn btn-sm btn-primary w-100" [disabled]="!condition">Apply</button>
+
                 </div>
               </div>
-              <!--
-      <hr />
-      History coming soon
-      -->
+              <hr />
+              <div class="text-right">
+                <button class="btn btn-sm btn-primary" [disabled]="!condition">Apply Decision</button>
+                </div>
+                <!--
+    <hr />
+    History coming soon
+    -->
             </ng-template>
           </ngb-tab>
 

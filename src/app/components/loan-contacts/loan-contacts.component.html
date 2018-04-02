@@ -1,4 +1,4 @@
-<div id="sidebar">
+<div id="loan-contacts">
   <h2 class="title mb-2 white"><i class="fa fa-users"></i> Loan Contacts</h2>
   <ng-container *ngIf="!contacts || !loanNumber">
     <p>Please supply a loan number to view contacts</p>
@@ -27,7 +27,7 @@
                   <p class="mb-0" [class.resizeText]="resizeText">
                     <strong>{{contact.name}}</strong><br />
                     <small>
-                        Title Original Specialist
+                      Title Original Specialist
                     </small>
                   </p>
                   <div class="btn-group btn-group-vertical" role="group">
@@ -60,61 +60,62 @@
       </ngb-panel>
 
 
-      <!-- Borrower contacts -->
-      <ngb-panel id="ngb-panel-1">
-        <ng-template ngbPanelTitle>
-          Borrower Contacts
-        </ng-template>
-        <ng-template ngbPanelContent>
-          <ul class="list-group mb-2" data-qa="hp-sidebar-borrowers">
-            <li class="list-group-item list-group-item-action flex-column align-items-start steelBlueBgr"
-                *ngIf="!contacts.borrowers?.length">
-              No borrower contacts found.
-            </li>
-            <ng-container *ngIf="contacts.borrowers?.length">
-              <li class="list-group-item list-group-item-action flex-column align-items-start steelBlueBgr"
-                  [class.resizePadding]="resizeText"
-                  *ngFor="let contact of contacts.borrowers;let rowIndex = index">
-                <div class="d-flex w-100 justify-content-between align-items-center">
-                  <p class="mb-0" [class.resizeText]="resizeText">
-                    <strong>{{contact.name}}</strong><br />
-                    <small>
-                      <ng-container *ngIf="rowIndex == 0">
-                        Primary Borrower
-                      </ng-container>
-                      <ng-container *ngIf="rowIndex != 0">
-                        Co-Borrower
-                      </ng-container>
-                    </small>
-                  </p>
-                  <div class="btn-group btn-group-vertical" role="group">
-                    <ng-container *ngIf="settings?.lookup?.BccM4Notes == 'false';else bccM4NotesBorrower">
-                      <a class="btn btn-interact-outline btn-sm btn-faded d-inline-block" *ngIf="contact.email"
-                         href="mailto:{{contact.email}}?subject={{loanNumber}}, {{contact.name}}" data-qa="hp-sidebar-borrowers-email">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                      </a>
-                    </ng-container>
-                    <ng-template #bccM4NotesBorrower>
-                      <a class="btn btn-interact-outline btn-sm btn-faded d-inline-block" *ngIf="contact.email"
-                         href="mailto:{{contact.email}}?bcc=m4notes@loandepot.com&subject={{loanNumber}}, {{contact.name}}" data-qa="hp-sidebar-borrowers-email">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                      </a>
-                    </ng-template>
-                    <div ngbDropdown class="d-inline-block" placement="bottom-right">
-                      <button class="btn btn-interact-outline btn-sm" id="dropdownBasic1" ngbDropdownToggle>
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                      </button>
-                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <ng-container *ngTemplateOutlet="phoneDropdown;context:{$implicit: contact, isBorrower: true }"></ng-container>
-                      </div>
-                    </div>
+      <!-- Borrower contacts
+  <ngb-panel id="ngb-panel-1">
+    <ng-template ngbPanelTitle>
+      Borrower Contacts
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <ul class="list-group mb-2" data-qa="hp-sidebar-borrowers">
+        <li class="list-group-item list-group-item-action flex-column align-items-start steelBlueBgr"
+            *ngIf="!contacts.borrowers?.length">
+          No borrower contacts found.
+        </li>
+        <ng-container *ngIf="contacts.borrowers?.length">
+          <li class="list-group-item list-group-item-action flex-column align-items-start steelBlueBgr"
+              [class.resizePadding]="resizeText"
+              *ngFor="let contact of contacts.borrowers;let rowIndex = index">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+              <p class="mb-0" [class.resizeText]="resizeText">
+                <strong>{{contact.name}}</strong><br />
+                <small>
+                  <ng-container *ngIf="rowIndex == 0">
+                    Primary Borrower
+                  </ng-container>
+                  <ng-container *ngIf="rowIndex != 0">
+                    Co-Borrower
+                  </ng-container>
+                </small>
+              </p>
+              <div class="btn-group btn-group-vertical" role="group">
+                <ng-container *ngIf="settings?.lookup?.BccM4Notes == 'false';else bccM4NotesBorrower">
+                  <a class="btn btn-interact-outline btn-sm btn-faded d-inline-block" *ngIf="contact.email"
+                     href="mailto:{{contact.email}}?subject={{loanNumber}}, {{contact.name}}" data-qa="hp-sidebar-borrowers-email">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                  </a>
+                </ng-container>
+                <ng-template #bccM4NotesBorrower>
+                  <a class="btn btn-interact-outline btn-sm btn-faded d-inline-block" *ngIf="contact.email"
+                     href="mailto:{{contact.email}}?bcc=m4notes@loandepot.com&subject={{loanNumber}}, {{contact.name}}" data-qa="hp-sidebar-borrowers-email">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                  </a>
+                </ng-template>
+                <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                  <button class="btn btn-interact-outline btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <ng-container *ngTemplateOutlet="phoneDropdown;context:{$implicit: contact, isBorrower: true }"></ng-container>
                   </div>
                 </div>
-              </li>
-            </ng-container>
-          </ul>
-        </ng-template>
-      </ngb-panel>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </ng-template>
+  </ngb-panel>
+  -->
 
       <!-- Loan Contacts-->
       <ngb-panel id="ngb-panel-2">

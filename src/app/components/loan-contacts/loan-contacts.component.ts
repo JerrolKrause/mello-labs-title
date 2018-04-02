@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-loan-contacts',
   templateUrl: './loan-contacts.component.html',
   styleUrls: ['./loan-contacts.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoanContactsComponent implements OnInit, OnChanges {

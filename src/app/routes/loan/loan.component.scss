@@ -21,7 +21,7 @@
       } //display:flex;justify-content: space-between;
     }
     .tab-pane {
-      height: calc(100vh - 343px);
+      max-height: calc(100vh - 420px);
       overflow-y: auto;
       overflow-x: hidden;
     }

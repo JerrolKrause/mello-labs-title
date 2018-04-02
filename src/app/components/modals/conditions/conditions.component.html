@@ -9,7 +9,7 @@
     </button>
   </div>
 
-  <div class="modal-body" id="modal-body">
+  <div class="modal-body p-4" id="modal-body">
 
     <div class="form-check mb-2">
       <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios1" value="option1">
@@ -60,6 +60,76 @@
         <textarea class="form-control" (click)="condition = 'custom'" placeholder="Enter custom condition..."></textarea>
       </label>
     </div>
+    <hr />
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <strong>Type</strong>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="type" id="type1" value="PTA">
+              <label class="form-check-label" for="type1">
+                PTA
+              </label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="type" id="type2" value="PTD">
+              <label class="form-check-label" for="type2">
+                PTD
+              </label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="type" id="type3" value="PTF">
+              <label class="form-check-label" for="type3">
+               PTF
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <strong>Who</strong>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="who" id="who1" value="Title Reviewer">
+              <label class="form-check-label" for="who1">
+                Title Reviewer
+              </label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="who" id="who2" value="UW">
+              <label class="form-check-label" for="who2">
+                UW
+              </label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="who" id="who3" value="Processor">
+              <label class="form-check-label" for="who3">
+                Processor
+              </label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="type" [(ngModel)]="who" id="who4" value="Funder">
+              <label class="form-check-label" for="who4">
+                Funder
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
   </div>
 
