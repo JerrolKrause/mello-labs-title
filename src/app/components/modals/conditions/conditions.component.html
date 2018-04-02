@@ -14,31 +14,53 @@
     <div class="form-check mb-2">
       <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios1" value="option1">
       <label class="form-check-label" for="exampleRadios1">
-        This is a default condition #1
+        Borrower to sign AKA Affidavit due to name variations.
       </label>
     </div>
 
     <div class="form-check mb-2">
       <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios2" value="option2">
       <label class="form-check-label" for="exampleRadios2">
-        This is a default condition #2
+        Verify borrowers identity using a front and back copy of a valid government-issued photo identification.
       </label>
     </div>
 
     <div class="form-check mb-2">
       <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios3" value="option3">
       <label class="form-check-label" for="exampleRadios3">
-        This is a default condition #3
+        Borrower to provide evidence of legal name, there is a name variance between vesting name and the applicants name.
       </label>
     </div>
 
-    <div class="form-check">
-      <input class="form-check-input" type="radio" [(ngModel)]="condition" name="exampleRadios" id="exampleRadios4" value="option4" [(ngModel)]="condition">
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios4" value="option4">
       <label class="form-check-label" for="exampleRadios4">
-        <textarea class="form-control" (click)="condition = 'option4'"></textarea>
+        FHA Case Number must be updated to match the borrowers name on title vesting.
       </label>
     </div>
-    
+
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios5" value="option5">
+      <label class="form-check-label" for="exampleRadios5">
+        VA Case Number must be updated to match the borrowers name on title vesting.
+      </label>
+    </div>
+
+    <div class="form-check mb-2">
+      <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="condition" id="exampleRadios6" value="option6">
+      <label class="form-check-label" for="exampleRadios6">
+        HOI Policy must be updated to match the borrowers name on title vesting.
+      </label>
+    </div>
+
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [(ngModel)]="condition" name="exampleRadios" id="exampleRadios7" value="custom">
+      <label class="form-check-label" for="exampleRadios7">
+        <textarea class="form-control" (click)="condition = 'custom'" placeholder="Enter custom condition..."></textarea>
+      </label>
+    </div>
+
   </div>
 
   <div class="modal-footer" style="justify-content: space-between;">

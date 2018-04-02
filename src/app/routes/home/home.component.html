@@ -203,7 +203,7 @@
 
     <ngb-tab id="tab-5" *ngIf="rows?.src">
       <ng-template ngbTabTitle>
-        Exceptions ({{(rows?.src  | filter: false : 'exception').length}})
+        Exceptions ({{(rows?.src  | filter: true : 'exception').length}})
       </ng-template>
       <ng-template ngbTabContent>
         <div class="card">

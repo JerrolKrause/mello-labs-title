@@ -21,4 +21,9 @@ export class LoanContactsComponent implements OnInit, OnChanges {
   public openEmpowerNotes(a: any, b: any, c: any) {
     console.log(a, b, c);
   }
+
+  public copyToClipboard(phone: string) {
+    console.log(phone);
+  }
+
 }
