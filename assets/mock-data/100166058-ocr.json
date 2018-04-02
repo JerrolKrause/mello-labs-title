@@ -14,20 +14,6 @@
     }
   },
   {
-    "Id": "d958d5a4-7d9d-4a48-8641-5e767365f25d",
-    "docId": "1",
-    "pageNumber": 2,
-    "field": "OrderID",
-    "label": "Order ID",
-    "value": "CA3059211",
-    "bounds": {
-      "x": 650,
-      "y": 332,
-      "w": 144,
-      "h": 28
-    }
-  },
-  {
     "Id": "8b974b99-34fa-41a8-af9d-24ba6247dd19",
     "docId": "1",
     "pageNumber": 2,
@@ -39,20 +25,6 @@
       "y": 440,
       "w": 244,
       "h": 28
-    }
-  },
-  {
-    "Id": "126eae5b-5ced-4ca7-94ff-c0160d94d4ca",
-    "docId": "1",
-    "pageNumber": 2,
-    "field": "Address",
-    "label": "Property Address",
-    "value": "6561 Irvine Center Drive, Irvine CA, 92618",
-    "bounds": {
-      "x": 100,
-      "y": 554,
-      "w": 200,
-      "h": 68
     }
   },
   {
@@ -95,6 +67,20 @@
       "y": 448,
       "w": 180,
       "h": 42
+    }
+  },
+  {
+    "Id": "baf883a0-4374-7508-1953-de79307a34b1",
+    "docId": "2",
+    "pageNumber": 1,
+    "field": "BorrowerNames",
+    "label": "Name",
+    "value": "Jerrol J Krause",
+    "bounds": {
+      "x": 120,
+      "y": 432,
+      "w": 108,
+      "h": 20
     }
   }
 ]
