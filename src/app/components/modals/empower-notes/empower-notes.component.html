@@ -43,10 +43,10 @@
         </ng-template>
         <ng-template ngbTabContent>
           <div class="p-3" style="border-top: 1px solid #ddd;">
-            <field-component [frmGroup]="formMain" frmControl="subject" label="Subject" [inline]="true" placeholder="Type subject here..."></field-component>
-            <field-component [frmGroup]="formMain" frmControl="description" label="Note" [inline]="true" placeholder="Type note here..." type="textarea"></field-component>
-            <field-component [frmGroup]="formMain" class="positionArrow" *ngIf="noteTypes$ | async as noteTypes"
-                             frmControl="category" label="Note Type" type="select" [model]="noteTypes" modelLabel="category" modelValue="category"></field-component>
+            <app-field-component [frmGroup]="formMain" frmControl="subject" label="Subject" [inline]="true" placeholder="Type subject here..."></app-field-component>
+            <app-field-component [frmGroup]="formMain" frmControl="description" label="Note" [inline]="true" placeholder="Type note here..." type="textarea"></app-field-component>
+            <app-field-component [frmGroup]="formMain" class="positionArrow" *ngIf="noteTypes$ | async as noteTypes"
+                             frmControl="category" label="Note Type" type="select" [model]="noteTypes" modelLabel="category" modelValue="category"></app-field-component>
             <div class="text-right">
               <button class="btn btn-primary" (click)="activeModal.close('Close click')">
                 <i aria-hidden="true" class="fa fa-pencil"></i> Add Note

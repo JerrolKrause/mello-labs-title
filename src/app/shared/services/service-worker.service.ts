@@ -12,11 +12,18 @@ export class ServiceWorkerService {
   public updateAvailable$ = new BehaviorSubject(false);
   /** Holds set interval */
   private counter: any;
+  /** Check for update this many minutes */
+  private checkInterval = 5; //
 
   constructor(private sw: SwUpdate, private modals: UIModalService, private zone: NgZone) {
-    if (this.sw.isEnabled && environment.serviceWorker) {
-      //console.log('Service worker enabled');
+  }
 
+  /**
+   * Start polling for SW updates
+   */
+  public pollForUpdates() {
+    if (this.sw.isEnabled) {
+      
       // On initial load, check if service worker is available first
       this.sw.available.subscribe(() => {
         //console.log('Update available');
@@ -32,7 +39,7 @@ export class ServiceWorkerService {
             //console.log("Checking for new version of the app 7");
             this.sw.checkForUpdate();
           });
-        }, 5000 * 60);
+        }, this.checkInterval * 1000 * 60);
       });
     }
   }

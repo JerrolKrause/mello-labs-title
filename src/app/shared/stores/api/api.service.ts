@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { ApiHttpService, ApiActions } from '@mello-labs/api-tools';
+import { ApiHttpService, ApiStatusActions } from '@mello-labs/api-tools';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
@@ -129,7 +129,7 @@ export class ApiService extends ApiHttpService {
   public resetStore() {
     this.cache = {}; // Clear cache
     this.store.dispatch({
-      type: ApiActions.RESET,
+      type: ApiStatusActions.RESET,
       payload: null,
     }); // Update store with new state
   }
@@ -139,7 +139,7 @@ export class ApiService extends ApiHttpService {
    */
   public resetErrors(): void {
     this.store.dispatch({
-      type: ApiActions.RESET_ERRORS,
+      type: ApiStatusActions.RESET_ERRORS,
       payload: null,
     }); // Update store with new state
   }
@@ -149,7 +149,7 @@ export class ApiService extends ApiHttpService {
    */
   public resetSuccess(): void {
     this.store.dispatch({
-      type: ApiActions.RESET_SUCCESS,
+      type: ApiStatusActions.RESET_SUCCESS,
       payload: null,
     }); // Update store with new state
   }

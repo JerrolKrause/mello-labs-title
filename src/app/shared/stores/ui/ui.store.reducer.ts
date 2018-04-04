@@ -25,28 +25,36 @@ Jane Smith`,
 
 export function UIStoreReducer(state = initialState, { type, payload }: any) {
   // console.log('UI REDUCER:', type, payload, JSON.parse(JSON.stringify(state)));
+  let uiHasUpdate = false;
 
   switch (type) {
     case UIStoreActions.REHYDRATE:
       state = { ...initialState, ...payload };
+      uiHasUpdate = true;
       break;
     case UIStoreActions.MODAL_OPEN:
       state.modal = { ...payload };
+      uiHasUpdate = true;
       break;
     case UIStoreActions.MODAL_UNLOAD:
       state.modal = null;
+      uiHasUpdate = true;
       break;
     case UIStoreActions.LOAN_SAVED:
       state.loanHasUpdate = false;
+      uiHasUpdate = true;
       break;
     case UIStoreActions.LOAN_CONTACTS_TOGGLE:
       state.loanContacts = !state.loanContacts;
+      uiHasUpdate = true;
       break;
     case UIStoreActions.MULTIDOCS_TOGGLE:
       state.multiDocs = !state.multiDocs;
+      uiHasUpdate = true;
       break;
     case UIStoreActions.MULTISCREEN_TOGGLE:
       state.multiscreen = payload !== null ? payload : !state.multiscreen;
+      uiHasUpdate = true;
       break;
     case UIStoreActions.DOC_CHANGE:
       state.docViewerGuids[payload.instance] = {
@@ -55,12 +63,14 @@ export function UIStoreReducer(state = initialState, { type, payload }: any) {
         pageNumber: payload.pageNumber,
       };
       state.docViewerGuids = [...state.docViewerGuids];
+      uiHasUpdate = true;
       break;
     case UIStoreActions.FORM_CHANGE:
       if (payload.loanHasUpdate) {
         state.loanHasUpdate = true;
       }
       (<any>state).forms[payload.formType] = { ...payload.value };
+      uiHasUpdate = true;
       break;
     case UIStoreActions.TAB_CHANGE:
       const tabType: 'viewer' | 'form' | 'dashboard' = payload.tabType;
@@ -72,9 +82,14 @@ export function UIStoreReducer(state = initialState, { type, payload }: any) {
       } else if (tabType === 'dashboard') {
         state.tabDashboard = tabNum;
       }
+      uiHasUpdate = true;
       break;
   }
-  state = { ...state };
+
+  if (uiHasUpdate){
+    state = { ...state };
+  }
+  
   // console.log('UI STATE: ', JSON.parse(JSON.stringify(state)));
   return state;
 }
