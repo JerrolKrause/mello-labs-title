@@ -1,5 +1,6 @@
 <form [formGroup]="formTitle" id="formTitle">
 
+  <!--
   <div class="row">
     <div class="col-12 col-md-3" [ngClass]="ocr ? 'col-md-3' : 'col-md-5' ">
       <strong>Field</strong>
@@ -21,9 +22,10 @@
   </div>
 
   <hr />
+  -->
 
   <ng-container *ngFor="let field of formView">
-    
+
     <app-form-row *ngIf="!ocr || (ocr.dict && ocr.dict[field.field])"
                   [form]="formTitle"
                   [viewModel]="field"

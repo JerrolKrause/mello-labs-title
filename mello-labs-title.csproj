@@ -40,7 +40,6 @@
     <None Include="e2e\tsconfig.e2e.json" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\WEB.csproj.CoreCompileInputs.cache" />
-    <None Include="package-lock.json" />
     <None Include="package.json" />
     <None Include="README.md" />
     <None Include="src\app\components\document-status\document-status.component.scss" />
@@ -86,8 +85,6 @@
     <None Include="src\tsconfig.spec.json" />
     <None Include="tsconfig.json" />
     <None Include="tslint.json" />
-    <None Include="yarn-error.log" />
-    <None Include="yarn.lock" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />

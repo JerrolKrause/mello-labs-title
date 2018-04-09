@@ -15,8 +15,6 @@ export enum MessageActions {
 
 /**
  * Manages communication between multiple app instances or apps that live on separate domains
- * COMMON USAGES:
- *
  */
 @Injectable()
 export class AppCommsService {
@@ -25,7 +23,7 @@ export class AppCommsService {
   /** Hold subs for unsub */
   private subs: Subscription[] = [];
 
-  constructor(private messaging: PostMessageService, private settings: AppSettings, private ui: UIStoreService) {}
+  constructor(private messaging: PostMessageService, private settings: AppSettings, private ui: UIStoreService) { }
 
   /**
    * Start listening for app communication
@@ -118,7 +116,7 @@ export class AppCommsService {
           this.ui.screen = null;
         } else if (multiScreen && this.ui.screen) {
           // If multi screen has been set and a window is already opened, update url in current window
-              this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
+          this.ui.screen = window.open(slug + '#/viewer/' + this.settings.lnkey, 'Document Viewer');
         } else if (this.ui.screen && multiScreen === false) {
           // If screen is open and multiscreen is false, close window
           this.ui.screen.close();

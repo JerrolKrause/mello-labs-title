@@ -1,168 +1,159 @@
-<div class="row pt-2 pb-2 striped" [formGroup]="form">
+<div class="striped pt-2 pb-2 pl-2">
 
-  <div class="col-12" [ngClass]="ocrModel ? 'col-md-3' : 'col-md-5'">
+  <div class="row" [formGroup]="form">
 
-    <ng-container *ngIf="viewModel?.required">
-      <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.valid"></i>
-      <i class="fa fa-warning yellow" *ngIf="!form.get(viewModel.field)?.valid"></i>
-    </ng-container>
-    <ng-container *ngIf="!viewModel?.required">
-      <i class="fa fa-question-circle" style="color: #99a7b9;" aria-hidden="true" *ngIf="!form.get(viewModel.field)?.value"></i>
-      <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
-    </ng-container>
 
-    {{viewModel?.label}}
+    <div class="col-12" [ngClass]="ocrModel ? 'col-12' : 'col-md-6'">
 
-    <!--
-  <ng-container *ngIf="ocrModel">
-    <a (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">{{viewModel?.label}}</a>
-  </ng-container>
-  <ng-container *ngIf="!ocrModel">
-    {{viewModel?.label}}
-  </ng-container>
-  -->
+      <ng-container *ngIf="ocrModel">
+        <small class="float-right pr-2">
+          <app-launch-modal classes="pl-3" modal="ConditionsComponent" size="lg" [data]="ocrModel" [isButton]="false"
+                            (onSuccess)="conditionAdd($event)">
+            <i class="fa fa-plus"></i> Add Condition
+          </app-launch-modal>
+        </small>
+      </ng-container>
 
-    <ng-container *ngIf="ocrModel">
-      <br />
-      <small>
-        <app-launch-modal classes="pl-3" modal="ConditionsComponent" size="lg" [data]="ocrModel" [isButton]="false"
-                          (onSuccess)="conditionAdd($event)">
-          <i class="fa fa-plus"></i> Add Condition
-        </app-launch-modal>
-      </small>
-    </ng-container>
-  </div>
 
-  <div class="col-12 col-md-4" *ngIf="ocrModel" [ngClass]="ocrModel ? 'col-md-4' : null">
+      <ng-container *ngIf="viewModel?.required">
+        <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.valid"></i>
+        <i class="fa fa-warning yellow" *ngIf="!form.get(viewModel.field)?.valid"></i>
+      </ng-container>
+      <ng-container *ngIf="!viewModel?.required">
+        <i class="fa fa-question-circle" style="color: #99a7b9;" aria-hidden="true" *ngIf="!form.get(viewModel.field)?.value"></i>
+        <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
+      </ng-container>
 
-    <ng-container *ngFor="let entry of ocrModel">
-      <div class="btn-group w-100 mb-1">
+      {{viewModel?.label}}
 
-        <button class="btn btn-sm btn-secondary"
-                style="width:30px"
-                (click)="ui.docViewerChange(0, entry.docId, entry.pageNumber, entry.bounds)">
-          <i class="fa fa-file-pdf-o"></i>
-        </button>
+    </div>
 
-        <button class="btn btn-sm text-left btn-secondary"
-                *ngIf="entry?.value"
-                style="width:calc(100% - 30px)"
-                [disabled]="editing || form.value[field] == entry.value"
-                (click)="updateForm(viewModel.field,entry.value)">
-          <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != entry.value"></i>
-          <i class="fa fa-check float-right" *ngIf="form.value[field] == entry.value"></i>
-          {{entry.value}}
-        </button>
-      </div>
-    </ng-container>
+
+
 
     <!--
-     <ng-container *ngIf="!hasFuzzyMatch">
-       <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: ocrModel, value: ocrModel, form: form, field: field }"></ng-container>
-     </ng-container>
-     <ng-container *ngIf="hasFuzzyMatch">
-       <ng-container *ngFor="let value of ocrValue">
-         <ng-container *ngTemplateOutlet="ocrValueTemplate;context:{$implicit: value, value: value, form: form, field: field }"></ng-container>
-       </ng-container>
-     </ng-container>
-    -->
+      <div class="col-12" [ngClass]="ocrModel ? 'col-md-3' : 'col-md-5'">
+        <ng-container *ngIf="viewModel?.required">
+          <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.valid"></i>
+          <i class="fa fa-warning yellow" *ngIf="!form.get(viewModel.field)?.valid"></i>
+        </ng-container>
+        <ng-container *ngIf="!viewModel?.required">
+          <i class="fa fa-question-circle" style="color: #99a7b9;" aria-hidden="true" *ngIf="!form.get(viewModel.field)?.value"></i>
+          <i class="fa fa-check-square green" *ngIf="form.get(viewModel.field)?.value"></i>
+        </ng-container>
 
-  </div>
+        {{viewModel?.label}}
 
-  <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrModel ? 'col-md-5' : 'col-md-7'" style="position:relative;">
-    <div class="w-100" (dblclick)="editToggle($event)" [ngClass]="editing ? 'editing' : 'editable'">
-
-      <div class="float-right icon-action">
-        <a *ngIf="!editing" (click)="editToggle($event)" title="Edit this field manually">
-          <i class="fa fa-gear"></i>
-        </a>
-        <a *ngIf="editing" (click)="editToggle($event);updateForm(viewModel.field,valuePrev)" title="Cancel manuel edit and remove value">
-          <i class="fa fa-remove"></i>
-        </a>
-
-        <ng-container *ngIf="form?.value[viewModel?.field] != valuePrev && !editing">
+        <ng-container *ngIf="ocrModel">
           <br />
-          <a (click)="updateForm(viewModel.field,valuePrev)" title="Undo changes to this field">
-            <i class="fa fa-undo" aria-hidden="true"></i>
+          <small>
+            <app-launch-modal classes="pl-3" modal="ConditionsComponent" size="lg" [data]="ocrModel" [isButton]="false"
+                              (onSuccess)="conditionAdd($event)">
+              <i class="fa fa-plus"></i> Add Condition
+            </app-launch-modal>
+          </small>
+        </ng-container>
+  </div>
+   -->
+
+
+
+    <div class="col-12 col-md-8" *ngIf="ocrModel">
+
+      <div class="row mb-1" *ngFor="let entry of ocrModel">
+
+        <div class="col-12 col-md-6 pt-1">
+          <a (click)="ui.docViewerChange(0, entry.docId, entry.pageNumber, entry.bounds)">
+            <i class="fa fa-eye" aria-hidden="true"></i> {{entry.docName}}
           </a>
-        </ng-container>
+        </div>
+        <div class="col-12 col-md-6">
+          <button class="btn btn-sm text-left btn-secondary w-100"
+                  *ngIf="entry?.value"
+                  style="width:calc(100% - 30px)"
+                  [disabled]="editing || form.value[field] == entry.value"
+                  (click)="updateForm(viewModel.field,entry.value)">
+            <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != entry.value"></i>
+            <i class="fa fa-check float-right" *ngIf="form.value[field] == entry.value"></i>
+            {{entry.value}}
+          </button>
+        </div>
       </div>
+    </div>
+
+    <div class="col-12 d-flex align-items-stretch" [ngClass]="ocrModel ? 'col-md-4' : 'col-md-6'">
+      <div class="w-100" (dblclick)="editToggle($event)" [ngClass]="editing ? 'editing' : 'editable'">
+
+        <div class="float-right icon-action">
+          <a *ngIf="!editing" (click)="editToggle($event)" title="Edit this field manually">
+            <i class="fa fa-gear"></i>
+          </a>
+          <a *ngIf="editing" (click)="editToggle($event);updateForm(viewModel.field,valuePrev)" title="Cancel manuel edit and remove value">
+            <i class="fa fa-remove"></i>
+          </a>
+
+          <ng-container *ngIf="form?.value[viewModel?.field] != valuePrev && !editing">
+            <br />
+            <a (click)="updateForm(viewModel.field,valuePrev)" title="Undo changes to this field">
+              <i class="fa fa-undo" aria-hidden="true"></i>
+            </a>
+          </ng-container>
+        </div>
 
 
-      <ng-container *ngIf="!editing">
-        <ng-container *ngIf="form.value[viewModel.field]">
-          {{form.value[viewModel.field]}}
-        </ng-container>
-        <ng-container *ngIf="!form.value[viewModel.field]">
-          <em>None</em>
-        </ng-container>
-      </ng-container>
-
-      <ng-container *ngIf="editing">
-
-        <!-- Input -->
-        <ng-container *ngIf="viewModel.fieldType == 'input'">
-          <input class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="viewModel.field" />
-        </ng-container>
-
-        <!-- Text area-->
-        <ng-container *ngIf="viewModel.fieldType == 'textarea'">
-          <textarea class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="viewModel.field"></textarea>
-        </ng-container>
-
-        <!-- Date box-->
-        <ng-container *ngIf="viewModel.fieldType == 'date'">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-sm" [formControlName]="viewModel.field">
-            <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d.toggle()" type="button">
-              <i class="fa fa-calendar"></i>
-            </button>
-          </div>
-          <input type="hidden" ngbDatepicker #d="ngbDatepicker" name="dp" [ngModel]="dateEffective" (ngModelChange)="dateChanged(viewModel.field, $event)" [ngModelOptions]="{standalone: true}" />
+        <ng-container *ngIf="!editing">
+          <ng-container *ngIf="form.value[viewModel.field]">
+            {{form.value[viewModel.field]}}
+          </ng-container>
+          <ng-container *ngIf="!form.value[viewModel.field]">
+            <em>None</em>
+          </ng-container>
         </ng-container>
 
-        <!-- Radio -->
-        <ng-container *ngIf="viewModel.fieldType == 'radio'">
-          <fieldset class="form-group" *ngIf="viewModel.fieldModel">
-            <div class="form-check" *ngFor="let model of viewModel.fieldModel">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" [value]="model" [formControlName]="viewModel.field">
-                {{model}}
-              </label>
+        <ng-container *ngIf="editing">
+
+          <!-- Input -->
+          <ng-container *ngIf="viewModel.fieldType == 'input'">
+            <input class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="viewModel.field" />
+          </ng-container>
+
+          <!-- Text area-->
+          <ng-container *ngIf="viewModel.fieldType == 'textarea'">
+            <textarea class="form-control form-control-sm" rows="3" style="position:relative;z-index:1;" [formControlName]="viewModel.field"></textarea>
+          </ng-container>
+
+          <!-- Date box-->
+          <ng-container *ngIf="viewModel.fieldType == 'date'">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-sm" [formControlName]="viewModel.field">
+              <button class="btn btn-outline-secondary btn-sm input-group-addon" (click)="d.toggle()" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
             </div>
-            <div class="form-check" *ngIf="viewModel.radioFreeform">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" value="" [formControlName]="viewModel.field">
-                <input type="text" class="form-control form-control-sm form-control-inline" />
-              </label>
-            </div>
-          </fieldset>
+            <input type="hidden" ngbDatepicker #d="ngbDatepicker" name="dp" [ngModel]="dateEffective" (ngModelChange)="dateChanged(viewModel.field, $event)" [ngModelOptions]="{standalone: true}" />
+          </ng-container>
+
+          <!-- Radio -->
+          <ng-container *ngIf="viewModel.fieldType == 'radio'">
+            <fieldset class="form-group" *ngIf="viewModel.fieldModel">
+              <div class="form-check" *ngFor="let model of viewModel.fieldModel">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" [value]="model" [formControlName]="viewModel.field">
+                  {{model}}
+                </label>
+              </div>
+              <div class="form-check" *ngIf="viewModel.radioFreeform">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" value="" [formControlName]="viewModel.field">
+                  <input type="text" class="form-control form-control-sm form-control-inline" />
+                </label>
+              </div>
+            </fieldset>
+          </ng-container>
+
         </ng-container>
 
-      </ng-container>
-
+      </div>
     </div>
   </div>
 </div>
-
-<!-- OCR button template -->
-<ng-template #ocrValueTemplate let-value="ocrModel" let-form="form" let-field="field">
-  <div class="btn-group w-100">
-
-    <button class="btn btn-sm btn-secondary"
-            style="width:30px"
-            (click)="ui.docViewerChange(0, ocrModel.docId, ocrModel.pageNumber, ocrModel.bounds)">
-      <i class="fa fa-file-pdf-o"></i>
-    </button>
-
-    <button class="btn btn-sm text-left btn-secondary"
-            *ngIf="ocrModel?.value"
-            style="width:calc(100% - 30px)"
-            [disabled]="editing || form.value[field] == ocrModel.value"
-            (click)="updateForm(viewModel.field,ocrModel.value)">
-      <i class="fa fa-arrow-right float-right" *ngIf="form.value[field] != ocrModel.value"></i>
-      <i class="fa fa-check float-right" *ngIf="form.value[field] == ocrModel.value"></i>
-      {{ocrModel.value}}
-    </button>
-  </div>
-</ng-template>
