@@ -1,14 +1,13 @@
 <form [formGroup]="formTitle" id="formTitle">
 
-  <!--
   <div class="row">
-    <div class="col-12 col-md-3" [ngClass]="ocr ? 'col-md-3' : 'col-md-5' ">
+    <div class="col-12 col-md-4" [ngClass]="ocr ? 'col-md-4' : 'col-md-6' ">
       <strong>Field</strong>
     </div>
     <div class="col-12 col-md-4" *ngIf="ocr">
       <strong>Suggested Results</strong>
     </div>
-    <div class="col-12 col-md-5" [ngClass]="ocr ? 'col-md-5' : 'col-md-7' ">
+    <div class="col-12 col-md-4" [ngClass]="ocr ? 'col-md-4' : 'col-md-6' ">
       <a class="float-right" (click)="editGlobal = !editGlobal">
         <ng-container *ngIf="!editGlobal">
           <i class="fa fa-gear"></i> Edit All
@@ -20,12 +19,9 @@
       <strong>Loan Data</strong>
     </div>
   </div>
-
   <hr />
-  -->
 
   <ng-container *ngFor="let field of formView">
-
     <app-form-row *ngIf="!ocr || (ocr.dict && ocr.dict[field.field])"
                   [form]="formTitle"
                   [viewModel]="field"

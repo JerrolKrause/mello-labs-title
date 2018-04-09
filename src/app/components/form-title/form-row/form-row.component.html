@@ -63,9 +63,15 @@
       <div class="row mb-1" *ngFor="let entry of ocrModel">
 
         <div class="col-12 col-md-6 pt-1">
-          <a (click)="ui.docViewerChange(0, entry.docId, entry.pageNumber, entry.bounds)">
+
+
+          <a *ngIf="entry.docId"
+          (click)="ui.docViewerChange(0, entry.docId, entry.pageNumber, entry.bounds)">
             <i class="fa fa-eye" aria-hidden="true"></i> {{entry.docName}}
           </a>
+          <ng-container *ngIf="!entry.docId">
+            <i class="fa fa-eye-slash" aria-hidden="true"></i> {{entry.docName}}
+          </ng-container>
         </div>
         <div class="col-12 col-md-6">
           <button class="btn btn-sm text-left btn-secondary w-100"
